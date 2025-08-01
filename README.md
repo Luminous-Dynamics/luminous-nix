@@ -2,7 +2,8 @@
 
 > "Making NixOS accessible to every human through natural conversation that adapts to YOU."
 
-[![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange)](https://github.com/Luminous-Dynamics/nix-for-humanity)
+[![Status](https://img.shields.io/badge/Status-Working%20Beta-brightgreen)](https://github.com/Luminous-Dynamics/nix-for-humanity)
+[![Version](https://img.shields.io/badge/Version-0.9.0-blue)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![Documentation](https://img.shields.io/badge/Docs-Comprehensive-green)](docs/README.md)
 [![Budget](https://img.shields.io/badge/Budget-%24200%2Fmonth-purple)](docs/project/BUDGET_ANALYSIS.md)
@@ -16,7 +17,7 @@ Nix for Humanity transforms NixOS from command-line complexity into natural conv
 ### 🎯 Core Features
 
 - **🗣️ Natural Language**: Say "install Firefox" or "my WiFi isn't working" 
-- **🎭 Adaptive Personality**: The system learns YOUR style (minimal, friendly, encouraging, playful, or sacred)
+- **🧠 Adaptive Responses**: NEW! System automatically adapts to your needs - no personality modes to choose
 - **👥 Built for Everyone**: From Grandma Rose (75) to Alex the blind developer (28)
 - **🔒 100% Private**: Everything runs locally - your data never leaves your machine
 - **📈 Progressive Enhancement**: Interface fades as you gain mastery (The Disappearing Path)
@@ -34,26 +35,58 @@ You: "Install that thing for PDFs"
 Nix: "Installing Okular PDF viewer for you... Done! You'll find it in your applications menu."
 ```
 
-## 📊 Project Status
+## 🎉 NEW: Learning Mode for Step-by-Step Guidance!
 
-### ✅ What's Working Now
-- **50+ natural language commands** implemented
-- **Intent recognition engine** with safety validation  
-- **Comprehensive documentation** for the entire vision
-- **Tauri desktop architecture** established
-- **Error recovery** that teaches rather than frustrates
+Version 0.5.1 introduces Learning Mode - perfect for users like Carlos who need examples with every command. Combined with our Adaptive Response System, it provides the most supportive NixOS learning experience available.
 
-### 🚧 Currently Building (Week 3-4)
-- **Adaptive personality system** - 5 styles that match user preferences
-- **Visual adaptation** - From rich guidance to invisible excellence
-- **Emotional resonance** - Responds to frustration, confidence, flow states
-- **Learning system** - Remembers your patterns and preferences
+### 📚 Learning Mode Features
+- **Step-by-step walkthroughs** - Never skip ahead or get lost
+- **Examples with every command** - See exactly what to type
+- **Practice exercises** - Build confidence with guided tasks
+- **Progress tracking** - See how far you've come
+- **Troubleshooting help** - Get unstuck quickly
+- **Adaptive responses** - Matches your learning style
 
-### 🔮 Coming Soon (Weeks 5-12)
-- **Voice interface** with emotion detection
+Try it with `ask-nix-learning` - perfect for beginners!
+
+### 🧠 Adaptive Response System
+The system automatically adjusts to your needs:
+- **Detects frustration** → Provides reassurance and simpler steps
+- **Sees learning desire** → Activates step-by-step mode
+- **Recognizes urgency** → Gives concise answers  
+- **Notices accessibility needs** → Optimizes for screen readers
+
+Try adaptive mode with `ask-nix-adaptive` or use the standard `ask-nix` command.
+
+## 🎉 Unified ask-nix Command
+
+We've consolidated all our tools into a single, feature-complete `ask-nix` command that combines the best of all versions.
+
+### ✅ What's Working NOW (v0.5.0)
+- **🌟 UNIFIED COMMAND** - Single `ask-nix` combines ALL features
+- **🚀 AUTOMATIC EXECUTION** - Commands run directly, no more copy-paste!
+- **⚡ INTELLIGENT CACHING** - 100-1000x faster package searches!
+- **📚 COMMAND LEARNING** - System learns from successes and failures
+- **Natural language understanding** - "install firefox", "update my system", "my wifi isn't working"
+- **Safety confirmations** - Asks before installing/removing packages
+- **Modern nix profile** - Uses latest NixOS commands, not deprecated nix-env
+- **Progress indicators** - Beautiful visual progress with graceful fallback
+- **Package validation** - Checks packages exist before trying to install
+- **4 personality styles** - Minimal, friendly, encouraging, technical
+- **Intent detection** - See how your queries are understood
+- **Multiple safety modes** - Dry-run, execute, and no-dry-run options
+
+### 🚧 Currently Polishing
+- **Better error messages** - More helpful when things go wrong
+- **Progress indicators** - Visual feedback during operations
+- **More commands** - Rollback, garbage collection, service management
+- **Home Manager integration** - User-level package management without sudo
+
+### 🔮 Future Vision
+- **Voice interface** - Speak naturally to your system
+- **Learning system** - Adapts to your preferences over time
+- **Visual fading** - Interface becomes invisible as you gain mastery
 - **Collective wisdom** - Community patterns (privacy-preserved)
-- **Biometric integration** - Optional coherence tracking
-- **The Disappearing Path** - Interface that transcends itself
 
 ## 📚 Documentation
 
@@ -66,17 +99,50 @@ We have extensive documentation covering every aspect of the project:
 - **[🏗️ Architecture](docs/technical/ARCHITECTURE.md)** - How it all works
 - **[🧠 Philosophy](docs/philosophy/README.md)** - Consciousness-first computing
 
-## 🚀 Quick Start (Coming Soon)
+## 🚀 Quick Start - Try It NOW!
+
+### Installation (NEW: Modern Python Package!)
 
 ```bash
-# One-day installation (when ready)
-curl -L https://nix-for-humanity.org/install | sh
+# Clone the repository
+git clone https://github.com/Luminous-Dynamics/nix-for-humanity
+cd nix-for-humanity
 
-# Or via Nix flakes
-nix run github:Luminous-Dynamics/nix-for-humanity
+# Install with your preferred features
+pip install .                    # Minimal (CLI only)
+pip install ".[tui]"            # With beautiful TUI
+pip install ".[tui,voice]"      # With TUI + voice
+pip install ".[all]"            # Everything
+
+# For development
+pip install -e ".[dev]"         # Editable install with dev tools
 ```
 
-For now, see our [Development Guide](docs/development/DEVELOPMENT.md) to run from source.
+See [Requirements Migration Guide](docs/REQUIREMENTS_MIGRATION.md) for details on the new package structure.
+
+### Phase 1: Real Execution! 🎉
+```bash
+# ACTUALLY INSTALLS FIREFOX (with confirmation)
+ask-nix "install firefox"
+
+# Other working examples:
+ask-nix "search tree"           # Search for packages
+ask-nix "install vim"           # Install with confirmation
+ask-nix --yes "install htop"    # Skip confirmation
+ask-nix --dry-run "install git" # Test without executing
+
+# With personality
+ask-nix --personality minimal "install python"
+ask-nix --personality encouraging "update my system"
+
+# Beautiful TUI (if installed with [tui])
+nix-tui
+
+# Show intent detection
+ask-nix --show-intent "I need docker"
+```
+
+See [WORKING_COMMANDS.md](WORKING_COMMANDS.md) for all working features.
 
 ## 🤝 Contributing
 
@@ -95,10 +161,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Current Priority Tasks
 
-1. Implement adaptive personality system ([#2](https://github.com/Luminous-Dynamics/nix-for-humanity/issues/2))
-2. Build visual adaptation framework ([#3](https://github.com/Luminous-Dynamics/nix-for-humanity/issues/3))
-3. Add emotional resonance detection ([#4](https://github.com/Luminous-Dynamics/nix-for-humanity/issues/4))
-4. Create voice interface ([#5](https://github.com/Luminous-Dynamics/nix-for-humanity/issues/5))
+1. ✅ **Phase 1 COMPLETE** - Real execution works! No more copy-paste!
+2. **Add remove/uninstall** - Natural language package removal
+3. **System updates** - Handle `nixos-rebuild switch` safely
+4. **Configuration editing** - Modify configuration.nix naturally
+5. **Rollback support** - "undo my last change"
+6. **Voice interface** - Talk to your computer ([#5](https://github.com/Luminous-Dynamics/nix-for-humanity/issues/5))
 
 ## 💰 Revolutionary Development Model
 

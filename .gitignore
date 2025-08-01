@@ -1,45 +1,46 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
 # Logs
-logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-# Dependencies
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Tauri
-src-tauri/target/
-src-tauri/WixTools/
-src-tauri/Cargo.lock
-
-# Sacred development
-.sacred-intention
-.coherence-log
-*.bak
+# Environment
 .env
+.env.local
 
-# OS files
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
 Thumbs.db
 
-# Temporary files
-*.tmp
-*.temp
-/tmp/
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary
+tmp/
+temp/
+
+# Learning system databases
+learning/*.db
+learning/*.db-journal
+
+# Test results
+results/*.json
+results/*.log
+
+# Cache files
+*.cache
+*.pyc
+__pycache__/
