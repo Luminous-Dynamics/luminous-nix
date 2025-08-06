@@ -1,0 +1,38 @@
+# Include documentation
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CLAUDE.md
+recursive-include docs *.md *.rst *.txt
+
+# Include data files
+recursive-include src/nix_for_humanity/data *.json *.db *.sql
+recursive-include src/nix_for_humanity/tui/styles *.css
+recursive-include src/nix_for_humanity/templates *.html *.jinja2
+
+# Include configuration examples
+include .env.example
+include config.example.yaml
+
+# Include scripts in bin/
+recursive-include bin *
+global-exclude bin/*.pyc
+global-exclude bin/__pycache__
+
+# Include test data
+recursive-include tests/data *
+recursive-include tests/fixtures *
+
+# Exclude development files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.swp
+global-exclude .DS_Store
+global-exclude __pycache__
+prune .git
+prune .github
+prune .pytest_cache
+prune .mypy_cache
+prune .ruff_cache
+prune htmlcov
+prune archive
