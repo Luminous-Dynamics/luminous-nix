@@ -44,3 +44,9 @@ results/*.log
 *.cache
 *.pyc
 __pycache__/
+
+# Test coverage and monitoring
+.coverage
+.coverage_monitor/
+.performance_monitoring/
+.postgres/
