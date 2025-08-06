@@ -1,26 +1,33 @@
 # 🗣️ Nix for Humanity
 
-> "Making NixOS accessible to every human through natural conversation that adapts to YOU."
+> "Making NixOS accessible to every human through natural conversation."
 
-[![Status](https://img.shields.io/badge/Status-Working%20Beta-brightgreen)](https://github.com/Luminous-Dynamics/nix-for-humanity)
-[![Version](https://img.shields.io/badge/Version-0.9.0-blue)](CHANGELOG.md)
+[![Status](https://img.shields.io/badge/Status-Alpha-orange)](STATUS.md)
+[![Version](https://img.shields.io/badge/Version-0.8.3-blue)](CHANGELOG.md)
+[![Coverage](https://img.shields.io/badge/Coverage-74%25-yellow)](STATUS.md)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![Documentation](https://img.shields.io/badge/Docs-Comprehensive-green)](docs/README.md)
-[![Budget](https://img.shields.io/badge/Budget-%24200%2Fmonth-purple)](docs/project/BUDGET_ANALYSIS.md)
+
+## 📊 Current Reality
+
+**[📍 Read STATUS.md](STATUS.md) for transparent, up-to-date project status**
+
+- **Test Coverage**: 74% (improving daily - was 57% last week!)
+- **Performance**: Working on performance optimization (benchmarks coming soon)
+- **Status**: Alpha but stable for core features
+- **Active Focus**: Fixing test suite and aligning documentation with reality
 
 ## What is Nix for Humanity?
 
-Nix for Humanity transforms NixOS from command-line complexity into natural conversation. Instead of memorizing commands, you simply talk to your computer like you would a helpful friend.
+Nix for Humanity transforms NixOS from command-line complexity into natural conversation. Instead of memorizing commands, you simply talk to your computer in plain English.
 
-**NOT a traditional GUI** - This is a conversational AI that understands what you want and adapts to how YOU communicate.
+### 🎯 What Actually Works Today
 
-### 🎯 Core Features
-
-- **🗣️ Natural Language**: Say "install Firefox" or "my WiFi isn't working" 
-- **🧠 Adaptive Responses**: NEW! System automatically adapts to your needs - no personality modes to choose
-- **👥 Built for Everyone**: From Grandma Rose (75) to Alex the blind developer (28)
-- **🔒 100% Private**: Everything runs locally - your data never leaves your machine
-- **📈 Progressive Enhancement**: Interface fades as you gain mastery (The Disappearing Path)
+- **🗣️ Natural Language CLI**: Say "install Firefox" or "update my system" 
+- **🎨 Beautiful TUI**: Terminal interface with keyboard navigation
+- **🧠 Multiple Personalities**: 5 response styles (minimal → symbiotic)
+- **👥 Accessibility First**: Designed for 10 diverse personas
+- **🔒 100% Private**: Everything runs locally - no cloud dependencies
 
 ### 💬 Example Interactions
 
