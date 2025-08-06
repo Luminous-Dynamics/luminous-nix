@@ -1,7 +1,24 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+import react from '@vitejs/plugin-react'
+
+// Custom plugin to handle /demo route
+const demoRoutePlugin = () => {
+  return {
+    name: 'demo-route',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/demo') {
+          req.url = '/demo.html';
+        }
+        next();
+      });
+    }
+  };
+};
 
 export default defineConfig({
+  plugins: [react(), demoRoutePlugin()],
   // Base configuration for Tauri
   base: './',
   
@@ -16,7 +33,8 @@ export default defineConfig({
   // Server configuration for development
   server: {
     port: 5173,
-    strictPort: true,
+    strictPort: false,
+    open: false,
     watch: {
       ignored: ['**/src-tauri/**']
     }
@@ -30,7 +48,8 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html'),
+        demo: resolve(__dirname, 'demo.html')
       }
     }
   },
