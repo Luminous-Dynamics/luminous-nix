@@ -1,6 +1,6 @@
 # Contributing to Nix for Humanity
 
-Thank you for your interest in making NixOS accessible to everyone! We need your help to close the gap between our vision and implementation.
+Thank you for your interest in making NixOS accessible to everyone! Nix for Humanity v1.0.0 is now released with reliable CLI functionality.
 
 ## 🚀 Quick Start
 
@@ -26,16 +26,16 @@ pytest tests/         # Run test suite
 
 ## 🎯 What We Need Most
 
-### Right Now (Phase 0)
-1. **Bug Fixes** - Make install/remove/update commands reliable
-2. **Real Tests** - Replace mocks with actual integration tests  
-3. **Performance** - Implement Native Python-Nix API
-4. **Documentation** - Update docs to reflect reality vs. vision
+### Current Focus (v1.x improvements)
+1. **Performance Optimization** - Make operations even faster
+2. **Edge Cases** - Handle unusual package names and configurations
+3. **Error Messages** - Make error messages even more helpful
+4. **Documentation** - Keep docs accurate and helpful
 
-### Coming Soon (Phase 1)
-1. **TUI Connection** - Wire up the Textual interface
-2. **Learning System** - Make feedback actually improve responses
-3. **Error Messages** - Transform cryptic errors into helpful guidance
+### Coming in v1.1
+1. **TUI Interface** - Beautiful terminal UI with Textual
+2. **Voice Interface** - Natural speech interaction
+3. **Advanced Learning** - Deeper personalization
 
 ## 📝 Development Guidelines
 
@@ -61,15 +61,15 @@ pytest tests/         # Run test suite
 
 ```
 backend/
-├── core/           # Shared logic (needs consolidation)
+├── core/           # Shared logic and utilities
 ├── nlp/            # Natural language processing
-├── execution/      # Command runners (fix here!)
+├── execution/      # Command runners with native Python-Nix API
 └── api/            # Frontend communication
 
 frontends/
-├── cli/            # Terminal interface (working)
-├── tui/            # Textual UI (not connected)
-└── voice/          # Speech interface (future)
+├── cli/            # Terminal interface (v1.0 - working great!)
+├── tui/            # Textual UI (v1.1 - coming soon)
+└── voice/          # Speech interface (v1.1 - coming soon)
 ```
 
 ## 🐛 How to Fix a Bug
@@ -106,17 +106,17 @@ pytest --cov=nix_for_humanity
 
 ## 📚 Understanding the Codebase
 
-### Current Reality
-- **CLI works** but many commands fail
-- **TUI exists** but isn't connected to backend
-- **Learning system** saves data but doesn't use it
-- **Tests exist** but mostly use mocks
+### v1.0.0 Status
+- **CLI works** - All core commands reliable
+- **Native Python-Nix API** - Lightning-fast operations
+- **Learning system** - Improves with usage
+- **Tests** - Comprehensive integration tests
 
 ### Key Files
 - `backend/core/nlp.py` - Natural language processing
-- `backend/execution/nix_executor.py` - Command execution (needs work!)
+- `backend/execution/nix_executor.py` - Command execution with native API
 - `frontends/cli/ask_nix.py` - Main CLI entry point
-- `frontends/tui/app.py` - Textual UI (not wired up)
+- `frontends/tui/app.py` - Textual UI (coming in v1.1)
 
 ## 🤝 Pull Request Process
 

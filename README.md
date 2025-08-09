@@ -2,27 +2,54 @@
 
 ![Development Status](https://img.shields.io/badge/status-active%20development-yellow)
 ![Progress](https://img.shields.io/badge/progress-8.5%2F10-brightgreen)
-![Version](https://img.shields.io/badge/version-0.8.3-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![Performance](https://img.shields.io/badge/performance-7223x%20faster-brightgreen)
 
 **Transform NixOS from command-line complexity into natural conversation.**
 
-> 🚀 **Week 3 Progress**: Natural Language Processing and Smart Discovery fixed to 100%! TUI connected to backend. See progress details below.
+> 🚀 **v1.0.0 Released**: Natural language interface for NixOS that actually works!
 
 ## 🎯 What's New in v1.0
 
-This release focuses on **10 rock-solid features** that work flawlessly:
+This release focuses on **rock-solid CLI features** that work flawlessly:
 
 1. **Natural Language Understanding** - Just speak normally
 2. **Smart Package Discovery** - Find what you need  
 3. **Native Python-Nix API** - Blazing fast (<0.1s operations)
-4. **Beautiful TUI** - Clean terminal interface
-5. **Configuration Management** - Edit configs safely
-6. **Home Manager Integration** - User-specific packages
-7. **Flake Support** - Modern NixOS workflows
-8. **Generation Management** - Time travel for your system
-9. **Intelligent Error Handling** - Errors that teach
-10. **Settings & Profiles** - Personalized experience
+4. **Configuration Generation** - Create NixOS configs from descriptions
+5. **Home Manager Integration** - User-specific packages
+6. **Flake Support** - Modern NixOS workflows
+7. **Generation Management** - Time travel for your system
+8. **Intelligent Error Handling** - Errors that teach
+9. **Settings & Profiles** - Personalized experience
+
+
+## 🎉 What's New in v1.1 (Coming Soon)
+
+### 🎨 Beautiful Terminal UI
+- Launch with `nix-tui` for an immersive experience
+- Living consciousness orb visualization
+- Adaptive complexity based on your expertise
+- Real-time operation progress
+
+### 🎤 Voice Interface (Experimental)
+- Say "Hey Nix" to activate
+- Natural voice commands
+- Personalized responses
+- Works with all CLI features
+
+### 🚀 How to Try v1.1 Beta
+```bash
+# Install TUI dependencies
+poetry install -E tui
+
+# Launch the TUI
+poetry run nix-tui
+
+# For voice (experimental)
+poetry install -E voice
+poetry run nix-voice
+```
 
 ## 🚀 Performance
 
@@ -44,12 +71,12 @@ Nix for Humanity achieves revolutionary performance through native Python-Nix AP
 
 *Validated through comprehensive integration testing*
 
-## 📊 Current Status: v1.0 Release Candidate
+## 📊 Current Status: v1.0.0 Released!
 
 ### What Works Perfectly
 - ✅ **Natural Language Processing**: 100% accuracy (9/9 tests) 🎯
 - ✅ **Smart Package Discovery**: 100% accuracy (4/4 tests) 🔍
-- ✅ **Beautiful TUI**: Fully connected to backend 🎨
+- ✅ **Configuration Generation**: Create full NixOS configs 📝
 - ✅ **Performance**: 7223x faster with native API (0.29ms avg) ⚡
 - ✅ **Educational Errors**: Learn while troubleshooting 📚
 - ✅ **Security**: Safe command validation 🔒
@@ -70,9 +97,6 @@ export NIX_HUMANITY_PYTHON_BACKEND=true
 ./bin/ask-nix "install firefox"
 ./bin/ask-nix "search for text editors"
 ./bin/ask-nix "show my generations"
-
-# Launch the beautiful TUI
-./bin/nix-tui
 
 # Get help anytime
 ./bin/ask-nix "help"
@@ -129,14 +153,22 @@ All operations complete in **<0.5 seconds**, with most under **0.1 seconds**:
 - **Safe Execution** - Commands are validated before running
 - **Open Source** - Audit the code yourself
 
-## 📦 What's NOT in v1.0
+## 📦 Coming in Future Releases
 
-We've intentionally postponed some features to ensure v1.0 is rock-solid:
+### v1.1 (2-4 weeks)
+- **Beautiful TUI** - Terminal UI with panels and visualizations
+- **Voice Interface** - Basic speech input/output
+- **Bug Fixes** - Based on v1.0 user feedback
 
-- Voice interface (coming in v2.0)
-- Advanced AI learning (v3.0)
-- Multi-modal interfaces (v2.0)
-- Federated learning (v4.0)
+### v2.0 (2-3 months)
+- **Advanced Learning** - AI that truly learns from you
+- **Multi-modal Interfaces** - Seamless switching between CLI/TUI/Voice
+- **Plugin System** - Extend functionality
+
+### Future Vision
+- **Federated Learning** - Privacy-preserving collective intelligence
+- **Embodied AI** - Natural gestures and environmental awareness
+- **Invisible Excellence** - Technology that disappears through perfection
 
 ## 🤝 Contributing
 
