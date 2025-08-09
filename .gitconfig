@@ -1,0 +1,9 @@
+# Local git configuration for Nix for Humanity
+# This ensures commits are attributed to the correct GitHub account
+
+[user]
+    name = Tristan Stoltz
+    email = tristan.stoltz@evolvingresonantcocreationism.com
+
+[github]
+    user = Tristan-Stoltz-ERC

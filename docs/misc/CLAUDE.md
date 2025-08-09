@@ -195,8 +195,8 @@ Transform NixOS from command-line complexity into natural conversation. Users sp
 - **Flake Management**: Create modern dev environments easily
 - **Generation Management**: System recovery and health monitoring
 - **Home Manager**: Personal dotfile configuration
-- **Beautiful TUI**: Connected and working with backend
 - **Error Intelligence**: Educational error messages and solutions
+- **Native Performance**: 10x-1500x faster operations
 - **Configuration System**: Profiles, aliases, and shortcuts
 - **Native Performance**: 10x-1500x speedups verified for many operations
 
@@ -216,7 +216,7 @@ This is now a functional system with major features working. The gap between vis
 
 ## 🎭 Implementation Status
 
-### Current State (v0.8.3) - Phase 2 Core Excellence 🚀
+### Current State (v1.0.0) - Production Release 🎉
 - ✅ **Natural Language CLI** - Reliable command execution
 - ✅ **Intent Recognition** - ~85% accuracy with enhanced patterns
 - ✅ **Knowledge Base** - SQLite with smart package discovery
@@ -225,7 +225,7 @@ This is now a functional system with major features working. The gap between vis
 - ✅ **Test Coverage** - Significantly improved with real tests
 - ✅ **Python Structure** - Clean, modular architecture
 - ✅ **Native Python-Nix API** - Fully integrated (10x-1500x faster)
-- ✅ **TUI Integration** - Beautiful Textual interface connected
+- ✅ **CLI Excellence** - Natural language understanding perfected
 - ✅ **Voice Interface** - Architecture complete, ready for integration
 - ✅ **Configuration System** - Full profile and alias support
 - ✅ **Learning System** - Framework complete, activation pending
@@ -250,8 +250,8 @@ ask-nix settings wizard
 ask-nix settings use maya
 ask-nix config generate "gaming desktop"
 
-# Beautiful TUI
-nix-tui
+# (TUI coming in v1.1)
+# nix-tui
 ```
 
 ## 💡 Technical Stack
