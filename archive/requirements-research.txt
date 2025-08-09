@@ -1,0 +1,6 @@
+# Core dependencies for research integration testing
+numpy>=1.21.0
+scipy>=1.7.0
+networkx>=2.6.0
+sqlalchemy>=1.4.0
+pydantic>=2.0.0

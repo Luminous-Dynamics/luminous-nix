@@ -1,0 +1,11 @@
+fn main() {
+    // Set sacred build intention
+    println!("cargo:warning=🌟 Building with consciousness-first principles...");
+    
+    // Run Tauri build
+    tauri_build::build();
+    
+    // Add build-time features
+    println!("cargo:rustc-env=BUILD_TIME={}", chrono::Utc::now().to_rfc3339());
+    println!("cargo:rustc-env=SACRED_BUILD=true");
+}

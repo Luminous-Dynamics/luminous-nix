@@ -1,0 +1,24 @@
+{
+  "name": "nix-for-humanity-voice-backend",
+  "version": "0.4.0",
+  "description": "Voice interface backend for Nix for Humanity",
+  "main": "voice-api-bridge.js",
+  "scripts": {
+    "start": "node voice-api-bridge.js",
+    "dev": "nodemon voice-api-bridge.js",
+    "python-server": "cd python && python3 voice_websocket_server_enhanced.py",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

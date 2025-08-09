@@ -71,7 +71,7 @@ class NixOSGUIHandler(BaseHTTPRequestHandler):
         try:
             payload = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
             return payload
-        except:
+        except Exception:
             return None
     
     def _send_json_response(self, data, status=200):
@@ -195,7 +195,7 @@ class NixOSGUIHandler(BaseHTTPRequestHandler):
         
         try:
             data = json.loads(post_data.decode()) if post_data else {}
-        except:
+        except Exception:
             self._send_json_response({'error': 'Invalid JSON'}, 400)
             return
         
