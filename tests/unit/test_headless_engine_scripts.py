@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts/core"))
 
 # Import the modules we'll be testing
-from core.headless_engine import Context, HeadlessEngine, Intent, Response
+from nix_for_humanity.core.headless_engine import Context, HeadlessEngine, Intent, Response
 
 
 class TestExecutionMode(unittest.TestCase):
@@ -160,23 +160,23 @@ class TestHeadlessEngine(unittest.TestCase):
         # Patch the imports
         self.patches = [
             patch(
-                "core.headless_engine.NixOSKnowledgeEngine",
+                "nix_for_humanity.core.headless_engine.NixOSKnowledgeEngine",
                 return_value=self.knowledge_mock,
             ),
             patch(
-                "core.headless_engine.FeedbackCollector",
+                "nix_for_humanity.core.headless_engine.FeedbackCollector",
                 return_value=self.feedback_mock,
             ),
             patch(
-                "core.headless_engine.get_plugin_manager",
+                "nix_for_humanity.core.headless_engine.get_plugin_manager",
                 return_value=self.plugin_manager_mock,
             ),
             patch(
-                "core.headless_engine.CommandPreferenceManager",
+                "nix_for_humanity.core.headless_engine.CommandPreferenceManager",
                 return_value=self.learning_mock,
             ),
             patch(
-                "core.headless_engine.IntelligentPackageCache",
+                "nix_for_humanity.core.headless_engine.IntelligentPackageCache",
                 return_value=self.cache_mock,
             ),
         ]

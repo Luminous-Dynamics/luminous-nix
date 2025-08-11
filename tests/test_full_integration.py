@@ -1,4 +1,12 @@
 #!/usr/bin/env python3.11
+import pytest
+import os
+
+# Skip if not on NixOS
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for this test", allow_module_level=True)
+
+
 """
 Comprehensive integration test for all research components.
 Run with: python-select research test_full_integration.py

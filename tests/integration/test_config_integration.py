@@ -27,12 +27,12 @@ class TestConfigIntegration:
         manager = get_config_manager()
 
         # Test minimal personality
-        manager.config.ui.default_personality = Personality.MINIMAL
-        assert manager.config.ui.default_personality == Personality.MINIMAL
+        manager.config.ui.default_personality = PersonalityStyle.MINIMAL
+        assert manager.config.ui.default_personality == PersonalityStyle.MINIMAL
 
         # Test technical personality
-        manager.config.ui.default_personality = Personality.TECHNICAL
-        assert manager.config.ui.default_personality == Personality.TECHNICAL
+        manager.config.ui.default_personality = PersonalityStyle.TECHNICAL
+        assert manager.config.ui.default_personality == PersonalityStyle.TECHNICAL
 
     def test_profile_application(self):
         """Test applying built-in profiles"""
@@ -41,13 +41,13 @@ class TestConfigIntegration:
         # Apply Maya profile (fast, minimal)
         success = manager.apply_profile("maya")
         assert success
-        assert manager.config.ui.default_personality == Personality.MINIMAL
+        assert manager.config.ui.default_personality == PersonalityStyle.MINIMAL
         assert manager.config.performance.fast_mode is True
 
         # Apply Alex profile (accessible)
         success = manager.apply_profile("alex")
         assert success
-        assert manager.config.ui.default_personality == Personality.ACCESSIBLE
+        assert manager.config.ui.default_personality == PersonalityStyle.ACCESSIBLE
         assert manager.config.accessibility.screen_reader is True
 
     def test_aliases_and_shortcuts(self):
@@ -168,7 +168,7 @@ class TestConfigIntegration:
         assert success
 
         # Should have maya's settings plus custom greeting
-        assert manager.config.ui.default_personality == Personality.MINIMAL
+        assert manager.config.ui.default_personality == PersonalityStyle.MINIMAL
         assert manager.config.performance.fast_mode is True
         assert manager.config.ui.greeting == "Custom greeting"
 

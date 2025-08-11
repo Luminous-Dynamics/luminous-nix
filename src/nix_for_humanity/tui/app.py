@@ -16,6 +16,7 @@ from textual.widgets import Button, Footer, Header, Input, RichLog, Static
 
 from ..core.unified_backend import Context, NixForHumanityBackend, get_backend
 from ..plugins.config_generator import ConfigGeneratorPlugin, SmartSearchPlugin
+from .voice_widget import VoiceInterfaceWidget, VoiceState
 
 
 class ConsciousnessOrb(Static):
@@ -152,6 +153,8 @@ class NixForHumanityTUI(App):
         ("ctrl+l", "clear_history", "Clear"),
         ("f1", "show_help", "Help"),
         ("f2", "toggle_dry_run", "Toggle Dry Run"),
+        ("f3", "toggle_voice", "Toggle Voice"),
+        ("v", "start_voice", "Voice Input"),
     ]
 
     def __init__(self):
@@ -159,6 +162,8 @@ class NixForHumanityTUI(App):
         self.backend: NixForHumanityBackend | None = None
         self.context = Context(user_id="tui_user")
         self.dry_run = True
+        self.voice_enabled = False
+        self.voice_widget = None
 
     async def on_mount(self) -> None:
         """Initialize when TUI is mounted"""
@@ -196,14 +201,20 @@ class NixForHumanityTUI(App):
             with ScrollableContainer(id="history-container"):
                 yield CommandHistory(id="history", highlight=True, markup=True)
 
+            # Voice interface widget (initially hidden)
+            self.voice_widget = VoiceInterfaceWidget(id="voice-widget")
+            self.voice_widget.display = False  # Hidden by default
+            yield self.voice_widget
+
             # Input section
             with Container(id="input-container"):
                 with Horizontal():
                     yield Input(
-                        placeholder="Enter natural language command...",
+                        placeholder="Enter natural language command... (Press 'V' for voice)",
                         id="command-input",
                     )
                     yield Button("Execute", variant="primary", id="execute-btn")
+                    yield Button("🎤 Voice", variant="success", id="voice-btn")
 
         yield Footer()
 
@@ -219,6 +230,8 @@ class NixForHumanityTUI(App):
             if input_widget.value:
                 await self.execute_command(input_widget.value)
                 input_widget.value = ""
+        elif event.button.id == "voice-btn":
+            await self.action_start_voice()
 
     async def execute_command(self, command: str) -> None:
         """Execute a natural language command"""
@@ -314,10 +327,48 @@ class NixForHumanityTUI(App):
         color = "yellow" if self.dry_run else "red"
         status.update(f"Mode: [{color}]{mode_text}[/] | {message}")
 
+    def action_toggle_voice(self) -> None:
+        """Toggle voice interface visibility"""
+        if self.voice_widget:
+            self.voice_enabled = not self.voice_enabled
+            self.voice_widget.display = self.voice_enabled
+            
+            history = self.query_one("#history", CommandHistory)
+            if self.voice_enabled:
+                history.add_result("🎤 Voice interface enabled", success=True)
+                self.voice_widget.on_voice_state_change(VoiceState.IDLE)
+            else:
+                history.add_result("🔇 Voice interface disabled", success=True)
+                self.voice_widget.stop_listening()
+
+    async def action_start_voice(self) -> None:
+        """Start voice input"""
+        if not self.voice_widget:
+            return
+            
+        # Enable voice if not already
+        if not self.voice_enabled:
+            self.action_toggle_voice()
+        
+        # Start listening
+        self.voice_widget.start_listening()
+        
+        # Simulate voice input for demo
+        history = self.query_one("#history", CommandHistory)
+        history.add_result("🎤 Listening... (Demo mode - say 'install firefox')", success=True)
+        
+        # Simulate a voice command after a delay
+        await asyncio.sleep(2)
+        self.voice_widget.on_transcription("install firefox", is_user=True)
+        await self.execute_command("install firefox")
+        self.voice_widget.stop_listening()
+
     async def on_unmount(self) -> None:
         """Cleanup on exit"""
         if self.backend:
             await self.backend.cleanup()
+        if self.voice_widget:
+            self.voice_widget.stop_listening()
 
 
 def run():

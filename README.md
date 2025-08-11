@@ -1,11 +1,12 @@
 # 🕉️ Nix for Humanity - Natural Language NixOS Interface
 
-[![Status](https://img.shields.io/badge/status-alpha-yellow)](https://github.com/Luminous-Dynamics/nix-for-humanity)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/Luminous-Dynamics/nix-for-humanity)
 [![Performance](https://img.shields.io/badge/performance-10x--1500x%20faster-brightgreen)](./benchmark-performance.sh)
+[![Voice](https://img.shields.io/badge/🎤_Voice-Enabled-success)](./docs/voice-interface.md)
 [![Development](https://img.shields.io/badge/built%20with-AI%20collaboration-purple)](./docs/03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md)
 [![Philosophy](https://img.shields.io/badge/philosophy-consciousness--first-blue)](./docs/philosophy/CONSCIOUSNESS_FIRST_COMPUTING.md)
 
-> **Transform NixOS from cryptic commands to natural conversation. Just speak normally - it understands.**
+> **Transform NixOS from cryptic commands to natural conversation. Now with revolutionary voice interface! 🎤**
 
 ## 🎬 See It In Action
 

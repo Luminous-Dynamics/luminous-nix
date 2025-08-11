@@ -19,7 +19,7 @@ backend_path = script_dir / "scripts" / "backend" / "unified_nix_backend.py"
 spec = importlib.util.spec_from_file_location("unified_nix_backend", backend_path)
 unified_backend_module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(unified_backend_module)
-UnifiedNixBackend = unified_backend_module.UnifiedNixBackend
+NixForHumanityBackend = unified_backend_module.NixForHumanityBackend
 
 
 def test_all_features():
@@ -27,7 +27,7 @@ def test_all_features():
     print("🎯 Testing Unified Backend with Core Features")
     print("=" * 60)
 
-    backend = UnifiedNixBackend()
+    backend = NixForHumanityBackend()
 
     # Test queries for all 3 features
     test_queries = [

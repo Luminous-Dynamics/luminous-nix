@@ -7,7 +7,7 @@ from pathlib import Path
 # Add scripts directory to path
 sys.path.insert(0, str(Path(__file__).parent / "scripts"))
 
-from feedback_collector import FeedbackCollector
+from nix_for_humanity.core.feedback import FeedbackCollector
 
 
 def test_feedback_system():

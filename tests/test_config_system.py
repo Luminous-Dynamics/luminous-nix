@@ -15,10 +15,10 @@ from nix_for_humanity.config import (
     ConfigLoader,
     ConfigManager,
     ConfigSchema,
-    Personality,
     ProfileManager,
     UserProfile,
 )
+from nix_for_humanity.core.types import PersonalityStyle
 
 
 def test_schema():
@@ -28,7 +28,7 @@ def test_schema():
     # Create default config
     config = ConfigSchema()
     assert config.core.version == "0.8.3"
-    assert config.ui.default_personality == Personality.FRIENDLY
+    assert config.ui.default_personality == PersonalityStyle.FRIENDLY
     assert config.performance.timeout == 30
 
     # Test validation
@@ -120,10 +120,10 @@ def test_profiles():
 
         # Test applying profile
         base_config = ConfigSchema()
-        assert base_config.ui.default_personality == Personality.FRIENDLY
+        assert base_config.ui.default_personality == PersonalityStyle.FRIENDLY
 
         new_config = manager.apply_profile(base_config, "maya")
-        assert new_config.ui.default_personality == Personality.MINIMAL
+        assert new_config.ui.default_personality == PersonalityStyle.MINIMAL
         assert new_config.performance.fast_mode is True
 
         print("  ✅ Profile tests passed!")
@@ -157,7 +157,7 @@ def test_config_manager():
         # Test profile application
         success = manager.apply_profile("alex")
         assert success
-        assert manager.config.ui.default_personality == Personality.ACCESSIBLE
+        assert manager.config.ui.default_personality == PersonalityStyle.ACCESSIBLE
         assert manager.config.accessibility.screen_reader is True
 
         # Test aliases

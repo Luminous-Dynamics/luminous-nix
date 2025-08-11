@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts"))
 
 # Import the module we're testing
-from feedback_collector import FeedbackCollector
+from nix_for_humanity.core.feedback import FeedbackCollector
 
 
 class TestFeedbackCollector(unittest.TestCase):

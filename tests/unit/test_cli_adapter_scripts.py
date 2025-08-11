@@ -21,7 +21,7 @@ import unittest
 scripts_dir = os.path.join(os.path.dirname(__file__), "../../scripts")
 sys.path.insert(0, scripts_dir)
 
-from adapters.cli_adapter import CLIAdapter, Context, main
+from scripts.adapters.cli_adapter import CLIAdapter, Context, main
 
 
 class TestCLIAdapter(unittest.TestCase):

@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+import pytest
+import os
+
+# Skip if not on NixOS
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for this test", allow_module_level=True)
+
+
 """
 Test the Native Python-Nix Backend Integration
 This verifies that our direct nixos-rebuild-ng API integration works correctly
@@ -124,11 +132,11 @@ async def main():
         print("🔍 Checking for nixos-rebuild-ng API...\n")
 
         try:
-            from nix_for_humanity.core.native_operations import NATIVE_API_AVAILABLE
+            from nix_for_humanity.core.native_operations import NativeOperations
 
-            print(f"Native API Available: {NATIVE_API_AVAILABLE}")
+            print(f"Native API Available: {NativeOperations}")
 
-            if not NATIVE_API_AVAILABLE:
+            if not NativeOperations:
                 print("\n⚠️  Native API not available - using fallback mode")
                 print("This is expected if nixos-rebuild-ng is not installed")
 

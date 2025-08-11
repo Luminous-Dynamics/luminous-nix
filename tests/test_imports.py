@@ -7,7 +7,7 @@ Quick import test to verify major import path fixes
 def test_bkt_imports():
     """Test Bayesian Knowledge Tracer imports"""
     try:
-        from src.nix_for_humanity.core.bayesian_knowledge_tracer import (
+        from nix_for_humanity.research.dynamic_user_modeling import (
             BayesianKnowledgeTracer,
             BKTParameters,
             NixOSSkillGraph,
@@ -51,7 +51,7 @@ def test_consciousness_backend_imports():
 def test_core_interface_imports():
     """Test core interface imports"""
     try:
-        from src.nix_for_humanity.core.interface import Intent, IntentType, Response
+        from nix_for_humanity.core.interface import Intent, IntentType, Response
 
         print("✅ Core interface imports: SUCCESS")
         return True

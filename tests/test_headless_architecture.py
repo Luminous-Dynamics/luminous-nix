@@ -12,9 +12,9 @@ import time
 scripts_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts")
 sys.path.insert(0, scripts_dir)
 
-from adapters.cli_adapter import CLIAdapter
-from core.headless_engine import Context, HeadlessEngine
-from core.jsonrpc_server import JSONRPCClient, JSONRPCServer
+from scripts.adapters.cli_adapter import CLIAdapter
+from nix_for_humanity.core.headless_engine import Context, HeadlessEngine
+from nix_for_humanity.core.jsonrpc_server import JSONRPCClient, JSONRPCServer
 
 
 def test_embedded_engine():

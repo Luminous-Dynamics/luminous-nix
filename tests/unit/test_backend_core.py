@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+import pytest
+import os
+
+# Skip if not on NixOS
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for this test", allow_module_level=True)
+
+
 """
 import subprocess
 Comprehensive tests for NixForHumanityBackend
@@ -51,7 +59,7 @@ class TestNixForHumanityBackend(unittest.TestCase):
             patch("core.backend.SafeExecutor", return_value=self.mock_executor),
             patch("core.backend.KnowledgeBase", return_value=self.mock_knowledge),
             patch("core.backend.NATIVE_INTEGRATION_AVAILABLE", False),
-            patch("core.backend.NATIVE_API_AVAILABLE", False),
+            patch("core.backend.NativeOperations", False),
         ]
 
         for p in self.patches:

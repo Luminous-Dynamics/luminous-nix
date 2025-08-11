@@ -1,3 +1,17 @@
+import pytest
+import os
+
+# Skip if not on NixOS or native backend not available
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for native backend tests", allow_module_level=True)
+
+try:
+    from nix_for_humanity.core.native_operations import NativeOperations
+    if not NativeOperations:
+        pytest.skip("Native operations not available", allow_module_level=True)
+except ImportError:
+    pytest.skip("Native backend not available", allow_module_level=True)
+
 import unittest
 
 #!/usr/bin/env python3
@@ -120,7 +134,7 @@ class TestNativeApiOperations(unittest.TestCase):
 
     def backend_with_api(self):
         """Create backend with mocked native API"""
-        with patch("native_nix_backend.NATIVE_API_AVAILABLE", True):
+        with patch("native_nix_backend.NativeOperations", True):
             backend = NativeNixBackend()
             return backend
 
@@ -310,7 +324,7 @@ class TestErrorHandling(unittest.TestCase):
     async def test_rollback_failure(self):
         """Test rollback failure handling"""
         with (
-            patch("native_nix_backend.NATIVE_API_AVAILABLE", True),
+            patch("native_nix_backend.NativeOperations", True),
             patch(
                 "native_nix_backend.nix.rollback",
                 side_effect=Exception("Rollback failed"),
@@ -325,7 +339,7 @@ class TestErrorHandling(unittest.TestCase):
 
     async def test_update_error_classification(self):
         """Test error message classification for updates"""
-        with patch("native_nix_backend.NATIVE_API_AVAILABLE", True):
+        with patch("native_nix_backend.NativeOperations", True):
             # Test sudo error
             with patch(
                 "native_nix_backend.nix.build", side_effect=Exception("sudo required")
@@ -362,7 +376,7 @@ class TestFallbackMode(unittest.TestCase):
 
     def backend_no_api(self):
         """Create backend without native API"""
-        with patch("native_nix_backend.NATIVE_API_AVAILABLE", False):
+        with patch("native_nix_backend.NativeOperations", False):
             return NativeNixBackend()
 
     async def test_fallback_execute(self):
@@ -400,7 +414,7 @@ class TestPerformanceFeatures(unittest.TestCase):
         backend.set_progress_callback(capture_progress)
 
         with (
-            patch("native_nix_backend.NATIVE_API_AVAILABLE", True),
+            patch("native_nix_backend.NativeOperations", True),
             patch("native_nix_backend.nix.build", return_value="/nix/store/test"),
             patch("native_nix_backend.nix.switch_to_configuration"),
         ):
@@ -429,7 +443,7 @@ class TestAsyncIntegration(unittest.TestCase):
     async def test_async_executor_integration(self):
         """Test that sync nixos-rebuild functions work with asyncio"""
         with (
-            patch("native_nix_backend.NATIVE_API_AVAILABLE", True),
+            patch("native_nix_backend.NativeOperations", True),
             patch("asyncio.get_event_loop") as mock_loop,
         ):
             mock_executor = Mock()
@@ -448,7 +462,7 @@ class TestAsyncIntegration(unittest.TestCase):
     async def test_concurrent_operations(self):
         """Test that multiple operations can be handled concurrently"""
         with (
-            patch("native_nix_backend.NATIVE_API_AVAILABLE", True),
+            patch("native_nix_backend.NativeOperations", True),
             patch("native_nix_backend.nix.get_generations", return_value=[]),
             patch("native_nix_backend.nix.build", return_value="/nix/store/test"),
         ):

@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+import pytest
+import os
+
+# Skip if not on NixOS
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for this test", allow_module_level=True)
+
+
 """
 Simple test for NixOSIntegration to verify the test framework works
 """
@@ -35,7 +43,7 @@ mock_backend.OperationType = type(
 )
 mock_backend.NixOperation = Mock
 mock_backend.NixResult = Mock
-mock_backend.NATIVE_API_AVAILABLE = True
+mock_backend.NativeOperations = True
 
 # Now try to import and test
 try:

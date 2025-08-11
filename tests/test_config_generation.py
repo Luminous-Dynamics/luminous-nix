@@ -80,9 +80,9 @@ except Exception as e:
 # Test through unified backend
 print("\n\n=== Testing Through Unified Backend ===")
 try:
-    from nix_for_humanity.core.engine import UnifiedNixBackend
+    from nix_for_humanity.core.engine import NixForHumanityBackend
 
-    backend = UnifiedNixBackend()
+    backend = NixForHumanityBackend()
 
     test_queries = [
         "generate config for nginx web server",

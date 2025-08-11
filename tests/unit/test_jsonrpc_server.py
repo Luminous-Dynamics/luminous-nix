@@ -26,8 +26,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts/core"))
 
 # Import the modules we'll be testing
-from core.headless_engine import HeadlessEngine, Response
-from core.jsonrpc_server import JSONRPCError, JSONRPCServer
+from nix_for_humanity.core.headless_engine import HeadlessEngine, Response
+from nix_for_humanity.core.jsonrpc_server import JSONRPCError, JSONRPCServer
 
 
 class TestJSONRPCError(unittest.TestCase):

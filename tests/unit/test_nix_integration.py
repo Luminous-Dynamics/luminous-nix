@@ -1,3 +1,17 @@
+import pytest
+import os
+
+# Skip if not on NixOS or native backend not available
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for native backend tests", allow_module_level=True)
+
+try:
+    from nix_for_humanity.core.native_operations import NativeOperations
+    if not NativeOperations:
+        pytest.skip("Native operations not available", allow_module_level=True)
+except ImportError:
+    pytest.skip("Native backend not available", allow_module_level=True)
+
 #!/usr/bin/env python3
 """
 Comprehensive unit tests for NixOSIntegration module
@@ -31,9 +45,9 @@ class TestNixOSIntegration(unittest.TestCase):
         self.mock_backend = Mock()
         self.mock_backend_class.return_value = self.mock_backend
 
-        # Mock NATIVE_API_AVAILABLE
+        # Mock NativeOperations
         self.native_api_patcher = patch(
-            "core.nix_integration.NATIVE_API_AVAILABLE", True
+            "core.nix_integration.NativeOperations", True
         )
         self.native_api_patcher.start()
 
@@ -395,7 +409,7 @@ class TestConvenienceFunctions(unittest.TestCase):
         self.mock_backend_class.return_value = self.mock_backend
 
         self.native_api_patcher = patch(
-            "core.nix_integration.NATIVE_API_AVAILABLE", True
+            "core.nix_integration.NativeOperations", True
         )
         self.native_api_patcher.start()
 

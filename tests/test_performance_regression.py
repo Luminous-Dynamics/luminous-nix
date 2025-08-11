@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+import pytest
+import os
+
+# Skip if not on NixOS
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for this test", allow_module_level=True)
+
+
 """
 from typing import Tuple, Dict
 Automated Performance Regression Tests for Nix for Humanity
@@ -19,7 +27,7 @@ backend_path = Path(__file__).parent.parent / "backend"
 sys.path.insert(0, str(backend_path))
 
 from nix_for_humanity.core.native_operations import (
-    NATIVE_API_AVAILABLE,
+    NativeOperations,
     EnhancedNativeNixBackend,
     NixOperation,
     OperationType,
@@ -168,7 +176,7 @@ class TestPerformanceRegression:
 
     def test_dry_build_performance(self, backend):
         """Test that dry builds stay fast"""
-        if not NATIVE_API_AVAILABLE:
+        if not NativeOperations:
             pytest.skip("Native API not available")
 
         operation = NixOperation(type=OperationType.BUILD, options={"dry_run": True})
@@ -322,7 +330,7 @@ def performance_report(request):
         # Create report
         report = {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "native_api_available": NATIVE_API_AVAILABLE,
+            "native_api_available": NativeOperations,
             "results": summary,
             "overall_pass": all(
                 op_data.get("passed", False) for op_data in summary.values()

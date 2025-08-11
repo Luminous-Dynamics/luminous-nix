@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.join(nix_humanity_dir, "scripts", "backend"))
 os.chdir(nix_humanity_dir)
 
 # Import modules directly
-from nix_for_humanity.core import IntentType, UnifiedNixBackend
+from nix_for_humanity.core import IntentType, NixForHumanityBackend
 
 
 def test_configuration_generation():
@@ -26,7 +26,7 @@ def test_configuration_generation():
     print("\n🔧 Testing Configuration Generation...")
     print("=" * 60)
 
-    backend = UnifiedNixBackend()
+    backend = NixForHumanityBackend()
 
     test_queries = [
         "generate config for web server with nginx",
@@ -58,7 +58,7 @@ def test_flake_management():
     print("\n\n🎯 Testing Flake Management...")
     print("=" * 60)
 
-    backend = UnifiedNixBackend()
+    backend = NixForHumanityBackend()
 
     test_queries = [
         "create flake for python development with testing",
@@ -94,7 +94,7 @@ def test_all_features():
     print("\n🚀 Nix for Humanity - Core Features Test")
     print("=" * 60)
 
-    backend = UnifiedNixBackend()
+    backend = NixForHumanityBackend()
 
     # Test different types of queries
     feature_tests = {

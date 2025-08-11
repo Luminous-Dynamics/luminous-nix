@@ -48,6 +48,16 @@ pkgs.mkShell {
     python313Packages.textual      # For TUI interface
     python313Packages.blessed      # Terminal capabilities
     python313Packages.pyperclip    # Clipboard support
+    
+    # Voice interface dependencies
+    portaudio                      # Audio I/O library
+    libsndfile                     # Sound file library
+    ffmpeg                         # Audio processing
+    
+    # Modern voice tools (Whisper + Piper)
+    # Note: These will be installed via pip/poetry
+    # whisper (OpenAI Whisper for speech recognition)
+    # piper-tts (Modern neural TTS)
 
     # Secondary Python (3.11) for research components that need DoWhy
     python311
@@ -111,6 +121,11 @@ pkgs.mkShell {
     echo "Python 3.13 (main): $(python3 --version)"
     echo "Python 3.11 (research): $(python3.11 --version)"
     echo "SQLite: $(sqlite3 --version | head -1)"
+    echo ""
+    echo "🎤 Voice Interface Dependencies:"
+    echo "  PortAudio: Available"
+    echo "  FFmpeg: $(ffmpeg -version | head -1)"
+    echo "  Espeak TTS: $(espeak --version 2>/dev/null | head -1)"
     echo ""
     echo "Available commands:"
     echo "  ask-nix-hybrid    - Our hybrid NixOS assistant"

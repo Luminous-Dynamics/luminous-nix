@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+import pytest
+import os
+
+# Skip if not on NixOS
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for this test", allow_module_level=True)
+
+
 """
 Comprehensive Test Suite for Learning System Components
 Coverage enhancement from 56% to 90% for Phase 2.2
@@ -28,7 +36,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.core.bayesian_knowledge_tracer import (
+from nix_for_humanity.research.dynamic_user_modeling import (
     BayesianKnowledgeTracer,
     SkillObservation,
     SkillType,

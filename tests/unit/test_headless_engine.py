@@ -33,23 +33,23 @@ class TestEngine(unittest.TestCase):
 
         # Create engine with mocked dependencies
         with patch(
-            "core.headless_engine.NixOSKnowledgeEngine",
+            "nix_for_humanity.core.headless_engine.NixOSKnowledgeEngine",
             return_value=self.mock_knowledge,
         ):
             with patch(
-                "core.headless_engine.FeedbackCollector",
+                "nix_for_humanity.core.headless_engine.FeedbackCollector",
                 return_value=self.mock_feedback,
             ):
                 with patch(
-                    "core.headless_engine.get_plugin_manager",
+                    "nix_for_humanity.core.headless_engine.get_plugin_manager",
                     return_value=self.mock_plugin_manager,
                 ):
                     with patch(
-                        "core.headless_engine.CommandPreferenceManager",
+                        "nix_for_humanity.core.headless_engine.CommandPreferenceManager",
                         return_value=self.mock_learning,
                     ):
                         with patch(
-                            "core.headless_engine.IntelligentPackageCache",
+                            "nix_for_humanity.core.headless_engine.IntelligentPackageCache",
                             return_value=self.mock_cache,
                         ):
                             self.engine = Engine()
@@ -476,7 +476,7 @@ class TestIntegration(unittest.TestCase):
     def setUp(self):
         """Create test engine with partial mocking"""
         # Only mock external dependencies, not internal components
-        with patch("core.headless_engine.ADVANCED_FEATURES", False):
+        with patch("nix_for_humanity.core.headless_engine.ADVANCED_FEATURES", False):
             self.engine = Engine()
 
     def test_full_query_pipeline(self):

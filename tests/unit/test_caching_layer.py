@@ -23,7 +23,7 @@ from src.nix_humanity.core.types import (
     Response,
 )
 
-from src.nix_for_humanity.caching import (
+from nix_for_humanity.caching import (
     CacheConfig,
     CacheInvalidator,
     CacheManager,
@@ -33,8 +33,8 @@ from src.nix_for_humanity.caching import (
     XAIExplanationCache,
 )
 
-# v2.0+ feature: from src.nix_for_humanity.ai.xai_engine import ExplanationLevel
-# v2.0+ feature: from src.nix_for_humanity.xai.causal_engine import CausalExplanation
+# v2.0+ feature: from nix_for_humanity.ai.xai_engine import ExplanationLevel
+# v2.0+ feature: from nix_for_humanity.xai.causal_engine import CausalExplanation
 
 
 class TestCacheManager:

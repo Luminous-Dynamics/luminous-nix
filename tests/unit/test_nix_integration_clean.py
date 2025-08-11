@@ -1,3 +1,17 @@
+import pytest
+import os
+
+# Skip if not on NixOS or native backend not available
+if not os.path.exists("/nix/store"):
+    pytest.skip("NixOS required for native backend tests", allow_module_level=True)
+
+try:
+    from nix_for_humanity.core.native_operations import NativeOperations
+    if not NativeOperations:
+        pytest.skip("Native operations not available", allow_module_level=True)
+except ImportError:
+    pytest.skip("Native backend not available", allow_module_level=True)
+
 #!/usr/bin/env python3
 """
 Clean unit tests for NixOSIntegration module
@@ -41,7 +55,7 @@ mock_backend.OperationType = type(
 )
 mock_backend.NixOperation = Mock
 mock_backend.NixResult = Mock
-mock_backend.NATIVE_API_AVAILABLE = True
+mock_backend.NativeOperations = True
 
 # Mock api.schema
 mock_schema = sys.modules["api.schema"]

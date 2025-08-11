@@ -258,6 +258,7 @@ class IntentRecognizer:
 
         # List installed patterns
         self.list_installed_patterns = [
+            r"\blist\s+packages?\b",  # Simple "list packages"
             r"\b(list|show|what)\s+(packages?\s+)?(are\s+)?installed",
             r"\bwhat\s+packages\s+are\s+installed\b",  # More specific
             r"\bwhat\s+do\s+I\s+have\s+installed\b",  # More specific
@@ -1167,15 +1168,19 @@ class IntentRecognizer:
         # Check install patterns
         for pattern in self.install_patterns:
             if match := re.search(pattern, text, re.IGNORECASE):
-                # Extract package name
-                if len(match.groups()) >= 2:
-                    package = (
-                        match.group(2)
-                        if match.group(1) in ["install", "add", "get"]
-                        else match.group(3)
-                    )
-                else:
-                    package = match.group(1)
+                # Extract package name based on pattern structure
+                groups = match.groups()
+                package = None
+                
+                if len(groups) >= 3:
+                    # Pattern like: "can you install firefox" - package is in group 3
+                    package = groups[2]
+                elif len(groups) >= 2:
+                    # Pattern like: "install firefox" or "I need firefox" - package is in group 2
+                    package = groups[1]
+                elif len(groups) >= 1:
+                    # Fallback to first group
+                    package = groups[0]
 
                 # Resolve aliases
                 package = package.lower()
