@@ -97,7 +97,7 @@ repos:
 
       - id: check-todos
         name: Check TODO comments
-        entry: bash -c 'grep -r "TODO\|FIXME\|XXX" --include="*.py" --include="*.js" --include="*.ts" src/ && echo "Warning: TODO comments found" || exit 0'
+        entry: bash -c 'grep -r "TODO\|FIXME\|XXX" --include="*.py" --include="*.js" --include="*.ts" src/ && echo "Warning TODO comments found" || exit 0'
         language: system
         pass_filenames: false
 

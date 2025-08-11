@@ -5,6 +5,14 @@ All notable changes to Nix for Humanity will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Natural language patterns "i need {package}" and "get me {package}" now correctly extract the package name
+- Improved pattern recognition for complex phrases with multiple filler words
+- Simplified pattern extraction logic for better reliability
+
 ## [1.0.0] - 2024-01-25
 
 ### 🎉 Initial Release
@@ -14,6 +22,7 @@ This is the first production release of Nix for Humanity, making NixOS accessibl
 ### Added
 
 #### Core Features
+
 - **Natural Language Processing** - Understand user intent from plain English commands
 - **Native Python-Nix API** - Revolutionary 10x-1500x performance improvements
 - **Async Command Execution** - Fast parallel operations with proper concurrency
@@ -24,11 +33,13 @@ This is the first production release of Nix for Humanity, making NixOS accessibl
 - **Security Layer** - Safe command execution with sandboxing
 
 #### User Interfaces
+
 - **CLI Interface** - Natural language command-line interface (`ask-nix`)
 - **Interactive TUI** - Beautiful terminal UI with Textual framework (`nix-tui`)
 - **Voice Interface** - Full speech recognition and synthesis (`nix-voice`)
 
 #### Extensibility
+
 - **Plugin System** - Complete plugin architecture with:
   - Auto-discovery from multiple sources
   - Sandboxed execution for security
@@ -36,6 +47,7 @@ This is the first production release of Nix for Humanity, making NixOS accessibl
   - Example plugins included
 
 #### Developer Experience
+
 - **100% Type Coverage** - Full type hints throughout codebase
 - **95.9% Documentation** - Comprehensive documentation coverage
 - **85%+ Test Coverage** - Extensive test suite
@@ -43,6 +55,7 @@ This is the first production release of Nix for Humanity, making NixOS accessibl
 - **Performance Benchmarking** - Built-in benchmarking tools
 
 ### Revolutionary Achievements
+
 - **$200/month Development Cost** - Sacred Trinity model vs traditional $4.2M
 - **10x-1500x Performance** - Native Python-Nix API breakthrough
 - **Three Interface Modes** - CLI, TUI, and Voice all production-ready
@@ -50,6 +63,7 @@ This is the first production release of Nix for Humanity, making NixOS accessibl
 - **Production Ready** - All quality standards met
 
 ### Technical Stack
+
 - Python 3.11+ with full async/await support
 - Type safety with TypedDict and Protocol
 - Textual framework for TUI
@@ -58,6 +72,7 @@ This is the first production release of Nix for Humanity, making NixOS accessibl
 - pytest for testing
 
 ### Supported Operations
+
 - Package installation and removal
 - Package searching and discovery
 - System updates and rollbacks
@@ -68,6 +83,7 @@ This is the first production release of Nix for Humanity, making NixOS accessibl
 - System health monitoring
 
 ### Contributors
+
 - Sacred Trinity Development Model:
   - Human: Vision and testing
   - Claude Code Max: Architecture and implementation

@@ -101,26 +101,103 @@ class NixOSKnowledgeEngine:
             return {"intent": "search", "query": query_lower}
 
         # Install commands (check after list to avoid confusion)
-        if any(word in query_lower for word in ["install", "add", "get"]):
-            # Extract package name
+        install_triggers = ["install", "add", "get", "need", "want"]
+        if any(word in query_lower for word in install_triggers):
+            # Extract package name - skip common filler words
             words = query.split()
             package = None
+            skip_words = [
+                "i",
+                "me",
+                "please",
+                "can",
+                "you",
+                "to",
+                "a",
+                "the",
+                "for",
+                "with",
+            ]
+
+            # Find the trigger word and get the package name after it
             for i, word in enumerate(words):
-                if word.lower() in ["install", "add", "get"] and i + 1 < len(words):
-                    package = words[i + 1]
-                    break
+                if word.lower() in install_triggers:
+                    # Look for the next non-filler word
+                    for j in range(i + 1, len(words)):
+                        candidate = words[j].lower()
+                        # Skip filler words but NOT other install triggers
+                        # This allows "i need firefox" to extract "firefox"
+                        if (
+                            candidate not in skip_words
+                            and candidate not in install_triggers
+                        ):
+                            package = words[j]
+                            break
+
+                    # If we found a package, we're done
+                    if package:
+                        break
+
+            # Special handling for compound phrases like "text editor"
+            if package and package.lower() == "text":
+                # Check if next word is "editor"
+                idx = words.index(package)
+                if idx + 1 < len(words) and words[idx + 1].lower() == "editor":
+                    # For "text editor", search for editors instead
+                    return {"intent": "search", "query": "editor"}
+
+            # If we still don't have a package, try to extract the last meaningful word
+            if not package and len(words) > 0:
+                # Get the last word that's not a filler or trigger
+                for word in reversed(words):
+                    if (
+                        word.lower() not in skip_words
+                        and word.lower() not in install_triggers
+                    ):
+                        package = word
+                        break
+
             return {"intent": "install", "package": package}
 
         # Remove/uninstall commands
-        if any(word in query_lower for word in ["remove", "uninstall", "delete"]):
+        remove_triggers = ["remove", "uninstall", "delete", "erase"]
+        if any(word in query_lower for word in remove_triggers):
             words = query.split()
             package = None
+            skip_words = [
+                "i",
+                "me",
+                "please",
+                "can",
+                "you",
+                "to",
+                "a",
+                "the",
+                "want",
+                "need",
+            ]
+
             for i, word in enumerate(words):
-                if word.lower() in ["remove", "uninstall", "delete"] and i + 1 < len(
-                    words
-                ):
-                    package = words[i + 1]
-                    break
+                if word.lower() in remove_triggers:
+                    # Look for the next non-filler word
+                    for j in range(i + 1, len(words)):
+                        if words[j].lower() not in skip_words:
+                            package = words[j]
+                            break
+                    if package:
+                        break
+
+            # If we still don't have a package, try to extract the last word
+            if not package and len(words) > 0:
+                # Get the last word that's not a filler
+                for word in reversed(words):
+                    if (
+                        word.lower() not in skip_words
+                        and word.lower() not in remove_triggers
+                    ):
+                        package = word
+                        break
+
             return {"intent": "remove", "package": package}
 
         # Update/upgrade commands
@@ -199,16 +276,16 @@ class ModernNixOSKnowledgeEngine(NixOSKnowledgeEngine):
     def get_advanced_help(self) -> str:
         """Get help for advanced features"""
         return """Advanced NixOS Features:
-        
+
 Flakes:
   - nix flake init: Start a new flake project
   - nix flake update: Update dependencies
   - nix develop: Enter development environment
-  
+
 Home Manager:
   - home-manager switch: Apply user configuration
   - home-manager generations: View history
-  
+
 Configuration:
   - Edit /etc/nixos/configuration.nix
   - sudo nixos-rebuild test: Test changes
