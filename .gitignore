@@ -91,6 +91,8 @@ nixos_knowledge.db
 config/user_config.json
 data/
 archives/
+.archive-*/
+.archive-*
 .coverage_monitor/
 .performance_monitoring/
 
