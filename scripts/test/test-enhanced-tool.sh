@@ -10,7 +10,7 @@ if [ -z "$IN_NIX_SHELL" ]; then
     echo "📦 Entering nix-shell automatically..."
     echo ""
     # Run this script again within nix-shell
-    exec nix-shell --run "$0 $@"
+    exec nix-shell --run "$0 $*"
 fi
 
 echo "✅ Running in nix-shell environment"

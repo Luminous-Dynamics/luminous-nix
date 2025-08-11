@@ -57,15 +57,7 @@ jobs:
           echo "**Cold Start**: ${cold_start}ms (Budget: <3000ms)" >> performance_report.md
 
           # Test warm start
-          poetry run python -c "
-import time
-from nix_for_humanity import initialize
-initialize()  # Warm up
-start = time.perf_counter()
-initialize()  # Measure
-elapsed = (time.perf_counter() - start) * 1000
-print(f'**Warm Start**: {elapsed:.0f}ms (Budget: <1000ms)')
-          " >> performance_report.md
+          poetry run python -c "import time; from nix_for_humanity import initialize; initialize(); start = time.perf_counter(); initialize(); elapsed = (time.perf_counter() - start) * 1000; print(f'**Warm Start**: {elapsed:.0f}ms (Budget: <1000ms)')" >> performance_report.md
 
       - name: 💬 Test command processing performance
         run: |

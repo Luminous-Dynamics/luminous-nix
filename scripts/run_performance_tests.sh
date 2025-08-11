@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
-"""
-Performance Test Runner Script for Nix for Humanity
-
-Quick script to run performance tests and validate the Native Python-Nix
-Interface breakthrough metrics.
-"""
+# Performance Test Runner Script for Nix for Humanity
+#
+# Quick script to run performance tests and validate the Native Python-Nix
+# Interface breakthrough metrics.
 
 set -e
 

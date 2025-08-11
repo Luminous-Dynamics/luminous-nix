@@ -75,13 +75,14 @@ jobs:
           PASSED=$(python -c "import json; data=json.load(open('$REPORT')); print(data['overall_pass'])")
           if [ "$PASSED" != "True" ]; then
             echo "❌ Performance regression detected!"
-            python -c "
+            python3 "$REPORT" << 'EOF'
 import json
-data = json.load(open('$REPORT'))
+import sys
+data = json.load(open(sys.argv[1]))
 for op, results in data['results'].items():
     if not results['passed']:
-        print(f'  - {op}: {results[\"p95\"]*1000:.2f}ms (threshold: {results[\"threshold\"]*1000:.0f}ms)')
-"
+        print(f'  - {op}: {results["p95"]*1000:.2f}ms (threshold: {results["threshold"]*1000:.0f}ms)')
+EOF
             exit 1
           else
             echo "✅ All performance tests passed!"

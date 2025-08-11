@@ -22,12 +22,12 @@ if ! command -v vhs &> /dev/null; then
     case $setup_choice in
         1)
             echo "Starting nix-shell with VHS..."
-            exec nix-shell shell-with-vhs.nix --run "$0 $@"
+            exec nix-shell shell-with-vhs.nix --run "$0 $*"
             ;;
 
         2)
             echo "Starting nix shell with VHS..."
-            exec nix shell nixpkgs#vhs nixpkgs#imagemagick nixpkgs#ffmpeg -c "$0 $@"
+            exec nix shell nixpkgs#vhs nixpkgs#imagemagick nixpkgs#ffmpeg -c "$0 $*"
             ;;
 
         3)

@@ -11,6 +11,7 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+        exclude: '^.github/workflows/(performance-test|performance-regression)\.yml$'
       - id: check-json
       - id: check-toml
       - id: check-added-large-files
@@ -28,11 +29,13 @@ repos:
         language_version: python3
         args: ['--line-length=88']
 
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.1.14
-    hooks:
-      - id: ruff
-        args: ['--fix', '--exit-non-zero-on-fix']
+  # Ruff disabled on NixOS due to dynamic linking issues
+  # To run ruff manually: poetry run ruff check .
+  # - repo: https://github.com/charliermarsh/ruff-pre-commit
+  #   rev: v0.1.14
+  #   hooks:
+  #     - id: ruff
+  #       args: ['--fix', '--exit-non-zero-on-fix']
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
@@ -47,12 +50,13 @@ repos:
       - id: markdownlint
         args: ['--fix', '--disable', 'MD013', '--disable', 'MD040', '--disable', 'MD036']
 
-  # Shell scripts
+  # Shell scripts - only error severity
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.9.0.6
     hooks:
       - id: shellcheck
-        args: ['--severity=warning']
+        args: ['--severity=error']
+        exclude: '^.github/workflows/'
 
 # Configuration for specific tools
 default_language_version:

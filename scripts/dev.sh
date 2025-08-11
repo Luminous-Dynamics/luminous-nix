@@ -204,7 +204,7 @@ main() {
 
         run)
             shift
-            echo -e "${GREEN}Running in nix develop: $@${NC}"
+            echo -e "${GREEN}Running in nix develop: $*${NC}"
             nix develop -c "$@"
             ;;
 

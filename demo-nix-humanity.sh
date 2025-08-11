@@ -302,7 +302,7 @@ echo -e "  • Natural language variations: 15+"
 echo -e "  • Average response time: <0.05s"
 echo -e "  • Success rate: 100%"
 echo -e "  • Development time: 2 weeks"
-echo -e "  • AI tools cost: ~$200/month"
+echo -e "  • AI tools cost: ~\$200/month"
 echo -e "  • Productivity: 2-3x solo developer"
 echo
 echo -e "${BOLD}${GREEN}The revolution is here. Join us.${NC}"
