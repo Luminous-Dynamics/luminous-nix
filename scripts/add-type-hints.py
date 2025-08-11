@@ -259,7 +259,7 @@ def add_basic_type_hints(filepath: Path) -> None:
     """Add basic type hints to a Python file."""
     with open(filepath, 'r') as f:
         content = f.read()
-    
+
     # Add typing import if not present
     if 'from typing import' not in content:
         lines = content.split('\\n')
@@ -268,7 +268,7 @@ def add_basic_type_hints(filepath: Path) -> None:
                 lines.insert(i, 'from typing import Dict, List, Optional, Any, Tuple')
                 content = '\\n'.join(lines)
                 break
-    
+
     # Simple regex replacements for common patterns
     replacements = [
         (r'def (\\w+)\\(self\\):', r'def \\1(self) -> None:'),
@@ -278,10 +278,10 @@ def add_basic_type_hints(filepath: Path) -> None:
         (r'def is_(\\w+)\\(self\\):', r'def is_\\1(self) -> bool:'),
         (r'def has_(\\w+)\\(self\\):', r'def has_\\1(self) -> bool:'),
     ]
-    
+
     for pattern, replacement in replacements:
         content = re.sub(pattern, replacement, content)
-    
+
     with open(filepath, 'w') as f:
         f.write(content)
 

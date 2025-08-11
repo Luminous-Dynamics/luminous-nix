@@ -50,38 +50,38 @@ class ReleasePreparation:
         self.release_date = datetime.date.today().strftime("%Y-%m-%d")
         self.project_root = Path(__file__).parent.parent
         self.release_dir = self.project_root / "release" / f"v{version}"
-        
+
         # Create release directory
         self.release_dir.mkdir(parents=True, exist_ok=True)
-        
+
     def update_version_files(self):
         """Update version in all relevant files"""
         print("📝 Updating version files...")
-        
+
         # Update VERSION file
         version_file = self.project_root / "VERSION"
         version_file.write_text(self.version)
-        
+
         # Update pyproject.toml
         pyproject_path = self.project_root / "pyproject.toml"
         if pyproject_path.exists():
             content = pyproject_path.read_text()
             content = content.replace(f'version = "{self.prev_version}"', f'version = "{self.version}"')
             pyproject_path.write_text(content)
-        
+
         # Update flake.nix
         flake_path = self.project_root / "flake.nix"
         if flake_path.exists():
             content = flake_path.read_text()
             content = content.replace(f'version = "{self.prev_version}";', f'version = "{self.version}";')
             flake_path.write_text(content)
-        
+
         print(f"✅ Version updated to {self.version}")
-    
+
     def generate_release_notes(self):
         """Generate comprehensive release notes"""
         print("📋 Generating release notes...")
-        
+
         # Use format() instead of f-strings for content with special characters
         release_notes = """# Nix for Humanity v{version} Release Notes
 
@@ -187,7 +187,7 @@ services.nixForHumanity = {{
 ```nix
 {{
   inputs.nix-for-humanity.url = "github:Luminous-Dynamics/nix-for-humanity/v1.0.0";
-  
+
   outputs = {{ self, nixpkgs, nix-for-humanity }}: {{
     nixosConfigurations.mySystem = nixpkgs.lib.nixosSystem {{
       modules = [
@@ -269,15 +269,15 @@ Special thanks to all contributors and early testers who helped make NixOS acces
 
 **Achievement**: $200/month development model delivering $4.2M enterprise quality - proving sacred technology can be practical.
 """.format(version=self.version, release_date=self.release_date)
-        
+
         release_notes_path = self.release_dir / "RELEASE_NOTES.md"
         release_notes_path.write_text(release_notes)
         print(f"✅ Release notes generated: {release_notes_path}")
-    
+
     def generate_release_checklist(self):
         """Generate comprehensive release checklist"""
         print("✅ Generating release checklist...")
-        
+
         checklist = """# Nix for Humanity v{version} Release Checklist
 
 ## Pre-Release Testing
@@ -366,15 +366,15 @@ Special thanks to all contributors and early testers who helped make NixOS acces
 **Release Manager**: _______________________
 **Date Completed**: _______________________
 """.format(version=self.version)
-        
+
         checklist_path = self.release_dir / "RELEASE_CHECKLIST.md"
         checklist_path.write_text(checklist)
         print(f"✅ Release checklist generated: {checklist_path}")
-    
+
     def create_installation_instructions(self):
         """Generate detailed installation instructions"""
         print("📦 Creating installation instructions...")
-        
+
         # Create the instructions content separately
         nix_config_content = """# Add to configuration.nix
 services.nixForHumanity = {
@@ -385,7 +385,7 @@ services.nixForHumanity = {
 
         flake_content = """{
   inputs.nix-for-humanity.url = "github:Luminous-Dynamics/nix-for-humanity/v{version}";
-  
+
   outputs = { self, nixpkgs, nix-for-humanity }: {
     nixosConfigurations.mySystem = nixpkgs.lib.nixosSystem {
       modules = [
@@ -405,18 +405,18 @@ services.nixForHumanity = {
   services.nixForHumanity = {
     enable = true;
     package = pkgs.nixForHumanity;
-    
+
     # Optional features
     voice = {
       enable = true;
       wakeWord = "hey nix";
     };
-    
+
     learning = {
       enable = true;
       privacy = "local-only";
     };
-    
+
     # Personalization
     defaultPersona = "maya";  # Fast responses for ADHD
     theme = "consciousness";  # Sacred theme
@@ -425,12 +425,12 @@ services.nixForHumanity = {
 
         flake_detailed = """{
   description = "My NixOS configuration with Nix for Humanity";
-  
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nix-for-humanity.url = "github:Luminous-Dynamics/nix-for-humanity/v{version}";
   };
-  
+
   outputs = { self, nixpkgs, nix-for-humanity }: {
     nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -444,7 +444,7 @@ services.nixForHumanity = {
     };
   };
 }"""
-        
+
         instructions = """# Nix for Humanity v{version} Installation Guide
 
 ## System Requirements
@@ -604,15 +604,15 @@ rm -rf ~/.cache/nix-for-humanity
             nix_config_detailed=nix_config_detailed,
             flake_detailed=flake_detailed.format(version=self.version)
         )
-        
+
         install_path = self.release_dir / "INSTALLATION.md"
         install_path.write_text(instructions)
         print(f"✅ Installation instructions created: {install_path}")
-    
+
     def generate_migration_guide(self):
         """Generate migration guide from v0.8.3 to v1.0.0"""
         print("📚 Generating migration guide...")
-        
+
         migration = """# Migration Guide: v0.8.3 to v{version}
 
 ## Overview
@@ -832,15 +832,15 @@ sudo nixos-rebuild switch
 
 **Remember**: This upgrade brings 10x-1500x performance improvements and powerful new features. The migration effort is worth it!
 """.format(version=self.version)
-        
+
         migration_path = self.release_dir / "MIGRATION_GUIDE_v1.0.0.md"
         migration_path.write_text(migration)
         print(f"✅ Migration guide generated: {migration_path}")
-    
+
     def generate_announcement_templates(self):
         """Generate announcement templates for various platforms"""
         print("📢 Generating announcement templates...")
-        
+
         # Blog post
         blog_post = """# Announcing Nix for Humanity v{version}: Natural Language for NixOS
 
@@ -857,7 +857,7 @@ Nix for Humanity transforms the NixOS experience from complex command-line opera
 ## Revolutionary Performance
 
 Through our Native Python-Nix API integration, we've achieved:
-- **10x-1500x faster operations** 
+- **10x-1500x faster operations**
 - **Zero timeout issues**
 - **Real-time progress tracking**
 - **Instant system information**
@@ -870,7 +870,7 @@ Through our Native Python-Nix API integration, we've achieved:
 - Voice interface ready
 - 10 personality styles
 
-### For Power Users  
+### For Power Users
 - Configuration generation from descriptions
 - Smart package discovery
 - Flake management
@@ -912,7 +912,7 @@ This release proves that sacred technology can be practical. We invite you to:
 
 Together, we're building a future where technology serves consciousness.
 """.format(version=self.version)
-        
+
         # Social media
         twitter_announcement = """🎉 Nix for Humanity v{version} is here!
 
@@ -929,7 +929,7 @@ nix run github:Luminous-Dynamics/nix-for-humanity -- "help"
 
 #NixOS #AI #OpenSource #ConsciousnessFirst
 """.format(version=self.version)
-        
+
         # GitHub Release
         github_release = """## 🎉 Nix for Humanity v{version} - Production Release
 
@@ -966,7 +966,7 @@ services.nixForHumanity.enable = true;
 
 This release proves our development model: $200/month achieving what traditionally costs $4.2M through:
 - Human vision and empathy
-- AI architecture and implementation  
+- AI architecture and implementation
 - Local LLM domain expertise
 
 ### 📚 Documentation
@@ -983,21 +983,21 @@ This release proves our development model: $200/month achieving what traditional
 
 **Full Changelog**: https://github.com/Luminous-Dynamics/nix-for-humanity/compare/v0.8.3...v{version}
 """.format(version=self.version)
-        
+
         # Save all templates
         templates_dir = self.release_dir / "announcements"
         templates_dir.mkdir(exist_ok=True)
-        
+
         (templates_dir / "blog_post.md").write_text(blog_post)
         (templates_dir / "twitter.txt").write_text(twitter_announcement)
         (templates_dir / "github_release.md").write_text(github_release)
-        
+
         print(f"✅ Announcement templates generated in: {templates_dir}")
-    
+
     def create_release_package(self):
         """Create release package with all necessary files"""
         print("📦 Creating release package...")
-        
+
         # Create package script with {{ }} escaped for format strings
         package_script = """#!/usr/bin/env python3
 import os
@@ -1016,7 +1016,7 @@ include_patterns = [
     "frontends/",
     "docs/",
     "flake.nix",
-    "flake.lock", 
+    "flake.lock",
     "pyproject.toml",
     "README.md",
     "LICENSE",
@@ -1039,17 +1039,17 @@ exclude_patterns = [
 
 def should_include(path):
     path_str = str(path)
-    
+
     # Check excludes first
     for pattern in exclude_patterns:
         if pattern in path_str:
             return False
-    
+
     # Check includes
     for pattern in include_patterns:
         if path_str.startswith(pattern) or pattern in path_str:
             return True
-    
+
     return False
 
 # Create tarball
@@ -1060,11 +1060,11 @@ with tarfile.open(output_file, "w:gz") as tar:
     for root, dirs, files in os.walk(project_root):
         # Filter directories
         dirs[:] = [d for d in dirs if not any(ex in d for ex in exclude_patterns)]
-        
+
         for file in files:
             file_path = Path(root) / file
             relative_path = file_path.relative_to(project_root)
-            
+
             if should_include(relative_path):
                 print(f"  Adding: {{relative_path}}")
                 tar.add(file_path, arcname=f"nix-for-humanity-v{{version}}/{{relative_path}}")
@@ -1080,17 +1080,17 @@ with open(f"{{output_file}}.sha256", "w") as f:
 print(f"\\n✅ Release package created: {{output_file}}")
 print(f"✅ Checksum: {{sha256}}")
 """.format(version=self.version)
-        
+
         package_script_path = self.release_dir / "create_package.py"
         package_script_path.write_text(package_script)
         os.chmod(package_script_path, 0o755)
-        
+
         print(f"✅ Package script created: {package_script_path}")
-    
+
     def generate_changelog_update(self):
         """Update CHANGELOG.md with new version"""
         print("📝 Updating CHANGELOG.md...")
-        
+
         changelog_entry = """
 ## [{version}] - {release_date}
 
@@ -1123,7 +1123,7 @@ print(f"✅ Checksum: {{sha256}}")
 
 ### Performance
 - List generations: ∞x improvement (now instant)
-- System info: ∞x improvement (now instant)  
+- System info: ∞x improvement (now instant)
 - Package search: 10x improvement
 - Rollback operations: 50x improvement
 - Configuration generation: <1s for complex configs
@@ -1134,7 +1134,7 @@ print(f"✅ Checksum: {{sha256}}")
 - Permission checking improvements
 
 """.format(version=self.version, release_date=self.release_date)
-        
+
         changelog_path = self.project_root / "CHANGELOG.md"
         if changelog_path.exists():
             content = changelog_path.read_text()
@@ -1144,7 +1144,7 @@ print(f"✅ Checksum: {{sha256}}")
                 if line.startswith('# Changelog'):
                     lines.insert(i + 2, changelog_entry)
                     break
-            
+
             changelog_path.write_text('\n'.join(lines))
             print(f"✅ CHANGELOG.md updated")
         else:
@@ -1166,11 +1166,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 """.format(changelog_entry=changelog_entry)
             changelog_path.write_text(new_changelog)
             print(f"✅ CHANGELOG.md created")
-    
+
     def create_final_summary(self):
         """Create summary of all release preparation steps"""
         print("\n📋 Creating release summary...")
-        
+
         summary = """# Nix for Humanity v{version} Release Preparation Summary
 
 **Date**: {release_date}
@@ -1239,10 +1239,10 @@ This release represents:
 
 Thank you for making sacred technology practical! 🙏
 """.format(version=self.version, release_date=self.release_date, prev_version=self.prev_version)
-        
+
         summary_path = self.release_dir / "RELEASE_SUMMARY.md"
         summary_path.write_text(summary)
-        
+
         print(f"\n{'='*60}")
         print(f"✅ Release preparation complete!")
         print(f"📁 All files generated in: {self.release_dir}")
@@ -1254,15 +1254,15 @@ def main():
     print(f"\n{'='*60}")
     print(f"🚀 Nix for Humanity Production Release Preparation")
     print(f"{'='*60}\n")
-    
+
     # Check if we're in the right directory
     if not Path("pyproject.toml").exists():
         print("❌ Error: Must run from nix-for-humanity root directory")
         sys.exit(1)
-    
+
     # Create release preparation instance
     prep = ReleasePreparation(version="1.0.0")
-    
+
     # Execute all preparation steps
     prep.update_version_files()
     prep.generate_release_notes()
@@ -1273,7 +1273,7 @@ def main():
     prep.create_release_package()
     prep.generate_changelog_update()
     prep.create_final_summary()
-    
+
     print("🎉 Production release preparation complete!")
     print(f"📁 Check the release directory: release/v1.0.0/")
     print("📋 Follow the checklist to complete the release process.")

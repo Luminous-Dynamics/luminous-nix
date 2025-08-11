@@ -1,7 +1,7 @@
 # 📊 Standards Monitoring & Metrics Guide
 
-**Status**: ACTIVE  
-**Last Updated**: 2025-08-11  
+**Status**: ACTIVE
+**Last Updated**: 2025-08-11
 **Purpose**: Track and improve standards compliance through data-driven insights
 
 ## 🎯 Overview
@@ -46,7 +46,7 @@ This guide establishes comprehensive monitoring and metrics for tracking standar
 
 ### 1. GitHub Actions Dashboard
 
-**Location**: GitHub → Actions tab  
+**Location**: GitHub → Actions tab
 **What to Monitor**:
 - Workflow success rates
 - Average execution time
@@ -94,46 +94,46 @@ class MetricsDashboard:
     def __init__(self):
         self.metrics_dir = Path("metrics")
         self.metrics_dir.mkdir(exist_ok=True)
-        
+
     def collect_test_coverage(self) -> Dict[str, Any]:
         """Run pytest and collect coverage metrics."""
         result = subprocess.run(
             ["poetry", "run", "pytest", "--cov=nix_for_humanity", "--cov-report=json"],
             capture_output=True
         )
-        
+
         with open("coverage.json") as f:
             data = json.load(f)
-            
+
         return {
             "timestamp": datetime.now().isoformat(),
             "total_coverage": data["totals"]["percent_covered"],
             "files": data["files"]
         }
-    
+
     def collect_type_coverage(self) -> Dict[str, Any]:
         """Run mypy and collect type coverage."""
         result = subprocess.run(
             ["poetry", "run", "mypy", "src/", "--strict", "--json-report", "mypy-report"],
             capture_output=True
         )
-        
+
         # Parse mypy report
         return {
             "timestamp": datetime.now().isoformat(),
             "type_coverage": "calculated_percentage",
             "errors": []
         }
-    
+
     def collect_complexity_metrics(self) -> Dict[str, Any]:
         """Analyze code complexity."""
         result = subprocess.run(
             ["poetry", "run", "radon", "cc", "src/", "-j"],
             capture_output=True
         )
-        
+
         return json.loads(result.stdout)
-    
+
     def generate_dashboard(self):
         """Generate HTML dashboard."""
         metrics = {
@@ -141,15 +141,15 @@ class MetricsDashboard:
             "types": self.collect_type_coverage(),
             "complexity": self.collect_complexity_metrics()
         }
-        
+
         # Save metrics
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         with open(self.metrics_dir / f"metrics_{timestamp}.json", "w") as f:
             json.dump(metrics, f, indent=2)
-        
+
         # Generate HTML dashboard
         self._generate_html(metrics)
-    
+
     def _generate_html(self, metrics: Dict[str, Any]):
         """Create visual dashboard."""
         html = """
@@ -167,7 +167,7 @@ class MetricsDashboard:
         </body>
         </html>
         """
-        
+
         with open("dashboard.html", "w") as f:
             f.write(html)
 
@@ -196,14 +196,14 @@ echo "🔍 Starting Standards Monitor..."
 # Function to check Python standards
 check_python() {
     echo -e "${YELLOW}Checking Python standards...${NC}"
-    
+
     # Black
     if poetry run black --check src/ tests/ scripts/ 2>/dev/null; then
         echo -e "${GREEN}✅ Black: Formatted${NC}"
     else
         echo -e "${RED}❌ Black: Needs formatting${NC}"
     fi
-    
+
     # Ruff
     RUFF_OUTPUT=$(poetry run ruff check src/ tests/ scripts/ 2>&1)
     if [ $? -eq 0 ]; then
@@ -212,7 +212,7 @@ check_python() {
         ISSUES=$(echo "$RUFF_OUTPUT" | grep -c ":")
         echo -e "${YELLOW}⚠️  Ruff: $ISSUES issues found${NC}"
     fi
-    
+
     # Type checking
     if poetry run mypy src/ --strict 2>/dev/null; then
         echo -e "${GREEN}✅ Mypy: Types complete${NC}"
@@ -224,7 +224,7 @@ check_python() {
 # Function to check documentation
 check_docs() {
     echo -e "${YELLOW}Checking documentation...${NC}"
-    
+
     MISSING_DOCS=0
     for file in README.md CHANGELOG.md LICENSE docs/README.md; do
         if [ -f "$file" ]; then
@@ -234,7 +234,7 @@ check_docs() {
             MISSING_DOCS=$((MISSING_DOCS + 1))
         done
     done
-    
+
     if [ $MISSING_DOCS -eq 0 ]; then
         echo -e "${GREEN}✅ Documentation: Complete${NC}"
     else
@@ -245,13 +245,13 @@ check_docs() {
 # Function to check performance
 check_performance() {
     echo -e "${YELLOW}Checking performance...${NC}"
-    
+
     # Simple startup time check
     START=$(date +%s%N)
     python -c "from nix_for_humanity import initialize; initialize()" 2>/dev/null
     END=$(date +%s%N)
     ELAPSED=$((($END - $START) / 1000000))
-    
+
     if [ $ELAPSED -lt 3000 ]; then
         echo -e "${GREEN}✅ Cold start: ${ELAPSED}ms (<3000ms)${NC}"
     else
@@ -267,17 +267,17 @@ while true; do
     echo "   $(date '+%Y-%m-%d %H:%M:%S')"
     echo "═══════════════════════════════════════════════════"
     echo
-    
+
     check_python
     echo
     check_docs
     echo
     check_performance
     echo
-    
+
     echo "═══════════════════════════════════════════════════"
     echo "Press Ctrl+C to exit | Refreshing in 60 seconds..."
-    
+
     sleep 60
 done
 ```

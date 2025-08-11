@@ -154,7 +154,7 @@ Pick one and run it:
 # Option 1: Fresh start
 mkdir ../nix-for-humanity-v2 && cd ../nix-for-humanity-v2 && poetry init
 
-# Option 2: Fix existing  
+# Option 2: Fix existing
 poetry install && python fix_all_imports.py
 
 # Option 3: Ship simple

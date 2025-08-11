@@ -263,10 +263,7 @@ print("-" * 40)
 
 @test("Type definitions")
 def test_types():
-    from nix_for_humanity.types import (
-        ExecutionContext,
-        PackageInfo,
-    )
+    from nix_for_humanity.types import ExecutionContext, PackageInfo
 
     # Test TypedDict
     pkg: PackageInfo = {"name": "firefox"}

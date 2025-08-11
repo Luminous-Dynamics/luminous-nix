@@ -17,15 +17,15 @@ def fix_tui_async_connection():
     sync_wrapper = '''
     def process(self, request: Request) -> Response:
         """Synchronous wrapper for process_request for TUI compatibility.
-        
+
         Args:
             request: The request to process
-            
+
         Returns:
             Response object
         """
         import asyncio
-        
+
         # If we're already in an event loop (from TUI), use it
         try:
             loop = asyncio.get_running_loop()
@@ -118,11 +118,11 @@ from nix_for_humanity.api.schema import Request
 try:
     backend = NixForHumanityBackend()
     request = Request(query="help")
-    
+
     # Test sync wrapper
     response = backend.process(request)
     print(f"✅ Sync wrapper works: {response.success}")
-    
+
     # Test if backend has all TUI methods
     methods = ['get_current_context', 'get_settings', 'execute_command', 'get_suggestions']
     for method in methods:
@@ -130,7 +130,7 @@ try:
             print(f"✅ {method} available")
         else:
             print(f"❌ {method} missing")
-            
+
 except Exception as e:
     print(f"❌ Test failed: {e}")
 """

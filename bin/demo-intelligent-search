@@ -4,17 +4,18 @@ Demo: Intelligent Search with Caching
 Shows the dramatic performance improvement from intelligent caching
 """
 
+import os
 import sys
 import time
-import os
 
 # Add scripts directory to path
-script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts"))
 sys.path.insert(0, script_dir)
 
 # Import both engines
 from nix_knowledge_engine_modern import ModernNixOSKnowledgeEngine
 from package_cache_manager import IntelligentPackageCache
+
 
 def main():
     if len(sys.argv) < 2:
@@ -24,51 +25,55 @@ def main():
         print("  demo-intelligent-search python")
         print("  demo-intelligent-search vim")
         sys.exit(1)
-    
-    query = ' '.join(sys.argv[1:])
-    
+
+    query = " ".join(sys.argv[1:])
+
     print("🎯 Intelligent Search Demo: Nix for Humanity")
     print("=" * 50)
     print(f"Searching for: '{query}'")
     print("=" * 50)
-    
+
     # Initialize engine with cache
     engine = ModernNixOSKnowledgeEngine()
-    
+
     if not engine.cache_manager:
-        print("❌ Cache manager not available. Make sure package-cache-manager.py exists.")
+        print(
+            "❌ Cache manager not available. Make sure package-cache-manager.py exists."
+        )
         sys.exit(1)
-    
+
     # First search (may populate cache)
     print("\n🔍 First Search:")
     start = time.time()
-    
+
     search_data = engine.search_packages_with_cache(query)
-    
+
     elapsed = time.time() - start
-    
-    if search_data['from_cache']:
-        print(f"⚡ Lightning fast! Results from intelligent cache in {elapsed:.3f} seconds")
+
+    if search_data["from_cache"]:
+        print(
+            f"⚡ Lightning fast! Results from intelligent cache in {elapsed:.3f} seconds"
+        )
     else:
         print(f"🌐 Fresh search completed in {elapsed:.3f} seconds (now cached)")
-    
+
     # Format and display results
     formatted = engine.format_search_results(search_data)
     print("\n" + formatted)
-    
+
     # Second search (should be from cache)
     print("\n" + "=" * 50)
     print("🔍 Second Search (same query):")
     start = time.time()
-    
+
     search_data2 = engine.search_packages_with_cache(query)
-    
+
     elapsed2 = time.time() - start
-    
-    if search_data2['from_cache']:
+
+    if search_data2["from_cache"]:
         print(f"⚡ From cache in {elapsed2:.3f} seconds!")
         print(f"🚀 That's {elapsed/elapsed2:.0f}x faster!")
-    
+
     # Show cache statistics
     print("\n" + "=" * 50)
     print("📊 Cache Statistics:")
@@ -77,7 +82,7 @@ def main():
     print(f"   Popular packages: {stats['popular_packages']}")
     print(f"   Total searches tracked: {stats['total_searches']}")
     print(f"   Unique search terms: {stats['unique_terms']}")
-    
+
     print("\n✨ The cache learns from every search and gets smarter over time!")
     print("🎓 This is how we build toward an AI partner - learning from usage.")
 

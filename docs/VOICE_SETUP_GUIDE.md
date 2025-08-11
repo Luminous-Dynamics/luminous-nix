@@ -46,7 +46,7 @@ Add to your NixOS configuration:
       ref = "main";
     } + "/modules/voice.nix")
   ];
-  
+
   # Enable and configure voice interface
   services.nixForHumanity.voice = {
     enable = true;
@@ -55,7 +55,7 @@ Add to your NixOS configuration:
     device = "cpu";               # or "cuda" for GPU acceleration
     autoDownloadModels = true;    # Downloads models on first run
   };
-  
+
   # Optional: customize settings
   services.nixForHumanity.voice = {
     wakeWord = "hey nix";         # Custom wake word
@@ -117,7 +117,7 @@ pkgs.mkShell {
     ffmpeg
     sox
   ];
-  
+
   shellHook = ''
     echo "🎤 Voice interface dependencies loaded!"
     echo "Run: python setup_voice.py"
@@ -143,7 +143,7 @@ For user-specific installation:
       ref = "main";
     } + "/modules/home-manager/voice.nix")
   ];
-  
+
   programs.nixForHumanity.voice = {
     enable = true;
     whisperModel = "base";
@@ -227,17 +227,17 @@ Create or edit `~/.config/nix-humanity/voice.yaml`:
 voice:
   # Wake word configuration
   wake_word: "hey nix"  # Can be customized
-  
+
   # Whisper settings
   whisper:
     model: "base"  # tiny, base, small, medium, large
     language: "en"
-    
-  # Piper settings  
+
+  # Piper settings
   piper:
     voice: "en_US-amy-medium"
     speed: 1.0  # Speech rate (0.5-2.0)
-    
+
   # Audio settings
   audio:
     sample_rate: 16000
@@ -479,11 +479,11 @@ The voice interface integrates seamlessly with the TUI:
 voice:
   # Easier wake word
   wake_word: "computer"
-  
+
   # More forgiving settings
   silence_duration: 2.5
   wake_sensitivity: 0.6
-  
+
   # Clearer voice
   piper:
     voice: "en_US-kathleen-medium"
@@ -497,11 +497,11 @@ voice:
   wake_word: "nix"
   push_to_talk: true
   ptt_key: "ctrl"
-  
+
   # Fast response
   whisper:
     model: "tiny"
-  
+
   # Minimal voice
   piper:
     voice: "en_US-joe-medium"
@@ -513,11 +513,11 @@ voice:
 voice:
   # Multiple wake words
   wake_words: ["hey computer", "okay nix", "help please"]
-  
+
   # Accurate recognition
   whisper:
     model: "small"
-    
+
   # Friendly voice
   piper:
     voice: "en_US-amy-medium"

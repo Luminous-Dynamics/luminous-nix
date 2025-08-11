@@ -78,7 +78,7 @@ cat << EOF
   • Favorite category: Development tools (87%)
   • Command style: Direct ("install X" not "could you install X")
   • Success rate: 95%
-  
+
 🎯 Suggested Optimizations:
   • Create alias 'nv' for 'install neovim' (used 5 times)
   • Enable batch mode for multiple installs
@@ -115,20 +115,20 @@ echo
 echo -e "${BOLD}$ ask-nix --show-learning${NC}"
 cat << EOF
 📚 Learning Summary for cli_user:
-  
+
   Commands Run: 47
   Success Rate: 95.7%
-  
+
   Your Vocabulary:
     • "get" → install (used 12 times)
     • "find" → search (used 8 times)
     • "what's" → list (used 5 times)
-  
+
   Frequent Packages:
     1. neovim (5 installs)
     2. firefox (3 installs)
     3. tmux (3 installs)
-  
+
   Suggested Aliases:
     • nv → "install neovim"
     • ff → "install firefox"

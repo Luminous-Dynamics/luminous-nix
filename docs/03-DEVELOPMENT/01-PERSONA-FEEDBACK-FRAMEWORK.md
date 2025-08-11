@@ -9,7 +9,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 🌹 Persona 1: Grandma Rose (75)
-**Profile**: Voice-first interaction, zero technical terms  
+**Profile**: Voice-first interaction, zero technical terms
 **Key Needs**: Accessibility, Simple language, Voice-friendly output
 
 ### Test Scenarios
@@ -71,7 +71,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## ⚡ Persona 2: Maya (16, ADHD)
-**Profile**: Fast, focused, minimal distractions  
+**Profile**: Fast, focused, minimal distractions
 **Key Needs**: Speed, Focus, Minimal UI clutter
 
 ### Test Scenarios
@@ -133,7 +133,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 😴 Persona 3: David (42, Tired Parent)
-**Profile**: Stress-free, reliable, works at 2 AM  
+**Profile**: Stress-free, reliable, works at 2 AM
 **Key Needs**: Error handling, Reliability, Clear guidance
 
 ### Test Scenarios
@@ -195,7 +195,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 🔬 Persona 4: Dr. Sarah (35, Researcher)
-**Profile**: Efficient, precise, power user  
+**Profile**: Efficient, precise, power user
 **Key Needs**: Power features, Precision, Efficiency
 
 ### Test Scenarios
@@ -257,7 +257,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 👨‍💻 Persona 5: Alex (28, Blind Developer)
-**Profile**: 100% accessible, screen reader user  
+**Profile**: 100% accessible, screen reader user
 **Key Needs**: Screen readers, Keyboard navigation, Clear structure
 
 ### Test Scenarios
@@ -319,7 +319,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 📚 Persona 6: Carlos (52, Career Switcher)
-**Profile**: Learning Linux, needs education  
+**Profile**: Learning Linux, needs education
 **Key Needs**: Onboarding, Examples, Education
 
 ### Test Scenarios
@@ -381,7 +381,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 👩‍👦 Persona 7: Priya (34, Single Mom)
-**Profile**: Quick tasks, interruption-resistant  
+**Profile**: Quick tasks, interruption-resistant
 **Key Needs**: Interruptions, Quick tasks, Context switching
 
 ### Test Scenarios
@@ -443,7 +443,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 🔒 Persona 8: Jamie (19, Privacy Advocate)
-**Profile**: Transparency, privacy-first  
+**Profile**: Transparency, privacy-first
 **Key Needs**: Privacy, Transparency, Control
 
 ### Test Scenarios
@@ -505,7 +505,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 🌍 Persona 9: Viktor (67, ESL)
-**Profile**: English second language, clear communication  
+**Profile**: English second language, clear communication
 **Key Needs**: Language clarity, Simple English, Examples
 
 ### Test Scenarios
@@ -567,7 +567,7 @@ This framework provides structured methods for gathering feedback from each of o
 ---
 
 ## 🎮 Persona 10: Luna (14, Autistic)
-**Profile**: Predictable, consistent, no surprises  
+**Profile**: Predictable, consistent, no surprises
 **Key Needs**: Consistency, Predictability, Clear patterns
 
 ### Test Scenarios

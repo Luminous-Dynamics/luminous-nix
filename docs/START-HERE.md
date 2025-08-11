@@ -4,10 +4,10 @@
 
 ## What Actually Works (v1.0)
 
-✅ **Natural language commands** - "install firefox" just works  
-✅ **Lightning fast** - <0.5s response times via native Python-Nix integration  
-✅ **Smart learning** - Improves based on your usage patterns  
-✅ **Educational errors** - Transforms cryptic Nix errors into helpful guidance  
+✅ **Natural language commands** - "install firefox" just works
+✅ **Lightning fast** - <0.5s response times via native Python-Nix integration
+✅ **Smart learning** - Improves based on your usage patterns
+✅ **Educational errors** - Transforms cryptic Nix errors into helpful guidance
 
 ## Choose Your Path
 
@@ -43,13 +43,13 @@ services.nix-for-humanity.enable = true;
 **Next**: [Installation](./04-OPERATIONS/EASY-INSTALLATION-GUIDE.md) → [Configuration](./05-REFERENCE/CONFIGURATION.md)
 
 ## Coming Soon (v1.1)
-🚧 Terminal UI (TUI) - Beautiful interface  
-🚧 Voice control - Speak naturally  
-📅 Advanced personas - Adaptive to your style  
+🚧 Terminal UI (TUI) - Beautiful interface
+🚧 Voice control - Speak naturally
+📅 Advanced personas - Adaptive to your style
 
 ## Questions?
 - **It's broken**: [Troubleshooting](./TROUBLESHOOTING.md)
-- **How does it work?**: [Architecture](./02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md)  
+- **How does it work?**: [Architecture](./02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md)
 - **Report issues**: [GitHub Issues](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
 
 ---

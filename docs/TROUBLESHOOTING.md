@@ -6,7 +6,7 @@ Quick fixes for common problems. If your issue isn't here, [file a bug report](h
 
 ### "Command not found: ask-nix"
 
-**Problem**: The command isn't in your PATH  
+**Problem**: The command isn't in your PATH
 **Solution**:
 ```bash
 # If installed via pip
@@ -19,7 +19,7 @@ cd /path/to/nix-for-humanity
 
 ### "Permission denied" when running commands
 
-**Problem**: NixOS operations need sudo  
+**Problem**: NixOS operations need sudo
 **Solution**:
 ```bash
 # ask-nix handles sudo automatically, but if it fails:
@@ -31,7 +31,7 @@ sudo usermod -a -G nix-users $USER
 
 ### "No module named nix_for_humanity"
 
-**Problem**: Python can't find the package  
+**Problem**: Python can't find the package
 **Solution**:
 ```bash
 # Reinstall
@@ -44,7 +44,7 @@ python -c "import sys; print(sys.path)"
 
 ### Response times are slow (>1 second)
 
-**Problem**: Not using native Python backend  
+**Problem**: Not using native Python backend
 **Solution**:
 ```bash
 # Enable native backend
@@ -56,7 +56,7 @@ ask-nix --diagnose
 
 ### "nix-env: command not found"
 
-**Problem**: Nix isn't installed or not in PATH  
+**Problem**: Nix isn't installed or not in PATH
 **Solution**:
 ```bash
 # Check if Nix is installed
@@ -68,18 +68,18 @@ curl -L https://nixos.org/nix/install | sh
 
 ### Natural language not working
 
-**Problem**: Intent recognition failing  
+**Problem**: Intent recognition failing
 **Examples that should work**:
 ```bash
 ask-nix "install firefox"          # ✅ Works
-ask-nix "install the firefox"      # ✅ Works  
+ask-nix "install the firefox"      # ✅ Works
 ask-nix "get me firefox browser"   # ✅ Works
 ask-nix "sudo apt install firefox" # ❌ Don't include other package managers
 ```
 
 ### Database locked error
 
-**Problem**: SQLite database is locked  
+**Problem**: SQLite database is locked
 **Solution**:
 ```bash
 # Kill any stuck processes
@@ -94,7 +94,7 @@ ask-nix --reset-cache
 
 ### Import errors with Textual/TUI
 
-**Problem**: TUI dependencies not installed  
+**Problem**: TUI dependencies not installed
 **Solution**:
 ```bash
 # Install TUI extras
@@ -164,7 +164,7 @@ ask-nix --diagnose > debug.log
 ### What DOESN'T work yet
 
 - ❌ Voice control (coming v1.1)
-- ❌ GUI (planned)  
+- ❌ GUI (planned)
 - ❌ Windows support (use WSL)
 - ❌ Nix flakes commands (coming soon)
 

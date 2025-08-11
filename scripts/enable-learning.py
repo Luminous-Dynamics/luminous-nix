@@ -98,9 +98,9 @@ def test_learning_features():
             # Show recent commands
             cursor.execute(
                 """
-                SELECT query, success, timestamp 
-                FROM command_history 
-                ORDER BY timestamp DESC 
+                SELECT query, success, timestamp
+                FROM command_history
+                ORDER BY timestamp DESC
                 LIMIT 5
             """
             )

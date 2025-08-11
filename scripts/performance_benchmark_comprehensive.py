@@ -340,7 +340,7 @@ class PerformanceBenchmark:
             # Save system info
             conn.execute(
                 """
-                INSERT INTO system_metrics 
+                INSERT INTO system_metrics
                 (cpu_count, memory_total_gb, python_version, nixos_version, git_commit)
                 VALUES (?, ?, ?, ?, ?)
             """,
@@ -414,7 +414,7 @@ class PerformanceBenchmark:
 **Overall Performance Grade**: {grade}
 **Target Success Rate**: {target_success_rate:.1%} ({len(targets_met)}/{len(results)})
 **Average Response Time**: {avg_duration:.1f}ms
-**Maximum Response Time**: {max_duration:.1f}ms  
+**Maximum Response Time**: {max_duration:.1f}ms
 **Average Memory Usage**: {avg_memory:.1f}MB
 
 ## 🖥️ System Information
@@ -488,7 +488,7 @@ class PerformanceBenchmark:
 
 ### Immediate Actions:
 1. **Critical Path Optimization**: Focus on scenarios exceeding targets by >50%
-2. **Memory Management**: Review memory usage patterns for optimization opportunities  
+2. **Memory Management**: Review memory usage patterns for optimization opportunities
 3. **Caching Implementation**: Add intelligent caching for repeated operations
 4. **Performance Monitoring**: Set up continuous performance regression testing
 

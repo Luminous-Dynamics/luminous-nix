@@ -21,10 +21,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import (
-    Any,
-    Optional,
-)
+from typing import Any, Optional
 
 # typing_extensions import removed - using built-in typing for compatibility
 # Lazy imports - moved to properties to speed up startup

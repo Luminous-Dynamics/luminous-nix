@@ -11,7 +11,7 @@ add_qa() {
     local question="$1"
     local answer="$2"
     local timestamp=$(date +%s.%N)
-    
+
     echo "$question" > "$KNOWLEDGE_DIR/questions/q_$timestamp.txt"
     echo "$answer" > "$KNOWLEDGE_DIR/answers/a_$timestamp.txt"
     sleep 0.1  # Ensure unique timestamps
@@ -83,11 +83,11 @@ Basic flake structure:
 \`\`\`nix
 {
   description = \"My project\";
-  
+
   inputs = {
     nixpkgs.url = \"github:NixOS/nixpkgs/nixos-unstable\";
   };
-  
+
   outputs = { self, nixpkgs }: {
     # Your outputs here
   };

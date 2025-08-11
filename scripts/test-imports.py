@@ -75,7 +75,6 @@ print("\n\n🔍 Tracing Import Chain for AI Module:")
 print("=" * 60)
 
 try:
-
     print("✅ Step 1: import nix_for_humanity.ai - SUCCESS")
 
     # Check what's in the module

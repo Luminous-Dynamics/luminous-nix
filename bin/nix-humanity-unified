@@ -2,7 +2,7 @@
 /**
  * nix-humanity-unified - Unified CLI for Nix for Humanity
  * Uses the existing nodejs-mvp implementation
- * 
+ *
  * Usage:
  *   nix-humanity-unified "search firefox"
  *   nix-humanity-unified "install neovim" --dry-run
@@ -27,7 +27,7 @@ function parseArgs(args) {
 
   for (let i = 2; i < args.length; i++) {
     const arg = args[i];
-    
+
     if (arg === '--help' || arg === '-h') {
       options.help = true;
     } else if (arg === '--execute' || arg === '-e') {
@@ -83,7 +83,7 @@ Common Commands:
 
 async function main() {
   const options = parseArgs(process.argv);
-  
+
   if (options.help) {
     showHelp();
     process.exit(0);
@@ -112,7 +112,7 @@ async function main() {
     // Process the intent
     console.log(`🔍 Processing: "${options.input}"`);
     const intent = await intentEngine.processIntent(options.input);
-    
+
     if (!intent.action) {
       console.log('❌ I didn\'t understand that command.');
       if (intent.suggestions && intent.suggestions.length > 0) {
@@ -131,12 +131,12 @@ async function main() {
 
     // Execute the command
     const result = await realExecutor.execute(intent.action, intent.target ? [intent.target] : []);
-    
+
     // Display results
     console.log();
     if (result.success) {
       console.log('✅', result.output);
-      
+
       if (result.command && options.verbose) {
         console.log(`\n🔧 Command: ${result.command}`);
       }

@@ -98,7 +98,7 @@ We're thrilled to announce the first production release of Nix for Humanity, mak
 
 ## ✨ Highlights
 
-- **🗣️ Natural Language Interface** - Just speak normally: "install firefox" 
+- **🗣️ Natural Language Interface** - Just speak normally: "install firefox"
 - **🖥️ Three Interfaces** - CLI, beautiful TUI, and voice control
 - **🔌 Plugin System** - Extend functionality with secure plugins
 - **🚀 10x-1500x Faster** - Revolutionary native Python-Nix API
@@ -209,7 +209,7 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**Thank you to everyone who made this possible!** 
+**Thank you to everyone who made this possible!**
 
 This is just the beginning of making technology accessible to all. Join us in building the future of human-computer interaction!
 

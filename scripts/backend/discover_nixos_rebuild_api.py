@@ -151,33 +151,33 @@ from nixos_rebuild.models import Action, Profile
 
 class NixForHumanityNativeBackend:
     """Direct Python API integration with nixos-rebuild-ng"""
-    
+
     def __init__(self):
         self.profile = Profile.from_arg("system")
-        
+
     async def update_system(self, dry_run: bool = False):
         """Update NixOS system using native API"""
         action = Action.BUILD if dry_run else Action.SWITCH
-        
+
         # Build the system
         build_attr = models.BuildAttr(
             attr="config.system.build.toplevel",
             file=None
         )
-        
+
         try:
             # Native API call - no subprocess!
             path = await nix.build(build_attr, self.profile)
-            
+
             if not dry_run:
                 # Apply the configuration
                 await nix.switch_to_configuration(path, action, self.profile)
-                
+
             return {"success": True, "path": path}
-            
+
         except Exception as e:
             return {"success": False, "error": str(e)}
-            
+
     async def rollback_system(self):
         """Rollback to previous generation"""
         try:

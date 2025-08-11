@@ -82,34 +82,34 @@ class TrinityNixTrainer:
         self.knowledge_dir = Path("/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/docs/nix-knowledge")
         self.training_dir = Path("training-data/trinity")
         self.training_dir.mkdir(parents=True, exist_ok=True)
-        
+
     def collect_trinity_wisdom(self):
         """Collect Q&A from our Sacred Trinity workflow"""
         print("🤝 Collecting Sacred Trinity wisdom...")
-        
+
         trinity_qa = []
-        
+
         # Load saved Q&A pairs
         questions_dir = self.knowledge_dir / "questions"
         answers_dir = self.knowledge_dir / "answers"
-        
+
         if questions_dir.exists() and answers_dir.exists():
             for q_file in questions_dir.glob("q_*.txt"):
                 timestamp = q_file.stem.replace("q_", "")
                 a_file = answers_dir / f"a_{timestamp}.txt"
-                
+
                 if a_file.exists():
                     with open(q_file) as qf, open(a_file) as af:
                         question = qf.read().strip()
                         answer = af.read().strip()
-                        
+
                         trinity_qa.append({
                             "q": question,
                             "a": answer,
                             "source": "Sacred Trinity",
                             "category": "workflow"
                         })
-        
+
         # Add Trinity-specific patterns
         trinity_patterns = [
             {
@@ -128,20 +128,20 @@ class TrinityNixTrainer:
                 "category": "trinity-process"
             }
         ]
-        
+
         trinity_qa.extend(trinity_patterns)
-        
+
         # Save Trinity wisdom
         with open(self.training_dir / "trinity_wisdom.json", 'w') as f:
             json.dump(trinity_qa, f, indent=2)
-        
+
         print(f"✓ Collected {len(trinity_qa)} Trinity wisdom examples")
         return trinity_qa
-    
+
     def create_focused_training_data(self):
         """Create training data focused on Trinity workflow needs"""
         print("🎯 Creating Trinity-focused training data...")
-        
+
         focused_qa = [
             # User empathy examples
             {
@@ -162,17 +162,17 @@ class TrinityNixTrainer:
                 "category": "development"
             }
         ]
-        
+
         # Save focused data
         with open(self.training_dir / "trinity_focused.json", 'w') as f:
             json.dump(focused_qa, f, indent=2)
-        
+
         return focused_qa
-    
+
     def create_trinity_modelfile(self, all_qa):
         """Create Ollama modelfile optimized for Trinity workflow"""
         print("📝 Creating Trinity modelfile...")
-        
+
         modelfile_content = f"""# Sacred Trinity Nix Expert
 # Optimized for Human + Claude + Local LLM workflow
 
@@ -231,7 +231,7 @@ nix search nixpkgs firefox
 
 This error is Nix protecting you from mistakes - it's a feature, not a bug!
 """
-        
+
         # Add a few high-quality examples from our Q&A
         for i, qa in enumerate(all_qa[:3]):
             if qa.get('category') in ['trinity-best-practice', 'user-empathy']:
@@ -239,26 +239,26 @@ This error is Nix protecting you from mistakes - it's a feature, not a bug!
 MESSAGE user {qa['q']}
 MESSAGE assistant {qa['a']}
 """
-        
+
         modelfile_path = self.training_dir / "trinity.modelfile"
         with open(modelfile_path, 'w') as f:
             f.write(modelfile_content)
-        
+
         print(f"✓ Created Trinity modelfile: {modelfile_path}")
         return modelfile_path
-    
+
     def train_trinity_model(self):
         """Train the Trinity-optimized model"""
         print(f"\n🚀 Training Sacred Trinity Nix Model: {self.model_name}")
-        
+
         # Collect all wisdom
         trinity_qa = self.collect_trinity_wisdom()
         focused_qa = self.create_focused_training_data()
         all_qa = trinity_qa + focused_qa
-        
+
         # Create modelfile
         modelfile_path = self.create_trinity_modelfile(all_qa)
-        
+
         # Create model with Ollama
         print(f"\n🔮 Creating Ollama model...")
         try:
@@ -267,7 +267,7 @@ MESSAGE assistant {qa['a']}
                 self.model_name,
                 "-f", str(modelfile_path)
             ], capture_output=True, text=True)
-            
+
             if result.returncode == 0:
                 print(f"✅ Sacred Trinity model created: {self.model_name}")
                 return True
@@ -277,18 +277,18 @@ MESSAGE assistant {qa['a']}
         except Exception as e:
             print(f"❌ Error: {e}")
             return False
-    
+
     def test_trinity_model(self):
         """Test with Trinity workflow scenarios"""
         print(f"\n🧪 Testing Trinity model...")
-        
+
         test_scenarios = [
             "How do I install software the NixOS way?",
             "What's wrong with using nix-env?",
             "My system update failed, what should I do?",
             "How do I create a Python development environment?"
         ]
-        
+
         for question in test_scenarios[:2]:  # Test first 2
             print(f"\n❓ {question}")
             try:
@@ -297,7 +297,7 @@ MESSAGE assistant {qa['a']}
                     self.model_name,
                     question
                 ], capture_output=True, text=True, timeout=30)
-                
+
                 if result.returncode == 0:
                     print(f"✅ {result.stdout[:300]}...")
                 else:
@@ -311,9 +311,9 @@ def main():
     parser.add_argument("--model-name", default="nix-trinity", help="Model name")
     parser.add_argument("--skip-thesis", action="store_true", help="Skip PhD thesis")
     args = parser.parse_args()
-    
+
     trainer = TrinityNixTrainer(args.model_name)
-    
+
     if trainer.train_trinity_model():
         trainer.test_trinity_model()
         print("\n✨ Sacred Trinity training complete!")

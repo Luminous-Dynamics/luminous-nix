@@ -31,14 +31,13 @@ def run_single_test():
     print("=" * 50)
 
     try:
-
         # Create temporary test script
         test_script = f'''
 import sys
 import os
 from pathlib import Path
 sys.path.insert(0, "{src_path}")
-sys.path.insert(0, "{frontends_path}")  
+sys.path.insert(0, "{frontends_path}")
 sys.path.insert(0, "{backend_path}")
 
 os.environ["NIX_FOR_HUMANITY_TEST_MODE"] = "true"
@@ -47,37 +46,37 @@ from cli.adapter import CLIAdapter
 
 def test_adapter():
     """Simple focused test"""
-    
+
     # Test 1: Initialization
     adapter = CLIAdapter()
     assert adapter.session_id is not None
     assert adapter.backend is not None
     print("✅ Test 1: Initialization")
-    
+
     # Test 2: Argument parsing with various inputs
     original_argv = sys.argv
-    
+
     # Test basic install command
     sys.argv = ["ask-nix", "install", "firefox"]
     args = adapter.parse_arguments()
     assert args.query == ["install", "firefox"]
     assert args.personality == "friendly"
     print("✅ Test 2a: Basic parsing")
-    
+
     # Test personality flags
     sys.argv = ["ask-nix", "--minimal", "help"]
     args = adapter.parse_arguments()
     assert args.personality == "minimal"
     print("✅ Test 2b: Personality parsing")
-    
+
     # Test execution flags
     sys.argv = ["ask-nix", "--execute", "update"]
     args = adapter.parse_arguments()
     assert args.execute == True
     print("✅ Test 2c: Execution parsing")
-    
+
     sys.argv = original_argv
-    
+
     # Test 3: Request building
     sys.argv = ["ask-nix", "--friendly", "install", "firefox"]
     args = adapter.parse_arguments()
@@ -86,9 +85,9 @@ def test_adapter():
     assert request.context.personality == "friendly"
     assert request.context.frontend == "cli"
     print("✅ Test 3: Request building")
-    
+
     sys.argv = original_argv
-    
+
     # Test 4: Response formatting
     from nix_for_humanity.core import Response
     test_response = Response(
@@ -97,14 +96,14 @@ def test_adapter():
         commands=[{{"description": "test command", "success": True}}],
         data={{"test": "data"}}
     )
-    
+
     # Test human-readable format
     sys.argv = ["ask-nix", "test"]
     args = adapter.parse_arguments()
     formatted = adapter.format_response(test_response, args)
     assert "Test response" in formatted
     print("✅ Test 4a: Human formatting")
-    
+
     # Test JSON format
     sys.argv = ["ask-nix", "--json", "test"]
     args = adapter.parse_arguments()
@@ -112,9 +111,9 @@ def test_adapter():
     assert "success" in formatted
     assert "true" in formatted.lower()
     print("✅ Test 4b: JSON formatting")
-    
+
     sys.argv = original_argv
-    
+
     print("\\n🎯 Core CLI Adapter functionality: 100% tested!")
     return True
 

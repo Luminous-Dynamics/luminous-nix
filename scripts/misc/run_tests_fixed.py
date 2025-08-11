@@ -28,7 +28,6 @@ def setup_environment():
 
     # Import and apply mocks
     try:
-
         print("✅ Test environment configured with mocks")
         return True
     except Exception as e:

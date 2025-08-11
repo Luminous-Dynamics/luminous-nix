@@ -142,12 +142,12 @@ test_cases = [
     "install firefox",
     "remove vim",
     "search python",
-    
+
     # Complex (might fail)
     "help me install a web browser",
     "show me all installed packages",
     "what's my current generation?",
-    
+
     # Conversational (might fail)
     "please install firefox for me",
     "could you remove vim?",

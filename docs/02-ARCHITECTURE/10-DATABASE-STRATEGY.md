@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Comprehensive database strategy aligning with our consciousness-first vision  
-📍 **You are here**: Architecture → Database Strategy  
-🔗 **Related**: [System Architecture](./01-SYSTEM-ARCHITECTURE.md) | [Learning System](./09-LEARNING-SYSTEM.md)  
-⏱️ **Read time**: 10 minutes  
+💡 **Quick Context**: Comprehensive database strategy aligning with our consciousness-first vision
+📍 **You are here**: Architecture → Database Strategy
+🔗 **Related**: [System Architecture](./01-SYSTEM-ARCHITECTURE.md) | [Learning System](./09-LEARNING-SYSTEM.md)
+⏱️ **Read time**: 10 minutes
 📊 **Mastery Level**: 🌿 Intermediate - database knowledge helpful but not required
 
 ---
@@ -46,10 +46,10 @@ class ConsciousnessDataLayer:
     def __init__(self):
         # 1. DuckDB - Analytics and structured data
         self.analytics = duckdb.connect("nix_humanity.duckdb")
-        
+
         # 2. LanceDB - Vector embeddings and semantic search
         self.vectors = lancedb.connect("./nix_humanity_vectors")
-        
+
         # 3. TileDB - Tensor storage for ML models
         self.tensors = tiledb.open("./nix_humanity_tensors")
 ```
@@ -61,7 +61,7 @@ class ConsciousnessDataLayer:
 ```sql
 -- Example: Flow state analysis
 WITH flow_sessions AS (
-    SELECT 
+    SELECT
         session_id,
         user_id,
         AVG(hrv_coherence) as avg_coherence,
@@ -71,7 +71,7 @@ WITH flow_sessions AS (
     WHERE flow_score > 0.7
     GROUP BY session_id, user_id
 )
-SELECT 
+SELECT
     user_id,
     AVG(duration) as avg_flow_duration,
     MAX(avg_coherence) as peak_coherence
@@ -145,13 +145,13 @@ CREATE TABLE biometrics (
 ) timestamp(timestamp) PARTITION BY DAY;
 
 -- Sub-millisecond queries on millions of records
-SELECT avg(flow_state) 
-FROM biometrics 
-WHERE user_id = 'user123' 
+SELECT avg(flow_state)
+FROM biometrics
+WHERE user_id = 'user123'
 AND timestamp > dateadd('h', -1, now());
 ```
 
-**Why consider**: 
+**Why consider**:
 - When we add real-time biometric integration
 - For high-frequency consciousness tracking
 - Nanosecond timestamp precision
@@ -166,12 +166,12 @@ define
     owns trust-level,
     plays interaction:participant,
     plays learning:student;
-    
+
   concept sub entity,
     owns difficulty,
     plays learning:subject,
     plays dependency:prerequisite;
-    
+
   learning sub relation,
     relates student,
     relates subject,
@@ -301,7 +301,7 @@ similar_intents = vectors.search(
 ```python
 # DuckDB learning over time
 WITH learning_curve AS (
-    SELECT 
+    SELECT
         date_trunc('week', timestamp) as week,
         AVG(success_rate) as mastery
     FROM command_attempts

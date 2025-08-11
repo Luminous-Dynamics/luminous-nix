@@ -48,17 +48,17 @@ jobs:
               IS_PRERELEASE="false"
             fi
           fi
-          
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "is_prerelease=$IS_PRERELEASE" >> $GITHUB_OUTPUT
-          
+
           # Validate semantic versioning
           if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+\.[0-9]+)?$ ]]; then
             echo "❌ Invalid version format: $VERSION"
             echo "Expected format: MAJOR.MINOR.PATCH or MAJOR.MINOR.PATCH-PRERELEASE.N"
             exit 1
           fi
-          
+
           echo "✅ Version: $VERSION (Pre-release: $IS_PRERELEASE)"
 
       - name: 📋 Check version consistency
@@ -68,7 +68,7 @@ jobs:
           if [ "$PYPROJECT_VERSION" != "${{ steps.version.outputs.version }}" ]; then
             echo "⚠️ Warning: pyproject.toml version ($PYPROJECT_VERSION) doesn't match tag (${{ steps.version.outputs.version }})"
           fi
-          
+
           # Check __init__.py
           if [ -f "src/nix_for_humanity/__init__.py" ]; then
             INIT_VERSION=$(grep '__version__ = ' src/nix_for_humanity/__init__.py | cut -d'"' -f2)
@@ -128,10 +128,10 @@ jobs:
         run: |
           # Update version in pyproject.toml if needed
           poetry version ${{ needs.validate-version.outputs.version }}
-          
+
           # Build wheel and sdist
           poetry build
-          
+
           # List built packages
           ls -la dist/
 
@@ -159,31 +159,31 @@ jobs:
         id: notes
         run: |
           VERSION="${{ needs.validate-version.outputs.version }}"
-          
+
           cat << EOF > release_notes.md
           # 🚀 Nix for Humanity v${VERSION}
-          
+
           ## ✨ Highlights
-          
+
           Natural language interface for NixOS - making NixOS accessible to everyone!
-          
+
           ## 📦 Installation
-          
+
           \`\`\`bash
           # Using pip (not recommended for NixOS)
           pip install nix-for-humanity==${VERSION}
-          
+
           # Using Poetry (recommended)
           poetry add nix-for-humanity@${VERSION}
-          
+
           # Using Nix flake
           nix run github:Luminous-Dynamics/nix-for-humanity/v${VERSION}
           \`\`\`
-          
+
           ## 📋 What's Changed
-          
+
           EOF
-          
+
           # Add commit messages since last tag
           if git describe --tags --abbrev=0 HEAD^ 2>/dev/null; then
             LAST_TAG=$(git describe --tags --abbrev=0 HEAD^)
@@ -191,11 +191,11 @@ jobs:
           else
             echo "First release! 🎉" >> release_notes.md
           fi
-          
+
           cat << EOF >> release_notes.md
-          
+
           ## 🎭 Persona Impact
-          
+
           This release has been tested with all 10 personas:
           - ✅ Grandma Rose (75, non-technical)
           - ✅ Maya (16, ADHD)
@@ -207,23 +207,23 @@ jobs:
           - ✅ Marcus (52, construction)
           - ✅ Raj (31, startup founder)
           - ✅ Elena (45, creative director)
-          
+
           ## 📊 Quality Metrics
-          
+
           - **Performance**: All operations under budget
           - **Accessibility**: WCAG AA compliant
           - **Coverage**: >90% test coverage
           - **Standards**: 100% compliance with project standards
-          
+
           ## 🙏 Sacred Trinity
-          
+
           Built with the Sacred Trinity development model:
           - Human vision & testing
           - AI architecture & implementation
           - Local LLM domain expertise
-          
+
           ---
-          
+
           *Making NixOS accessible through natural conversation* 🌊
           EOF
 
@@ -275,24 +275,24 @@ jobs:
         run: |
           VERSION="${{ needs.validate-version.outputs.version }}"
           DATE=$(date +%Y-%m-%d)
-          
+
           # Create new changelog entry
           cat << EOF > CHANGELOG_NEW.md
           ## [${VERSION}] - ${DATE}
-          
+
           ### Added
           - See GitHub release for full details
-          
+
           ### Changed
           - Version bump to ${VERSION}
-          
+
           ### Fixed
           - See commit history
-          
+
           ---
-          
+
           EOF
-          
+
           # Append existing changelog
           if [ -f CHANGELOG.md ]; then
             cat CHANGELOG.md >> CHANGELOG_NEW.md
@@ -303,10 +303,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
+
           git add CHANGELOG.md
           git diff --staged --quiet || git commit -m "docs: update CHANGELOG for v${{ needs.validate-version.outputs.version }}"
-          
+
           git push || echo "No changes to push"
 
   announce-release:
@@ -318,13 +318,13 @@ jobs:
       - name: 📊 Generate summary
         run: |
           VERSION="${{ needs.validate-version.outputs.version }}"
-          
+
           echo "# 🎉 Release v${VERSION} Complete!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          
+
           echo "## 📦 Published Packages" >> $GITHUB_STEP_SUMMARY
           echo "- GitHub Release: ✅" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ "${{ needs.publish-pypi.result }}" == "success" ]; then
             echo "- PyPI: ✅ [nix-for-humanity](https://pypi.org/project/nix-for-humanity/)" >> $GITHUB_STEP_SUMMARY
           elif [ "${{ needs.validate-version.outputs.is_prerelease }}" == "true" ]; then
@@ -332,12 +332,12 @@ jobs:
           else
             echo "- PyPI: ❌ Failed" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## 🔗 Links" >> $GITHUB_STEP_SUMMARY
           echo "- [Release Notes](https://github.com/${{ github.repository }}/releases/tag/v${VERSION})" >> $GITHUB_STEP_SUMMARY
           echo "- [Changelog](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)" >> $GITHUB_STEP_SUMMARY
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
           echo "*Sacred Trinity Release Process Complete* 🕉️" >> $GITHUB_STEP_SUMMARY

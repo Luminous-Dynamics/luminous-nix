@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Check root directory cleanliness
       run: |
         ROOT_FILES=$(find . -maxdepth 1 -type f -name "*.py" | wc -l)
@@ -32,7 +32,7 @@ jobs:
           exit 1
         fi
         echo "✅ Root directory is clean"
-    
+
     - name: Check for test files in root
       run: |
         TEST_FILES=$(find . -maxdepth 1 -name "test_*.py" | wc -l)
@@ -47,29 +47,29 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.11", "3.12"]
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install poetry
         poetry install --no-interaction
-    
+
     - name: Lint with black
       run: |
         poetry run black --check src/ tests/
-    
+
     - name: Type check with mypy
       run: |
         poetry run mypy src/ --ignore-missing-imports
-    
+
     - name: Security check
       run: |
         poetry run bandit -r src/ -ll
@@ -77,34 +77,34 @@ jobs:
   test-suite:
     runs-on: ubuntu-latest
     needs: python-quality
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: "3.11"
-    
+
     - name: Install Nix
       uses: cachix/install-nix-action@v22
       with:
         nix_path: nixpkgs=channel:nixos-23.11
-    
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install poetry
         poetry install --no-interaction --with dev,test
-    
+
     - name: Run unit tests
       run: |
         poetry run pytest tests/unit -v --cov=nix_humanity --cov-report=xml
-    
+
     - name: Run integration tests
       run: |
         poetry run pytest tests/integration -v -m "not slow"
-    
+
     - name: Check test coverage
       run: |
         poetry run coverage report --fail-under=80
@@ -112,35 +112,35 @@ jobs:
   performance-check:
     runs-on: ubuntu-latest
     needs: test-suite
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: "3.11"
-    
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install poetry
         poetry install --no-interaction
-    
+
     - name: Run performance benchmarks
       run: |
         poetry run pytest tests/performance -v --benchmark-only
-    
+
     - name: Check performance regression
       run: |
         poetry run python scripts/validate-performance.py
 
   documentation-check:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Check README honesty
       run: |
         if grep -q "99%" README.md && ! grep -q "alpha\|beta\|development" README.md; then
@@ -148,7 +148,7 @@ jobs:
           exit 1
         fi
         echo "✅ README appears honest about development status"
-    
+
     - name: Check for outdated examples
       run: |
         # Check if code examples in docs actually work
@@ -158,14 +158,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [structure-check, python-quality, test-suite, documentation-check]
     if: github.ref == 'refs/heads/main'
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Generate progress report
       run: |
         python scripts/progress-dashboard.py
-        
+
     - name: Upload progress report
       uses: actions/upload-artifact@v3
       with:
@@ -276,7 +276,7 @@ repos:
         language: pygrep
         types: [text]
         exclude: '^(archive/|\.git/)'
-        
+
       - id: feature-freeze
         name: Enforce feature freeze
         entry: python scripts/feature-freeze-manager.py
@@ -301,11 +301,11 @@ def extract_code_blocks(markdown_file):
     """Extract code blocks from markdown files."""
     with open(markdown_file, 'r') as f:
         content = f.read()
-    
+
     # Find code blocks
     pattern = r'```(?:python|bash|sh)\n(.*?)\n```'
     blocks = re.findall(pattern, content, re.DOTALL)
-    
+
     return blocks
 
 def validate_python_code(code):
@@ -321,23 +321,23 @@ def validate_bash_command(command):
     # Check for common issues
     if 'rm -rf /' in command:
         return False, "Dangerous command"
-    
+
     if command.strip().startswith('$'):
         return False, "Command starts with $ prompt"
-    
+
     return True, None
 
 def main():
     """Validate all examples in documentation."""
     issues = []
-    
+
     # Find all markdown files
     for md_file in Path('.').rglob('*.md'):
         if 'archive' in str(md_file):
             continue
-            
+
         blocks = extract_code_blocks(md_file)
-        
+
         for i, block in enumerate(blocks):
             # Detect language
             if block.strip().startswith('#!') or 'bash' in block:
@@ -346,7 +346,7 @@ def main():
             else:
                 valid, error = validate_python_code(block)
                 lang = 'python'
-            
+
             if not valid:
                 issues.append({
                     'file': str(md_file),
@@ -354,7 +354,7 @@ def main():
                     'language': lang,
                     'error': error
                 })
-    
+
     # Report results
     if issues:
         print(f"❌ Found {len(issues)} invalid code examples:")
@@ -382,7 +382,7 @@ echo "🔍 Detecting CI environment..."
 
 if [ -d ".git" ]; then
     echo "✅ Git repository detected"
-    
+
     # Install pre-commit hooks
     if command -v pre-commit >/dev/null 2>&1; then
         echo "Installing pre-commit hooks..."
@@ -391,7 +391,7 @@ if [ -d ".git" ]; then
     else
         echo "⚠️  pre-commit not found. Install with: pip install pre-commit"
     fi
-    
+
     # Check for CI service
     if [ -f ".github/workflows/quality-check.yml" ]; then
         echo "✅ GitHub Actions configured"

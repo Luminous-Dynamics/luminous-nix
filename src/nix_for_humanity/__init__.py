@@ -49,7 +49,7 @@ Nix for Humanity makes NixOS accessible to everyone through natural language.
 
 Key Features:
 - Natural language understanding for NixOS commands
-- 10 adaptive personality styles 
+- 10 adaptive personality styles
 - Local-first privacy with all processing on-device
 - Revolutionary Python-Nix integration (10x-1500x faster)
 - Beautiful TUI with Textual
@@ -58,7 +58,7 @@ Key Features:
 
 Usage:
     from nix_for_humanity import create_backend
-    
+
     backend = create_backend()
     response = backend.process(Request(query="install firefox"))
     print(response.text)

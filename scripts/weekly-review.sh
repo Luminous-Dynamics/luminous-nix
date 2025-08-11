@@ -99,7 +99,7 @@ with open('metrics/progress.json', 'r') as f:
     data = json.load(f)
     if data:
         latest = data[-1]
-        
+
         # Priority recommendations based on scores
         if latest['structure']['score'] < 7:
             print('  1. Run ./scripts/reorganize-project.sh - Fix structure first!')
@@ -111,7 +111,7 @@ with open('metrics/progress.json', 'r') as f:
             print('  1. Update docs to match reality - Too much fantasy')
         else:
             print('  1. Focus on remaining issues and polish')
-            
+
         # Always recommend these
         print('  2. Fix highest-impact bugs')
         print('  3. Run performance validation')
@@ -126,7 +126,7 @@ mkdir -p reports
 cat > "$REPORT_FILE" << EOF
 # Week $WEEK_NUMBER Review - Nix for Humanity
 
-**Date**: $(date '+%Y-%m-%d')  
+**Date**: $(date '+%Y-%m-%d')
 **Sprint Progress**: Week $WEEK_NUMBER of 6
 
 ## Summary

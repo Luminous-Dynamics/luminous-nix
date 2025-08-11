@@ -190,7 +190,7 @@ Total for 100 ops: 10MB
 User Input → Shell → Subprocess → Nix Binary → Nix Store
     ↑          ↓         ↓            ↓           ↓
     └──────────────── Results ←──────────────────┘
-    
+
 Total latency: 10-100ms per operation
 ```
 
@@ -199,7 +199,7 @@ Total latency: 10-100ms per operation
 User Input → Python API → Nix Store
     ↑            ↓            ↓
     └────── Results ←─────────┘
-    
+
 Total latency: 0.01-1ms per operation
 ```
 

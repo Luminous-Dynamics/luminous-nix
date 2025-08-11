@@ -28,7 +28,7 @@ updates:
           - "ruff"
           - "mypy"
           - "pre-commit"
-      
+
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -43,7 +43,7 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
-    
+
   # npm dependencies (if any)
   - package-ecosystem: "npm"
     directory: "/"

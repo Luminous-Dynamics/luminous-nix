@@ -9,9 +9,7 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from nix_for_humanity.config import (
-    get_config_manager,
-)
+from nix_for_humanity.config import get_config_manager
 
 
 def main():

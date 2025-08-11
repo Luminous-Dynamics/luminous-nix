@@ -13,10 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from nix_for_humanity.api.schema import Result
-from nix_for_humanity.core.error_handler import (
-    ErrorContext,
-    error_handler,
-)
+from nix_for_humanity.core.error_handler import ErrorContext, error_handler
 from nix_for_humanity.core.intents import Intent, IntentType
 from nix_for_humanity.security import InputValidator
 
@@ -703,7 +700,7 @@ class SafeExecutor:
 
 📦 Package Management:
 • Install: "install firefox", "add vim"
-• Remove: "remove firefox", "uninstall vim"  
+• Remove: "remove firefox", "uninstall vim"
 • Search: "search editor", "find browser"
 • List installed: "what's installed?", "list packages"
 

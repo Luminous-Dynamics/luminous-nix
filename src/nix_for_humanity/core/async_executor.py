@@ -41,11 +41,7 @@ from ..constants import (
     SEARCH_RESULTS_DEFAULT,
 )
 from ..nix.python_api import get_nix_api
-from ..types import (
-    AsyncResult,
-    ExecutionContext,
-    ProgressCallback,
-)
+from ..types import AsyncResult, ExecutionContext, ProgressCallback
 
 logger = logging.getLogger(__name__)
 

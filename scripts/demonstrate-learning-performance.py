@@ -57,8 +57,8 @@ class LearningPerformanceDemo:
 
         cursor.execute(
             """
-            SELECT preference_key, preference_value, observation_count 
-            FROM user_preferences 
+            SELECT preference_key, preference_value, observation_count
+            FROM user_preferences
             WHERE preference_key = 'install_method'
         """
         )
@@ -135,7 +135,7 @@ class LearningPerformanceDemo:
         # Success rate
         cursor.execute(
             """
-            SELECT 
+            SELECT
                 COUNT(CASE WHEN success = 1 THEN 1 END) * 100.0 / COUNT(*) as success_rate
             FROM command_history
             WHERE success IS NOT NULL

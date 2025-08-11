@@ -72,11 +72,11 @@ def test_tui_backend_connection():
     try:
         from nix_for_humanity.ui.main_app import NixForHumanityTUI
         from nix_for_humanity.core.backend import NixForHumanityBackend
-        
+
         # Backend should be accessible
         backend = NixForHumanityBackend()
         assert backend is not None
-        
+
     except ImportError as e:
         pytest.skip(f"Dependencies not installed: {e}")
 
@@ -87,14 +87,14 @@ def test_voice_components_exist():
         "features/v2.0/voice/voice_websocket_server.py",
         "features/v2.0/voice/README.md"
     ]
-    
+
     for file in voice_files:
         assert Path(file).exists(), f"Voice file missing: {file}"
 
 def test_cli_still_works():
     """Ensure CLI functionality is not broken"""
     from nix_for_humanity.core.backend import NixForHumanityBackend
-    
+
     backend = NixForHumanityBackend()
     result = backend.execute_command("help", dry_run=True)
     assert result is not None

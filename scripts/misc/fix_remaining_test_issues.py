@@ -107,7 +107,7 @@ def fix_missing_methods():
 
     # Add missing methods that tests expect
     missing_methods = """
-    
+
     # Properties that tests expect
     def __init__(self):
         super().__init__()
@@ -115,23 +115,23 @@ def fix_missing_methods():
         self.update_patterns = [pattern[0] for pattern in self.patterns.get(IntentType.UPDATE, [])]
         self.search_patterns = [pattern[0] for pattern in self.patterns.get(IntentType.SEARCH, [])]
         self._embeddings_loaded = False
-    
+
     def _normalize(self, text: str) -> str:
         \"\"\"Normalize text for processing\"\"\"
         # Remove extra whitespace and punctuation
         text = re.sub(r'[^\\w\\s]', '', text)
         text = re.sub(r'\\s+', ' ', text)
         return text.strip().lower()
-    
+
     def extract_entities(self, text: str, intent_type: IntentType) -> dict:
         \"\"\"Extract entities for given intent type\"\"\"
         entities = {}
-        
+
         if intent_type == IntentType.INSTALL:
             package = self.extract_package_name(text)
             if package:
                 entities['package'] = package
-                
+
         elif intent_type == IntentType.SEARCH:
             # Extract search query
             words = text.lower().split()
@@ -140,7 +140,7 @@ def fix_missing_methods():
             query_words = [w for w in words if w not in command_words]
             if query_words:
                 entities['query'] = ' '.join(query_words)
-                
+
         elif intent_type == IntentType.CONFIG:
             # Extract config target
             words = text.lower().split()
@@ -148,7 +148,7 @@ def fix_missing_methods():
             target_words = [w for w in words if w not in config_words]
             if target_words:
                 entities['config'] = target_words[0]
-                
+
         elif intent_type == IntentType.INFO:
             # Extract info topic
             words = text.lower().split()
@@ -156,7 +156,7 @@ def fix_missing_methods():
             topic_words = [w for w in words if w not in info_words]
             if topic_words:
                 entities['topic'] = ' '.join(topic_words)
-        
+
         return entities
 """
 

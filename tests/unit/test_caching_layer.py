@@ -15,6 +15,14 @@ import pytest
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
+from src.nix_humanity.core.types import (
+    ExecutionResult,
+    Intent,
+    IntentType,
+    Request,
+    Response,
+)
+
 from src.nix_for_humanity.caching import (
     CacheConfig,
     CacheInvalidator,
@@ -23,13 +31,6 @@ from src.nix_for_humanity.caching import (
     CommandResultCache,
     ResponseCache,
     XAIExplanationCache,
-)
-from src.nix_humanity.core.types import (
-    ExecutionResult,
-    Intent,
-    IntentType,
-    Request,
-    Response,
 )
 
 # v2.0+ feature: from src.nix_for_humanity.ai.xai_engine import ExplanationLevel

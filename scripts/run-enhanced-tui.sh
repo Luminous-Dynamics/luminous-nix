@@ -8,7 +8,7 @@ echo "============================================"
 echo ""
 echo "✨ New Features in this version:"
 echo "  • 🎤 Voice activity visualization"
-echo "  • 🌐 Network status monitoring" 
+echo "  • 🌐 Network status monitoring"
 echo "  • 🧠 Learning progress tracking"
 echo "  • ✨ Complex particle systems"
 echo "  • 🔮 Sacred geometry patterns"
@@ -22,7 +22,7 @@ VENV_DIR="/tmp/nix-humanity-enhanced-tui-venv"
 if [ ! -d "$VENV_DIR" ]; then
     echo "📦 Creating temporary environment..."
     python3 -m venv "$VENV_DIR"
-    
+
     echo "📥 Installing enhanced TUI dependencies..."
     "$VENV_DIR/bin/pip" install textual rich blessed pyperclip click colorama python-dotenv pyyaml --quiet
 fi

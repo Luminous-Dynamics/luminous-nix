@@ -991,17 +991,17 @@ class NativeNixBackend:
         minimal_config = """{ config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  
+
   time.timeZone = "UTC";
-  
+
   users.users.root.initialPassword = "nixos";
-  
+
   system.stateVersion = "24.05";
 }
 """

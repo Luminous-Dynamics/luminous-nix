@@ -45,7 +45,7 @@ $ ./bin/ask-nix "help"
 USAGE:
     ask-nix [OPTIONS] <QUERY>
     ask-nix --interactive
-    
+
 [Full help text displayed...]
 ```
 
@@ -146,9 +146,9 @@ While the core CLI is working, potential enhancements:
 
 ## 🙏 Summary
 
-**Status**: ✅ CLI WORKING  
-**Date**: 2025-08-11  
-**Key Fix**: Proper intent mapping and time_patterns initialization  
+**Status**: ✅ CLI WORKING
+**Date**: 2025-08-11
+**Key Fix**: Proper intent mapping and time_patterns initialization
 **Achievement**: Natural language NixOS interface operational
 
 ---

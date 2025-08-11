@@ -93,7 +93,7 @@ self.backend = NixForHumanityBackend()
 async def process_user_input(self, text: str):
     request = Request(query=text)
     response = self.backend.process_request(request)
-    
+
     # Update UI based on response
     if response.success:
         self.add_message(response.message, is_user=False)

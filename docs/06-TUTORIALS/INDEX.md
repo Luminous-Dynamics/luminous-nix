@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Hands-on tutorials and user guides for all skill levels  
-📍 **Location**: `docs/06-TUTORIALS/`  
-🔗 **Parent**: [Documentation Hub](../README.md)  
-⏱️ **Read time**: 2 minutes for navigation  
+💡 **Quick Context**: Hands-on tutorials and user guides for all skill levels
+📍 **Location**: `docs/06-TUTORIALS/`
+🔗 **Parent**: [Documentation Hub](../README.md)
+⏱️ **Read time**: 2 minutes for navigation
 📊 **Mastery Level**: 🌱 Beginner to 🌿 Intermediate - accessible tutorials
 
 ---
@@ -201,7 +201,7 @@ ask-nix --voice
 2. Personality Modes → Learning Mode
 3. Troubleshooting
 
-### For Developers  
+### For Developers
 1. Quick Start → Python Backend → Creating Plugins
 2. Contributing Your First PR → Testing Guide
 3. Documentation Guide

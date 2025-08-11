@@ -238,7 +238,7 @@ Run: nix-shell rust-dev-shell.nix
 Ready for more? Check out these detailed guides:
 
 - [Complete Development Workstation Setup](./complete-guides/workstation.md)
-- [Production Server Configuration](./complete-guides/production-server.md)  
+- [Production Server Configuration](./complete-guides/production-server.md)
 - [Multi-User System Management](./complete-guides/multi-user.md)
 - [Container and VM Management](./complete-guides/containers.md)
 - [Security Hardening Guide](./complete-guides/security.md)

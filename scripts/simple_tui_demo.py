@@ -17,17 +17,17 @@ class SimpleNixTUI(App):
     Screen {
         background: $surface;
     }
-    
+
     #input-area {
         height: 3;
         margin: 1 2;
     }
-    
+
     #output-area {
         margin: 1 2;
         border: solid $primary;
     }
-    
+
     .orb-container {
         height: 7;
         align: center middle;

@@ -4,7 +4,7 @@
 
 ### Core Components
 - ✅ **Knowledge Engine** - `ModernNixOSKnowledgeEngine` parses queries and extracts intents
-- ✅ **CLI Interface** - `UnifiedNixAssistant` creates and accepts basic properties  
+- ✅ **CLI Interface** - `UnifiedNixAssistant` creates and accepts basic properties
 - ✅ **Persona Manager** - Creates and manages personas (with minor issues)
 - ✅ **Command Parsing** - Natural language → NixOS commands works
 - ✅ **Dependencies** - Click, Rich, and other core dependencies installed via Poetry
@@ -12,7 +12,7 @@
 ### Functionality Verified
 ```python
 # Parse natural language
-engine.parse_query("install firefox")  
+engine.parse_query("install firefox")
 # Returns: {'intent': 'install', 'package': 'firefox'}
 
 # Generate NixOS command
@@ -47,7 +47,7 @@ PersonaManager.format_response() fails with: unhashable type: 'dict'
 - Ensure defaults work without config file
 - Make config optional
 
-### Step 2: Wire Up Basic Commands (1-2 hours) 
+### Step 2: Wire Up Basic Commands (1-2 hours)
 - Connect knowledge engine to actual execution
 - Add dry-run mode that shows commands
 - Test with safe read-only commands
@@ -64,16 +64,16 @@ PersonaManager.format_response() fails with: unhashable type: 'dict'
 
 ## 📊 Progress Summary
 
-**Original Goal**: Make the CLI work without errors  
+**Original Goal**: Make the CLI work without errors
 **Status**: ✅ ACHIEVED (with minor issues)
 
 The CLI now:
 - Imports successfully
-- Parses natural language queries  
+- Parses natural language queries
 - Generates correct NixOS commands
 - Has basic structure in place
 
-**What's Missing**: 
+**What's Missing**:
 - Actual command execution
 - Config file handling
 - Learning system
@@ -94,7 +94,7 @@ And have it either:
 
 The architecture is solid. We have:
 - Clean separation of concerns
-- Proper module structure  
+- Proper module structure
 - No mock dependencies
 - Real NixOS command generation
 

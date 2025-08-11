@@ -160,10 +160,10 @@ def main():
     # Get commit message
     with open(sys.argv[1], 'r') as f:
         commit_msg = f.read()
-    
+
     # Check feature freeze
     manager = FeatureFreezeManager()
-    
+
     # Check commit message
     allowed, reason = manager.check_commit_message(commit_msg)
     if not allowed:
@@ -174,7 +174,7 @@ def main():
         print("\\nTo override (not recommended):")
         print("  git commit --no-verify")
         return 1
-    
+
     # Get changed files
     result = subprocess.run(
         ['git', 'diff', '--cached', '--name-only'],
@@ -182,7 +182,7 @@ def main():
         text=True
     )
     changed_files = result.stdout.strip().split('\\n')
-    
+
     # Check files
     files_ok, violations = manager.check_file_changes(changed_files)
     if not files_ok:
@@ -191,7 +191,7 @@ def main():
             print(f"  - {violation}")
         print("\\nFocus on stability improvements only!")
         return 1
-    
+
     print(f"✅ Commit allowed: {reason}")
     return 0
 
@@ -223,7 +223,7 @@ if __name__ == '__main__':
 
 ### 1. Bug Fixes (Highest Priority)
 - Fix install/remove command reliability
-- Resolve search functionality issues  
+- Resolve search functionality issues
 - Address timeout problems
 - Fix error messages
 

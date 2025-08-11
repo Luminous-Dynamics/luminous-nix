@@ -310,10 +310,10 @@ class TestDatabase:
         cursor = self.conn.cursor()
         cursor.execute(
             """
-            INSERT OR REPLACE INTO preferences 
+            INSERT OR REPLACE INTO preferences
             (user_id, key, value, count, last_used, confidence)
-            VALUES (?, ?, ?, 
-                    COALESCE((SELECT count + 1 FROM preferences 
+            VALUES (?, ?, ?,
+                    COALESCE((SELECT count + 1 FROM preferences
                              WHERE user_id = ? AND key = ?), 1),
                     ?, ?)
         """,
@@ -355,7 +355,7 @@ class TestDatabase:
         cursor = self.conn.cursor()
         cursor.execute(
             """
-            INSERT INTO learning_data 
+            INSERT INTO learning_data
             (user_id, input_text, intent, success, timestamp, feedback)
             VALUES (?, ?, ?, ?, ?, ?)
         """,
@@ -672,7 +672,7 @@ class TestKnowledgeBase:
         for entry in knowledge_entries:
             cursor.execute(
                 """
-                INSERT OR REPLACE INTO nixos_info 
+                INSERT OR REPLACE INTO nixos_info
                 (topic, title, content, examples, last_updated)
                 VALUES (?, ?, ?, ?, ?)
             """,
@@ -697,8 +697,8 @@ class TestKnowledgeBase:
             SELECT topic, title, content, examples
             FROM nixos_info
             WHERE title LIKE ? OR content LIKE ?
-            ORDER BY 
-                CASE 
+            ORDER BY
+                CASE
                     WHEN title LIKE ? THEN 1
                     ELSE 2
                 END

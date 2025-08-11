@@ -56,22 +56,22 @@ poetry run pytest tests/
 
 class RealNixOperations:
     """ACTUAL NixOS operations, no mocks!"""
-    
+
     def install_package(self, package: str) -> Result:
         """Actually install a package"""
         cmd = f"nix-env -iA nixos.{package}"
         return self._run_command(cmd)
-    
+
     def search_packages(self, query: str) -> Result:
         """Actually search nixpkgs"""
         cmd = f"nix search nixpkgs {query}"
         return self._run_command(cmd)
-    
+
     def update_system(self) -> Result:
         """Actually update NixOS"""
         cmd = "sudo nixos-rebuild switch"
         return self._run_command(cmd, needs_sudo=True)
-    
+
     def rollback(self) -> Result:
         """Actually rollback to previous generation"""
         cmd = "sudo nixos-rebuild switch --rollback"
@@ -101,7 +101,7 @@ def test_real_package_install():
 ```python
 def generate_config(request: str) -> str:
     """Generate real configuration.nix snippets"""
-    
+
     if "docker" in request:
         return """
   # Enable Docker
@@ -179,7 +179,7 @@ def get_suggestions(error: str) -> List[str]:
 
 ### Leave for later:
 - Voice interfaces
-- Multiple personas  
+- Multiple personas
 - Consciousness visualizations
 - Federated learning
 

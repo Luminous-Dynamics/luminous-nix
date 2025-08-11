@@ -362,11 +362,11 @@ pkgs.mkShell {
                 "basic": """
 {
   description = "A basic flake";
-  
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
-  
+
   outputs = { self, nixpkgs }: {
     # Your outputs here
   };

@@ -100,17 +100,17 @@ case $choice in
         ./quick-demo.sh
         echo -e "\n${YELLOW}Press Enter to continue...${NC}"
         read
-        
+
         echo -e "\n${BOLD}=== PERFORMANCE BENCHMARK ===${NC}"
         ./benchmark-performance.sh
         echo -e "\n${YELLOW}Press Enter to continue...${NC}"
         read
-        
+
         echo -e "\n${BOLD}=== LEARNING SYSTEM ===${NC}"
         ./demo-learning.sh
         echo -e "\n${YELLOW}Press Enter to continue...${NC}"
         read
-        
+
         echo -e "\n${BOLD}=== FULL FEATURE DEMO ===${NC}"
         ./demo-nix-humanity.sh
         ;;

@@ -371,7 +371,7 @@ class AILicensingAdvisor:
         for model in models:
             cursor.execute(
                 """
-                INSERT OR REPLACE INTO model_licenses 
+                INSERT OR REPLACE INTO model_licenses
                 (model_name, model_type, base_license, dataset_license, commercial_use,
                  saas_compatible, attribution_required, share_alike, modifications_allowed,
                  special_restrictions, alternatives, notes)
@@ -630,8 +630,8 @@ class AILicensingAdvisor:
 
         c.execute(
             """
-            SELECT compatible, compatibility_notes 
-            FROM license_compatibility 
+            SELECT compatible, compatibility_notes
+            FROM license_compatibility
             WHERE license_a = ? AND license_b = ?
         """,
             (license_a, license_b),
@@ -688,7 +688,7 @@ class AILicensingAdvisor:
                 """
                 SELECT model_name, model_type, base_license, commercial_use, notes
                 FROM model_licenses
-                WHERE commercial_use LIKE '%Yes%' 
+                WHERE commercial_use LIKE '%Yes%'
                 AND saas_compatible = 1
                 ORDER BY model_name
             """

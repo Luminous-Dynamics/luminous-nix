@@ -14,29 +14,29 @@ def create_integration_snippet():
             # Handle AI environment generation
             print("\\n🤖 AI Environment Architect detected your request!")
             print("Preparing to generate a specialized AI/ML development environment...\\n")
-            
+
             # Get response from AI integration
             response = self.ai_integration.handle_environment_request(query)
-            
+
             # Format and display
             formatted = self.ai_integration.format_response(response, self.personality)
             print(formatted)
-            
+
             # Ask for confirmation
             print()
             confirm = input("📁 Create this environment? [Y/n] ").strip().lower()
-            
+
             if confirm in ['', 'y', 'yes']:
                 # Import generator
                 from ai_environment_generator import AIEnvironmentGenerator
                 generator = AIEnvironmentGenerator()
-                
+
                 # Generate files
                 success, message = generator.create_environment(response)
                 print()
                 if success:
                     print(message)
-                    
+
                     # Record success if learning enabled
                     if self.learning_enabled and hasattr(self, 'learning_system'):
                         self.learning_system.record_success(
@@ -45,7 +45,7 @@ def create_integration_snippet():
                         )
                 else:
                     print(f"❌ {message}")
-                    
+
                     # Record failure if learning enabled
                     if self.learning_enabled and hasattr(self, 'learning_system'):
                         self.learning_system.record_failure(
@@ -54,7 +54,7 @@ def create_integration_snippet():
                         )
             else:
                 print("Environment creation cancelled.")
-            
+
             return
 """
 

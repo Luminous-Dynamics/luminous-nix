@@ -4,15 +4,15 @@
 
 ---
 
-💡 **Quick Context**: Comprehensive troubleshooting guide with solutions to common issues and support resources  
-📍 **You are here**: Operations → Troubleshooting (Problem Resolution)  
-🔗 **Related**: [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) | [Testing Guide](../03-DEVELOPMENT/05-TESTING-GUIDE.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 10 minutes  
+💡 **Quick Context**: Comprehensive troubleshooting guide with solutions to common issues and support resources
+📍 **You are here**: Operations → Troubleshooting (Problem Resolution)
+🔗 **Related**: [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) | [Testing Guide](../03-DEVELOPMENT/05-TESTING-GUIDE.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 10 minutes
 📊 **Mastery Level**: 🌱 Beginner-Intermediate - practical solutions for common scenarios
 
 🌊 **Natural Next Steps**:
 - **For new users**: Start with [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) if you haven't set up the system yet
-- **For developers**: Continue to [Testing Guide](../03-DEVELOPMENT/05-TESTING-GUIDE.md) for quality assurance approaches  
+- **For developers**: Continue to [Testing Guide](../03-DEVELOPMENT/05-TESTING-GUIDE.md) for quality assurance approaches
 - **For contributors**: Review [Sacred Trinity Workflow](../03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md) for development process
 - **For support**: Check [Implementation Roadmap](../01-VISION/02-ROADMAP.md) to understand current development status
 
@@ -28,7 +28,7 @@ If something isn't working, run this first:
 
 # This will show:
 # - Python version
-# - NixOS version  
+# - NixOS version
 # - Available memory
 # - Backend status
 # - Common issues
@@ -85,7 +85,7 @@ export NIX_FOR_HUMANITY_OFFLINE=true
 ❌ Bad: "fix it"
 ✅ Good: "fix my wifi connection"
 
-❌ Bad: "install"  
+❌ Bad: "install"
 ✅ Good: "install firefox"
 
 ❌ Bad: "why broken"
@@ -335,7 +335,7 @@ open https://github.com/Luminous-Dynamics/nix-for-humanity/docs
 
 ### Community Support
 
-1. **GitHub Issues**: 
+1. **GitHub Issues**:
    - Search existing: https://github.com/Luminous-Dynamics/nix-for-humanity/issues
    - Create new: Include debug output!
 

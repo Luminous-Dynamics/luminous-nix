@@ -15,7 +15,6 @@ from typing import Any
 
 import psutil
 import pytest
-
 from src.nix_humanity.core.backend import NixForHumanityBackend
 from src.nix_humanity.core.native_operations import NativeNixOperations
 from src.nix_humanity.interfaces.voice import VoiceInterface

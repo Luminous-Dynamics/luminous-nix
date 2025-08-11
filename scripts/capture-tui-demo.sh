@@ -20,15 +20,15 @@ if command -v asciinema &> /dev/null; then
     echo ""
     echo "Press Enter to start recording..."
     read
-    
+
     asciinema rec -t "Nix for Humanity TUI Demo" tui-demo.cast \
         --command "python3 demo-tui.py"
-    
+
     echo ""
     echo "✅ Recording saved to tui-demo.cast"
     echo "View with: asciinema play tui-demo.cast"
     echo "Upload with: asciinema upload tui-demo.cast"
-    
+
 # Option 2: Use script command for basic recording
 elif command -v script &> /dev/null; then
     echo "📝 Using script command for recording..."
@@ -40,13 +40,13 @@ elif command -v script &> /dev/null; then
     echo ""
     echo "Press Enter to start..."
     read
-    
+
     script -q -c "python3 demo-tui.py" tui-demo.log
-    
+
     echo ""
     echo "✅ Recording saved to tui-demo.log"
     echo "View with: cat tui-demo.log"
-    
+
 # Option 3: Just run the demo
 else
     echo "📺 No recording tools found, running demo directly..."
@@ -56,6 +56,6 @@ else
     echo ""
     echo "Press Enter to run the TUI..."
     read
-    
+
     python3 demo-tui.py
 fi

@@ -32,12 +32,12 @@ for file in $test_files; do
     if [[ "$file" == *"__pycache__"* ]]; then
         continue
     fi
-    
+
     # Check for various mock patterns
     if grep -l -E "(from unittest\.mock|from mock import|import mock|Mock\(|MagicMock\(|patch\(|@mock\.|@patch)" "$file" > /dev/null 2>&1; then
         echo -e "${RED}❌ Found mock usage in: $file${NC}"
         found_mocks=1
-        
+
         # Show the specific lines with mocks
         echo -e "${YELLOW}  Lines with mocks:${NC}"
         grep -n -E "(from unittest\.mock|from mock import|import mock|Mock\(|MagicMock\(|patch\(|@mock\.|@patch)" "$file" | head -5

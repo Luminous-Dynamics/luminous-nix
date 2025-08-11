@@ -45,7 +45,7 @@ Related to #
 <!-- Any additional information that reviewers should know -->
 
 ---
-<!-- 
+<!--
 Commit format reminder:
 type(scope): subject
 

@@ -11,7 +11,7 @@ We've consolidated all Python dependencies from multiple requirements files into
 ### Old Structure
 ```
 requirements.txt          # Web server dependencies
-requirements-tui.txt      # TUI dependencies  
+requirements-tui.txt      # TUI dependencies
 scripts/requirements.txt  # ML/NLP dependencies
 ```
 
@@ -137,7 +137,7 @@ Everything needed for development:
    ```bash
    # For most users (CLI + TUI)
    pip install ".[tui]"
-   
+
    # For voice users
    pip install ".[tui,voice]"
    ```

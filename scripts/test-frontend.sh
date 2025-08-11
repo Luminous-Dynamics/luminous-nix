@@ -71,7 +71,7 @@ class ServiceManager {
     displayServices() {
         const container = document.getElementById('services-grid');
         if (!container || this.services.length === 0) return;
-        
+
         container.innerHTML = this.services.map(service => `
             <div class="service-card">
                 <h4>${service.name}</h4>
@@ -135,7 +135,7 @@ class ConfigEditor {
     async saveConfiguration() {
         const editor = document.getElementById('config-editor');
         if (!editor) return;
-        
+
         console.log('Saving configuration...');
         window.updateStatus('Saving configuration...');
     }
@@ -162,7 +162,7 @@ const mimeTypes = {
 
 const server = http.createServer((req, res) => {
     console.log(`${req.method} ${req.url}`);
-    
+
     let filePath = '.' + req.url;
     if (filePath === './') {
         filePath = './index.html';

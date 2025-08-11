@@ -231,12 +231,12 @@ class ExecutionBackend(Protocol):
 class UnifiedExecutor:
     def __init__(self, prefer_native: bool = True):
         self.backend = self._select_backend(prefer_native)
-    
+
     def _select_backend(self, prefer_native: bool) -> ExecutionBackend:
         if prefer_native and NativeAPI.is_available():
             return NativeAPI()
         return SubprocessFallback()
-    
+
     async def execute(self, intent: Intent) -> Result:
         command = self.build_command(intent)
         return await self.backend.execute(command)
@@ -268,7 +268,7 @@ from pathlib import Path
 
 def consolidate_executors():
     """Merge executor implementations."""
-    
+
     # Create unified executor combining best of both
     unified_executor = """
 from typing import Optional, Dict, Any, Protocol
@@ -294,24 +294,24 @@ class Result:
 
 class UnifiedExecutor:
     \"\"\"Unified executor with automatic backend selection.\"\"\"
-    
+
     def __init__(self, prefer_native: bool = True, test_mode: bool = False):
         self.test_mode = test_mode
         self.backend = self._select_backend(prefer_native)
         self._performance_stats = {}
-    
+
     def _select_backend(self, prefer_native: bool) -> ExecutionBackend:
         \"\"\"Select the best available backend.\"\"\"
         if self.test_mode:
             return MockBackend()
-        
+
         if prefer_native and NativeAPI.is_available():
             print("Using native Python-Nix API for 10x performance!")
             return NativeAPI()
-        
+
         print("Falling back to subprocess execution")
         return SubprocessFallback()
-    
+
     async def execute(self, intent: Intent) -> Result:
         \"\"\"Execute an intent using the selected backend.\"\"\"
         # Validate intent
@@ -322,23 +322,23 @@ class UnifiedExecutor:
                 output="",
                 error=f"Invalid intent: {validation.reason}"
             )
-        
+
         # Build command
         command = self.build_command(intent)
-        
+
         # Execute with timing
         import time
         start = time.time()
-        
+
         try:
             result = await self.backend.execute(command)
             result.duration_ms = (time.time() - start) * 1000
-            
+
             # Track performance
             self._track_performance(intent.action, result.duration_ms)
-            
+
             return result
-        
+
         except Exception as e:
             return Result(
                 success=False,
@@ -346,23 +346,23 @@ class UnifiedExecutor:
                 error=str(e),
                 duration_ms=(time.time() - start) * 1000
             )
-    
+
     def validate_intent(self, intent: Intent) -> ValidationResult:
         \"\"\"Validate intent before execution.\"\"\"
         # Add validation logic here
         return ValidationResult(valid=True)
-    
+
     def build_command(self, intent: Intent) -> Command:
         \"\"\"Build executable command from intent.\"\"\"
         # Add command building logic here
         return Command(intent=intent)
-    
+
     def _track_performance(self, action: str, duration_ms: float):
         \"\"\"Track performance metrics.\"\"\"
         if action not in self._performance_stats:
             self._performance_stats[action] = []
         self._performance_stats[action].append(duration_ms)
-    
+
     def get_performance_summary(self) -> Dict[str, float]:
         \"\"\"Get average performance by action.\"\"\"
         summary = {}
@@ -370,38 +370,38 @@ class UnifiedExecutor:
             summary[action] = sum(durations) / len(durations)
         return summary
 """
-    
+
     # Write the unified executor
     os.makedirs("src/nix_humanity/core", exist_ok=True)
     with open("src/nix_humanity/core/executor.py", "w") as f:
         f.write(unified_executor)
-    
+
     print("✓ Created unified executor")
 
 def main():
     print("🔧 Starting backend consolidation...")
-    
+
     # Step 1: Create new structure
     dirs = [
         "src/nix_humanity/core",
-        "src/nix_humanity/native", 
+        "src/nix_humanity/native",
         "src/nix_humanity/learning",
         "src/nix_humanity/interfaces",
         "src/nix_humanity/config"
     ]
-    
+
     for d in dirs:
         os.makedirs(d, exist_ok=True)
         init_file = os.path.join(d, "__init__.py")
         if not os.path.exists(init_file):
             open(init_file, 'a').close()
-    
+
     # Step 2: Consolidate executors
     consolidate_executors()
-    
+
     # Step 3: Move other components
     # ... add more consolidation logic
-    
+
     print("✅ Backend consolidation complete!")
 
 if __name__ == "__main__":

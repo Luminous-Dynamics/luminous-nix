@@ -22,7 +22,7 @@ echo
 # Check for nix-env usage
 if command -v nix-env &> /dev/null; then
     echo -e "${YELLOW}⚠️  You have nix-env available (deprecated)${NC}"
-    
+
     # Check installed packages
     if nix-env -q &> /dev/null; then
         PKGS=$(nix-env -q | wc -l)
@@ -140,7 +140,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo
     read -p "Enter package name: " PACKAGE
-    
+
     echo
     echo "To install '$PACKAGE' the modern way:"
     echo

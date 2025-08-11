@@ -20,7 +20,7 @@ chmod 700 "$SECURE_DIR"
 secure_pem_file() {
     echo ""
     echo "🔍 Looking for GitHub App private key (PEM file)..."
-    
+
     # Common locations and patterns
     PEM_PATTERNS=(
         "$HOME/Downloads/*.pem"
@@ -29,25 +29,25 @@ secure_pem_file() {
         "$HOME/Downloads/*luminous*.pem"
         "$HOME/Downloads/*app*.pem"
     )
-    
+
     for pattern in "${PEM_PATTERNS[@]}"; do
         for file in $pattern; do
             if [ -f "$file" ]; then
                 echo "✅ Found PEM file: $file"
-                
+
                 # Secure the PEM file
                 PEM_DEST="$SECURE_DIR/github-app-private-key.pem"
                 echo "🔒 Moving to secure location: $PEM_DEST"
-                
+
                 mv "$file" "$PEM_DEST"
                 chmod 600 "$PEM_DEST"
-                
+
                 echo "✅ PEM file secured!"
                 return 0
             fi
         done
     done
-    
+
     echo "❌ No PEM file found automatically."
     echo ""
     echo "Please locate the PEM file manually. It was downloaded when you created the GitHub App."
@@ -56,7 +56,7 @@ secure_pem_file() {
     echo "  - [app-name].private-key.pem"
     echo ""
     read -p "Enter the full path to the PEM file: " PEM_PATH
-    
+
     if [ -f "$PEM_PATH" ]; then
         PEM_DEST="$SECURE_DIR/github-app-private-key.pem"
         echo "🔒 Moving to secure location: $PEM_DEST"
@@ -74,7 +74,7 @@ secure_pem_file() {
 generate_jwt() {
     local pem_file="$1"
     local app_id="$2"
-    
+
     # This would normally use a JWT library, but for now we'll use a placeholder
     # In production, use a proper JWT generation tool
     echo "JWT_TOKEN_PLACEHOLDER"
@@ -84,7 +84,7 @@ generate_jwt() {
 get_installation_token() {
     local jwt="$1"
     local installation_id="$2"
-    
+
     # This would make an API call to GitHub
     # For now, return placeholder
     echo "INSTALLATION_TOKEN_PLACEHOLDER"
@@ -98,13 +98,13 @@ main() {
     echo "  Organization: $ORG_NAME"
     echo "  Repository: $REPO_NAME"
     echo ""
-    
+
     # Step 1: Secure the PEM file
     if ! secure_pem_file; then
         echo "❌ Cannot proceed without PEM file"
         exit 1
     fi
-    
+
     # Step 2: Save configuration
     CONFIG_FILE="$SECURE_DIR/config.json"
     cat > "$CONFIG_FILE" << EOF
@@ -119,7 +119,7 @@ main() {
 EOF
     chmod 600 "$CONFIG_FILE"
     echo "✅ Configuration saved to: $CONFIG_FILE"
-    
+
     # Step 3: Create authentication script
     AUTH_SCRIPT="$SECURE_DIR/authenticate.sh"
     cat > "$AUTH_SCRIPT" << 'SCRIPT'
@@ -135,7 +135,7 @@ if gh auth status --hostname github.com 2>&1 | grep -q "github-app"; then
     echo "✅ GitHub App authentication already configured"
 else
     echo "🔐 Setting up GitHub App authentication..."
-    
+
     # Use gh CLI with app credentials
     gh auth login \
         --hostname github.com \
@@ -148,7 +148,7 @@ export GITHUB_APP_PEM_FILE="$PEM_FILE"
 SCRIPT
     chmod 700 "$AUTH_SCRIPT"
     echo "✅ Authentication script created: $AUTH_SCRIPT"
-    
+
     # Step 4: Create push helper script
     PUSH_SCRIPT="$HOME/bin/gh-push-nix-humanity"
     mkdir -p "$HOME/bin"
@@ -183,7 +183,7 @@ echo "✅ Push complete!"
 PUSH
     chmod 755 "$PUSH_SCRIPT"
     echo "✅ Push helper script created: $PUSH_SCRIPT"
-    
+
     # Step 5: Documentation
     DOC_FILE="$SECURE_DIR/README.md"
     cat > "$DOC_FILE" << 'DOC'
@@ -232,7 +232,7 @@ If authentication fails:
 3. Check GitHub App is still installed in organization
 4. Regenerate PEM key if compromised
 DOC
-    
+
     echo ""
     echo "✅ GitHub App setup complete!"
     echo ""

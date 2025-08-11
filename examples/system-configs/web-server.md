@@ -149,7 +149,7 @@ ask-nix "host multiple websites with different technologies"
 Example output:
 ```bash
 # Site 1: WordPress on PHP
-# Site 2: Node.js application  
+# Site 2: Node.js application
 # Site 3: Static Jekyll site
 # Site 4: Python Django app
 # All with SSL, separate databases, and isolation

@@ -31,7 +31,7 @@ ask-nix settings wizard                     # ✅ Works
   - Already built and tested
   - Just needs final integration
   - `nix-tui` command will work in v1.1
-  
+
 - **Voice Interface** - Speak to your system
   - Architecture complete
   - Needs final wiring
@@ -65,7 +65,7 @@ We made a strategic decision: **ship rock-solid features rather than buggy exper
 
 ### What Needs Work
 1. **Bug fixes** from v1.0 user feedback
-2. **Performance optimization** 
+2. **Performance optimization**
 3. **Documentation improvements**
 4. **More natural language patterns**
 

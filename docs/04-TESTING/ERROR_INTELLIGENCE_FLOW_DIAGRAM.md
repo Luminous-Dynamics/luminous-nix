@@ -7,30 +7,30 @@ graph TB
     subgraph "User Interaction"
         U[User Input] --> TUI[TUI App]
     end
-    
+
     subgraph "Backend Processing"
         TUI --> B[Backend Process Request]
         B --> E{Error Occurs?}
         E -->|No| SR[Success Response]
         E -->|Yes| EA[Error Analyzer]
-        
+
         EA --> EP[Error Pattern Matching]
         EP --> CA[Context Analysis]
         CA --> SG[Solution Generation]
-        
+
         subgraph "XAI Integration"
             SG --> XAI[Causal XAI Engine]
             XAI --> EXP[Generate Explanation]
             EXP --> CONF[Calculate Confidence]
         end
-        
+
         subgraph "Error Intelligence"
             SG --> EF[Educational Formatter]
             EF --> PA[Persona Adapter]
             PA --> PS[Preventive Suggestions]
         end
     end
-    
+
     subgraph "Response Generation"
         CONF --> ER[Error Response]
         PS --> ER
@@ -38,21 +38,21 @@ graph TB
         ER --> |Contains| EDU[Education]
         ER --> |Contains| XEX[XAI Explanation]
     end
-    
+
     subgraph "TUI Display"
         SR --> CF[Conversation Flow]
         ER --> EIP[Error Intelligence Panel]
-        
+
         EIP --> ES[Error Summary]
         EIP --> SC[Solution Carousel]
         EIP --> EP2[Educational Panel]
         EIP --> XW[XAI Widget]
-        
+
         SC --> AB[Action Buttons]
         AB --> TS[Try Solution]
         AB --> LM[Learn More]
     end
-    
+
     subgraph "Learning Loop"
         TS --> RES[Record Result]
         RES --> EL[Error Learner]
@@ -156,22 +156,22 @@ Grandma Rose  Maya ADHD  Dr. Sarah
    - Pattern: permission_denied
    - Category: PERMISSION
    - Severity: ERROR
-   
+
 5. Context Factors:
    - Command: nix-env -iA nixos.docker
    - User: non-root
    - System: NixOS 25.11
-   
+
 6. Solutions Generated:
    a. Use sudo: "sudo nix-env -iA nixos.docker"
    b. Declarative: Add to configuration.nix
    c. User install: "nix-env -iA nixpkgs.docker"
-   
+
 7. XAI Explanation:
-   "I couldn't install docker because system-wide installation 
+   "I couldn't install docker because system-wide installation
    requires administrator privileges. This is a security feature
    of NixOS to prevent unauthorized system changes."
-   
+
 8. Persona Formatting (Grandma Rose):
    "Oh dear, I need special permission to install Docker for you.
    It's like needing a key to open a locked door. Would you like
@@ -189,24 +189,24 @@ Grandma Rose  Maya ADHD  Dr. Sarah
    - Pattern: package_not_found
    - Category: NOT_FOUND
    - Severity: ERROR
-   
+
 5. Context Factors:
    - Requested: fierfix
    - Similar: firefox (edit distance: 2)
    - Confidence: 0.9 (high similarity)
-   
+
 6. Solutions Generated:
    a. Typo correction: "Did you mean 'firefox'?"
    b. Search: "nix search nixpkgs browser"
    c. List similar: Show packages with similar names
-   
+
 7. XAI Explanation:
    "I couldn't find 'fierfix' because it doesn't exist in nixpkgs.
    Based on the spelling similarity (92% match), you likely meant
    'firefox', which is available."
-   
+
 8. Persona Formatting (Maya ADHD):
-   "Can't find 'fierfix'. Did you mean firefox? 
+   "Can't find 'fierfix'. Did you mean firefox?
    [Yes, install firefox] [No, search browsers]"
 ```
 

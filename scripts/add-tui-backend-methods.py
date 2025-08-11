@@ -15,7 +15,7 @@ def add_tui_methods():
     new_methods = '''
     def get_current_context(self) -> Dict[str, Any]:
         """Get current context information for TUI display.
-        
+
         Returns:
             Dict containing current state, settings, and context
         """
@@ -26,10 +26,10 @@ def add_tui_methods():
             "nixos_version": self._get_nixos_version() if hasattr(self, '_get_nixos_version') else "Unknown",
             "generation": self._get_current_generation() if hasattr(self, '_get_current_generation') else "Unknown",
         }
-    
+
     def get_settings(self) -> Dict[str, Any]:
         """Get current settings for TUI configuration panel.
-        
+
         Returns:
             Dict of current settings
         """
@@ -41,20 +41,20 @@ def add_tui_methods():
             "voice_enabled": False,  # For future
             "theme": "dark",  # TUI theme
         }
-    
+
     def execute_command(self, command: str, dry_run: bool = True) -> Dict[str, Any]:
         """Execute a Nix command with safety checks.
-        
+
         Args:
             command: The command to execute
             dry_run: If True, only show what would be done
-            
+
         Returns:
             Dict with success, output, and error information
         """
         # Use the existing executor
         result = self.executor.execute(command, dry_run=dry_run)
-        
+
         return {
             "success": result.success if hasattr(result, 'success') else False,
             "output": result.output if hasattr(result, 'output') else "",
@@ -62,24 +62,24 @@ def add_tui_methods():
             "command": command,
             "dry_run": dry_run
         }
-    
+
     def get_suggestions(self, partial: str, context: Optional[str] = None) -> List[str]:
         """Get autocomplete suggestions for partial input.
-        
+
         Args:
             partial: Partial text to complete
             context: Optional context (like current command type)
-            
+
         Returns:
             List of suggestions
         """
         suggestions = []
-        
+
         # Package name suggestions
         if context == "package" or "install" in partial.lower():
             packages = self.search_packages(partial, limit=5)
             suggestions.extend([p.name for p in packages])
-        
+
         # Command suggestions
         command_starters = [
             "install", "remove", "search", "update", "rollback",
@@ -88,19 +88,19 @@ def add_tui_methods():
         for cmd in command_starters:
             if cmd.startswith(partial.lower()):
                 suggestions.append(cmd)
-        
+
         return suggestions[:10]  # Limit suggestions
-    
+
     def get_current_personality(self) -> str:
         """Get the current personality setting."""
         # Default personality
         return "balanced"
-    
+
     def _get_nixos_version(self) -> str:
         """Get NixOS version (if not already defined)."""
         if hasattr(super(), '_get_nixos_version'):
             return super()._get_nixos_version()
-        
+
         try:
             import subprocess
             result = subprocess.run(['nixos-version'], capture_output=True, text=True)
@@ -109,9 +109,9 @@ def add_tui_methods():
         except Exception:
             # TODO: Add proper error handling
             pass  # Silent for now, should log error
-        
+
         return "Unknown"
-    
+
     def _get_current_generation(self) -> str:
         """Get current system generation."""
         try:
@@ -128,7 +128,7 @@ def add_tui_methods():
         except Exception:
             # TODO: Add proper error handling
             pass  # Silent for now, should log error
-        
+
         return "Unknown"
 '''
 

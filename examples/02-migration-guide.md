@@ -39,7 +39,7 @@ ask-nix --version
 ```bash
 # Set up your common aliases
 ask-nix-config alias --add i "install"
-ask-nix-config alias --add s "search"  
+ask-nix-config alias --add s "search"
 ask-nix-config alias --add u "update"
 ask-nix-config alias --add r "remove"
 
@@ -112,7 +112,7 @@ ask-nix "add environment variable DATABASE_URL postgresql://localhost/myapp"
       root = "/var/www/example";
     };
   };
-  
+
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_15;

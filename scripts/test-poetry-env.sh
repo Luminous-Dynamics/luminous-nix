@@ -18,7 +18,7 @@ echo
 
 echo "⚡ FAST: Python+Poetry (./dev-poetry.sh)"
 echo "   • Downloads: Just Python 3.13 + Poetry + system deps"
-echo "   • Time: 30-60 seconds first run"  
+echo "   • Time: 30-60 seconds first run"
 echo "   • Size: ~100MB download"
 echo
 

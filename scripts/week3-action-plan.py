@@ -226,11 +226,11 @@ Generated: {plan['generated']}
     md += """
 ## 🚀 Key Insight
 
-We have a PHENOMENAL performance story (9064x faster!) that nobody knows about. 
-Week 3 is about making our strengths visible while systematically fixing the 
+We have a PHENOMENAL performance story (9064x faster!) that nobody knows about.
+Week 3 is about making our strengths visible while systematically fixing the
 basics that users actually touch.
 
-**Remember**: Fast software feels magical. Let's make sure users can experience 
+**Remember**: Fast software feels magical. Let's make sure users can experience
 that magic from their very first command.
 """
 

@@ -14,7 +14,7 @@ VENV_DIR="/tmp/nix-humanity-tui-venv"
 if [ ! -d "$VENV_DIR" ]; then
     echo "📦 Creating temporary environment..."
     python3 -m venv "$VENV_DIR"
-    
+
     echo "📥 Installing TUI dependencies..."
     "$VENV_DIR/bin/pip" install textual rich blessed pyperclip click colorama python-dotenv pyyaml --quiet
 fi

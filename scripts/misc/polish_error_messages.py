@@ -202,14 +202,14 @@ def enhance_error_handler():
         Enhanced with educational content for v1.0
         """
         error_str = str(exception).lower()
-        
+
         # Check for specific error patterns
         if category == ErrorCategory.NIXOS:
             if "not found" in error_str or "attribute" in error_str:
                 # Extract package name if possible
                 package_match = re.search(r"attribute ['\"]?(\\w+)['\"]?", str(exception))
                 package = package_match.group(1) if package_match else "the package"
-                
+
                 template = EDUCATIONAL_TEMPLATES["PACKAGE_NOT_FOUND"]
                 return (
                     template["message"].format(package=package),
@@ -225,21 +225,21 @@ def enhance_error_handler():
                         "\\n🎓 NixOS verifies all packages with cryptographic hashes for security"
                     ]
                 )
-                
+
         elif category == ErrorCategory.PERMISSION:
             template = EDUCATIONAL_TEMPLATES["PERMISSION_ERROR"]
             return (
                 template["message"],
                 template["suggestions"] + ["\\n🎓 " + template["education"]]
             )
-            
+
         elif category == ErrorCategory.NETWORK:
             template = EDUCATIONAL_TEMPLATES["NETWORK_ERROR"]
             return (
                 template["message"],
                 template["suggestions"] + ["\\n🎓 " + template["education"]]
             )
-            
+
         elif category == ErrorCategory.SYSTEM:
             if "no space left" in error_str or "disk full" in error_str:
                 template = EDUCATIONAL_TEMPLATES["DISK_SPACE_ERROR"]
@@ -247,7 +247,7 @@ def enhance_error_handler():
                     template["message"],
                     template["suggestions"] + ["\\n🎓 " + template["education"]]
                 )
-                
+
         elif category == ErrorCategory.CONFIGURATION:
             if "syntax" in error_str or "parse" in error_str:
                 template = EDUCATIONAL_TEMPLATES["CONFIG_SYNTAX_ERROR"]
@@ -255,7 +255,7 @@ def enhance_error_handler():
                     template["message"],
                     template["suggestions"] + ["\\n🎓 " + template["education"]]
                 )
-        
+
         # Check pattern matching for any category
         for pattern, info in self.NIXOS_ERROR_PATTERNS.items():
             if re.search(pattern, error_str, re.IGNORECASE):
@@ -264,11 +264,11 @@ def enhance_error_handler():
                 if info['category'] == ErrorCategory.NIXOS:
                     enhanced_suggestions.append("\\n🎓 Learn more at: https://nixos.org/manual/")
                 return info['user_message'], enhanced_suggestions
-                
+
         # Default messages with educational hints
         default_messages = {
             ErrorCategory.SECURITY: (
-                "Security check failed for safety reasons", 
+                "Security check failed for safety reasons",
                 ["Verify the source is trusted", "Check for typos in commands", "\\n🎓 NixOS prioritizes security"]
             ),
             ErrorCategory.VALIDATION: (
@@ -284,9 +284,9 @@ def enhance_error_handler():
                 ["Try again in a moment", "Report this if it persists", "\\n🎓 Even AI assistants have hiccups sometimes"]
             )
         }
-        
+
         return default_messages.get(
-            category, 
+            category,
             ("An unexpected error occurred", ["Try again or ask for help", "\\n🎓 Learning from errors makes us better"])
         )'''
 

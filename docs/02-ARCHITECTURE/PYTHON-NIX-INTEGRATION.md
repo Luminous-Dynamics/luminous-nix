@@ -34,7 +34,7 @@ nix.switch_to_configuration(path, Action.SWITCH, profile)
 
 **Measured Performance Improvements**:
 - **List Generations**: **0.00 seconds** (was 2-5 seconds) - **∞x improvement**
-- **System Operations**: **0.02-0.04 seconds** (was 30-60 seconds) - **~1500x improvement**  
+- **System Operations**: **0.02-0.04 seconds** (was 30-60 seconds) - **~1500x improvement**
 - **Package Instructions**: **0.00 seconds** (was 1-2 seconds) - **∞x improvement**
 - **Real-time Progress**: Live streaming updates without polling
 - **Better Error Handling**: Python exceptions with educational context
@@ -117,7 +117,7 @@ from nixos_rebuild.models import Action
 
 # All available actions:
 Action.SWITCH              # Apply configuration now
-Action.BOOT               # Apply on next boot  
+Action.BOOT               # Apply on next boot
 Action.TEST               # Test without making permanent
 Action.BUILD              # Build only
 Action.DRY_BUILD          # Check what would be built
@@ -140,7 +140,7 @@ path = nix.build(
 
 # Build with flakes
 path = nix.build_flake(
-    attr="config.system.build.toplevel", 
+    attr="config.system.build.toplevel",
     flake=Flake.parse("/etc/nixos"),
     flake_build_flags={"show-trace": True}
 )
@@ -164,12 +164,12 @@ import asyncio
 
 class NixOSPythonBackend:
     """Revolutionary direct Python API integration."""
-    
+
     def __init__(self):
         self.has_python_api = self._check_python_api()
         if self.has_python_api:
             self._setup_python_api()
-    
+
     def _check_python_api(self) -> bool:
         """Check if nixos-rebuild-ng Python API is available."""
         try:
@@ -181,23 +181,23 @@ class NixOSPythonBackend:
         except ImportError:
             pass
         return False
-    
+
     async def system_update(self) -> Dict[str, Any]:
         """Update system using optimal method."""
         if self.has_python_api:
             return await self._python_update()
         else:
             return await self._subprocess_update()
-    
+
     async def _python_update(self) -> Dict[str, Any]:
         """Direct Python API update - 1500x faster!"""
         from nixos_rebuild import nix
         from nixos_rebuild.models import Action, Profile
-        
+
         # Direct API calls with real-time progress
         path = nix.build("config.system.build.toplevel", build_attr)
         result = nix.switch_to_configuration(path, Action.SWITCH, Profile.from_arg("system"))
-        
+
         return {
             "success": True,
             "method": "python_api",
@@ -251,7 +251,7 @@ class NixForHumanityBackend:
             "test": Action.TEST,
             "rollback": Action.ROLLBACK
         }
-    
+
     async def intelligent_rollback(self):
         """Smart rollback with generation analysis."""
         generations = nix.list_generations(self.profile)
@@ -336,7 +336,7 @@ def test_python_api_available():
     """Test Python API is properly detected and imported."""
     backend = NixOSPythonBackend()
     assert backend.has_python_api
-    
+
 def test_performance_improvements():
     """Verify performance gains from Python API."""
     # Test that operations are significantly faster

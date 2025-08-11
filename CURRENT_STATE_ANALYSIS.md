@@ -13,7 +13,7 @@
 ```bash
 # These work perfectly:
 python ask-nix-simple.py install firefox        # ✅ Works
-python ask-nix-simple.py search "python editor" # ✅ Works  
+python ask-nix-simple.py search "python editor" # ✅ Works
 python ask-nix-simple.py list packages          # ✅ Works
 python ask-nix-simple.py --interactive          # ✅ Works
 python ask-nix-simple.py --execute install hello # ✅ Would execute via native API
@@ -35,7 +35,7 @@ The learning system is partially implemented but missing key methods.
 ### 3. Many Advanced Features
 While we have files for these, they're not wired up:
 - Config generation
-- Error translation  
+- Error translation
 - Flake management
 - Home manager integration
 
@@ -70,11 +70,11 @@ Pick ONE high-value feature and implement it properly:
 
 ## 💡 The Truth
 
-We have a **solid foundation** with the native Python-Nix API and natural language parsing. The core concept is proven and working. 
+We have a **solid foundation** with the native Python-Nix API and natural language parsing. The core concept is proven and working.
 
 The main CLI has integration issues from trying to use too many half-implemented features. The simple CLI we created proves the concept works perfectly.
 
-**My Recommendation**: 
+**My Recommendation**:
 1. Make `ask-nix-simple.py` the official v1.0 CLI
 2. Add ONE killer feature (I suggest config generation)
 3. Package and ship it

@@ -23,10 +23,7 @@ from nix_for_humanity.api import Request
 
 # REMOVED MOCK IMPORT: Mock, patch, MagicMock
 # Import v1.0 components
-from nix_for_humanity.core import (
-    IntentType,
-    NixForHumanityBackend,
-)
+from nix_for_humanity.core import IntentType, NixForHumanityBackend
 
 
 class TestV1CoreFeatures:

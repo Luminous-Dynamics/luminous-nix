@@ -14,11 +14,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
-from ..constants import (
-    NIX_DB_PATH,
-    NIX_PROFILES_PATH,
-    NIX_STORE_PATH,
-)
+from ..constants import NIX_DB_PATH, NIX_PROFILES_PATH, NIX_STORE_PATH
 
 logger = logging.getLogger(__name__)
 

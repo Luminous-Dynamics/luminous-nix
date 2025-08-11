@@ -18,12 +18,7 @@ sys.path.insert(
 )
 
 from nix_for_humanity.core.engine import NixForHumanityBackend as Engine
-from nix_for_humanity.core.intents import (
-    Context,
-    IntentType,
-    Request,
-    Response,
-)
+from nix_for_humanity.core.intents import Context, IntentType, Request, Response
 
 
 class TestCLICorePipeline(unittest.TestCase):

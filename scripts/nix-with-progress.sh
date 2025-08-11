@@ -80,7 +80,7 @@ show_simple_spinner() {
     local msg=$2
     local spin='-\|/'
     local i=0
-    
+
     while kill -0 $pid 2>/dev/null; do
         i=$(( (i+1) %4 ))
         printf "\r${YELLOW}${msg} ${spin:$i:1}${NC}"
@@ -96,25 +96,25 @@ show_advanced_progress() {
     local last_line=""
     local download_count=0
     local build_count=0
-    
+
     # Header
     if [ "$QUIET_MODE" = false ]; then
         echo -e "${BLUE}🌟 Nix for Humanity Progress Monitor${NC}"
         echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     fi
-    
+
     while kill -0 $pid 2>/dev/null; do
         # Update spinner
         spinner_idx=$(( (spinner_idx+1) % ${#SPINNER} ))
         local spinner_char="${SPINNER:$spinner_idx:1}"
-        
+
         # Calculate elapsed time
         local current_time=$(date +%s)
         local elapsed=$((current_time - start_time))
         local elapsed_min=$((elapsed / 60))
         local elapsed_sec=$((elapsed % 60))
         local time_str=$(printf "%02d:%02d" $elapsed_min $elapsed_sec)
-        
+
         # Parse last meaningful line from log
         if [ -f "$LOG_FILE" ]; then
             # Look for download progress
@@ -124,7 +124,7 @@ show_advanced_progress() {
                 last_line=$(grep "copying path.*from 'https://cache.nixos.org'" "$LOG_FILE" | tail -1 | sed 's/.*\/nix\/store\/[^-]*-//' | cut -d"'" -f1)
                 last_line="📥 Downloading: ${last_line:0:40}..."
             fi
-            
+
             # Look for build progress
             local new_build=$(grep -c "building '/nix/store/" "$LOG_FILE" 2>/dev/null || echo "0")
             if [ "$new_build" -gt "$build_count" ]; then
@@ -132,55 +132,55 @@ show_advanced_progress() {
                 last_line=$(grep "building '/nix/store/" "$LOG_FILE" | tail -1 | sed 's/.*\/nix\/store\/[^-]*-//' | cut -d"'" -f1)
                 last_line="🔨 Building: ${last_line:0:40}..."
             fi
-            
+
             # Look for evaluation progress
             if grep -q "evaluating" "$LOG_FILE" 2>/dev/null && [ -z "$last_line" ]; then
                 last_line="🧮 Evaluating derivation..."
             fi
         fi
-        
+
         # Default message if nothing specific found
         if [ -z "$last_line" ]; then
             last_line="⏳ Initializing nix $NIX_CMD..."
         fi
-        
+
         # Build status line
         local status_line="${spinner_char} ${time_str} | ${last_line}"
-        
+
         # Show download/build counts if available
         if [ "$download_count" -gt 0 ] || [ "$build_count" -gt 0 ]; then
             status_line="$status_line | 📊 D:$download_count B:$build_count"
         fi
-        
+
         # Print status
         printf "\r${YELLOW}%-80s${NC}" "$status_line"
-        
+
         # Check timeout
         if [ "$elapsed" -gt "$TIMEOUT" ]; then
             echo -e "\n${RED}⏰ Timeout after ${TIMEOUT} seconds!${NC}"
             kill $pid 2>/dev/null || true
             return 1
         fi
-        
+
         sleep 0.1
     done
-    
+
     # Get exit status
     wait $pid
     local exit_code=$?
-    
+
     # Final status
     local final_time=$(date +%s)
     local total_elapsed=$((final_time - start_time))
     local total_min=$((total_elapsed / 60))
     local total_sec=$((total_elapsed % 60))
-    
+
     if [ $exit_code -eq 0 ]; then
         printf "\r${GREEN}✅ Success! Completed in %02d:%02d${NC}%-40s\n" $total_min $total_sec ""
     else
         printf "\r${RED}❌ Failed after %02d:%02d${NC}%-40s\n" $total_min $total_sec ""
     fi
-    
+
     return $exit_code
 }
 
@@ -190,9 +190,9 @@ show_progress_bar() {
     local total_steps=100  # Estimate
     local current_step=0
     local bar_width=50
-    
+
     echo -e "${BLUE}🌟 Nix ${NIX_CMD} Progress${NC}"
-    
+
     while kill -0 $pid 2>/dev/null; do
         # Estimate progress based on log content
         if [ -f "$LOG_FILE" ]; then
@@ -200,30 +200,30 @@ show_progress_bar() {
             local builds=$(grep -c "building" "$LOG_FILE" 2>/dev/null || echo "0")
             current_step=$((downloads + builds * 2))  # Builds count more
         fi
-        
+
         # Calculate bar
         local progress=$((current_step * bar_width / total_steps))
         local remaining=$((bar_width - progress))
-        
+
         # Build bar
         local bar="["
         for ((i=0; i<progress; i++)); do bar+="█"; done
         for ((i=0; i<remaining; i++)); do bar+="░"; done
         bar+="]"
-        
+
         # Show progress
         printf "\r${CYAN}%s %3d%%${NC}" "$bar" $((current_step * 100 / total_steps))
-        
+
         sleep 0.5
     done
-    
+
     wait $pid
     local exit_code=$?
-    
+
     if [ $exit_code -eq 0 ]; then
         printf "\r${GREEN}[%*s] 100%%${NC}\n" $bar_width "$(printf '%*s' $bar_width | tr ' ' '█')"
     fi
-    
+
     return $exit_code
 }
 

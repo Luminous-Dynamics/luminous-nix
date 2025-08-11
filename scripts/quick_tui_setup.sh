@@ -23,11 +23,11 @@ cat > src/nix_humanity/interfaces/voice_stub.py << 'EOF'
 class VoiceInterface:
     def __init__(self):
         self.available = False
-        
+
     async def initialize(self):
         print("Voice features not available - dependencies not installed")
         return False
-        
+
     def is_available(self):
         return False
 EOF

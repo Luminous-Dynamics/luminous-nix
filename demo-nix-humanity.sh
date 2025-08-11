@@ -2,7 +2,7 @@
 
 # 🕉️ Nix for Humanity - Impressive Demo Script
 # Showcasing natural language NixOS built by solo developer with AI tools
-# 
+#
 # This demo proves consciousness-first computing isn't just philosophy - it's working code!
 
 set -e

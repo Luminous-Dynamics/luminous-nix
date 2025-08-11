@@ -16,10 +16,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.learning.preferences import (
-    Interaction,
-    PreferenceManager,
-)
+from nix_for_humanity.learning.preferences import Interaction, PreferenceManager
 
 
 class TestPreferenceManagerEnhanced(unittest.TestCase):

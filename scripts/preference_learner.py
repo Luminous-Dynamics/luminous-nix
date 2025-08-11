@@ -124,9 +124,9 @@ class PreferenceLearner:
 
         c.execute(
             """
-            SELECT preferences, session_count 
-            FROM user_preferences 
-            ORDER BY timestamp DESC 
+            SELECT preferences, session_count
+            FROM user_preferences
+            ORDER BY timestamp DESC
             LIMIT 1
         """
         )
@@ -153,7 +153,7 @@ class PreferenceLearner:
 
         c.execute(
             """
-            INSERT INTO user_preferences 
+            INSERT INTO user_preferences
             (timestamp, preferences, session_count, last_updated)
             VALUES (?, ?, ?, ?)
         """,
@@ -180,7 +180,7 @@ class PreferenceLearner:
         # Analyze helpful vs not helpful
         c.execute(
             """
-            SELECT 
+            SELECT
                 COUNT(CASE WHEN helpful = 1 THEN 1 END) as helpful_count,
                 COUNT(CASE WHEN helpful = 0 THEN 1 END) as not_helpful_count,
                 AVG(interaction_time) as avg_interaction_time

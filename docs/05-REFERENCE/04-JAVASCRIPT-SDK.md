@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Official JavaScript SDK for integrating Nix for Humanity into web and Node.js applications  
-📍 **You are here**: Reference → JavaScript SDK  
-🔗 **Related**: [API Reference](./02-API-REFERENCE.md) | [Python SDK](./03-PYTHON-SDK.md) | [Examples](../06-TUTORIALS/API_EXAMPLES.md)  
-⏱️ **Read time**: 10 minutes  
+💡 **Quick Context**: Official JavaScript SDK for integrating Nix for Humanity into web and Node.js applications
+📍 **You are here**: Reference → JavaScript SDK
+🔗 **Related**: [API Reference](./02-API-REFERENCE.md) | [Python SDK](./03-PYTHON-SDK.md) | [Examples](../06-TUTORIALS/API_EXAMPLES.md)
+⏱️ **Read time**: 10 minutes
 📊 **Mastery Level**: 🌿 Intermediate - requires JavaScript/TypeScript knowledge
 
 ---
@@ -74,7 +74,7 @@ client.query('install nodejs')
   const client = new NixHumanity.NixClient({
     baseUrl: 'http://localhost:5000'
   });
-  
+
   async function askNix() {
     const response = await client.query('install firefox');
     document.getElementById('result').innerText = response.text;
@@ -87,13 +87,13 @@ client.query('install nodejs')
 Full TypeScript support with type definitions included:
 
 ```typescript
-import { 
-  NixClient, 
-  QueryResponse, 
-  Personality, 
+import {
+  NixClient,
+  QueryResponse,
+  Personality,
   ExecutionMode,
   SearchResult,
-  NixError 
+  NixError
 } from 'nix-for-humanity';
 
 const client = new NixClient({
@@ -358,23 +358,23 @@ import { useNixQuery } from 'nix-for-humanity/react';
 
 function PackageInstaller() {
   const { query, loading, error, response } = useNixQuery();
-  
+
   const handleInstall = async (packageName: string) => {
     const result = await query(`install ${packageName}`);
     if (result.commands.length > 0) {
       console.log('Execute:', result.commands[0].command);
     }
   };
-  
+
   return (
     <div>
-      <button 
+      <button
         onClick={() => handleInstall('firefox')}
         disabled={loading}
       >
         Install Firefox
       </button>
-      
+
       {loading && <p>Processing...</p>}
       {error && <p>Error: {error.message}</p>}
       {response && <pre>{response.text}</pre>}
@@ -399,12 +399,12 @@ function App() {
 // Use in components
 function MyComponent() {
   const { client, sessionId } = useNix();
-  
+
   const handleQuery = async () => {
     const response = await client.query('update system');
     console.log(response.text);
   };
-  
+
   return <button onClick={handleQuery}>Update System</button>;
 }
 ```
@@ -421,11 +421,11 @@ export function useNixClient() {
   const loading = ref(false);
   const error = ref(null);
   const response = ref(null);
-  
+
   const query = async (text: string) => {
     loading.value = true;
     error.value = null;
-    
+
     try {
       response.value = await client.query(text);
     } catch (e) {
@@ -434,7 +434,7 @@ export function useNixClient() {
       loading.value = false;
     }
   };
-  
+
   return {
     query,
     loading,
@@ -463,16 +463,16 @@ export function useNixClient() {
 <body>
   <div class="container">
     <h1>Nix for Humanity</h1>
-    
-    <input 
-      type="text" 
-      class="query-input" 
+
+    <input
+      type="text"
+      class="query-input"
       placeholder="Ask me anything about NixOS..."
       id="queryInput"
     />
-    
+
     <button onclick="askNix()">Ask</button>
-    
+
     <div id="response" class="response" style="display: none;"></div>
   </div>
 
@@ -480,16 +480,16 @@ export function useNixClient() {
     const client = new NixHumanity.NixClient({
       baseUrl: 'http://localhost:5000'
     });
-    
+
     async function askNix() {
       const input = document.getElementById('queryInput');
       const responseDiv = document.getElementById('response');
-      
+
       try {
         const response = await client.query(input.value);
-        
+
         let html = `<p>${response.text}</p>`;
-        
+
         if (response.commands.length > 0) {
           html += '<h3>Suggested Commands:</h3>';
           response.commands.forEach(cmd => {
@@ -497,7 +497,7 @@ export function useNixClient() {
             html += `<p>${cmd.description}</p>`;
           });
         }
-        
+
         responseDiv.innerHTML = html;
         responseDiv.style.display = 'block';
       } catch (error) {
@@ -505,7 +505,7 @@ export function useNixClient() {
         responseDiv.style.display = 'block';
       }
     }
-    
+
     // Enter key support
     document.getElementById('queryInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') askNix();
@@ -540,35 +540,35 @@ rl.prompt();
 
 rl.on('line', async (line) => {
   const query = line.trim();
-  
+
   if (query.toLowerCase() === 'exit') {
     rl.close();
     return;
   }
-  
+
   if (!query) {
     rl.prompt();
     return;
   }
-  
+
   try {
     const response = await client.query(query);
     console.log('\n' + chalk.white(response.text));
-    
+
     if (response.commands.length > 0) {
       console.log(chalk.yellow('\nSuggested commands:'));
       response.commands.forEach((cmd, i) => {
         console.log(`  ${i + 1}. ${chalk.cyan(cmd.command)}`);
       });
     }
-    
+
     if (response.educational?.tip) {
       console.log(chalk.magenta(`\n💡 Tip: ${response.educational.tip}`));
     }
   } catch (error) {
     console.error(chalk.red(`Error: ${error.message}`));
   }
-  
+
   console.log();
   rl.prompt();
 });
@@ -588,11 +588,11 @@ import { jest } from '@jest/globals';
 
 describe('NixClient', () => {
   let client;
-  
+
   beforeEach(() => {
     client = new NixClient({ baseUrl: 'http://localhost:5000' });
   });
-  
+
   test('should query successfully', async () => {
     const mockResponse = {
       text: 'Installing Firefox...',
@@ -602,7 +602,7 @@ describe('NixClient', () => {
         safe: true
       }]
     };
-    
+
     // Mock fetch
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -611,14 +611,14 @@ describe('NixClient', () => {
         response: mockResponse
       })
     });
-    
+
     const response = await client.query('install firefox');
-    
+
     expect(response.text).toBe('Installing Firefox...');
     expect(response.commands).toHaveLength(1);
     expect(response.commands[0].command).toContain('firefox');
   });
-  
+
   test('should handle rate limits', async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: false,
@@ -627,7 +627,7 @@ describe('NixClient', () => {
         error: 'Rate limit exceeded'
       })
     });
-    
+
     await expect(client.query('test')).rejects.toThrow('Rate limit exceeded');
   });
 });
@@ -648,6 +648,6 @@ describe('NixClient', () => {
 
 *Sacred Humility Context: This JavaScript SDK documentation represents our vision for a comprehensive client library. While the API endpoints are functional, the SDK itself is under development and may not include all features described. The examples demonstrate intended usage patterns that will be fully implemented as the project evolves.*
 
-**Status**: In Development  
-**Version**: 0.8.0  
+**Status**: In Development
+**Version**: 0.8.0
 **License**: MIT

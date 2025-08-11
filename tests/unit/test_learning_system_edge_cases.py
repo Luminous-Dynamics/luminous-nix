@@ -17,10 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.learning.preferences import (
-    Interaction,
-    PreferenceManager,
-)
+from nix_for_humanity.learning.preferences import Interaction, PreferenceManager
 
 
 class TestPreferenceManagerEdgeCases(unittest.TestCase):
@@ -384,7 +381,7 @@ class TestPreferenceManagerEdgeCases(unittest.TestCase):
         # Insert invalid timestamp
         cursor.execute(
             """
-            INSERT INTO interactions 
+            INSERT INTO interactions
             (query, intent, response, success, timestamp)
             VALUES (?, ?, ?, ?, ?)
         """,

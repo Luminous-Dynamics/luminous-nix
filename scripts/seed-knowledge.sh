@@ -12,11 +12,11 @@ save_qa() {
     local answer="$2"
     local category="$3"
     local timestamp=$(date +%s)
-    
+
     echo "$question" > "$KNOWLEDGE_DIR/questions/q_${timestamp}.txt"
     echo "$answer" > "$KNOWLEDGE_DIR/answers/a_${timestamp}.txt"
     echo "category:$category,source:seed,rating:5" > "$KNOWLEDGE_DIR/meta/m_${timestamp}.txt"
-    
+
     sleep 0.1  # Ensure unique timestamps
 }
 
@@ -68,12 +68,12 @@ save_qa "Create a flake.nix for a Python project" \
 \`\`\`nix
 {
   description = \"Python development environment\";
-  
+
   inputs = {
     nixpkgs.url = \"github:NixOS/nixpkgs/nixos-unstable\";
     flake-utils.url = \"github:numtide/flake-utils\";
   };
-  
+
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
@@ -94,7 +94,7 @@ save_qa "Create a flake.nix for a Python project" \
             ruff
             poetry
           ];
-          
+
           shellHook = ''
             echo \"🐍 Python \$(python --version)\"
             echo \"📦 Packages: numpy, pandas, requests, pytest\"

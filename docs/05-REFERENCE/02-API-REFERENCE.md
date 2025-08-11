@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: REST API for integrating Nix for Humanity into web, mobile, and third-party applications  
-📍 **You are here**: Reference → API Reference  
-🔗 **Related**: [Backend Architecture](../02-ARCHITECTURE/02-BACKEND-ARCHITECTURE.md) | [CLI Commands](./01-CLI-COMMANDS.md) | [Configuration](./CONFIGURATION.md)  
-⏱️ **Read time**: 15 minutes  
+💡 **Quick Context**: REST API for integrating Nix for Humanity into web, mobile, and third-party applications
+📍 **You are here**: Reference → API Reference
+🔗 **Related**: [Backend Architecture](../02-ARCHITECTURE/02-BACKEND-ARCHITECTURE.md) | [CLI Commands](./01-CLI-COMMANDS.md) | [Configuration](./CONFIGURATION.md)
+⏱️ **Read time**: 15 minutes
 📊 **Mastery Level**: 🌿 Intermediate - requires understanding of REST APIs and JSON
 
 🌊 **Natural Next Steps**:
@@ -460,7 +460,7 @@ session_id = None
 # Make a query
 def query_nix(text):
     global session_id
-    
+
     response = requests.post(
         f"{BASE_URL}/query",
         json={
@@ -472,10 +472,10 @@ def query_nix(text):
             }
         }
     )
-    
+
     data = response.json()
     session_id = data.get("session_id")
-    
+
     return data["response"]
 
 # Example usage
@@ -501,7 +501,7 @@ async function queryNix(query) {
       }
     })
   });
-  
+
   const data = await response.json();
   return data.response;
 }
@@ -618,6 +618,6 @@ export NIX_API_CORS_ORIGINS=https://yourdomain.com
 
 *Sacred Humility Context: This API documentation represents our current implementation of REST endpoints for Nix for Humanity. While the API design follows REST best practices and provides comprehensive functionality, the actual implementation may vary based on backend evolution and real-world usage patterns. Rate limits, response formats, and available features may need adjustment based on production requirements and user feedback.*
 
-**Last Updated**: 2024-01-15  
-**API Version**: 0.8.0  
+**Last Updated**: 2024-01-15
+**API Version**: 0.8.0
 **Status**: Beta - Breaking changes possible

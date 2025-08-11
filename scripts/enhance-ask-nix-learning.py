@@ -65,13 +65,13 @@ def generate_integration_patch():
          self.cache = IntelligentPackageCache()
          self.learning_system = CommandLearningSystem()
 +        self.learning_enabled = self.check_learning_enabled()
-         
+
          # Visual settings
          self.visual_mode = True
 @@ -140,6 +141,16 @@ class UnifiedNixAssistant:
          # Education system
          self.education = self.EducationSystem()
-         
+
 +    def check_learning_enabled(self):
 +        """Check if learning is enabled in config"""
 +        config_file = Path.home() / ".config" / "nix-humanity" / "config.json"
@@ -81,13 +81,13 @@ def generate_integration_patch():
 +                config = json.load(f)
 +                return config.get('learning_enabled', False)
 +        return False
-+        
++
      def enhance_response(self, response: str, query: str, personality: str) -> str:
          """Add personality to the factual response"""
 @@ -760,6 +771,14 @@ class UnifiedNixAssistant:
          # Step 1: Extract intent using modern engine
          intent = self.modern_knowledge.extract_intent(query)
-         
+
 +        # Record command for learning
 +        if self.learning_enabled and hasattr(self, 'learning_system'):
 +            self.current_command_id = self.learning_system.record_command(
@@ -96,11 +96,11 @@ def generate_integration_patch():
 +                command=f"ask-nix {query}",
 +                executed=True
 +            )
-+        
++
          if self.show_intent:
              print(f"\\n🎯 Intent detected: {intent['action']}")
 @@ -731,11 +740,21 @@ class UnifiedNixAssistant:
-             
+
          if self.use_bridge:
              success = self.execute_with_bridge(package, command)
 +            # Record outcome for learning

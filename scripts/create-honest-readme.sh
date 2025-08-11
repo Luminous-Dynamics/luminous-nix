@@ -21,7 +21,7 @@ Natural language interface for NixOS. Currently in active development.
 
 **Working Features** ✅
 - Basic CLI with natural language processing
-- Package search functionality  
+- Package search functionality
 - Simple install/remove commands (reliability: ~70%)
 - Error handling with user-friendly messages
 - Basic intent recognition
@@ -114,7 +114,7 @@ python scripts/validate-performance.py
 - [ ] Reliable command execution
 - [ ] Native API integration
 
-### Phase 2 - Core Features  
+### Phase 2 - Core Features
 - [ ] Voice interface
 - [ ] Learning system activation
 - [ ] TUI full integration
@@ -170,9 +170,9 @@ check_feature() {
     local feature=$1
     local command=$2
     local expected=$3
-    
+
     echo -n "Checking $feature... "
-    
+
     if eval "$command" 2>/dev/null | grep -q "$expected" 2>/dev/null; then
         echo -e "${GREEN}✅ WORKING${NC}"
         return 0
@@ -186,9 +186,9 @@ check_feature_warn() {
     local feature=$1
     local command=$2
     local expected=$3
-    
+
     echo -n "Checking $feature... "
-    
+
     if eval "$command" 2>/dev/null | grep -q "$expected" 2>/dev/null; then
         echo -e "${GREEN}✅ WORKING${NC}"
         return 0

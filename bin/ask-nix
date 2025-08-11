@@ -6,33 +6,37 @@ This is the official CLI that uses the unified backend.
 All the power, properly organized.
 """
 
-import sys
-import os
-import asyncio
 import argparse
+import asyncio
 import logging
+import os
+import sys
 
 # Configure logging to suppress info messages in normal operation
 logging.basicConfig(
     level=logging.WARNING,  # Only show warnings and errors
-    format='%(message)s'  # Simple format for user-facing messages
+    format="%(message)s",  # Simple format for user-facing messages
 )
 
 # Add the src directory to the Python path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
+sys.path.insert(
+    0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src")
+)
 
 from nix_for_humanity.core.unified_backend import (
-    NixForHumanityBackend,
     Context,
-    get_backend
+    NixForHumanityBackend,
+    get_backend,
 )
 from nix_for_humanity.plugins.config_generator import (
     ConfigGeneratorPlugin,
-    SmartSearchPlugin
+    SmartSearchPlugin,
 )
+
 # Import pragmatic learning system
 try:
     from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
+
     LEARNING_AVAILABLE = True
 except ImportError:
     LEARNING_AVAILABLE = False
@@ -44,66 +48,69 @@ def setup_backend(dry_run=True):
     backend = get_backend()
     if dry_run != backend.config.get("dry_run", True):
         backend.config["dry_run"] = dry_run
-    
+
     # Register plugins
     backend.register_plugin(ConfigGeneratorPlugin())
     backend.register_plugin(SmartSearchPlugin())
-    
+
     return backend
 
 
-async def execute_query(query: str, execute: bool = False, enable_learning: bool = True):
+async def execute_query(
+    query: str, execute: bool = False, enable_learning: bool = True
+):
     """Execute a natural language query with optional learning"""
     # Handle help queries specially
-    if query.lower() in ['help', 'help me', 'what can you do', 'how do i use this']:
+    if query.lower() in ["help", "help me", "what can you do", "how do i use this"]:
         show_help()
         return 0
-    
+
     # Initialize learning system if available and enabled
     learning = None
     if LEARNING_AVAILABLE and enable_learning:
         try:
             learning = PragmaticLearningSystem("cli_user")
-            
+
             # Check for learned aliases
             alias_suggestion = learning.suggest_alias(query)
             if alias_suggestion:
                 print(f"💡 {alias_suggestion}")
         except Exception:
             pass  # Learning is optional, don't fail on errors
-    
+
     # Determine if this might be a long operation
     long_operations = ["install", "update", "rebuild", "search", "generate", "build"]
     is_long = any(op in query.lower() for op in long_operations)
-    
+
     # Show progress for long operations if in a terminal
     spinner = None
     if is_long and sys.stdout.isatty():
         try:
             from nix_for_humanity.ui.progress import Spinner
+
             spinner = Spinner("Processing your request")
             spinner.start()
         except ImportError:
             pass  # Progress indicator not available
-    
+
     try:
         backend = setup_backend(dry_run=not execute)
         await backend.initialize()
-        
+
         context = Context(user_id="cli_user")
         result = await backend.execute(query, context)
-        
+
         # Track learning if enabled
         if learning:
             try:
                 learning.observe_command(query, result.success, result.error)
-                
+
                 # Suggest next command if successful
                 if result.success:
                     next_suggestion = learning.suggest_next_command(query)
                     if next_suggestion:
                         print(f"\n🔮 {next_suggestion}")
-                
+
                 # Suggest error fix if failed
                 elif result.error:
                     error_fix = learning.suggest_error_fix(result.error)
@@ -111,14 +118,14 @@ async def execute_query(query: str, execute: bool = False, enable_learning: bool
                         print(f"\n💡 {error_fix}")
             except Exception:
                 pass  # Learning failures shouldn't break the command
-        
+
         # Stop spinner before displaying result
         if spinner:
             if result.success:
                 spinner.stop("✓ Complete")
             else:
                 spinner.stop("✗ Failed")
-        
+
         # Display result
         if result.success:
             print(result.output)
@@ -128,10 +135,10 @@ async def execute_query(query: str, execute: bool = False, enable_learning: bool
                 print("\nSuggestions:")
                 for suggestion in result.suggestions:
                     print(f"  • {suggestion}")
-        
+
         await backend.cleanup()
         return 0 if result.success else 1
-        
+
     except Exception as e:
         if spinner:
             spinner.stop("✗ Error")
@@ -144,41 +151,41 @@ async def interactive_mode():
     print("Enter natural language commands. Type 'exit' to leave.")
     print("Prefix with '!' to execute for real (not dry-run).")
     print()
-    
+
     backend = setup_backend(dry_run=True)
     await backend.initialize()
     context = Context(user_id="cli_user")
-    
+
     while True:
         try:
             query = input("nix> ").strip()
-            
-            if query.lower() in ['exit', 'quit']:
+
+            if query.lower() in ["exit", "quit"]:
                 break
-            
+
             if not query:
                 continue
-            
+
             # Check for execution prefix
             if query.startswith("!"):
                 query = query[1:].strip()
                 backend.config["dry_run"] = False
             else:
                 backend.config["dry_run"] = True
-            
+
             result = await backend.execute(query, context)
-            
+
             if result.output:
                 print(result.output)
             if result.error:
                 print(f"Error: {result.error}")
-                
+
         except KeyboardInterrupt:
             print("\nGoodbye!")
             break
         except Exception as e:
             print(f"Error: {e}")
-    
+
     await backend.cleanup()
 
 
@@ -194,19 +201,19 @@ USAGE:
 EXAMPLES:
     # Install a package (dry-run by default)
     ask-nix "install firefox"
-    
+
     # Execute for real
     ask-nix --execute "install firefox"
-    
+
     # Search for packages
     ask-nix "search for markdown editor"
-    
+
     # Generate configurations
     ask-nix "web server with nginx and postgresql"
-    
+
     # Development environments
     ask-nix "development environment with python and rust"
-    
+
     # Interactive mode
     ask-nix --interactive
 
@@ -216,13 +223,13 @@ FEATURES:
     • Configuration generation
     • Safe dry-run by default
     • 10x-1500x faster with native API
-    
+
 TIPS:
     • Use simple, natural language
     • Preview operations with dry-run
     • Use --execute only when ready
     • Try --debug for troubleshooting
-    
+
 For more information, visit: https://github.com/Luminous-Dynamics/nix-for-humanity
 """
     print(help_text)
@@ -233,65 +240,49 @@ def main():
     parser = argparse.ArgumentParser(
         description="Natural language interface to NixOS",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="Use 'ask-nix --help-full' for comprehensive help"
+        epilog="Use 'ask-nix --help-full' for comprehensive help",
+    )
+    parser.add_argument("query", nargs="*", help="Natural language query")
+    parser.add_argument(
+        "--execute", "-e", action="store_true", help="Execute for real (not dry-run)"
     )
     parser.add_argument(
-        "query",
-        nargs="*",
-        help="Natural language query"
+        "--interactive", "-i", action="store_true", help="Interactive mode"
     )
     parser.add_argument(
-        "--execute", "-e",
-        action="store_true",
-        help="Execute for real (not dry-run)"
-    )
-    parser.add_argument(
-        "--interactive", "-i",
-        action="store_true",
-        help="Interactive mode"
-    )
-    parser.add_argument(
-        "--debug", "-d",
-        action="store_true",
-        help="Enable debug logging"
+        "--debug", "-d", action="store_true", help="Enable debug logging"
     )
     parser.add_argument(
         "--log-level",
-        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
+        choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
         default=None,
-        help="Set logging level"
+        help="Set logging level",
     )
+    parser.add_argument("--log-file", type=str, help="Log to file instead of console")
     parser.add_argument(
-        "--log-file",
-        type=str,
-        help="Log to file instead of console"
-    )
-    parser.add_argument(
-        "--help-full",
-        action="store_true",
-        help="Show comprehensive help with examples"
+        "--help-full", action="store_true", help="Show comprehensive help with examples"
     )
     parser.add_argument(
         "--no-learning",
         action="store_true",
-        help="Disable learning and personalization"
+        help="Disable learning and personalization",
     )
     parser.add_argument(
         "--show-learning",
         action="store_true",
-        help="Show what the system has learned about you"
+        help="Show what the system has learned about you",
     )
     parser.add_argument(
         "--delete-learning-data",
         action="store_true",
-        help="Delete all learned data and reset"
+        help="Delete all learned data and reset",
     )
-    
+
     args = parser.parse_args()
-    
+
     # Configure logging using our logging config system
     from nix_for_humanity.core.logging_config import setup_logging
-    
+
     if args.debug:
         setup_logging(debug=True)
     elif args.log_level:
@@ -299,26 +290,26 @@ def main():
     else:
         # Default: only warnings and errors to console
         setup_logging(level="WARNING")
-    
+
     # Add file handler if specified
     if args.log_file:
         import logging.handlers
+
         from nix_for_humanity.core.logging_config import get_logging_config
+
         file_handler = logging.handlers.RotatingFileHandler(
-            args.log_file,
-            maxBytes=10*1024*1024,  # 10MB
-            backupCount=3
+            args.log_file, maxBytes=10 * 1024 * 1024, backupCount=3  # 10MB
         )
-        file_handler.setFormatter(logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        ))
+        file_handler.setFormatter(
+            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        )
         get_logging_config().add_handler("", file_handler)
-    
+
     # Show comprehensive help if requested
     if args.help_full:
         show_help()
         return 0
-    
+
     # Handle learning management
     if args.show_learning:
         if LEARNING_AVAILABLE:
@@ -327,7 +318,7 @@ def main():
         else:
             print("Learning system not available")
         return 0
-    
+
     if args.delete_learning_data:
         if LEARNING_AVAILABLE:
             learning = PragmaticLearningSystem("cli_user")
@@ -335,7 +326,7 @@ def main():
         else:
             print("Learning system not available")
         return 0
-    
+
     if args.interactive:
         return asyncio.run(interactive_mode())
     elif args.query:
@@ -347,5 +338,5 @@ def main():
         return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())

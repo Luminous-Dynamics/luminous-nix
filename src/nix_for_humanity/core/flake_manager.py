@@ -75,17 +75,17 @@ class FlakeManager:
             "devShell": """        devShells.{name} = pkgs.mkShell {{
           buildInputs = with pkgs; [
 {packages}          ];
-          
+
 {shell_hook}        }};
 """,
             "package": """        packages.{name} = pkgs.stdenv.mkDerivation {{
           pname = "{pname}";
           version = "{version}";
           src = ./.;
-          
+
           buildInputs = with pkgs; [
 {build_inputs}          ];
-          
+
           installPhase = ''
 {install_phase}          '';
         }};
@@ -99,7 +99,7 @@ class FlakeManager:
             python{python_version}Packages.pip
             python{python_version}Packages.virtualenv
 {packages}          ];
-          
+
           shellHook = ''
             echo "🐍 Python {python_version} development environment"
             echo "Creating virtual environment..."
@@ -115,7 +115,7 @@ class FlakeManager:
             nodePackages.npm
             nodePackages.yarn
 {packages}          ];
-          
+
           shellHook = ''
             echo "📦 Node.js {node_version} development environment"
             echo "npm $(npm --version), yarn $(yarn --version)"
@@ -130,7 +130,7 @@ class FlakeManager:
             rust-analyzer
             clippy
 {packages}          ];
-          
+
           shellHook = ''
             echo "🦀 Rust development environment"
             echo "rustc $(rustc --version)"

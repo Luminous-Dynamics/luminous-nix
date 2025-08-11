@@ -156,35 +156,35 @@ class EnhancedNixForHumanityTUI(App):
     Screen {
         background: $surface;
     }
-    
+
     #orb-container {
         height: 15;
         margin: 1;
         border: solid $primary;
     }
-    
+
     #conversation {
         height: 100%;
         margin: 1;
         border: solid $secondary;
         padding: 1;
     }
-    
+
     #error-panel {
         margin: 1;
         height: auto;
         display: none;
     }
-    
+
     #error-panel.visible {
         display: block;
     }
-    
+
     #input-container {
         height: 3;
         margin: 1;
     }
-    
+
     #error-history {
         dock: right;
         width: 40;
@@ -192,15 +192,15 @@ class EnhancedNixForHumanityTUI(App):
         border: solid $error;
         display: none;
     }
-    
+
     #error-history.visible {
         display: block;
     }
-    
+
     ConversationMessage {
         margin-bottom: 1;
     }
-    
+
     .error-button {
         margin: 1;
     }

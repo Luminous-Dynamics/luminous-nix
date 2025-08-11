@@ -1,9 +1,9 @@
 ---
 
-💡 **Quick Context**: Comprehensive answers to common questions about natural language NixOS interface and consciousness-first computing  
-📍 **You are here**: Reference → FAQ (Question & Answer Guide)  
-🔗 **Related**: [User Guide](../06-TUTORIALS/USER_GUIDE.md) | [Troubleshooting Guide](../04-OPERATIONS/03-TROUBLESHOOTING.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 15 minutes  
+💡 **Quick Context**: Comprehensive answers to common questions about natural language NixOS interface and consciousness-first computing
+📍 **You are here**: Reference → FAQ (Question & Answer Guide)
+🔗 **Related**: [User Guide](../06-TUTORIALS/USER_GUIDE.md) | [Troubleshooting Guide](../04-OPERATIONS/03-TROUBLESHOOTING.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 15 minutes
 📊 **Mastery Level**: 🌱 Beginner - accessible answers for all users from Grandma Rose to power users
 
 🌊 **Natural Next Steps**:

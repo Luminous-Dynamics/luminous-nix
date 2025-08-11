@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Proper Nix-based dependency management for research components  
-📍 **You are here**: Architecture → Enabling Research Components  
-🔗 **Related**: [Research Integration](./10-RESEARCH-INTEGRATION.md) | [System Architecture](./01-SYSTEM-ARCHITECTURE.md)  
-⏱️ **Read time**: 5 minutes  
+💡 **Quick Context**: Proper Nix-based dependency management for research components
+📍 **You are here**: Architecture → Enabling Research Components
+🔗 **Related**: [Research Integration](./10-RESEARCH-INTEGRATION.md) | [System Architecture](./01-SYSTEM-ARCHITECTURE.md)
+⏱️ **Read time**: 5 minutes
 📊 **Mastery Level**: 🌿 Intermediate
 
 ---
@@ -76,7 +76,7 @@ let
   poetry2nix = import (builtins.fetchTarball {
     url = "https://github.com/nix-community/poetry2nix/archive/master.tar.gz";
   }) { inherit pkgs; };
-  
+
   poetryEnv = poetry2nix.mkPoetryEnv {
     projectDir = ./.;
     python = pkgs.python312;
@@ -86,7 +86,7 @@ let
 in
 pkgs.mkShell {
   buildInputs = [ poetryEnv ];
-  
+
   shellHook = ''
     echo "🧬 Research Components Environment"
     echo "================================"

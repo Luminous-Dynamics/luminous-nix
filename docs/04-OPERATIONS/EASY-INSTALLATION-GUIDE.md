@@ -24,12 +24,12 @@ curl -L https://nix-humanity.org/check | sh
 
 ## 🎯 Installation Methods
 
-### Method 1: Nix Flakes (Recommended) 
+### Method 1: Nix Flakes (Recommended)
 ```bash
 # Add to your flake.nix
 {
   inputs.nix-humanity.url = "github:Luminous-Dynamics/nix-for-humanity";
-  
+
   outputs = { self, nixpkgs, nix-humanity }: {
     nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
       modules = [
@@ -54,7 +54,7 @@ sudo nix-channel --update
   imports = [
     <nix-humanity/nixos-module>
   ];
-  
+
   programs.nix-humanity = {
     enable = true;
     defaultPersona = "friendly";  # Options: minimal, friendly, technical, sacred
@@ -93,7 +93,7 @@ sudo chmod +x /usr/local/bin/ask-nix
 
 ### Issue: "Python module not found"
 ```bash
-# ❌ Error  
+# ❌ Error
 ModuleNotFoundError: No module named 'nix_humanity'
 
 # ✅ Fix - Enter development shell
@@ -167,7 +167,7 @@ ask-nix --diagnose
 # For Bash
 echo 'source <(ask-nix --shell-integration bash)' >> ~/.bashrc
 
-# For Zsh  
+# For Zsh
 echo 'source <(ask-nix --shell-integration zsh)' >> ~/.zshrc
 
 # For Fish
@@ -262,7 +262,7 @@ ask-nix --diagnose > diagnostic.log
 
 # Check the log for:
 # - Missing dependencies
-# - Permission issues  
+# - Permission issues
 # - Configuration problems
 # - Version conflicts
 ```

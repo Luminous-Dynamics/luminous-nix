@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: How we use both Python 3.13 and 3.11 for different components  
-📍 **You are here**: Architecture → Python Version Strategy  
-🔗 **Related**: [Enabling Research Components](./11-ENABLING-RESEARCH-COMPONENTS.md) | [System Architecture](./01-SYSTEM-ARCHITECTURE.md)  
-⏱️ **Read time**: 5 minutes  
+💡 **Quick Context**: How we use both Python 3.13 and 3.11 for different components
+📍 **You are here**: Architecture → Python Version Strategy
+🔗 **Related**: [Enabling Research Components](./11-ENABLING-RESEARCH-COMPONENTS.md) | [System Architecture](./01-SYSTEM-ARCHITECTURE.md)
+⏱️ **Read time**: 5 minutes
 📊 **Mastery Level**: 🌿 Intermediate
 
 ---

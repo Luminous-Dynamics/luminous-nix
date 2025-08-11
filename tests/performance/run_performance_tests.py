@@ -27,9 +27,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../backend/python
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
 # Import our performance test modules
-from test_breakthrough_metrics import (
-    TestBreakthroughMetrics,
-)
+from test_breakthrough_metrics import TestBreakthroughMetrics
 from test_native_api_performance import TestNativeAPIPerformance
 
 

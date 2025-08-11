@@ -24,13 +24,13 @@ run_test() {
     local description="$1"
     local command="$2"
     local expected_behavior="$3"
-    
+
     TESTS_RUN=$((TESTS_RUN + 1))
     echo -e "${YELLOW}Test $TESTS_RUN:${NC} $description"
     echo "Command: $command"
     echo "Expected: $expected_behavior"
     echo
-    
+
     # Run the command
     if eval "$command"; then
         echo -e "${GREEN}✅ PASSED${NC}"

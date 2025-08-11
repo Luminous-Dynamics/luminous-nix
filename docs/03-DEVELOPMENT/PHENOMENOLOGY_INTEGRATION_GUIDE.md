@@ -51,22 +51,22 @@ from aw_client import ActivityWatchClient
 class ActivityWatchIntegration:
     def __init__(self):
         self.client = ActivityWatchClient("nix-humanity")
-        
+
     def get_current_behavior(self):
         # Get last minute of activity
         buckets = self.client.get_buckets()
         window_bucket = next(b for b in buckets if "window" in b)
-        
+
         events = self.client.get_events(
             window_bucket,
             start=datetime.now() - timedelta(minutes=1),
             end=datetime.now()
         )
-        
+
         # Calculate behavioral metrics
         apps = [e['data']['app'] for e in events]
         window_switches = len(set(apps)) - 1
-        
+
         return {
             'window_switches': window_switches,
             'active_app': apps[-1] if apps else 'unknown',
@@ -84,21 +84,21 @@ class PhenomenologicalIntentEngine(IntentEngine):
     def __init__(self):
         super().__init__()
         self.phenomenology = TemporalPhenomenology()
-        
+
     def classify_intent(self, query, behavioral_context=None):
         # Regular classification
         result = super().classify_intent(query)
-        
+
         # Add phenomenological context
         if behavioral_context:
             temporal_state = self._create_temporal_state(result, behavioral_context)
             qualia = self.phenomenology.compute_enhanced_qualia(temporal_state)
-            
+
             # Adjust confidence based on system confusion
             if qualia.confusion > 0.5:
                 result['confidence'] *= (1.0 - qualia.confusion * 0.3)
                 result['needs_clarification'] = True
-                
+
         return result
 ```
 
@@ -110,25 +110,25 @@ class PhenomenologicalResponseGenerator(ResponseGenerator):
     def generate(self, intent, query, qualia_state=None):
         # Select base response
         base_response = super().generate(intent, query)
-        
+
         if not qualia_state:
             return base_response
-            
+
         # Adapt based on phenomenological state
         if qualia_state.flow > 0.7:
             # Minimize interruption
             return self._minimize_response(base_response)
-            
+
         elif qualia_state.cognitive_load > 0.7:
             # Simplify and chunk
             return self._simplify_response(base_response)
-            
+
         elif qualia_state.learning_momentum > 0.6:
             # Add educational content
             return self._enrich_response(base_response)
-            
+
         return base_response
-        
+
     def _minimize_response(self, response):
         # Remove explanations, keep only essential
         return {
@@ -145,11 +145,11 @@ class PhenomenologicalResponseGenerator(ResponseGenerator):
 class EmpathicErrorHandler:
     def __init__(self):
         self.phenomenology = TemporalPhenomenology()
-        
+
     def handle_error(self, error, context):
         # Get current phenomenological state
         qualia = context.get('qualia_state')
-        
+
         if qualia and qualia.frustration_level > 0.5:
             # Extra supportive
             return {
@@ -175,12 +175,12 @@ class FlowAwareCommandExecutor:
             # Fast execution, minimal output
             result = self._execute_silent(command)
             return {'status': 'done', 'details': None}
-            
+
         elif qualia_state and qualia_state.cognitive_load > 0.7:
             # Step by step with confirmations
             steps = self._decompose_command(command)
             return self._execute_with_pauses(steps)
-            
+
         else:
             # Normal execution
             return self._execute_normal(command)
@@ -209,7 +209,7 @@ activity = {
 ### Scenario 2: New User Learning
 
 ```python
-# Behavioral indicators  
+# Behavioral indicators
 activity = {
     'window_switches': 5,  # Checking docs
     'keystroke_rate': 40,  # Slow, careful
@@ -253,7 +253,7 @@ def get_behavioral_context():
             return activitywatch.get_current_behavior()
     except Exception:
         pass
-    
+
     # Fallback to defaults
     return {
         'window_switches': 2,
@@ -281,12 +281,12 @@ response = {
 class AdaptiveAssistant:
     def __init__(self, preferences=None):
         self.preferences = preferences or {}
-        
+
     def should_adapt(self, qualia_state):
         # User can disable adaptations
         if self.preferences.get('disable_adaptations'):
             return False
-            
+
         # Or set thresholds
         min_flow = self.preferences.get('flow_threshold', 0.7)
         return qualia_state.flow > min_flow
@@ -304,7 +304,7 @@ def log_interaction(query, qualia_state, response, outcome):
         'user_satisfaction': outcome.get('satisfied'),
         'time_to_completion': outcome.get('duration')
     }
-    
+
     # Use for improving adaptations
     learning_system.record(log_entry)
 ```
@@ -317,14 +317,14 @@ def log_interaction(query, qualia_state, response, outcome):
 def test_flow_preservation():
     """Test that flow states minimize interruption"""
     phenomenology = TemporalPhenomenology()
-    
+
     # Create flow state
     flow_state = create_flow_state()
     qualia = phenomenology.compute_enhanced_qualia(flow_state)
-    
+
     # Generate response
     response = generator.generate("install vim", qualia)
-    
+
     # Assert minimal
     assert response['style'] == 'minimal'
     assert 'explanation' not in response
@@ -337,12 +337,12 @@ def test_flow_preservation():
 def test_confusion_to_clarity_journey():
     """Test that system helps users move from confusion to clarity"""
     assistant = PhenomenologicalNixAssistant()
-    
+
     # Start confused
     confused_activity = {'window_switches': 8, 'keystroke_rate': 30}
     response1 = assistant.process_query("the thing for web", confused_activity)
     assert 'clarifications' in response1
-    
+
     # After clarification, less confused
     clearer_activity = {'window_switches': 2, 'keystroke_rate': 60}
     response2 = assistant.process_query("install firefox", clearer_activity)
@@ -362,7 +362,7 @@ class PhenomenologicalMetrics:
             'cognitive_load_reduction': 0,  # Before/after comparison
             'user_satisfaction_by_state': {}  # Satisfaction per state
         }
-        
+
     def record_session(self, session_data):
         # Track how well adaptations work
         if session_data['maintained_flow']:
@@ -373,7 +373,7 @@ class PhenomenologicalMetrics:
 
 ```sql
 -- Effectiveness of adaptations
-SELECT 
+SELECT
     phenomenological_state,
     adaptation_style,
     AVG(user_satisfaction) as avg_satisfaction,
@@ -382,7 +382,7 @@ FROM interaction_logs
 GROUP BY phenomenological_state, adaptation_style;
 
 -- State transitions
-SELECT 
+SELECT
     from_state,
     to_state,
     COUNT(*) as transition_count,

@@ -94,16 +94,16 @@ for pkg in packages:
 class NixForHumanityBackend:
     """
     Core backend for processing natural language queries.
-    
+
     Handles intent parsing, command execution, and learning.
     """
-    
+
     def __init__(self, config: Optional[Dict[str, Any]] = None):
         """Initialize with optional configuration."""
-    
+
     async def execute(self, query: str, context: Context) -> ExecutionResult:
         """Execute a natural language query."""
-    
+
     async def understand(self, query: str, context: Context) -> Intent:
         """Parse query into structured intent."""
 ```
@@ -139,19 +139,19 @@ class NixForHumanityBackend:
 class ConfigManager:
     """
     Manages user configuration and preferences.
-    
+
     Handles aliases, preferences, history, and patterns.
     """
-    
+
     def get(self, key: str, default: Any = None) -> Any:
         """Get configuration value."""
-    
+
     def set(self, key: str, value: Any) -> None:
         """Set configuration value."""
-    
+
     def add_alias(self, name: str, expansion: str) -> None:
         """Add command alias."""
-    
+
     def expand_aliases(self, query: str) -> str:
         """Expand aliases in query."""
 ```
@@ -188,15 +188,15 @@ config.add_alias("s", "search")
 class AsyncCommandExecutor:
     """
     Async executor for concurrent operations.
-    
+
     Provides parallel execution and streaming.
     """
-    
+
     async def execute_parallel(
         self, commands: List[str]
     ) -> List[AsyncExecutionResult]:
         """Execute multiple commands in parallel."""
-    
+
     async def stream_execution(
         self, commands: List[str]
     ) -> AsyncIterator[AsyncExecutionResult]:
@@ -278,12 +278,12 @@ from nix_for_humanity.plugins import Plugin, hook
 
 class MyPlugin(Plugin):
     """Custom plugin example."""
-    
+
     @hook("pre_execute")
     async def before_execute(self, query: str) -> str:
         """Modify query before execution."""
         return query.replace("please", "")
-    
+
     @hook("post_execute")
     async def after_execute(self, result: ExecutionResult) -> None:
         """Process results after execution."""

@@ -811,9 +811,9 @@ class PersonaFeedbackTester:
         """Format report as readable markdown"""
         md = f"""# Nix for Humanity - Persona Feedback Report
 
-**Session ID:** {report['session_id']}  
-**Timestamp:** {report['timestamp']}  
-**Total Tests:** {report['total_tests']}  
+**Session ID:** {report['session_id']}
+**Timestamp:** {report['timestamp']}
+**Total Tests:** {report['total_tests']}
 **Overall Success Rate:** {report['overall_success_rate']:.1%}
 
 ## Executive Summary

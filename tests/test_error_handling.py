@@ -21,10 +21,7 @@ from nix_for_humanity.core.error_handler import (
     handle_error,
     safe_execute,
 )
-from nix_for_humanity.utils.decorators import (
-    retry_on_error,
-    with_error_handling,
-)
+from nix_for_humanity.utils.decorators import retry_on_error, with_error_handling
 
 
 class TestErrorHandler:

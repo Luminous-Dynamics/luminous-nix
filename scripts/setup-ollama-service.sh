@@ -43,11 +43,11 @@ sleep 5
 # Check if running
 if systemctl --user is-active ollama.service >/dev/null 2>&1; then
     echo "✅ Ollama service is running!"
-    
+
     # Pull base models if not present
     echo ""
     echo "📥 Checking base models..."
-    
+
     for model in mistral:7b phi-2; do
         if ! ollama list | grep -q "$model"; then
             echo "Pulling $model..."
@@ -56,7 +56,7 @@ if systemctl --user is-active ollama.service >/dev/null 2>&1; then
             echo "✓ $model already available"
         fi
     done
-    
+
     # Optional: Pull better models if RAM available
     echo ""
     echo "📊 System memory: $(free -h | grep Mem | awk '{print $2}')"
@@ -68,14 +68,14 @@ if systemctl --user is-active ollama.service >/dev/null 2>&1; then
     echo "4. Skip additional models"
     echo ""
     read -p "Select (1-4) [4]: " choice
-    
+
     case $choice in
         1) ollama pull gemma:7b ;;
         2) ollama pull deepseek-coder:6.7b ;;
         3) ollama pull mixtral:8x7b ;;
         *) echo "Skipping additional models" ;;
     esac
-    
+
 else
     echo "❌ Failed to start Ollama service"
     echo "Try starting manually: ollama serve"

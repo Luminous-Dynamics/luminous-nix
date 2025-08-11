@@ -21,14 +21,14 @@ run_test() {
     local test_name="$1"
     local command="$2"
     local expected_pattern="$3"
-    
+
     echo -e "\n📋 Testing: $test_name"
     echo "Command: $command"
-    
+
     # Run the command and capture output
     output=$(eval "$command" 2>&1)
     exit_code=$?
-    
+
     # Check if output contains expected pattern
     if [[ "$output" =~ $expected_pattern ]] || [[ $exit_code -eq 0 && -z "$expected_pattern" ]]; then
         echo -e "${GREEN}✅ PASSED${NC}"

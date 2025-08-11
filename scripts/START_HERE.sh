@@ -108,23 +108,23 @@ case $choice in
             echo -e "\n${GREEN}Starting improvement journey!${NC}"
             echo "START_DATE=$(date +%Y-%m-%d)" > .improvement-progress
             echo "CURRENT_WEEK=0" >> .improvement-progress
-            
+
             # Create initial backup
             echo -e "\n${YELLOW}Creating initial backup...${NC}"
             git tag -a "pre-improvement-$(date +%Y%m%d)" -m "Backup before improvement sprint" || true
-            
+
             # Generate baseline metrics
             echo -e "\n${BLUE}Generating baseline metrics...${NC}"
             python scripts/progress-dashboard.py
         fi
-        
+
         # Determine current week and run appropriate scripts
         source .improvement-progress
         WEEK=$((CURRENT_WEEK + 1))
-        
+
         echo -e "\n${GREEN}${BOLD}WEEK $WEEK TASKS${NC}"
         echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-        
+
         case $WEEK in
             1|2)
                 echo "Focus: Foundation Cleanup"
@@ -135,25 +135,25 @@ case $choice in
                 echo "4) Create real tests"
                 echo ""
                 read -p "Run all Week 1-2 scripts? (y/n): " run_week1
-                
+
                 if [ "$run_week1" = "y" ]; then
                     echo -e "\n${BLUE}Step 1/4: Reorganizing structure...${NC}"
                     ./scripts/reorganize-project.sh
-                    
+
                     echo -e "\n${BLUE}Step 2/4: Updating imports...${NC}"
                     ./scripts/update-imports.sh
-                    
+
                     echo -e "\n${BLUE}Step 3/4: Cleaning dependencies...${NC}"
                     ./scripts/dependency-cleanup.sh
-                    
+
                     echo -e "\n${BLUE}Step 4/4: Setting up tests...${NC}"
                     ./scripts/test-infrastructure.sh
-                    
+
                     echo "CURRENT_WEEK=2" > .improvement-progress
                     echo "START_DATE=$START_DATE" >> .improvement-progress
                 fi
                 ;;
-                
+
             3|4)
                 echo "Focus: Core Features & Reliability"
                 echo ""
@@ -163,22 +163,22 @@ case $choice in
                 echo "4) Validate performance"
                 echo ""
                 read -p "Run all Week 3-4 scripts? (y/n): " run_week3
-                
+
                 if [ "$run_week3" = "y" ]; then
                     echo -e "\n${BLUE}Applying reliability improvements...${NC}"
                     ./scripts/quick-fix-reliability.sh
-                    
+
                     echo -e "\n${BLUE}Validating performance...${NC}"
                     python scripts/validate-performance.py
-                    
+
                     echo -e "\n${BLUE}Enforcing feature freeze...${NC}"
                     python scripts/feature-freeze-manager.py
-                    
+
                     echo "CURRENT_WEEK=4" > .improvement-progress
                     echo "START_DATE=$START_DATE" >> .improvement-progress
                 fi
                 ;;
-                
+
             5|6)
                 echo "Focus: Polish & Release Preparation"
                 echo ""
@@ -188,22 +188,22 @@ case $choice in
                 echo "4) Release checklist"
                 echo ""
                 read -p "Run all Week 5-6 scripts? (y/n): " run_week5
-                
+
                 if [ "$run_week5" = "y" ]; then
                     echo -e "\n${BLUE}Creating honest documentation...${NC}"
                     ./scripts/create-honest-readme.sh
-                    
+
                     echo -e "\n${BLUE}Running release checklist...${NC}"
                     ./scripts/release-checklist.sh
-                    
+
                     echo -e "\n${BLUE}Setting up CI...${NC}"
                     ./scripts/continuous-integration-setup.sh
-                    
+
                     echo "CURRENT_WEEK=6" > .improvement-progress
                     echo "START_DATE=$START_DATE" >> .improvement-progress
                 fi
                 ;;
-                
+
             *)
                 echo -e "${GREEN}Congratulations! The 6-week sprint is complete!${NC}"
                 echo ""
@@ -214,16 +214,16 @@ case $choice in
                 ;;
         esac
         ;;
-        
+
     2)
         # View progress
         echo -e "\n${BLUE}Generating progress report...${NC}"
         python scripts/progress-dashboard.py
-        
+
         if [ -f "metrics/dashboard.html" ]; then
             echo -e "\n${GREEN}Progress dashboard generated!${NC}"
             echo "View in browser: file://$(pwd)/metrics/dashboard.html"
-            
+
             # Try to open in browser
             if command -v xdg-open >/dev/null 2>&1; then
                 xdg-open "metrics/dashboard.html" 2>/dev/null || true
@@ -232,7 +232,7 @@ case $choice in
             fi
         fi
         ;;
-        
+
     3)
         # Functionality check
         echo -e "\n${BLUE}Running functionality check...${NC}"
@@ -242,7 +242,7 @@ case $choice in
             echo -e "${RED}Functionality check script not found!${NC}"
         fi
         ;;
-        
+
     4)
         # View checklist
         echo -e "\n${BLUE}Opening checklist...${NC}"
@@ -252,45 +252,45 @@ case $choice in
             echo -e "${RED}Checklist not found!${NC}"
         fi
         ;;
-        
+
     5)
         # Emergency cleanup
         echo -e "\n${YELLOW}⚠️  Emergency Cleanup Mode${NC}"
         echo "This will try to fix a broken project state."
         read -p "Continue? (y/n): " cleanup
-        
+
         if [ "$cleanup" = "y" ]; then
             # Make scripts executable
             chmod +x scripts/*.sh scripts/*.py 2>/dev/null || true
-            
+
             # Try to restore basic functionality
             if [ ! -d "src" ] && [ -d "nix_humanity" ]; then
                 echo "Fixing source directory..."
                 mkdir -p src
                 mv nix_humanity src/ 2>/dev/null || true
             fi
-            
+
             echo -e "${GREEN}Basic cleanup complete!${NC}"
         fi
         ;;
-        
+
     6)
         # Emergency rollback
         echo -e "\n${RED}Emergency Rollback${NC}"
         ./scripts/emergency-rollback.sh
         ;;
-        
+
     7)
         # Read plan
         echo -e "\n${BLUE}Opening improvement plan...${NC}"
         less IMPROVEMENT_ACTION_PLAN.md
         ;;
-        
+
     8)
         echo -e "\n${GREEN}Good luck with your improvement journey!${NC}"
         exit 0
         ;;
-        
+
     *)
         echo -e "\n${RED}Invalid option${NC}"
         exit 1

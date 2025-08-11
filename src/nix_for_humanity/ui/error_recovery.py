@@ -14,10 +14,7 @@ from datetime import timedelta
 from enum import Enum
 from typing import Any, Optional
 
-from nix_for_humanity.core.error_handler import (
-    EnhancedError,
-    ErrorCategory,
-)
+from nix_for_humanity.core.error_handler import EnhancedError, ErrorCategory
 
 logger = logging.getLogger(__name__)
 

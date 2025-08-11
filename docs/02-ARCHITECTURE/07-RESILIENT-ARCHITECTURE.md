@@ -29,7 +29,7 @@ class ResilientNLPEngine:
     Secondary: Advanced pattern matching with context
     Tertiary: Basic keyword matching
     """
-    
+
     tiers = [
         {
             "name": "Mistral-7B",
@@ -65,7 +65,7 @@ class ResilientExecutor:
     Tertiary: nix-env commands (legacy but universal)
     Emergency: Manual instruction generation
     """
-    
+
     tiers = [
         {
             "name": "NixOS Python API",
@@ -106,7 +106,7 @@ class ResilientKnowledgeBase:
     Secondary: JSON file cache
     Tertiary: In-memory minimal dataset
     """
-    
+
     tiers = [
         {
             "name": "SQLite FTS5",
@@ -142,7 +142,7 @@ class ResilientInterface:
     Tertiary: Plain text
     Accessibility: Screen reader optimized
     """
-    
+
     tiers = [
         {
             "name": "Rich TUI",
@@ -178,7 +178,7 @@ class ResilientSecurity:
     Tertiary: Basic input validation
     Always: Never execute untrusted code
     """
-    
+
     tiers = [
         {
             "name": "Full Sandbox",
@@ -213,7 +213,7 @@ class ResilientNetwork:
     Secondary: Direct HTTPS
     Tertiary: Offline mode with cached data
     """
-    
+
     tiers = [
         {
             "name": "Tor Network",
@@ -283,10 +283,10 @@ class ResilientComponent:
         self.capabilities = capabilities
         self.active_tier = self.select_best_tier(capabilities)
         self.performance_history = []
-        
+
         # Honest startup message
         print(f"✨ {self.__class__.__name__} running in '{self.active_tier.name}' mode")
-        
+
     def execute(self, operation):
         """Execute with current tier - simpler and cleaner"""
         try:
@@ -294,11 +294,11 @@ class ResilientComponent:
         except Exception as e:
             print(f"⚠️  Tier '{self.active_tier.name}' failed: {e}")
             return self.handle_failure(e, operation)
-            
+
     def get_capability_message(self):
         """Honest communication about current capabilities"""
         return self.active_tier.user_facing_description
-        
+
     def handle_failure(self, error, operation):
         """Intelligent failure handling with potential tier switching"""
         # Could switch to lower tier for next operation
@@ -333,7 +333,7 @@ class ResilientComponent:
         # Check for user overrides first
         if user_override := self.get_user_override():
             return self.get_tier_by_name(user_override)
-            
+
         # Otherwise use automatic detection
         return self.auto_select_tier(capabilities)
 ```

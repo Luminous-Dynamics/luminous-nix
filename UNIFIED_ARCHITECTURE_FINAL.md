@@ -11,7 +11,7 @@ After iterating through various approaches, we've consolidated around a **unifie
 NixForHumanityBackend
 ├── Native Python-Nix API (10x-1500x performance)
 ├── Plugin System (Infinite extensibility)
-├── Hook System (Lifecycle awareness)  
+├── Hook System (Lifecycle awareness)
 ├── Streaming Support (Real-time progress)
 └── Learning Preparation (Future evolution)
 ```
@@ -25,7 +25,7 @@ NixForHumanityBackend
 # Config generation
 ./bin/ask-nix "web server with nginx"
 
-# Smart search  
+# Smart search
 ./bin/ask-nix "search for markdown editor"
 
 # Interactive mode
@@ -142,10 +142,10 @@ class YourPlugin(Plugin):
     @property
     def name(self):
         return "your_plugin"
-    
+
     def can_handle(self, intent):
         # Your logic
-    
+
     async def process(self, intent, context):
         # Your feature
 
@@ -168,7 +168,7 @@ This gives us:
 The best approach is what we have now:
 
 1. **One Backend** - `unified_backend.py` with plugins
-2. **One Main CLI** - `bin/ask-nix` 
+2. **One Main CLI** - `bin/ask-nix`
 3. **Optional Frontends** - API, TUI, Voice (all use same backend)
 4. **Killer Features** - Config generation, smart search
 5. **Native Performance** - Python-Nix API, no subprocess

@@ -86,17 +86,17 @@ case $choice in
             echo ""
             echo "🎬 Creating demo with VHS..."
             echo ""
-            
+
             # Use the VHS tape file
             vhs demo-tui.tape
-            
+
             echo "✅ Demo GIF created: enhanced-tui-demo.gif"
             mv enhanced-tui-demo.gif "$OUTPUT_DIR/"
-            
+
             # Create additional formats
             echo ""
             echo "Creating additional demo formats..."
-            
+
             # Quick demo
             cat > quick-demo.tape << 'EOF'
 # Quick 30-second demo
@@ -124,17 +124,17 @@ Sleep 3s
 
 Ctrl+C
 EOF
-            
+
             vhs quick-demo.tape
             mv quick-demo.gif "$OUTPUT_DIR/"
-            
+
             echo "✅ Quick demo created: quick-demo.gif"
-            
+
         else
             echo "❌ VHS not available. Please install it first."
         fi
         ;;
-        
+
     2)
         echo ""
         echo "🎬 Launching built-in demo mode..."
@@ -146,7 +146,7 @@ EOF
         echo ""
         echo "Press Enter when ready to start..."
         read
-        
+
         # Launch TUI with demo flag
         python3 -c "
 import sys
@@ -156,7 +156,7 @@ app = EnhancedNixForHumanityTUIWithDemo()
 app.run()
 "
         ;;
-        
+
     3)
         if [[ "$ASCIINEMA_AVAILABLE" == true ]]; then
             echo ""
@@ -170,9 +170,9 @@ app.run()
             echo ""
             echo "Press Enter to start recording..."
             read
-            
+
             asciinema rec "$OUTPUT_DIR/demo.cast" -t "Nix for Humanity Enhanced TUI Demo"
-            
+
             echo ""
             echo "✅ Recording saved to: $OUTPUT_DIR/demo.cast"
             echo ""
@@ -180,12 +180,12 @@ app.run()
             echo "  asciinema upload $OUTPUT_DIR/demo.cast"
             echo "Or convert to GIF:"
             echo "  docker run --rm -v \$PWD:/data asciinema/asciicast2gif -s 2 -t solarized-dark demo.cast demo.gif"
-            
+
         else
             echo "❌ Asciinema not available. Please install it first."
         fi
         ;;
-        
+
     4)
         echo ""
         echo "📹 Manual Recording Instructions"

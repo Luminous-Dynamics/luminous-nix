@@ -150,6 +150,6 @@ The Nix for Humanity project is now **production-ready** with professional-grade
 
 ---
 
-*Polish tasks completed: 2024*  
-*Time invested: ~4 hours*  
+*Polish tasks completed: 2024*
+*Time invested: ~4 hours*
 *Code quality: A+ Production Ready*

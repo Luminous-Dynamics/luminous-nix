@@ -16,20 +16,20 @@ if ! command -v vhs &> /dev/null; then
     echo "2. Use nix shell (flakes, temporary)"
     echo "3. Add to system configuration (permanent)"
     echo ""
-    
+
     read -p "Enter choice (1-3): " setup_choice
-    
+
     case $setup_choice in
         1)
             echo "Starting nix-shell with VHS..."
             exec nix-shell shell-with-vhs.nix --run "$0 $@"
             ;;
-            
+
         2)
             echo "Starting nix shell with VHS..."
             exec nix shell nixpkgs#vhs nixpkgs#imagemagick nixpkgs#ffmpeg -c "$0 $@"
             ;;
-            
+
         3)
             echo ""
             echo "To install VHS permanently, add to /etc/nixos/configuration.nix:"
@@ -68,12 +68,12 @@ case $choice in
     1)
         echo ""
         echo "Creating full demo with VHS..."
-        
+
         # Check if tape file exists
         if [ ! -f "demo-tui.tape" ]; then
             echo "❌ demo-tui.tape not found!"
             echo "Creating one for you..."
-            
+
             cat > demo-tui.tape << 'EOF'
 # Nix for Humanity Enhanced TUI Demo
 Output demo-materials/enhanced-tui-demo.gif
@@ -115,10 +115,10 @@ Ctrl+C
 Sleep 1s
 EOF
         fi
-        
+
         vhs demo-tui.tape
         echo "✅ Demo created: $OUTPUT_DIR/enhanced-tui-demo.gif"
-        
+
         # Optimize with gifsicle if available
         if command -v gifsicle &> /dev/null; then
             echo "Optimizing GIF..."
@@ -126,11 +126,11 @@ EOF
             echo "✅ Optimized: $OUTPUT_DIR/enhanced-tui-demo-optimized.gif"
         fi
         ;;
-        
+
     2)
         echo ""
         echo "Creating quick demo..."
-        
+
         cat > quick-demo.tape << 'EOF'
 Output demo-materials/quick-demo.gif
 Set FontSize 16
@@ -152,23 +152,23 @@ Sleep 3s
 
 Ctrl+C
 EOF
-        
+
         vhs quick-demo.tape
         rm quick-demo.tape
         echo "✅ Quick demo created: $OUTPUT_DIR/quick-demo.gif"
         ;;
-        
+
     3)
         echo ""
         echo "Generating screenshots..."
-        
+
         # Use Nix python if needed
         if ! command -v python3 &> /dev/null; then
             nix-shell -p python311 python311Packages.rich --run "python3 capture-tui-screenshots.py"
         else
             python3 capture-tui-screenshots.py
         fi
-        
+
         # Convert SVG to PNG using ImageMagick
         if command -v convert &> /dev/null; then
             echo "Converting SVG to PNG..."
@@ -181,7 +181,7 @@ EOF
             done
         fi
         ;;
-        
+
     4)
         echo ""
         echo "Launching automated demo mode..."
@@ -193,7 +193,7 @@ EOF
         echo ""
         echo "Press Enter to start demo..."
         read
-        
+
         ./run-enhanced-tui.sh
         ;;
 esac

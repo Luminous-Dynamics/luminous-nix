@@ -143,25 +143,25 @@ def process_query(
 ) -> Response:
     """
     Process a natural language query into a Nix command.
-    
+
     Translates user intent into executable Nix commands using
     NLP techniques and pattern matching.
-    
+
     Args:
         query: Natural language query from user.
         context: Optional session context for stateful processing.
         timeout: Maximum processing time in seconds.
-        
+
     Returns:
         Response object containing:
             - command: The generated Nix command
             - explanation: Human-readable explanation
             - confidence: Confidence score (0-1)
-            
+
     Raises:
         ValueError: If query is empty or invalid.
         TimeoutError: If processing exceeds timeout.
-        
+
     Example:
         >>> response = process_query("install firefox")
         >>> print(response.command)
@@ -169,7 +169,7 @@ def process_query(
     """
     if not query:
         raise ValueError("Query cannot be empty")
-    
+
     # Implementation here
     return Response(command="", explanation="", confidence=0.0)
 ```
@@ -179,24 +179,24 @@ def process_query(
 class NixBackend:
     """
     Backend for processing Nix operations.
-    
+
     This class provides the core logic for translating natural
     language queries into Nix commands and executing them safely.
-    
+
     Attributes:
         config: Configuration dictionary
         executor: Command executor instance
         cache: Result cache for performance
-        
+
     Example:
         >>> backend = NixBackend(config={'safe_mode': True})
         >>> result = backend.process("install firefox")
     """
-    
+
     def __init__(self, config: Optional[Dict] = None):
         """
         Initialize the backend.
-        
+
         Args:
             config: Optional configuration overrides.
         """
@@ -314,11 +314,11 @@ def profile(func):
         profiler.enable()
         result = func(*args, **kwargs)
         profiler.disable()
-        
+
         stats = pstats.Stats(profiler)
         stats.sort_stats('cumulative')
         stats.print_stats(10)
-        
+
         return result
     return wrapper
 
@@ -352,13 +352,13 @@ def validate_path(path_str: str) -> Path:
     """Validate and sanitize file path."""
     # Remove any path traversal attempts
     path_str = re.sub(r'\.\.+', '', path_str)
-    
+
     path = Path(path_str).resolve()
-    
+
     # Ensure path is within allowed directory
     if not path.is_relative_to(ALLOWED_DIR):
         raise ValidationError(f"Path outside allowed directory: {path}")
-    
+
     return path
 ```
 
@@ -437,7 +437,7 @@ config_file = Path(os.environ.get('CONFIG_PATH', './config.json'))
 class Service:
     def __init__(self, executor=None):
         self.executor = executor or DefaultExecutor()
-    
+
     def process(self, query: str) -> str:
         # Now executor can be mocked in tests
         return self.executor.execute(query)

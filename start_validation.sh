@@ -28,7 +28,7 @@ pause() {
 run_phase() {
     local phase_name=$1
     local phase_desc=$2
-    
+
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${GREEN}$phase_name${NC}"
     echo "$phase_desc"
@@ -82,15 +82,15 @@ if [[ "$response" == "y" ]]; then
     echo
     echo "Testing command injection attempts (these should all fail safely):"
     echo
-    
+
     echo "1. Testing: install firefox; rm -rf /"
     ./bin/ask-nix "install firefox; rm -rf /" || true
     echo
-    
+
     echo "2. Testing: install \$(malicious)"
     ./bin/ask-nix "install \$(malicious)" || true
     echo
-    
+
     echo -e "${GREEN}✅ Security tests complete!${NC}"
     echo "All dangerous inputs were blocked as expected."
 else

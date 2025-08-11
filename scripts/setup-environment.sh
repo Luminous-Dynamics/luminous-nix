@@ -44,7 +44,7 @@ HAS_PYTHON=false
 HAS_NIX=false
 
 check_command "node" && HAS_NODE=true
-check_command "npm" 
+check_command "npm"
 check_command "python3" && HAS_PYTHON=true
 check_command "pip3" || check_command "pip"
 check_command "nix-shell" && HAS_NIX=true
@@ -107,27 +107,27 @@ echo -e "${BLUE}Setting up development environment...${NC}"
 if [ "$HAS_NIX" = true ]; then
     echo -e "${GREEN}Using Nix environment${NC}"
     echo "Run 'nix-shell' to enter the development environment"
-    
+
 elif [ "$HAS_NODE" = true ]; then
     echo -e "${GREEN}Using Node.js environment${NC}"
     echo "Installing npm dependencies..."
     npm install
-    
+
 elif [ "$HAS_PYTHON" = true ]; then
     echo -e "${YELLOW}Using Python fallback environment${NC}"
-    
+
     # Set up Python virtual environment
     if [ ! -d .venv ]; then
         echo "Creating Python virtual environment..."
         python3 -m venv .venv
     fi
-    
+
     echo "Activating virtual environment..."
     source .venv/bin/activate
-    
+
     echo "Installing Python dependencies..."
     pip install -r requirements.txt
-    
+
 else
     echo -e "${RED}❌ No suitable development environment found!${NC}"
     echo "Please install one of the following:"

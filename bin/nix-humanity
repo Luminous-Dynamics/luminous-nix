@@ -48,7 +48,7 @@ Safety:
 
 Common Commands:
   search <package>    Find packages
-  install <package>   Install a package  
+  install <package>   Install a package
   remove <package>    Remove a package
   update system       Update NixOS
   list packages       Show installed packages
@@ -80,7 +80,7 @@ async function main() {
     // Process the intent
     console.log(`🔍 Processing: "${command}"`);
     const intent = await intentEngine.recognize(command);
-    
+
     if (!intent.action) {
       console.log('❌ I didn\'t understand that command.');
       if (intent.suggestions && intent.suggestions.length > 0) {
@@ -100,16 +100,16 @@ async function main() {
 
     // Execute the command
     // The intent has a 'package' field, not 'target'
-    const args = intent.package ? [intent.package] : 
-                 intent.service ? [intent.service] : 
+    const args = intent.package ? [intent.package] :
+                 intent.service ? [intent.service] :
                  [];
     const result = await realExecutor.execute(intent.action, args);
-    
+
     // Display results
     console.log();
     if (result.success) {
       console.log('✅', result.output);
-      
+
       if (result.command && (verbose || !execute)) {
         console.log(`\n🔧 Command: ${result.command}`);
       }

@@ -12,7 +12,7 @@ export PYTHONPATH="${PWD}:$PYTHONPATH"
 # Try using the pythonMainEnv from flake.nix if in nix shell
 if [ -n "$IN_NIX_SHELL" ]; then
     echo "✅ In Nix shell, checking for dependencies..."
-    
+
     # Check if we have rich (it's in pythonMainEnv)
     python3 -c "import rich; print('  ✅ Rich available')" 2>/dev/null || {
         echo "  ⚠️  Rich not in main environment"
@@ -46,12 +46,12 @@ def draw_simple_orb(phase=0):
     """Draw a simple ASCII orb"""
     # Simple breathing animation
     size = 3 + int(2 * abs(phase % 2 - 1))
-    
+
     orb_lines = []
-    
+
     # Top
     orb_lines.append(" " * (7 - size) + "╭" + "─" * (size * 2) + "╮")
-    
+
     # Middle
     for i in range(size):
         padding = 7 - size
@@ -60,10 +60,10 @@ def draw_simple_orb(phase=0):
             orb_lines.append(" " * padding + "│" + " " * (size - 1) + "◈" + " " * (size - 1) + "│")
         else:
             orb_lines.append(" " * padding + "│" + " " * (size * 2) + "│")
-    
+
     # Bottom
     orb_lines.append(" " * (7 - size) + "╰" + "─" * (size * 2) + "╯")
-    
+
     return orb_lines
 
 print(f"{Colors.CYAN}🌟 Consciousness Orb Demo (Simple){Colors.RESET}")
@@ -76,16 +76,16 @@ for i in range(6):
     print(f"{Colors.CYAN}🌟 Consciousness Orb Demo{Colors.RESET}")
     print("=" * 40)
     print()
-    
+
     # Draw the orb
     orb = draw_simple_orb(i * 0.3)
     for line in orb:
         print(f"    {Colors.PURPLE}{line}{Colors.RESET}")
-    
+
     print()
     print(f"    {Colors.BLUE}State: THINKING{Colors.RESET}")
     print(f"    {Colors.GREEN}Phase: {i}{Colors.RESET}")
-    
+
     time.sleep(0.5)
 
 print()

@@ -18,11 +18,11 @@ TESTS_FAILED=0
 run_test() {
     local test_name="$1"
     local command="$2"
-    
+
     echo -e "${YELLOW}Test:${NC} $test_name"
     echo "Command: $command"
     echo "---"
-    
+
     if $command; then
         echo -e "${GREEN}✅ PASSED${NC}"
         ((TESTS_PASSED++))

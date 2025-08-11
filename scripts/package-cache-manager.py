@@ -54,14 +54,14 @@ class IntelligentPackageCache:
 
         c.execute(
             """
-            CREATE INDEX IF NOT EXISTS idx_package_search 
+            CREATE INDEX IF NOT EXISTS idx_package_search
             ON package_cache(package_name, description)
         """
         )
 
         c.execute(
             """
-            CREATE INDEX IF NOT EXISTS idx_search_rank 
+            CREATE INDEX IF NOT EXISTS idx_search_rank
             ON package_cache(search_rank DESC)
         """
         )
@@ -116,7 +116,7 @@ class IntelligentPackageCache:
             """
             SELECT package_name, description, version, attribute_path, homepage,
                    search_rank,
-                   CASE 
+                   CASE
                        WHEN LOWER(package_name) = ? THEN 1000
                        WHEN LOWER(package_name) LIKE ? THEN 500
                        WHEN LOWER(package_name) LIKE ? THEN 100
@@ -124,7 +124,7 @@ class IntelligentPackageCache:
                        ELSE 1
                    END + search_rank * 10 as relevance_score
             FROM package_cache
-            WHERE LOWER(package_name) LIKE ? 
+            WHERE LOWER(package_name) LIKE ?
                OR LOWER(description) LIKE ?
             ORDER BY relevance_score DESC
             LIMIT ?
@@ -198,7 +198,7 @@ class IntelligentPackageCache:
         for pkg in packages:
             c.execute(
                 """
-                INSERT OR REPLACE INTO package_cache 
+                INSERT OR REPLACE INTO package_cache
                 (package_name, description, version, attribute_path, last_updated)
                 VALUES (?, ?, ?, ?, ?)
             """,
@@ -255,7 +255,7 @@ class IntelligentPackageCache:
 
             c.execute(
                 """
-                UPDATE package_cache 
+                UPDATE package_cache
                 SET search_rank = search_rank + 1
                 WHERE package_name = ?
             """,
@@ -305,8 +305,8 @@ class IntelligentPackageCache:
 
         frequent = c.execute(
             """
-            SELECT pattern 
-            FROM search_patterns 
+            SELECT pattern
+            FROM search_patterns
             WHERE frequency >= ?
             ORDER BY frequency DESC
             LIMIT 20

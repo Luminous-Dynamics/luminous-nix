@@ -30,9 +30,9 @@ assignees: ''
 
 ## 📊 Success Criteria
 <!-- How will we know this feature is successful? -->
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
+- [ ]
 
 ## 🎨 Mockups/Examples
 <!-- If applicable, add mockups or examples of similar features -->

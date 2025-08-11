@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Official Python SDK for integrating Nix for Humanity into Python applications  
-📍 **You are here**: Reference → Python SDK  
-🔗 **Related**: [API Reference](./02-API-REFERENCE.md) | [JavaScript SDK](./04-JAVASCRIPT-SDK.md) | [Examples](../06-TUTORIALS/API_EXAMPLES.md)  
-⏱️ **Read time**: 10 minutes  
+💡 **Quick Context**: Official Python SDK for integrating Nix for Humanity into Python applications
+📍 **You are here**: Reference → Python SDK
+🔗 **Related**: [API Reference](./02-API-REFERENCE.md) | [JavaScript SDK](./04-JAVASCRIPT-SDK.md) | [Examples](../06-TUTORIALS/API_EXAMPLES.md)
+⏱️ **Read time**: 10 minutes
 📊 **Mastery Level**: 🌿 Intermediate - requires Python knowledge
 
 ---
@@ -151,9 +151,9 @@ async def main():
             client.query("update system"),
             client.query("search python packages")
         ]
-        
+
         responses = await asyncio.gather(*tasks)
-        
+
         for response in responses:
             print(response.text)
 
@@ -166,7 +166,7 @@ asyncio.run(main())
 # Batch multiple queries
 queries = [
     "install firefox",
-    "install vscode", 
+    "install vscode",
     "install docker"
 ]
 
@@ -273,45 +273,45 @@ import readline  # For command history
 
 def main():
     client = NixClient(personality=Personality.FRIENDLY)
-    
+
     print("Nix for Humanity Interactive Shell")
     print("Type 'exit' to quit\n")
-    
+
     while True:
         try:
             query = input("nix> ").strip()
-            
+
             if query.lower() in ['exit', 'quit']:
                 break
-            
+
             if not query:
                 continue
-            
+
             response = client.query(query)
             print(response.text)
-            
+
             # Show commands if available
             if response.commands:
                 print("\nSuggested commands:")
                 for i, cmd in enumerate(response.commands):
                     print(f"  {i+1}. {cmd.command}")
-                
+
                 # Ask if user wants to execute
                 choice = input("\nExecute command? (1-{}, n): ".format(
                     len(response.commands)
                 ))
-                
+
                 if choice.isdigit() and 1 <= int(choice) <= len(response.commands):
                     cmd = response.commands[int(choice) - 1]
                     print(f"\nExecuting: {cmd.command}")
                     # In real app, would execute here
-            
+
         except KeyboardInterrupt:
             print("\nInterrupted")
             break
         except Exception as e:
             print(f"Error: {e}")
-    
+
     print("\nGoodbye!")
 
 if __name__ == "__main__":
@@ -336,15 +336,15 @@ def install_packages(packages):
         personality=Personality.MINIMAL,
         execution_mode=ExecutionMode.SAFE
     )
-    
+
     results = []
-    
+
     for package in packages:
         logger.info(f"Installing {package}...")
-        
+
         try:
             response = client.query(f"install {package}")
-            
+
             if response.commands:
                 # In production, would execute the command
                 results.append({
@@ -360,7 +360,7 @@ def install_packages(packages):
                     "message": response.text
                 })
                 logger.warning(f"✗ No command found for {package}")
-                
+
         except Exception as e:
             results.append({
                 "package": package,
@@ -368,17 +368,17 @@ def install_packages(packages):
                 "error": str(e)
             })
             logger.error(f"✗ Failed to install {package}: {e}")
-    
+
     return results
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: install_packages.py package1 package2 ...")
         sys.exit(1)
-    
+
     packages = sys.argv[1:]
     results = install_packages(packages)
-    
+
     # Summary
     success = sum(1 for r in results if r["status"] == "success")
     print(f"\nInstalled {success}/{len(packages)} packages successfully")
@@ -393,7 +393,7 @@ from datetime import datetime
 
 class NixLearningAssistant:
     """Assistant that learns from interactions"""
-    
+
     def __init__(self, history_file="nix_history.json"):
         self.client = NixClient(
             personality=Personality.SYMBIOTIC,
@@ -401,22 +401,22 @@ class NixLearningAssistant:
         )
         self.history_file = history_file
         self.history = self.load_history()
-    
+
     def load_history(self):
         try:
             with open(self.history_file, 'r') as f:
                 return json.load(f)
         except FileNotFoundError:
             return []
-    
+
     def save_history(self):
         with open(self.history_file, 'w') as f:
             json.dump(self.history, f, indent=2)
-    
+
     def learn(self, query):
         """Process query and learn from the interaction"""
         response = self.client.query(query)
-        
+
         # Record interaction
         interaction = {
             "timestamp": datetime.now().isoformat(),
@@ -426,15 +426,15 @@ class NixLearningAssistant:
             "confidence": response.confidence,
             "commands": [cmd.to_dict() for cmd in response.commands]
         }
-        
+
         self.history.append(interaction)
         self.save_history()
-        
+
         # Submit feedback if confidence is low
         if response.confidence < 0.8:
             print("I'm not very confident about this response.")
             helpful = input("Was it helpful? (y/n): ").lower() == 'y'
-            
+
             if not helpful:
                 better = input("How would you improve it? ")
                 self.client.submit_feedback(
@@ -443,20 +443,20 @@ class NixLearningAssistant:
                     helpful=False,
                     improved_response=better
                 )
-        
+
         return response
-    
+
     def suggest_similar(self, query):
         """Suggest similar past queries"""
         # Simple keyword matching - real implementation would use embeddings
         keywords = set(query.lower().split())
         similar = []
-        
+
         for interaction in self.history:
             hist_keywords = set(interaction["query"].lower().split())
             if keywords & hist_keywords:  # Intersection
                 similar.append(interaction)
-        
+
         return similar[:5]  # Top 5
 
 # Usage
@@ -479,7 +479,7 @@ from unittest.mock import Mock, patch
 from nix_humanity import NixClient
 
 class TestNixClient(unittest.TestCase):
-    
+
     @patch('requests.post')
     def test_query(self, mock_post):
         # Mock response
@@ -495,10 +495,10 @@ class TestNixClient(unittest.TestCase):
                 }]
             }
         }
-        
+
         client = NixClient()
         response = client.query("install firefox")
-        
+
         self.assertEqual(response.text, "Installing Firefox...")
         self.assertEqual(len(response.commands), 1)
         self.assertEqual(response.commands[0].command, "nix-env -iA nixpkgs.firefox")
@@ -519,6 +519,6 @@ class TestNixClient(unittest.TestCase):
 
 *Sacred Humility Context: This Python SDK documentation represents our vision for a comprehensive client library. While the API endpoints are functional, the SDK itself is under development and may not include all features described. The examples demonstrate intended usage patterns that will be fully implemented as the project evolves.*
 
-**Status**: In Development  
-**Version**: 0.8.0  
+**Status**: In Development
+**Version**: 0.8.0
 **License**: MIT

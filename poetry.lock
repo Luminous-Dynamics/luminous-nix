@@ -1397,6 +1397,26 @@ files = [
 packaging = "*"
 
 [[package]]
+name = "detect-secrets"
+version = "1.5.0"
+description = "Tool for detecting secrets in the codebase"
+optional = false
+python-versions = "*"
+groups = ["dev"]
+files = [
+    {file = "detect_secrets-1.5.0-py3-none-any.whl", hash = "sha256:e24e7b9b5a35048c313e983f76c4bd09dad89f045ff059e354f9943bf45aa060"},
+    {file = "detect_secrets-1.5.0.tar.gz", hash = "sha256:6bb46dcc553c10df51475641bb30fd69d25645cc12339e46c824c1e0c388898a"},
+]
+
+[package.dependencies]
+pyyaml = "*"
+requests = "*"
+
+[package.extras]
+gibberish = ["gibberish-detector"]
+word-list = ["pyahocorasick"]
+
+[[package]]
 name = "dill"
 version = "0.3.8"
 description = "serialize all of Python"
@@ -7875,4 +7895,4 @@ web = ["PyJWT", "cryptography", "flask", "flask-socketio", "gunicorn", "pyOpenSS
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "91a64242d3eae7ff9a9ce716da45d076665aad3a70be99505ee6b811a8b96893"
+content-hash = "c12f0ca7241c0036b2cbca821752ce3592f6176d2150c156d90b62ac8727640e"

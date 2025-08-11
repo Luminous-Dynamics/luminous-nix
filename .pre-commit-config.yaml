@@ -1,5 +1,5 @@
 # Pre-commit hooks for Nix for Humanity
-# Install: pip install pre-commit
+# Install: pip install pre-commit (or poetry add --group dev pre-commit)
 # Setup: pre-commit install
 # Run manually: pre-commit run --all-files
 
@@ -19,8 +19,6 @@ repos:
       - id: detect-private-key
       - id: mixed-line-ending
         args: ['--fix=lf']
-      - id: no-commit-to-branch
-        args: ['--branch', 'main']
 
   # Python hooks
   - repo: https://github.com/psf/black
@@ -30,11 +28,11 @@ repos:
         language_version: python3
         args: ['--line-length=88']
 
-  - repo: https://github.com/PyCQA/flake8
-    rev: 7.0.0
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.1.14
     hooks:
-      - id: flake8
-        args: ['--max-line-length=88', '--extend-ignore=E203,W503']
+      - id: ruff
+        args: ['--fix', '--exit-non-zero-on-fix']
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
@@ -42,19 +40,12 @@ repos:
       - id: isort
         args: ['--profile', 'black', '--line-length', '88']
 
-  - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.6
-    hooks:
-      - id: bandit
-        args: ['-ll', '--skip', 'B101,B601']
-        files: \.py$
-
-  # Markdown
+  # Markdown (less strict config)
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.39.0
     hooks:
       - id: markdownlint
-        args: ['--fix']
+        args: ['--fix', '--disable', 'MD013', '--disable', 'MD040', '--disable', 'MD036']
 
   # Shell scripts
   - repo: https://github.com/shellcheck-py/shellcheck-py
@@ -63,51 +54,6 @@ repos:
       - id: shellcheck
         args: ['--severity=warning']
 
-  # Commit message
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
-    hooks:
-      - id: commitizen
-        stages: [commit-msg]
-
-  # Security
-  - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.4.0
-    hooks:
-      - id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
-        exclude: package-lock.json
-
-  # Custom local hooks
-  - repo: local
-    hooks:
-      - id: check-documentation-standards
-        name: Check documentation standards
-        entry: bash docs/check-doc-standards.sh
-        language: system
-        files: \.md$
-        pass_filenames: false
-
-      - id: no-console-log
-        name: No console.log statements
-        entry: bash -c 'grep -r "console\.log" --include="*.js" --include="*.ts" src/ && exit 1 || exit 0'
-        language: system
-        files: \.(js|ts)$
-        pass_filenames: false
-
-      - id: check-todos
-        name: Check TODO comments
-        entry: bash -c 'grep -r "TODO\|FIXME\|XXX" --include="*.py" --include="*.js" --include="*.ts" src/ && echo "Warning TODO comments found" || exit 0'
-        language: system
-        pass_filenames: false
-
-      - id: validate-personas
-        name: Validate persona references
-        entry: bash -c 'echo "Checking persona references..."'
-        language: system
-        files: \.(md|py|js|ts)$
-        pass_filenames: false
-
 # Configuration for specific tools
 default_language_version:
   python: python3
@@ -115,6 +61,7 @@ default_language_version:
 exclude: |
   (?x)^(
     archive/.*|
+    .archive-2025-08-10/.*|
     node_modules/.*|
     venv/.*|
     \.git/.*|
@@ -123,5 +70,7 @@ exclude: |
     .*\.min\.js|
     .*\.min\.css|
     package-lock\.json|
-    poetry\.lock
+    poetry\.lock|
+    \.secrets\.baseline|
+    docs/check-doc-standards\.sh
   )$

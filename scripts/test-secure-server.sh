@@ -58,18 +58,18 @@ class CachedPackageService {
             { name: 'firefox', version: '115.0', description: 'Mozilla Firefox web browser' }
         ].filter(pkg => pkg.name.includes(query));
     }
-    
+
     async listInstalled() {
         return [
             { name: 'nixos-gui', version: '0.1.0' },
             { name: 'nodejs', version: '20.5.0' }
         ];
     }
-    
+
     async install(packageName) {
         return { success: true, message: `Mock install of ${packageName}` };
     }
-    
+
     async remove(packageName) {
         return { success: true, message: `Mock remove of ${packageName}` };
     }
@@ -85,25 +85,25 @@ class ConfigService {
         return `{ config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  
+
   boot.loader.systemd-boot.enable = true;
-  
+
   networking.hostName = "nixos-sacred";
-  
+
   environment.systemPackages = with pkgs; [
     vim
     git
     firefox
   ];
-  
+
   system.stateVersion = "25.11";
 }`;
     }
-    
+
     async validate(content) {
         return { valid: true };
     }
-    
+
     async save(content) {
         return { success: true, message: 'Configuration saved (mock)' };
     }
@@ -121,15 +121,15 @@ class ServiceManager {
             { name: 'nixos-gui', status: 'active', description: 'NixOS GUI service' }
         ];
     }
-    
+
     async startService(name) {
         return { success: true, message: `Started ${name} (mock)` };
     }
-    
+
     async stopService(name) {
         return { success: true, message: `Stopped ${name} (mock)` };
     }
-    
+
     async restartService(name) {
         return { success: true, message: `Restarted ${name} (mock)` };
     }

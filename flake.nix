@@ -22,14 +22,14 @@
         pkgs = import nixpkgs {
           inherit system overlays;
         };
-        
+
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
           extensions = [ "rust-src" ];
         };
-        
+
         # Poetry2nix for Python dependencies
         poetry2nix-lib = poetry2nix.lib.mkPoetry2Nix { inherit pkgs; };
-        
+
         # Create Python environment from pyproject.toml
         # Create Python environment with TUI dependencies manually
         # This avoids poetry2nix complexity for now
@@ -39,13 +39,13 @@
           click
           colorama
           python-dotenv
-          
+
           # TUI dependencies (from extras.tui)
           textual
           rich
           blessed
           pyperclip
-          
+
           # Other useful packages for development
           pyyaml
           pytest
@@ -54,7 +54,7 @@
           pytest-mock
           ipython
         ]);
-        
+
         # Also create a Python 3.13 environment for main app (without heavy research deps)
         pythonMainEnv = pkgs.python313.withPackages (ps: with ps; [
           pip
@@ -72,48 +72,48 @@
           colorama
           python-dotenv
         ]);
-        
+
         # Create TUI runner script
         runTuiApp = pkgs.writeShellScriptBin "run-tui-app" ''
           #!/usr/bin/env bash
           set -e
-          
+
           echo "🌟 Launching Nix for Humanity TUI..."
           echo "All dependencies are handled by Nix - no pip install needed!"
           echo
-          
+
           cd ${toString ./.}
           export PYTHONPATH="${toString ./.}:$PYTHONPATH"
-          
+
           # Launch the TUI with poetry2nix-managed Python
           exec ${poetryEnv}/bin/python -m nix_for_humanity.interfaces.tui "$@"
         '';
-        
+
         # Create our custom ask-nix-guru command
         askNixGuru = pkgs.writeShellScriptBin "ask-nix-guru" ''
           #!/usr/bin/env bash
-          
+
           # Sacred Trinity: Human asks, Local LLM answers with NixOS expertise
-          
+
           if [ $# -eq 0 ]; then
             echo "🧙 Ask the Nix Guru anything about NixOS!"
             echo "Usage: ask-nix-guru 'How do I install a package?'"
             exit 1
           fi
-          
+
           QUESTION="$*"
-          
+
           # Check if ollama is running
           if ! ${pkgs.curl}/bin/curl -s http://localhost:11434/api/tags >/dev/null 2>&1; then
             echo "⚠️  Starting Ollama service..."
             ${pkgs.ollama}/bin/ollama serve &
             sleep 5
           fi
-          
+
           # Model selection - Mistral-7B is our default for Sacred Trinity
           DEFAULT_MODEL="mistral:7b"
           MODEL=''${NIX_GURU_MODEL:-$DEFAULT_MODEL}
-          
+
           # Sacred Trinity Model Choice: Mistral-7B
           # - Perfect balance of performance and accuracy
           # - Runs smoothly on 6GB RAM (accessible to most)
@@ -125,31 +125,31 @@
           # - codellama:13b-instruct - More detailed explanations (16GB RAM)
           # - mixtral:8x7b - Best quality but needs 32GB RAM
           # - phi:2.7b - Tiny model for limited RAM (3GB)
-          
+
           echo "📊 Using model: $MODEL"
-          
+
           # Check if model exists, pull if not
           if ! ${pkgs.ollama}/bin/ollama list | grep -q "$MODEL"; then
             echo "📥 Downloading $MODEL (this happens once)..."
             ${pkgs.ollama}/bin/ollama pull $MODEL
           fi
-          
+
           # Craft a NixOS-specific prompt
           PROMPT="You are a NixOS expert. Answer this question concisely and accurately: $QUESTION
-          
+
           Focus on:
           1. Practical NixOS/Nix solutions
           2. Correct syntax and best practices
           3. Common pitfalls to avoid
-          
+
           Answer:"
-          
+
           echo "🤔 Consulting the Nix Guru..."
           echo
-          
+
           # Query the model
           ${pkgs.ollama}/bin/ollama run $MODEL "$PROMPT" 2>/dev/null
-          
+
           echo
           echo "💡 Tip: Save useful answers to docs/nix-knowledge/ for training data!"
         '';
@@ -161,32 +161,32 @@
             # Rust toolchain
             rustToolchain
             pkg-config
-            
+
             # Tauri dependencies
             webkitgtk_4_1  # Uses libsoup3 (secure)
             librsvg
-            
+
             # Node.js for frontend
             nodejs_20
             nodePackages.npm
-            
+
             # Build tools
             openssl
             cmake
-            
+
             # Development tools
             nodePackages.typescript
             nodePackages.pnpm
             # vite and tsx are installed via npm/pnpm
-            
+
             # System tools for testing
             curl
             jq
-            
+
             # Python environments
             poetryEnv          # Python 3.11 with all research dependencies
             pythonMainEnv      # Python 3.13 for main application
-            
+
             # Voice interface dependencies
             (python311.withPackages (ps: with ps; [
               openai-whisper
@@ -201,37 +201,37 @@
             espeak-ng       # TTS fallback
             ffmpeg          # Audio processing
             sox             # Sound processing
-            
+
             # ActivityWatch for user behavior monitoring
             activitywatch   # Privacy-first activity tracking
-            
+
             # Documentation tools
             mdbook
             pandoc
-            
+
             # NixOS specific tools
             nix-prefetch-git
             nixfmt
             nil # Nix LSP
-            
+
             # Local LLM integration
             ollama
             askNixGuru
-            
+
             # TUI launcher
             runTuiApp
-            
+
             # Development utilities
             git
             ripgrep
             fd
             yq
             httpie
-            
+
             # Quality tools
             shellcheck
             hadolint
-            
+
             # Demo creation tools
             vhs              # Terminal GIF recorder (Charm)
             asciinema        # Terminal session recorder
@@ -279,20 +279,20 @@
             echo ""
             echo "💡 Example: ask-nix-guru 'How do I create a systemd service in NixOS?'"
             echo ""
-            
+
             # Set up project-specific env vars
             export NIX_FOR_HUMANITY_ROOT="$PWD"
             export NODE_ENV="development"
-            
+
             # Ensure Ollama data directory exists
             mkdir -p ~/.ollama
-            
+
             # Create knowledge collection directory
             mkdir -p docs/nix-knowledge/{questions,answers,examples}
-            
+
             echo "✨ Environment ready! Let's democratize NixOS together!"
           '';
-          
+
           # Environment variables for Tauri
           WEBKIT_DISABLE_COMPOSITING_MODE = "1";
         };
@@ -303,44 +303,44 @@
           ask-nix-guru = askNixGuru;
           run-tui-app = runTuiApp;
           ollama = pkgs.ollama;
-          
+
           nix-for-humanity = pkgs.stdenv.mkDerivation rec {
             pname = "nix-for-humanity";
             version = "0.1.0";
-            
+
             src = ./.;
-            
+
             nativeBuildInputs = with pkgs; [
               rustToolchain
               pkg-config
               nodejs_20
               nodePackages.npm
               makeWrapper
-              
+
               # Tauri build dependencies
               webkitgtk_4_1  # Uses libsoup3 (secure)
               librsvg
               openssl
             ];
-            
+
             buildPhase = ''
               # Copy source
               cp -r . $TMPDIR/build
               cd $TMPDIR/build
-              
+
               # Install npm dependencies
               npm ci
-              
+
               # Build Tauri app
               npm run tauri:build
             '';
-            
+
             installPhase = ''
               mkdir -p $out/{bin,share/applications,share/icons}
-              
+
               # Install the Tauri binary
               cp -r src-tauri/target/release/nix-for-humanity $out/bin/
-              
+
               # Create desktop entry
               cat > $out/share/applications/nix-for-humanity.desktop <<EOF
               [Desktop Entry]
@@ -353,10 +353,10 @@
               Categories=System;Settings;
               Keywords=nix;nixos;configuration;voice;natural;language;
               EOF
-              
+
               # TODO: Add icon files
             '';
-            
+
             meta = with pkgs.lib; {
               description = "Natural Language Interface for NixOS";
               longDescription = ''
@@ -391,27 +391,27 @@
           options.programs.nix-for-humanity = {
             enable = mkEnableOption "Nix for Humanity - Natural Language Interface for NixOS";
           };
-          
+
           config = mkIf config.programs.nix-for-humanity.enable {
             environment.systemPackages = [ self.packages.${pkgs.system}.nix-for-humanity ];
           };
         };
-        
+
         # Voice interface module
         voice = import ./modules/voice.nix;
       };
-      
+
       # Overlay
       overlays.default = final: prev: {
         nix-for-humanity = self.packages.${prev.system}.nix-for-humanity;
       };
-      
+
       # Home Manager module
       homeManagerModules.default = { config, lib, pkgs, ... }: with lib; {
         options.programs.nix-for-humanity = {
           enable = mkEnableOption "Nix for Humanity";
         };
-        
+
         config = mkIf config.programs.nix-for-humanity.enable {
           home.packages = [ self.packages.${pkgs.system}.nix-for-humanity ];
         };

@@ -1,7 +1,7 @@
 # 🤖 Claude Setup Instructions - Nix for Humanity
 
-**Purpose**: Complete development environment setup and standards reference  
-**Last Updated**: 2025-08-11  
+**Purpose**: Complete development environment setup and standards reference
+**Last Updated**: 2025-08-11
 **For**: Future Claude sessions working on this project
 
 ## 🚀 Quick Start Checklist
@@ -152,13 +152,13 @@ from nix_for_humanity.core import NixCommand
 
 class TestNixCommand:
     """Test NixCommand functionality."""
-    
+
     def test_parses_install_command(self):
         """Test install command parsing."""
         cmd = NixCommand("install firefox")
         assert cmd.action == "install"
         assert cmd.package == "firefox"
-    
+
     @pytest.mark.parametrize("input,expected", [
         ("install vim", "nix-env -iA nixpkgs.vim"),
         ("remove vim", "nix-env -e vim"),

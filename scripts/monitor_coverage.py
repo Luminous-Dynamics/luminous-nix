@@ -206,8 +206,8 @@ class CoverageMonitor:
             # Save overall results
             conn.execute(
                 """
-                INSERT INTO coverage_history 
-                (overall_coverage, critical_coverage, core_coverage, 
+                INSERT INTO coverage_history
+                (overall_coverage, critical_coverage, core_coverage,
                  ui_coverage, details, commit_hash)
                 VALUES (?, ?, ?, ?, ?, ?)
             """,

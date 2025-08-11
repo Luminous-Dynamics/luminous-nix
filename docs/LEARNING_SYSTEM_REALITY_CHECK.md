@@ -104,13 +104,13 @@ class PragmaticLearning:
 
 **BEFORE: Academic Research Project**
 ```python
-"We use Bayesian Knowledge Tracing from educational data mining 
+"We use Bayesian Knowledge Tracing from educational data mining
 combined with Dynamic Bayesian Networks for affective computing..."
 ```
 
 **AFTER: Practical Tool**
 ```python
-"We remember that you prefer 'grab' to mean 'install' and 
+"We remember that you prefer 'grab' to mean 'install' and
 suggest 'nix-collect-garbage' after you rebuild."
 ```
 

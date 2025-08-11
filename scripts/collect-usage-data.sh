@@ -24,7 +24,7 @@ save_interaction() {
     local response="$3"
     local rating="$4"
     local correction="$5"
-    
+
     # Save interaction
     cat > "$USAGE_DIR/interaction_$timestamp.json" << EOF
 {
@@ -37,14 +37,14 @@ save_interaction() {
     "correction": "$correction"
 }
 EOF
-    
+
     # If highly rated, add to training data
     if [ "$rating" -ge 4 ]; then
         echo "$question" > "$KNOWLEDGE_DIR/questions/q_usage_$timestamp.txt"
         echo "$response" > "$KNOWLEDGE_DIR/answers/a_usage_$timestamp.txt"
         echo "✅ Added to training data"
     fi
-    
+
     # If correction provided, save as better answer
     if [ -n "$correction" ]; then
         echo "$question" > "$KNOWLEDGE_DIR/questions/q_corrected_$timestamp.txt"
@@ -58,11 +58,11 @@ if [ "$1" = "--interactive" ]; then
     while true; do
         echo
         read -p "Enter your NixOS question (or 'quit' to exit): " question
-        
+
         if [ "$question" = "quit" ]; then
             break
         fi
-        
+
         # Get response from ask-trinity
         echo
         echo "🤖 Getting response..."
@@ -70,27 +70,27 @@ if [ "$1" = "--interactive" ]; then
         echo
         echo "$response"
         echo
-        
+
         # Get feedback
         read -p "Rate this response (1-5, 5 being perfect): " rating
-        
+
         if [ "$rating" -lt 4 ]; then
             echo "Please provide a better answer (press Ctrl+D when done):"
             correction=$(cat)
         else
             correction=""
         fi
-        
+
         # Extract model used from response
         model=$(echo "$response" | grep -oP "Using \K\w+" || echo "unknown")
-        
+
         # Save interaction
         save_interaction "$question" "$model" "$response" "$rating" "$correction"
-        
+
         echo
         echo "Thank you! Your feedback helps improve the models."
     done
-    
+
     echo
     echo "📊 Collection complete!"
     echo "Run 'python3 sacred-trinity-trainer-v2.py' to retrain with new data."
@@ -100,14 +100,14 @@ fi
 # Batch import mode
 if [ "$1" = "--import" ] && [ -f "$2" ]; then
     echo "📥 Importing Q&A pairs from $2..."
-    
+
     while IFS='|' read -r question answer; do
         timestamp=$(date +%s.%N)
         echo "$question" > "$KNOWLEDGE_DIR/questions/q_import_$timestamp.txt"
         echo "$answer" > "$KNOWLEDGE_DIR/answers/a_import_$timestamp.txt"
         sleep 0.01  # Ensure unique timestamps
     done < "$2"
-    
+
     echo "✅ Import complete!"
     exit 0
 fi

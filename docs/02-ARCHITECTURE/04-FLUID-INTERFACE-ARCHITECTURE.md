@@ -95,17 +95,17 @@ class ModalityFeatures:
     cognitive_load: float  # 0-1, from biometrics
     stress_level: float    # 0-1, from HRV
     attention_state: str   # focused, divided, wandering
-    
+
     # Context Features
     environment_noise: float  # dB level
     privacy_level: str       # public, semi-private, private
     device_capabilities: List[str]  # available modalities
-    
+
     # Task Features
     complexity: float      # 0-1, task difficulty
     urgency: float        # 0-1, time pressure
     precision_required: float  # 0-1, accuracy needs
-    
+
     # Historical Features
     past_success_rates: Dict[str, float]  # per modality
     user_preferences: Dict[str, float]    # learned weights
@@ -119,11 +119,11 @@ class ModalitySelector:
     def __init__(self):
         self.model = self._build_selection_model()
         self.feature_extractor = FeatureExtractor()
-        
+
     def select_modality(self, context: Context) -> Modality:
         # Extract features
         features = self.feature_extractor.extract(context)
-        
+
         # Calculate modality scores
         scores = {}
         for modality in AVAILABLE_MODALITIES:
@@ -131,28 +131,28 @@ class ModalitySelector:
                 modality, features, context
             )
             scores[modality] = score
-        
+
         # Apply user preference weights
         weighted_scores = self._apply_preferences(scores, context.user)
-        
+
         # Select optimal modality
         selected = max(weighted_scores, key=weighted_scores.get)
-        
+
         # Log for learning
         self._log_selection(selected, features, context)
-        
+
         return selected
-    
+
     def _calculate_modality_score(self, modality, features, context):
         base_score = self.model.predict(modality, features)
-        
+
         # Contextual adjustments
         if modality == 'voice' and features.environment_noise > 70:
             base_score *= 0.3  # Penalize voice in noisy environments
-        
+
         if modality == 'visual' and features.cognitive_load > 0.8:
             base_score *= 0.5  # Reduce visual when overloaded
-        
+
         return base_score
 ```
 
@@ -166,19 +166,19 @@ class ModalityRL:
         self.q_table = defaultdict(float)  # (state, action) -> reward
         self.learning_rate = 0.1
         self.discount_factor = 0.9
-        
+
     def update(self, state, modality, reward):
         key = (self._discretize_state(state), modality)
-        
+
         # Q-learning update
         old_value = self.q_table[key]
-        next_max = max([self.q_table[(state, m)] 
+        next_max = max([self.q_table[(state, m)]
                        for m in MODALITIES])
-        
+
         new_value = old_value + self.learning_rate * (
             reward + self.discount_factor * next_max - old_value
         )
-        
+
         self.q_table[key] = new_value
 ```
 
@@ -201,19 +201,19 @@ class ModalityRL:
 class MultiModalStrategy:
     def select_combination(self, primary: Modality, context: Context):
         complementary = []
-        
+
         if primary == 'voice':
             if context.precision_needed > 0.7:
                 complementary.append('visual_feedback')
             if context.hands_free:
                 complementary.append('audio_cues')
-                
+
         elif primary == 'visual':
             if context.cognitive_load < 0.5:
                 complementary.append('subtle_audio')
             if context.accessibility_needs:
                 complementary.append('haptic_feedback')
-        
+
         return primary, complementary
 ```
 
@@ -228,18 +228,18 @@ interface GenerativeComponent {
   // Identity
   id: string;
   type: ComponentType;
-  
+
   // Generative Parameters
   constraints: ConstraintSet;
   objectives: ObjectiveFunction[];
-  
+
   // Rendering
   render: (context: RenderContext) => VirtualDOM;
-  
+
   // Behavior
   interactions: InteractionModel;
   transitions: TransitionSpec[];
-  
+
   // Adaptation
   adapt: (feedback: UserFeedback) => GenerativeComponent;
 }
@@ -253,7 +253,7 @@ class UIGenerator:
         # 1. Intent Analysis
         parsed_intent = self.parse_intent(intent)
         required_capabilities = self.extract_capabilities(parsed_intent)
-        
+
         # 2. Component Selection
         component_library = self.get_contextual_components(context)
         selected_components = self.select_components(
@@ -261,28 +261,28 @@ class UIGenerator:
             component_library,
             context.constraints
         )
-        
+
         # 3. Layout Generation
         layout = self.generate_layout(
             selected_components,
             context.screen_size,
             context.user_preferences
         )
-        
+
         # 4. Style Synthesis
         styles = self.synthesize_styles(
             context.brand_guidelines,
             context.accessibility_needs,
             context.emotional_tone
         )
-        
+
         # 5. Behavior Attachment
         behaviors = self.attach_behaviors(
             selected_components,
             parsed_intent,
             context.interaction_patterns
         )
-        
+
         return GeneratedInterface(
             components=selected_components,
             layout=layout,
@@ -299,7 +299,7 @@ class UIGenerator:
 class ConstraintLayout:
     def __init__(self):
         self.solver = ConstraintSolver()
-        
+
     def generate_layout(self, components, constraints):
         # Define variables for each component
         variables = {}
@@ -310,19 +310,19 @@ class ConstraintLayout:
                 'width': Variable(f'{comp.id}_w'),
                 'height': Variable(f'{comp.id}_h')
             }
-        
+
         # Add constraints
         for constraint in constraints:
             self.solver.add_constraint(constraint)
-        
+
         # Add optimization objectives
         self.solver.add_objective(MinimizeWhitespace())
         self.solver.add_objective(MaximizeReadability())
         self.solver.add_objective(MaintainHierarchy())
-        
+
         # Solve
         solution = self.solver.solve()
-        
+
         return self.apply_solution(components, solution)
 ```
 
@@ -332,7 +332,7 @@ class ConstraintLayout:
 class ResponsiveAdapter {
   adapt(interface: GeneratedInterface, viewport: Viewport): AdaptedInterface {
     const breakpoint = this.getBreakpoint(viewport);
-    
+
     switch(breakpoint) {
       case 'mobile':
         return this.adaptForMobile(interface);
@@ -344,7 +344,7 @@ class ResponsiveAdapter {
         return this.adaptForLarge(interface);
     }
   }
-  
+
   private adaptForMobile(interface: GeneratedInterface) {
     return {
       ...interface,
@@ -364,19 +364,19 @@ class ResponsiveAdapter {
 class StyleGenerator:
     def generate_styles(self, context: StyleContext):
         base_theme = self.get_base_theme(context.brand)
-        
+
         # Adapt for cognitive load
         if context.cognitive_load > 0.7:
             base_theme = self.simplify_theme(base_theme)
-            
+
         # Adapt for time of day
         if context.is_dark_hours:
             base_theme = self.apply_dark_mode(base_theme)
-            
+
         # Adapt for accessibility
         if context.accessibility_needs:
             base_theme = self.enhance_accessibility(base_theme)
-        
+
         # Generate component-specific styles
         component_styles = {}
         for component in context.components:
@@ -385,7 +385,7 @@ class StyleGenerator:
                 base_theme,
                 context
             )
-        
+
         return StyleSheet(
             theme=base_theme,
             components=component_styles,
@@ -425,10 +425,10 @@ class InteractionGenerator {
       voice: 'audio-narration'
     }
   };
-  
+
   generateInteractions(task: Task, modality: Modality): InteractionModel {
     const pattern = this.patterns[task.type][modality];
-    
+
     return this.instantiatePattern(pattern, task.specifics);
   }
 }
@@ -445,27 +445,27 @@ graph TB
         B[Context Sensors]
         C[Device Capabilities]
     end
-    
+
     subgraph "Intelligence Layer"
         D[Feature Extraction]
         E[Modality Selector]
         F[UI Generator]
         G[Learning Engine]
     end
-    
+
     subgraph "Adaptation Layer"
         H[Component Library]
         I[Style Engine]
         J[Layout Engine]
         K[Behavior Engine]
     end
-    
+
     subgraph "Presentation Layer"
         L[Renderer]
         M[Multi-Modal Output]
         N[Feedback Collector]
     end
-    
+
     A --> D
     B --> D
     C --> D
@@ -499,33 +499,33 @@ class FluidInterfaceOrchestrator:
         self.ui_generator = UIGenerator()
         self.renderer = AdaptiveRenderer()
         self.learning_engine = LearningEngine()
-        
+
     async def handle_interaction(self, user_input: Input):
         # 1. Gather context
         context = await self.perception.get_current_context()
-        
+
         # 2. Select optimal modality
         modality = self.modality_selector.select(
             user_input,
             context
         )
-        
+
         # 3. Generate interface
         interface = self.ui_generator.generate(
             user_input.intent,
             modality,
             context
         )
-        
+
         # 4. Render and present
         rendered = await self.renderer.render(
             interface,
             modality
         )
-        
+
         # 5. Collect feedback
         feedback = await self.collect_interaction_feedback()
-        
+
         # 6. Learn and improve
         self.learning_engine.update(
             context,
@@ -533,7 +533,7 @@ class FluidInterfaceOrchestrator:
             interface,
             feedback
         )
-        
+
         return rendered
 ```
 
@@ -546,31 +546,31 @@ component_library:
         variants: [primary, secondary, ghost, icon]
         sizes: [small, medium, large]
         states: [default, hover, active, disabled]
-        
+
     - input:
         types: [text, number, date, select]
         variants: [outlined, filled, borderless]
-        
+
     - feedback:
         types: [toast, inline, modal, haptic]
-        
+
   composites:
     - form:
         layouts: [vertical, horizontal, grid]
         validation: [inline, summary, progressive]
-        
+
     - data_display:
         types: [table, cards, list, chart]
         interactions: [sort, filter, drill-down]
-        
+
     - navigation:
         patterns: [tabs, sidebar, breadcrumb, voice-menu]
-        
+
   adaptive:
     - responsive_container:
         breakpoints: [320, 768, 1024, 1440]
         behaviors: [stack, hide, resize, reflow]
-        
+
     - modal_adapter:
         voice_fallback: conversational_flow
         gesture_mapping: swipe_patterns
@@ -586,23 +586,23 @@ class GenerationCache:
         self.component_cache = LRUCache(maxsize=1000)
         self.layout_cache = LayoutCache()
         self.style_cache = StyleCache()
-        
+
     def get_or_generate(self, request: GenerationRequest):
         cache_key = self.compute_cache_key(request)
-        
+
         # Check component cache
         if cache_key in self.component_cache:
             cached = self.component_cache[cache_key]
             if self.is_valid(cached, request.context):
                 return self.adapt_cached(cached, request.context)
-        
+
         # Generate fresh
         generated = self.generate_fresh(request)
-        
+
         # Cache if stable
         if self.is_cacheable(generated, request):
             self.component_cache[cache_key] = generated
-            
+
         return generated
 ```
 
@@ -614,13 +614,13 @@ class ProgressiveUI {
     // 1. Render critical path immediately
     const critical = await this.renderCritical(component);
     this.present(critical);
-    
+
     // 2. Enhance with interactions
     requestIdleCallback(() => {
       const interactive = this.addInteractions(critical, component);
       this.update(interactive);
     });
-    
+
     // 3. Add nice-to-haves
     requestIdleCallback(() => {
       const enhanced = this.addEnhancements(interactive, context);

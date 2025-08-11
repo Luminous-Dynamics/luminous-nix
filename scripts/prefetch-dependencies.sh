@@ -35,13 +35,13 @@ monitor_progress() {
     local pid=$1
     local spin='-\|/'
     local i=0
-    
+
     echo -ne "${YELLOW}⏳ Downloading dependencies... ${NC}"
-    
+
     while kill -0 $pid 2>/dev/null; do
         i=$(( (i+1) %4 ))
         printf "\r${YELLOW}⏳ Downloading dependencies... ${spin:$i:1} ${NC}"
-        
+
         # Show last downloaded package
         if [ -f "$LOG_FILE" ]; then
             local last_pkg=$(grep -E "copying path.*from 'https://cache.nixos.org'" "$LOG_FILE" | tail -1 | sed 's/.*\/nix\/store\/[^-]*-//' | cut -d"'" -f1)
@@ -49,14 +49,14 @@ monitor_progress() {
                 printf "\r${YELLOW}⏳ Downloading: ${last_pkg:0:40}... ${spin:$i:1} ${NC}"
             fi
         fi
-        
+
         sleep 0.1
     done
-    
+
     # Check if process succeeded
     wait $pid
     local exit_code=$?
-    
+
     if [ $exit_code -eq 0 ]; then
         echo -e "\r${GREEN}✅ Dependencies downloaded successfully!${NC}                                           "
     else

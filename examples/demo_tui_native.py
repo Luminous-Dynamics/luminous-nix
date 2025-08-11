@@ -48,19 +48,19 @@ class NativeTUIDemo(App):
     Screen {
         align: center middle;
     }
-    
+
     #container {
         width: 80;
         height: 40;
         border: solid $primary;
         padding: 2;
     }
-    
+
     Button {
         margin: 1;
         width: 100%;
     }
-    
+
     #result {
         height: 10;
         margin-top: 2;

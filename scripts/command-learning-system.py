@@ -114,7 +114,7 @@ class CommandLearningSystem:
 
         c.execute(
             """
-            UPDATE command_history 
+            UPDATE command_history
             SET success = ?, error_message = ?
             WHERE id = ?
         """,
@@ -180,7 +180,7 @@ class CommandLearningSystem:
             # Create new pattern
             c.execute(
                 """
-                INSERT INTO successful_patterns 
+                INSERT INTO successful_patterns
                 (intent, query_pattern, command_template)
                 VALUES (?, ?, ?)
             """,
@@ -244,7 +244,7 @@ class CommandLearningSystem:
 
         c.execute(
             """
-            INSERT OR REPLACE INTO user_preferences 
+            INSERT OR REPLACE INTO user_preferences
             (preference_key, preference_value, observation_count, last_updated)
             VALUES (
                 ?,
@@ -329,7 +329,7 @@ class CommandLearningSystem:
         # Get counts for this specific intent
         total = c.execute(
             """
-            SELECT COUNT(*) FROM command_history 
+            SELECT COUNT(*) FROM command_history
             WHERE intent = ? AND executed = 1
         """,
             (intent,),
@@ -337,7 +337,7 @@ class CommandLearningSystem:
 
         successful = c.execute(
             """
-            SELECT COUNT(*) FROM command_history 
+            SELECT COUNT(*) FROM command_history
             WHERE intent = ? AND executed = 1 AND success = 1
         """,
             (intent,),

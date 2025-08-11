@@ -27,23 +27,23 @@ test_command() {
     local query="$2"
     local expected_pattern="$3"
     local needs_sudo="$4"
-    
+
     echo -e "\n📋 Testing: $test_name"
     echo "Query: $query"
     if [ "$needs_sudo" = "yes" ]; then
         echo -e "${YELLOW}⚠️  Requires sudo${NC}"
     fi
-    
+
     # Run with --execute in dry-run mode (default)
     output=$(bin/ask-nix --execute "$query" 2>&1)
     exit_code=$?
-    
+
     # Check if output indicates it would execute
     if [[ "$output" =~ "DRY RUN" ]] || [[ "$output" =~ "Would execute" ]] || [[ "$output" =~ "dry-run mode" ]]; then
         echo -e "${GREEN}✅ SUPPORTED${NC} - Command recognized and would execute"
         echo "Pattern found: Dry run mode active"
         ((TESTS_PASSED++))
-        
+
         # Extract the actual command that would run
         if [[ "$output" =~ "Would execute: "(.*) ]] || [[ "$output" =~ "DRY RUN - Would execute: "(.*) ]]; then
             echo "Command: ${BASH_REMATCH[1]}"

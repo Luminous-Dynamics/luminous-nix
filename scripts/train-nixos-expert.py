@@ -49,10 +49,10 @@ def main():
 Examples:
   # Run full pipeline with default settings
   %(prog)s
-  
+
   # Use CodeLlama as base model
   %(prog)s --base-model codellama:13b --model-name nixos-codellama
-  
+
   # Skip scraping (use existing data)
   %(prog)s --skip-scraping
 """,

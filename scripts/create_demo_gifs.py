@@ -117,7 +117,7 @@ def main():
     print("🎬 Nix for Humanity v1.1 - {demo_config['title']}")
     print("=" * 50)
     time.sleep(2)
-    
+
 """
 
     for step in demo_config["script"]:

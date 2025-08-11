@@ -53,27 +53,27 @@ Since: v1.0.0
 class ExampleClass:
     """
     Brief one-line description of the class.
-    
+
     Detailed description of the class purpose, responsibilities,
     and usage patterns. Explain the problem it solves.
-    
+
     Attributes:
         attribute1 (Type): Description of attribute1
         attribute2 (Type): Description of attribute2
         _private_attr (Type): Description (if relevant)
-    
+
     Class Variables:
         CLASS_CONSTANT (Type): Description of constant
-    
+
     Example:
         >>> obj = ExampleClass(param1="value")
         >>> result = obj.method()
         >>> print(result)
         "expected output"
-    
+
     Note:
         Important considerations or warnings.
-    
+
     Since: v1.0.0
     See Also:
         RelatedClass: For similar functionality
@@ -87,10 +87,10 @@ class ExampleClass:
 def example_function(param1: str, param2: int = 10, **kwargs) -> Dict[str, Any]:
     """
     Brief one-line description of what the function does.
-    
+
     Detailed explanation of the function's behavior, algorithm,
     or approach. Include any important implementation details.
-    
+
     Args:
         param1: Description of param1. Include constraints,
             valid values, or examples if helpful.
@@ -99,7 +99,7 @@ def example_function(param1: str, param2: int = 10, **kwargs) -> Dict[str, Any]:
         **kwargs: Additional keyword arguments:
             - option1 (bool): Description (default: False)
             - option2 (str): Description (default: "value")
-    
+
     Returns:
         Description of the return value. Include structure
         for complex types:
@@ -108,33 +108,33 @@ def example_function(param1: str, param2: int = 10, **kwargs) -> Dict[str, Any]:
             "data": Any,
             "error": Optional[str]
         }
-    
+
     Raises:
         ValueError: When param1 is empty or invalid
         TypeError: When param2 is not an integer
         NetworkError: When external service is unavailable
-    
+
     Example:
         >>> result = example_function("test", param2=20)
         >>> print(result["success"])
         True
-        
+
         >>> # Using with kwargs
         >>> result = example_function(
         ...     "test",
         ...     option1=True,
         ...     option2="custom"
         ... )
-    
+
     Performance:
         Time Complexity: O(n) where n is length of param1
         Space Complexity: O(1)
         Typical execution: <1ms for standard inputs
-    
+
     Note:
         This function is thread-safe and can be called
         concurrently. Caches results for 5 minutes.
-    
+
     Since: v1.0.0
     Deprecated: Use new_function() for better performance (v1.2.0)
     See Also:
@@ -149,30 +149,30 @@ def example_function(param1: str, param2: int = 10, **kwargs) -> Dict[str, Any]:
 async def async_operation(data: List[str]) -> AsyncIterator[str]:
     """
     Asynchronously process data and yield results.
-    
+
     Processes items in parallel with backpressure handling.
     Automatically retries failed items up to 3 times.
-    
+
     Args:
         data: List of items to process. Maximum 1000 items.
-    
+
     Yields:
         Processed items as they complete. Order not guaranteed.
-    
+
     Raises:
         asyncio.TimeoutError: If processing exceeds 30 seconds
         ProcessingError: If all retries fail for an item
-    
+
     Example:
         >>> async for result in async_operation(["a", "b"]):
         ...     print(result)
         "processed: a"
         "processed: b"
-    
+
     Concurrency:
         Maximum 10 concurrent operations.
         Uses connection pooling for efficiency.
-    
+
     Since: v1.1.0
     """
 ```
@@ -187,7 +187,7 @@ from typing import TypedDict, Literal, Union, Optional
 class QueryResult(TypedDict):
     """
     Result of a natural language query.
-    
+
     Attributes:
         intent: The parsed intent type
         confidence: Confidence score (0.0-1.0)
@@ -257,10 +257,10 @@ def ask_nix(
 ) -> QueryResult:
     """
     Natural language interface to NixOS.
-    
+
     Main entry point for natural language queries. Understands
     commands like "install firefox", "find text editor", etc.
-    
+
     Args:
         query: Natural language command or question.
             Examples:
@@ -268,17 +268,17 @@ def ask_nix(
             - "find markdown editor"
             - "update system"
             - "remove package vim"
-        
+
         execute: If True, execute the command. If False,
             only show what would be done (dry run).
             Default: False for safety.
-        
+
         context: Optional context for stateful operations.
             Pass the same context for related commands.
-        
+
         timeout: Maximum time in seconds to wait for response.
             Default: 30.0 seconds.
-    
+
     Returns:
         QueryResult with:
         - success (bool): Whether operation succeeded
@@ -286,37 +286,37 @@ def ask_nix(
         - data (Any): Result data (packages, info, etc.)
         - message (str): Human-readable message
         - suggestions (List[str]): Alternative queries if unclear
-    
+
     Raises:
         QueryError: If query cannot be parsed
         TimeoutError: If operation exceeds timeout
         PermissionError: If operation requires sudo
-    
+
     Examples:
         >>> # Dry run (safe)
         >>> result = ask_nix("install firefox")
         >>> print(result.message)
         "Would install: firefox-120.0"
-        
+
         >>> # Actually execute
         >>> result = ask_nix("install firefox", execute=True)
         >>> print(result.message)
         "Successfully installed: firefox-120.0"
-        
+
         >>> # With context for follow-up
         >>> ctx = Context()
         >>> ask_nix("find editor", context=ctx)
         >>> ask_nix("install the first one", context=ctx)
-    
+
     Performance:
         - Typical response: <100ms for queries
         - Package search: 1-3 seconds
         - Installation: Depends on package size
-    
+
     Thread Safety:
         This function is thread-safe. Multiple threads can
         call it concurrently with different contexts.
-    
+
     Since: v1.0.0
     Stability: Stable
     See Also:
@@ -383,34 +383,34 @@ def ask_nix(
 def process_data(input_data: List[Dict], options: ProcessOptions) -> ProcessResult:
     """
     Process input data according to specified options.
-    
+
     Applies transformations, validations, and enrichments
     to the input data based on the provided options.
-    
+
     Args:
         input_data: List of dictionaries containing:
             - "id" (str): Unique identifier
             - "value" (Any): Data to process
             - "metadata" (dict): Optional metadata
-        
+
         options: Processing options:
             - validate (bool): Enable validation
             - transform (bool): Apply transformations
             - enrich (bool): Add enrichments
-    
+
     Returns:
         ProcessResult containing:
             - processed_items (List[Dict]): Processed data
             - errors (List[Error]): Any errors encountered
             - statistics (Stats): Processing statistics
-    
+
     Example:
         >>> data = [{"id": "1", "value": "test"}]
         >>> options = ProcessOptions(validate=True)
         >>> result = process_data(data, options)
         >>> print(len(result.processed_items))
         1
-    
+
     Since: v1.0.0
     """
 ```
@@ -421,23 +421,23 @@ def process_data(input_data: List[Dict], options: ProcessOptions) -> ProcessResu
 class Configuration:
     """
     Application configuration management.
-    
+
     Handles loading, validation, and access to configuration
     values from multiple sources (files, env vars, defaults).
-    
+
     Attributes:
         backend (str): Backend type ("python" or "subprocess")
         cache_dir (Path): Cache directory location
         log_level (str): Logging level
         timeout (float): Default timeout in seconds
-    
+
     Example:
         >>> config = Configuration()
         >>> config.backend
         "python"
         >>> config.update(backend="subprocess")
         >>> config.save()
-    
+
     Since: v1.0.0
     """
 ```
@@ -448,19 +448,19 @@ class Configuration:
 class QueryError(Exception):
     """
     Raised when a natural language query cannot be parsed.
-    
+
     Attributes:
         query (str): The original query
         reason (str): Why parsing failed
         suggestions (List[str]): Alternative queries
-    
+
     Example:
         >>> raise QueryError(
         ...     "instal firefox",
         ...     "Unknown command 'instal'",
         ...     ["install firefox", "install Firefox"]
         ... )
-    
+
     Since: v1.0.0
     """
 ```

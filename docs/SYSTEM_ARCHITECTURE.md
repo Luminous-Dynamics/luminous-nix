@@ -192,7 +192,7 @@ frontends/
 class NixHumanityPlugin:
     def on_intent(self, intent: Intent) -> Optional[Response]:
         """Handle custom intents"""
-        
+
     def on_learn(self, interaction: Interaction) -> None:
         """Learn from interactions"""
 ```

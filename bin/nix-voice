@@ -7,9 +7,9 @@ Control NixOS with natural speech commands.
 Since: v1.0.0
 """
 
-import sys
-import os
 import asyncio
+import os
+import sys
 from pathlib import Path
 
 # Add project root to path
@@ -19,59 +19,61 @@ sys.path.insert(0, str(project_root / "src"))
 
 def print_banner():
     """Print welcome banner."""
-    print("""
+    print(
+        """
     🎙️  Nix for Humanity - Voice Interface
     =====================================
-    
+
     Speak naturally to control NixOS!
-    
+
     Wake word: "Hey Nix" (or press Enter to type)
     Commands: "install firefox", "search editor", etc.
-    
+
     Say "help" for more commands
     Say "stop" or press Ctrl+C to exit
-    """)
+    """
+    )
 
 
 def main():
     """Main entry point for voice interface."""
     try:
-        from nix_for_humanity.voice import VoiceInterface, VoiceConfig
-        
+        from nix_for_humanity.voice import VoiceConfig, VoiceInterface
+
         print_banner()
-        
+
         # Create voice interface
         config = VoiceConfig(
             wake_word="hey nix",
             continuous_mode=False,
             confirmation_required=True,
             audio_feedback=True,
-            verbose_responses=True
+            verbose_responses=True,
         )
-        
+
         interface = VoiceInterface(config)
-        
+
         # Set up callbacks
         def on_wake():
             print("👂 Listening...")
-        
+
         def on_command(command):
             print(f"📝 Heard: {command}")
-        
+
         def on_result(result):
             if result["success"]:
                 print(f"✅ {result['output']}")
             else:
                 print(f"❌ {result['output']}")
-        
+
         def on_error(error):
             print(f"⚠️ Error: {error}")
-        
+
         interface.on_wake = on_wake
         interface.on_command = on_command
         interface.on_result = on_result
         interface.on_error = on_error
-        
+
         # Start interface
         if not interface.start():
             print("❌ Failed to start voice interface")
@@ -80,16 +82,16 @@ def main():
             print("2. Install dependencies:")
             print("   pip install SpeechRecognition pyttsx3 pyaudio")
             sys.exit(1)
-        
+
         print("✅ Voice interface ready!")
         print("Say 'Hey Nix' to start, or type commands below.\n")
-        
+
         # Run event loop with text input fallback
         try:
             while True:
                 # Check for text input
                 user_input = input("> ").strip()
-                
+
                 if user_input.lower() in ["exit", "quit", "stop"]:
                     break
                 elif user_input.lower() == "help":
@@ -100,14 +102,14 @@ def main():
                 elif user_input:
                     # Process as text command
                     interface.process_text(user_input)
-                
+
         except KeyboardInterrupt:
             pass
-        
+
         # Stop interface
         interface.stop()
         print("\n✨ Voice interface stopped. Goodbye!")
-        
+
     except ImportError as e:
         print(f"❌ Missing dependencies: {e}")
         print("\nPlease install:")
@@ -120,16 +122,18 @@ def main():
     except Exception as e:
         print(f"❌ Error: {e}")
         import traceback
+
         traceback.print_exc()
         sys.exit(1)
 
 
 def print_help():
     """Print help information."""
-    print("""
+    print(
+        """
     📚 Voice Commands Help
     ======================
-    
+
     Natural Language Commands:
     - "install [package]" - Install a package
     - "remove [package]" - Remove a package
@@ -137,24 +141,25 @@ def print_help():
     - "update system" - Update NixOS
     - "rollback" - Rollback to previous generation
     - "help" - Show this help
-    
+
     Voice Control:
     - Say "Hey Nix" to activate
     - Say "stop" to cancel current command
     - Say "yes" or "no" for confirmations
-    
+
     Text Commands:
     - Type any natural language command
     - "continuous" - Toggle continuous listening
     - "help" - Show this help
     - "exit" - Quit the program
-    
+
     Tips:
     - Speak clearly and naturally
     - Wait for the listening prompt
     - Commands are safe by default
     - Dangerous operations require confirmation
-    """)
+    """
+    )
 
 
 if __name__ == "__main__":

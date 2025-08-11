@@ -126,10 +126,10 @@ def test_feature(self):
     """Test description"""
     # Arrange
     setup_test_data()
-    
+
     # Act
     result = perform_action()
-    
+
     # Assert
     self.assertEqual(result, expected)
 ```

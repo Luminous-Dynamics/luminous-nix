@@ -160,7 +160,7 @@ Evolution: Technology regenerates capability and awareness
 We're not just building software. We're pioneering a new relationship between humans and technology - one based on:
 
 - **Mutual Growth** rather than exploitation
-- **Shared Wisdom** rather than data harvesting  
+- **Shared Wisdom** rather than data harvesting
 - **Conscious Choice** rather than addictive patterns
 - **Human Flourishing** rather than engagement metrics
 

@@ -4,15 +4,15 @@
 
 ---
 
-💡 **Quick Context**: Complete onboarding guide from zero to productive NixOS conversations  
-📍 **You are here**: Development → Quick Start (5-minute setup)  
-🔗 **Related**: [Code Standards](./04-CODE-STANDARDS.md) | [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 8 minutes  
+💡 **Quick Context**: Complete onboarding guide from zero to productive NixOS conversations
+📍 **You are here**: Development → Quick Start (5-minute setup)
+🔗 **Related**: [Code Standards](./04-CODE-STANDARDS.md) | [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 8 minutes
 📊 **Mastery Level**: 🌱 Beginner - no prior NixOS or AI experience needed
 
 🌊 **Natural Next Steps**:
 - **For developers**: Continue to [Code Standards](./04-CODE-STANDARDS.md) after setup
-- **For contributors**: Review [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md)  
+- **For contributors**: Review [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md)
 - **For researchers**: Explore [Learning System Architecture](../02-ARCHITECTURE/09-LEARNING-SYSTEM.md)
 - **For users**: Try the [Testing Guide](./05-TESTING-GUIDE.md) to validate your setup
 
@@ -21,7 +21,7 @@
 ## What You'll Need
 
 - NixOS system (or Linux with Nix)
-- Python 3.11+ 
+- Python 3.11+
 - 500MB free disk space
 - Internet connection for setup
 - That's it!
@@ -87,7 +87,7 @@ What would you like to do?
 You: I need a web browser
 System: I can help you install a web browser! Here are some options:
 - Firefox (recommended, open source)
-- Chrome 
+- Chrome
 - Brave (privacy-focused)
 
 Which would you like?
@@ -99,7 +99,7 @@ System: Installing Firefox... Done! Firefox is now available in your application
 ### 2. System Update
 ```
 You: is my system up to date?
-System: Let me check for updates... You have 12 packages that can be updated. 
+System: Let me check for updates... You have 12 packages that can be updated.
 Would you like to see them or update everything?
 
 You: update everything
@@ -187,7 +187,7 @@ Also good: "get me gimp"
 ### 2. Ask Questions
 ```
 You: what's the difference between firefox and firefox-esr?
-System: Firefox ESR (Extended Support Release) is more stable with fewer updates, 
+System: Firefox ESR (Extended Support Release) is more stable with fewer updates,
 while regular Firefox has the latest features. Which suits your needs better?
 ```
 
@@ -210,7 +210,7 @@ System: Canceling VS Code installation. Installing Vim instead...
 
 ### System Doesn't Understand
 Try rephrasing or being more specific:
-- ❌ "fix it" 
+- ❌ "fix it"
 - ✅ "fix my wifi connection"
 
 ### Wrong Package

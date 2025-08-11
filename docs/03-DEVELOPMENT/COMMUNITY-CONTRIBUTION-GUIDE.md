@@ -13,12 +13,12 @@ graph TD
     Impact -->|Docs| Clearer[Clearer Understanding]
     Impact -->|Testing| Reliable[More Reliable]
     Impact -->|Ideas| Innovative[More Innovative]
-    
+
     Better --> Accessible[NixOS for Everyone]
     Clearer --> Accessible
     Reliable --> Accessible
     Innovative --> Accessible
-    
+
     style Accessible fill:#90EE90
 ```
 
@@ -155,7 +155,7 @@ def test_educational_error_for_typo():
 # Consciousness-first: Clear intent over clever code
 def install_package(name: str) -> Result:
     """Install a package with educational feedback.
-    
+
     Every function should:
     1. Have a clear, single purpose
     2. Include helpful error messages
@@ -208,10 +208,10 @@ graph LR
     Test --> PR[Open PR]
     PR --> Review[Code Review]
     Review --> Merge[Merge!]
-    
+
     Test -->|Fails| Code
     Review -->|Changes| Code
-    
+
     style Merge fill:#90EE90
 ```
 
@@ -380,8 +380,8 @@ nix develop
 
 *Every line of code is a prayer for accessibility. Every contribution makes NixOS more luminous. Thank you for joining our sacred mission!*
 
-**Questions?** Open a discussion!  
-**Ready?** Pick an issue and start coding!  
+**Questions?** Open a discussion!
+**Ready?** Pick an issue and start coding!
 **Stuck?** We're here to help!
 
 🌊 *Together, we make NixOS flow for all beings* 🌊

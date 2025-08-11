@@ -48,29 +48,29 @@ from nix_for_humanity.core import backend
 
 class TestBackend:
     """Test suite for Backend class."""
-    
+
     def setup_method(self):
         """Set up test fixtures."""
         self.backend = backend.Backend()
-    
+
     def teardown_method(self):
         """Clean up after tests."""
         # Clean up any created files/resources
         pass
-    
+
     def test_should_process_valid_query(self):
         """Test that valid queries are processed correctly."""
         # Arrange
         query = "install firefox"
         expected = "nix-env -iA nixpkgs.firefox"
-        
+
         # Act
         result = self.backend.process(query)
-        
+
         # Assert
         assert result.command == expected
         assert result.success is True
-    
+
     def test_should_reject_invalid_query(self):
         """Test that invalid queries are rejected."""
         with pytest.raises(ValueError):
@@ -117,7 +117,7 @@ def temp_config(tmp_path):
 @pytest.mark.integration
 class TestCLIIntegration:
     """Test CLI integration with backend."""
-    
+
     def test_cli_executes_command(self):
         """Test full CLI flow."""
         # Tests actual integration
@@ -130,7 +130,7 @@ class TestCLIIntegration:
 @pytest.mark.slow
 class TestUserJourney:
     """Test complete user workflows."""
-    
+
     def test_new_user_installs_package(self):
         """Test new user package installation flow."""
         # Simulates real user interaction

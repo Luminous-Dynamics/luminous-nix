@@ -5,7 +5,7 @@
 We've analyzed the Nix for Humanity documentation and found:
 - **599 total markdown files** in the docs/ directory
 - **180 files in archives** (30% of total)
-- **201 research files** (33% of total) 
+- **201 research files** (33% of total)
 - **30 README files** scattered throughout
 - **11 duplicate files** in multiple locations
 
@@ -40,7 +40,7 @@ README consolidation script that:
 - Organize by: historical, completed, legacy, research-detailed
 - Expected reduction: 180 files → organized archive
 
-### Phase 2: Research Synthesis  
+### Phase 2: Research Synthesis
 - Consolidate 201 research files into ~10 synthesis docs
 - Create master research index
 - Archive detailed research docs
@@ -78,7 +78,7 @@ git add -A
 git commit -m "docs: major documentation cleanup and reorganization
 
 - Consolidated dual archive directories
-- Synthesized 201 research files into high-level summaries  
+- Synthesized 201 research files into high-level summaries
 - Reduced README proliferation from 30 to essential navigation
 - Removed duplicate files
 - Created clear hierarchical structure"
@@ -86,7 +86,7 @@ git commit -m "docs: major documentation cleanup and reorganization
 
 ## 📊 Expected Results
 
-**Before**: 
+**Before**:
 - 599 scattered documentation files
 - Dual archive systems
 - 30 READMEs causing navigation confusion

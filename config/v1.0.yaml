@@ -32,7 +32,7 @@ personas:
     verbosity: "detailed"
     examples: true
     emoji: true
-    
+
   expert:
     name: "Efficient Assistant"
     style: "concise, technical, direct"

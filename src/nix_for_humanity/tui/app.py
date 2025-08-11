@@ -108,39 +108,39 @@ class NixForHumanityTUI(App):
     Screen {
         background: $surface;
     }
-    
+
     #orb-container {
         width: 20;
         height: 6;
         border: solid cyan;
         margin: 1;
     }
-    
+
     #input-container {
         height: 3;
         margin: 1;
     }
-    
+
     #history-container {
         border: solid $primary;
         margin: 1;
     }
-    
+
     #status-bar {
         height: 1;
         background: $accent;
         color: $text;
         padding: 0 1;
     }
-    
+
     CommandHistory {
         padding: 1;
     }
-    
+
     Input {
         margin: 0 1;
     }
-    
+
     Button {
         margin: 0 1;
     }

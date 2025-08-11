@@ -55,7 +55,7 @@ if ! curl -s http://localhost:11434/api/tags >/dev/null 2>&1; then
     ollama serve &
     OLLAMA_PID=$!
     sleep 5
-    
+
     if ! curl -s http://localhost:11434/api/tags >/dev/null 2>&1; then
         echo -e "${RED}❌ Failed to start Ollama${NC}"
         exit 1
@@ -144,11 +144,11 @@ compare-models() {
     local question="$*"
     echo "🔄 Comparing model responses for: $question"
     echo
-    
+
     echo "=== Mistral-7B (Fast) ==="
     time ask-nix-guru "$question" | head -15
     echo
-    
+
     echo "=== CodeLlama-13B (Detailed) ==="
     time NIX_GURU_MODEL=codellama:13b-instruct ask-nix-guru "$question" | head -15
     echo
@@ -157,7 +157,7 @@ compare-models() {
 # Smart model selection based on question type
 smart-guru() {
     local question="$*"
-    
+
     # Keywords that suggest need for detailed response
     if echo "$question" | grep -qiE "(module|derivation|overlay|flake|explain|how does|why|debug|error|complex)"; then
         echo "🧠 Using CodeLlama for detailed response..."
@@ -292,7 +292,7 @@ guru "Syntax for imports in configuration.nix"
 ## Resource Usage
 
 - Mistral only: ~6GB RAM
-- CodeLlama only: ~13GB RAM  
+- CodeLlama only: ~13GB RAM
 - Both loaded: ~20GB RAM
 - With IDE + Browser: ~28GB total
 

@@ -71,13 +71,13 @@ PERSONAS[luna]="install exactly the same version as last time"
 test_persona() {
     local persona_name="$1"
     local test_command="$2"
-    
+
     print_status "Testing persona: $persona_name"
     echo "  Command: \"$test_command\""
-    
+
     # Simulate test results (in real implementation, this would call the actual system)
     local start_time=$(date +%s.%N)
-    
+
     # Mock validation based on persona characteristics
     case "$persona_name" in
         "grandma_rose")
@@ -111,16 +111,16 @@ test_persona() {
             local reason="Persona requirements met"
             ;;
     esac
-    
+
     local end_time=$(date +%s.%N)
     local duration=$(echo "$end_time - $start_time" | bc -l)
-    
+
     # Report results
     if [ "$passed" = true ]; then
         print_success "✅ $persona_name PASSED (${duration}s)"
         echo "     Reason: $reason"
         PASSED_PERSONAS=$((PASSED_PERSONAS + 1))
-        
+
         # Log to report
         cat >> "$REPORT_FILE" << EOF
 ✅ $persona_name - PASSED
@@ -133,7 +133,7 @@ EOF
         print_error "❌ $persona_name FAILED (${duration}s)"
         echo "     Reason: $reason"
         FAILED_PERSONAS=$((FAILED_PERSONAS + 1))
-        
+
         # Log to report
         cat >> "$REPORT_FILE" << EOF
 ❌ $persona_name - FAILED
@@ -143,7 +143,7 @@ EOF
 
 EOF
     fi
-    
+
     echo ""
 }
 

@@ -102,15 +102,15 @@ async def main():
     print(
         """
     from nix_for_humanity.core.advanced_features import AdvancedFeatures
-    
+
     features = AdvancedFeatures()
-    
+
     # Switch to work profile
     await features.profiles.switch('work')
-    
+
     # Update system flake
     await features.flakes.update()
-    
+
     # Build a test VM
     await features.images.vm()
     """

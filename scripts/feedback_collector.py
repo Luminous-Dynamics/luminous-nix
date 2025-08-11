@@ -127,7 +127,7 @@ class FeedbackCollector:
 
         c.execute(
             """
-            INSERT INTO feedback 
+            INSERT INTO feedback
             (timestamp, query, response, helpful, better_response, interaction_time, metadata)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
@@ -182,9 +182,9 @@ class FeedbackCollector:
         # Recent feedback
         c.execute(
             """
-            SELECT query, response, helpful, timestamp 
-            FROM feedback 
-            ORDER BY timestamp DESC 
+            SELECT query, response, helpful, timestamp
+            FROM feedback
+            ORDER BY timestamp DESC
             LIMIT 5
         """
         )
@@ -215,7 +215,7 @@ class FeedbackCollector:
         # Export preference pairs
         c.execute(
             """
-            SELECT context, chosen, rejected 
+            SELECT context, chosen, rejected
             FROM preferences
         """
         )

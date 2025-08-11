@@ -52,7 +52,7 @@ mock_nlp.process.return_value = {"intent": "install", "package": "firefox"}
 
 # After
 test_nlp = TestNLPEngine()
-# TestNLPEngine has deterministic behavior - it will recognize 
+# TestNLPEngine has deterministic behavior - it will recognize
 # "install firefox" and return appropriate intent
 ```
 
@@ -69,7 +69,7 @@ class TestEngine:
     @pytest.fixture
     def test_nlp(self):
         return TestNLPEngine()
-    
+
     @pytest.fixture
     def engine(self, test_nlp):
         engine = Engine()
@@ -85,10 +85,10 @@ def test_install_command(self):
     result = self.engine.install("firefox")
     self.mock_executor.execute.assert_called_once_with("nix-env", ["-iA", "nixos.firefox"])
 
-# After  
+# After
 def test_install_command(self, engine, test_executor):
     result = engine.install("firefox")
-    
+
     # Verify through state and behavior
     assert result["success"] is True
     assert "firefox" in test_executor.installed_packages
@@ -103,7 +103,7 @@ Test implementations support all 10 personas with realistic behavior:
 def test_maya_adhd_fast_response(self, test_nlp):
     # Maya needs responses in <1 second
     result = test_nlp.process("firefox now", persona="maya_adhd")
-    
+
     assert result['processing_time'] < 0.1  # Super fast for Maya
     assert result['response_style'] == 'minimal'
     assert result['intent'] == 'install'
@@ -112,7 +112,7 @@ def test_maya_adhd_fast_response(self, test_nlp):
 def test_grandma_rose_friendly_help(self, test_nlp):
     # Grandma Rose needs friendly, simple language
     result = test_nlp.process("I need that Firefox thing", persona="grandma_rose")
-    
+
     assert result['response_style'] == 'friendly'
     assert result['corrections'] is None  # Don't confuse with corrections
     assert result['intent'] == 'install'
@@ -147,19 +147,19 @@ class TestBackend(unittest.TestCase):
         self.nlp = MagicMock()
         self.executor = MagicMock()
         self.kb = MagicMock()
-        
+
         self.backend = Backend()
         self.backend.nlp = self.nlp
         self.backend.executor = self.executor
         self.backend.knowledge = self.kb
-        
+
     def test_install_firefox(self):
         self.nlp.process.return_value = {"intent": "install", "package": "firefox"}
         self.kb.has_package.return_value = True
         self.executor.execute.return_value = {"success": True}
-        
+
         result = self.backend.process("install firefox")
-        
+
         self.nlp.process.assert_called_once()
         self.executor.execute.assert_called_with("nix-env", ["-iA", "nixos.firefox"])
         self.assertTrue(result["success"])
@@ -177,27 +177,27 @@ class TestBackend:
             'knowledge': TestKnowledgeBase(),
             'learning': TestLearningEngine(db)
         }
-    
+
     @pytest.fixture
     def backend(self, test_components):
         backend = Backend()
         for name, component in test_components.items():
             setattr(backend, name, component)
         return backend
-    
+
     def test_install_firefox(self, backend, test_components):
         # Process with real test implementations
         result = backend.process("install firefox")
-        
+
         # Verify through actual behavior
         assert result["success"] is True
         assert "firefox" in test_components['executor'].installed_packages
-        
+
         # Verify learning happened
         stats = test_components['learning'].db.get_learning_stats('default')
         assert stats['total_interactions'] == 1
         assert stats['successful_interactions'] == 1
-        
+
     @pytest.mark.parametrize("persona,input_text", [
         ("grandma_rose", "I need that Firefox thing"),
         ("maya_adhd", "firefox now"),
@@ -207,10 +207,10 @@ class TestBackend:
     def test_install_across_personas(self, backend, persona, input_text):
         # Test with different personas
         result = backend.process(input_text, context={'persona': persona})
-        
+
         # All personas should succeed
         assert result["success"] is True
-        
+
         # But with persona-appropriate responses
         persona_data = PERSONA_TEST_DATA[persona]
         assert result['response_time'] < persona_data['max_response_time']
@@ -219,7 +219,7 @@ class TestBackend:
 ## Benefits Achieved
 
 1. **More Realistic**: Tests verify actual component behavior
-2. **Better Coverage**: Testing real interactions catches more bugs  
+2. **Better Coverage**: Testing real interactions catches more bugs
 3. **Persona Support**: Built-in testing for all user types
 4. **Maintainable**: Less mock setup code
 5. **Deterministic**: Predictable results every time

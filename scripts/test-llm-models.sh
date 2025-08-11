@@ -28,7 +28,7 @@ test_model() {
     local model=$1
     echo "📊 Testing model: $model"
     echo "------------------------"
-    
+
     # Check if model exists
     if ! ollama list | grep -q "$model"; then
         echo "⚠️  Model not installed. Pulling $model..."
@@ -38,26 +38,26 @@ test_model() {
             return 1
         fi
     fi
-    
+
     # Measure response time
     local start_time=$(date +%s.%N)
-    
+
     # Run the test
     echo "🤔 Asking: $TEST_QUESTION"
     echo
-    
+
     response=$(ollama run "$model" "$TEST_QUESTION" 2>/dev/null || echo "Error getting response")
-    
+
     local end_time=$(date +%s.%N)
     local duration=$(echo "$end_time - $start_time" | bc)
-    
+
     echo "📝 Response:"
     echo "$response" | head -20
     echo "..."
     echo
     echo "⏱️  Response time: ${duration}s"
     echo
-    
+
     # Save results
     mkdir -p test-results
     {
@@ -68,12 +68,12 @@ test_model() {
         echo "$response"
         echo
     } > "test-results/${model//://}.txt"
-    
+
     # Ask for quality rating
     read -p "Rate response quality (1-5, 5 being best): " rating
     echo "Rating: $rating/5" >> "test-results/${model//://}.txt"
     echo
-    
+
     return 0
 }
 
@@ -105,7 +105,7 @@ full_test() {
     echo "🔬 Running full test with all models..."
     echo "⚠️  This may take a while and require significant disk space."
     read -p "Continue? (y/n): " confirm
-    
+
     if [[ "$confirm" == "y" ]]; then
         for model in "${MODELS[@]}"; do
             if test_model "$model"; then
@@ -125,7 +125,7 @@ test_specific() {
     done
     echo
     read -p "Select model number: " choice
-    
+
     if [[ "$choice" -ge 1 && "$choice" -le "${#MODELS[@]}" ]]; then
         model="${MODELS[$((choice-1))]}"
         test_model "$model"
@@ -139,7 +139,7 @@ compare_results() {
     echo "📊 Model Comparison Results"
     echo "=========================="
     echo
-    
+
     if [ -d "test-results" ]; then
         for file in test-results/*.txt; do
             if [ -f "$file" ]; then
@@ -157,13 +157,13 @@ compare_results() {
 while true; do
     show_menu
     read -p "Choice: " choice
-    
+
     case $choice in
         1) quick_test ;;
         2) full_test ;;
         3) test_specific ;;
         4) compare_results ;;
-        5) 
+        5)
             echo "👋 Goodbye!"
             exit 0
             ;;
@@ -171,7 +171,7 @@ while true; do
             echo "Invalid choice. Please try again."
             ;;
     esac
-    
+
     echo
     read -p "Press Enter to return to menu..."
     clear

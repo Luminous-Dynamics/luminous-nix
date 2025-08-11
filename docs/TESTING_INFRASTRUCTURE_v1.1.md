@@ -199,7 +199,7 @@ pytest tests/integration/test_tui_integration.py::TestTUIIntegration::test_tui_l
 @pytest.mark.asyncio
 async def test_new_tui_feature(self):
     app = NixForHumanityApp()
-    
+
     async with app.run_test() as pilot:
         # Your test logic here
         await pilot.click("#element")
@@ -213,7 +213,7 @@ async def test_new_voice_feature(self, voice_interface):
     # Mock the specific component
     with patch.object(voice_interface, 'method') as mock:
         mock.return_value = expected_result
-        
+
         # Test the feature
         result = await voice_interface.do_something()
         assert result == expected

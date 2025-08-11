@@ -442,7 +442,7 @@ print(f'{mem_mb:.1f}')
         if "success" in self.metrics["types"]:
             status = "✅" if self.metrics["types"]["success"] else "❌"
             lines.append(
-                f"{status} Type Checking: {'Passed' if self.metrics["types"]["success"] else 'Failed'}"
+                f"{status} Type Checking: {'Passed' if self.metrics['types']['success'] else 'Failed'}"
             )
 
         # Linting
@@ -583,11 +583,11 @@ print(f'{mem_mb:.1f}')
             <h1>📊 Nix for Humanity - Standards Compliance Dashboard</h1>
             <div class="timestamp">Generated: {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</div>
         </header>
-        
+
         <div class="metrics-grid">
             {self._generate_metric_cards()}
         </div>
-        
+
         <footer>
             <p>Sacred Trinity Development Model - $200/month achieving $4.2M quality 🕉️</p>
         </footer>

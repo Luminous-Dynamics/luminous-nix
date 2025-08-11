@@ -48,7 +48,7 @@ We created a **Pragmatic Learning System** that:
 
 ## The Honest Comparison
 
-| Aspect | Original 4D Vision | Pragmatic Reality | 
+| Aspect | Original 4D Vision | Pragmatic Reality |
 |--------|-------------------|-------------------|
 | **Complexity** | PhD thesis level | Can build in a week |
 | **Data Needs** | Biometrics, eye tracking | Just command history |

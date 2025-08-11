@@ -84,17 +84,17 @@ echo "----------------"
 
 if [ -d "tests" ]; then
     check_pass "Test directory exists"
-    
+
     # Count test types
     UNIT_TESTS=$(find tests/unit -name "test_*.py" 2>/dev/null | wc -l)
     INTEGRATION_TESTS=$(find tests/integration -name "test_*.py" 2>/dev/null | wc -l)
-    
+
     if [ $UNIT_TESTS -gt 5 ]; then
         check_pass "Sufficient unit tests ($UNIT_TESTS)"
     else
         check_fail "Too few unit tests ($UNIT_TESTS)"
     fi
-    
+
     if [ $INTEGRATION_TESTS -gt 2 ]; then
         check_pass "Has integration tests ($INTEGRATION_TESTS)"
     else
@@ -122,14 +122,14 @@ echo "----------------"
 
 if [ -f "README.md" ]; then
     check_pass "README.md exists"
-    
+
     # Check for honesty indicators
     if grep -qi "alpha\|beta\|development\|work.in.progress" README.md; then
         check_pass "README indicates development status"
     else
         check_warn "README doesn't indicate development status"
     fi
-    
+
     if grep -q "❌" README.md; then
         check_pass "README shows limitations"
     else
@@ -159,7 +159,7 @@ echo "---------------"
 
 if [ -f "pyproject.toml" ] && [ -f "poetry.lock" ]; then
     check_pass "Poetry configuration exists"
-    
+
     if poetry check >/dev/null 2>&1; then
         check_pass "Poetry dependencies valid"
     else
@@ -186,7 +186,7 @@ echo "----------------"
 # Check basic commands
 if [ -x "bin/ask-nix" ] || [ -x "./bin/ask-nix" ]; then
     check_pass "CLI executable exists"
-    
+
     # Test help command
     if ./bin/ask-nix --help >/dev/null 2>&1; then
         check_pass "Help command works"
@@ -273,7 +273,7 @@ fi
     echo ""
     echo "## Summary"
     echo "- Passed: $PASSED"
-    echo "- Warnings: $WARNINGS"  
+    echo "- Warnings: $WARNINGS"
     echo "- Failed: $FAILED"
     echo "- Score: $SCORE%"
     echo ""

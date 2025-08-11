@@ -9,7 +9,7 @@ echo "🧪 Testing development environment..."
 test_import() {
     local module=$1
     local name=${2:-$module}
-    
+
     echo -n "  Testing $name... "
     if python -c "import $module" 2>/dev/null; then
         echo "✅"

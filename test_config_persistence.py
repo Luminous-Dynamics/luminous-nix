@@ -10,10 +10,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.core.config_manager import (
-    ConfigManager,
-    get_config_manager,
-)
+from nix_for_humanity.core.config_manager import ConfigManager, get_config_manager
 
 
 def test_preferences():

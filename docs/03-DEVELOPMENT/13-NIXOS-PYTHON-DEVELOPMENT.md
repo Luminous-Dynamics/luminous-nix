@@ -50,13 +50,13 @@ pkgs.mkShell {
     python311
     python311Packages.pip
     python311Packages.virtualenv
-    
+
     # System dependencies your Python packages might need
     postgresql  # for psycopg2
     gcc         # for packages that compile C extensions
     stdenv      # standard build environment
   ];
-  
+
   shellHook = ''
     echo "🐍 Python development environment ready!"
     echo "Create a virtual environment with: python -m venv .venv"
@@ -99,7 +99,7 @@ pkgs.mkShell {
     python311
     python311Packages.pip
     python311Packages.virtualenv
-    
+
     # Data science system deps
     blas
     lapack
@@ -114,7 +114,7 @@ pkgs.mkShell {
     python311
     python311Packages.pip
     python311Packages.virtualenv
-    
+
     # Web dev system deps
     postgresql
     redis
@@ -155,18 +155,18 @@ let
   myPython = pkgs.python311.withPackages (ps: with ps; [
     # Web framework
     django
-    
+
     # Data science
     pandas
     numpy
     matplotlib
     jupyter
-    
+
     # Utilities
     requests
     pytest
     black
-    
+
     # Any other packages you need
   ]);
 in
@@ -177,7 +177,7 @@ pkgs.mkShell {
     pkgs.git
     pkgs.ruff
   ];
-  
+
   shellHook = ''
     echo "🚀 Declarative Python environment loaded!"
     echo "All packages are already available - no pip needed!"
@@ -202,7 +202,7 @@ pkgs.mkShell {
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        
+
         pythonEnv = pkgs.python311.withPackages (ps: with ps; [
           fastapi
           uvicorn
@@ -215,7 +215,7 @@ pkgs.mkShell {
         devShells.default = pkgs.mkShell {
           buildInputs = [ pythonEnv ];
         };
-        
+
         # You can even build a deployable package!
         packages.default = pkgs.writeScriptBin "my-app" ''
           #!${pythonEnv}/bin/python
@@ -251,7 +251,7 @@ let
 in
 pkgs.mkShell {
   buildInputs = [ myPython ];
-  
+
   shellHook = ''
     jupyter lab
   '';
@@ -268,18 +268,18 @@ let
   myPackage = ps: ps.buildPythonPackage rec {
     pname = "my-special-package";
     version = "1.0.0";
-    
+
     src = ps.fetchPypi {
       inherit pname version;
       sha256 = "...";  # nix-prefetch-url
     };
-    
+
     propagatedBuildInputs = with ps; [
       requests
       numpy
     ];
   };
-  
+
   pythonWithMyPackage = pkgs.python311.withPackages (ps: [
     (myPackage ps)
     ps.pytest
@@ -326,7 +326,7 @@ At this level, we combine the best of both worlds: Python's rich ecosystem tools
       let
         pkgs = nixpkgs.legacyPackages.${system};
         poetry2nixLib = poetry2nix.lib.mkPoetry2Nix { inherit pkgs; };
-        
+
         myApp = poetry2nixLib.mkPoetryApplication {
           projectDir = self;
           # Custom overrides for problematic packages
@@ -341,7 +341,7 @@ At this level, we combine the best of both worlds: Python's rich ecosystem tools
       in
       {
         packages.default = myApp;
-        
+
         devShells.default = pkgs.mkShell {
           inputsFrom = [ myApp ];
           buildInputs = with pkgs; [
@@ -351,7 +351,7 @@ At this level, we combine the best of both worlds: Python's rich ecosystem tools
             ruff
           ];
         };
-        
+
         # Docker image for deployment
         packages.docker = pkgs.dockerTools.buildLayeredImage {
           name = "my-python-app";
@@ -371,15 +371,15 @@ let
     url = "https://github.com/DavHau/mach-nix";
     rev = "latest";
   }) {};
-  
+
   myPython = mach-nix.mkPython {
     requirements = builtins.readFile ./requirements.txt;
-    
+
     # Pin specific versions
     packagesExtra = [
       "tensorflow==2.10.0"
     ];
-    
+
     # System dependencies
     providers = {
       numpy = "nixpkgs";
@@ -402,24 +402,24 @@ pkgs.mkShell {
     projectDir = ./.;
     preferWheels = true;  # Faster builds
   };
-  
+
   # SystemD service
   systemd.services.my-python-app = {
     description = "My Python Application";
     wantedBy = [ "multi-user.target" ];
-    
+
     serviceConfig = {
       ExecStart = "${myApp}/bin/my-app";
       Restart = "always";
       User = "myapp";
-      
+
       # Security hardening
       PrivateTmp = true;
       ProtectSystem = "strict";
       ProtectHome = true;
     };
   };
-  
+
   # NixOS module
   services.my-python-app = {
     enable = mkEnableOption "My Python Application";
@@ -447,7 +447,7 @@ jobs:
       - uses: cachix/cachix-action@v12
         with:
           name: my-cache
-      
+
       - run: nix build
       - run: nix flake check
       - run: nix develop -c pytest

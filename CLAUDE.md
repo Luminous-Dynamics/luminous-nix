@@ -1,7 +1,7 @@
 # 🤖 Claude Code Instructions - Nix for Humanity
 
-**Purpose**: Project-specific instructions for Claude Code sessions  
-**Parent Context**: `/srv/luminous-dynamics/CLAUDE.md`  
+**Purpose**: Project-specific instructions for Claude Code sessions
+**Parent Context**: `/srv/luminous-dynamics/CLAUDE.md`
 **Setup Guide**: `CLAUDE_SETUP_INSTRUCTIONS.md`
 
 ## ⚠️ CRITICAL: Update Documentation When Working

@@ -217,7 +217,7 @@ reloading system services...
 Package: firefox
 Version: 119.0
 
-Index: 1  
+Index: 1
 Package: htop
 Version: 3.2.2""",
                 ),
@@ -325,7 +325,7 @@ freed 287.3 MiB""",
                     explanation="See all saved system states you can rollback to.",
                     command="sudo nix-env --list-generations -p /nix/var/nix/profiles/system",
                     example_output="""  95   2024-01-25 10:30:15
-  96   2024-01-26 14:22:31   
+  96   2024-01-26 14:22:31
   97   2024-01-28 09:15:42   (current)""",
                 ),
                 LearningStep(

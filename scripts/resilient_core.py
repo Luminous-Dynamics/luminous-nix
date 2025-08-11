@@ -385,7 +385,7 @@ async def demonstrate_resilient_system():
         """
     🌟 Nix for Humanity - Resilient Architecture Demo
     ================================================
-    
+
     This system adapts to YOUR environment, providing the best
     possible experience with available resources.
     """

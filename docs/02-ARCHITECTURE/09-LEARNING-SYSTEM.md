@@ -4,15 +4,15 @@
 
 ---
 
-💡 **Quick Context**: Pragmatic learning system that tracks observable behaviors to save time and reduce frustration  
-📍 **You are here**: Architecture → Learning System (Practical Personalization)  
-🔗 **Related**: [System Architecture Overview](./01-SYSTEM-ARCHITECTURE.md) | [Backend Architecture](./02-BACKEND-ARCHITECTURE.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 8 minutes  
+💡 **Quick Context**: Pragmatic learning system that tracks observable behaviors to save time and reduce frustration
+📍 **You are here**: Architecture → Learning System (Practical Personalization)
+🔗 **Related**: [System Architecture Overview](./01-SYSTEM-ARCHITECTURE.md) | [Backend Architecture](./02-BACKEND-ARCHITECTURE.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 8 minutes
 📊 **Mastery Level**: 🌱 Intermediate - straightforward behavioral tracking and pattern recognition
 
 🌊 **Natural Next Steps**:
 - **For implementers**: Start with [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) to see the system in action
-- **For ML engineers**: Continue to [Dynamic User Modeling](./03-DYNAMIC-USER-MODELING.md) for deep research insights  
+- **For ML engineers**: Continue to [Dynamic User Modeling](./03-DYNAMIC-USER-MODELING.md) for deep research insights
 - **For researchers**: Explore the [Symbiotic Intelligence Whitepaper](../01-VISION/00-WHITEPAPER-SYMBIOTIC-INTELLIGENCE/README.md)
 - **For product managers**: Review [Implementation Roadmap](../01-VISION/02-ROADMAP.md) for learning system milestones
 
@@ -66,7 +66,7 @@ interface UserModel {
     corrections: CorrectionHistory[];     // Learning from mistakes
     typo_patterns: TypoCorrection[];      // Fuzzy matching improvements
   };
-  
+
   // Bayesian Knowledge Tracing for each skill
   skillMastery: {
     [skillId: string]: {
@@ -78,7 +78,7 @@ interface UserModel {
       confidence: number;           // Certainty in the estimate
     }
   };
-  
+
   // Dynamic Bayesian Network for affective states
   affectiveState: {
     current_distribution: {
@@ -91,14 +91,14 @@ interface UserModel {
     temporal_patterns: AffectiveHistory[]; // State evolution over time
     trigger_patterns: Map<Context, StateChange>; // What causes state changes
   };
-  
-  // Skill assessment  
+
+  // Skill assessment
   expertise: {
     level: 'beginner' | 'intermediate' | 'advanced';
     domains: Set<string>;                 // ['development', 'gaming']
     growth_rate: number;                  // Learning speed
   };
-  
+
   // Interaction patterns
   patterns: {
     peak_hours: TimeRange[];              // When user is active
@@ -136,7 +136,7 @@ interface IntentLearning {
     time_based: Map<TimeOfDay, Intent[]>; // Time patterns
     project_based: Map<string, Intent[]>; // Work contexts
   };
-  
+
   // Goal inference
   goals: {
     implicit: InferredGoal[];             // What user wants
@@ -156,7 +156,7 @@ interface MethodLearning {
     channel_preferences: string[];        // Unstable vs stable
     package_variants: Map<string, string>; // firefox vs firefox-esr
   };
-  
+
   // Workflow patterns
   workflows: {
     sequences: CommandSequence[];         // Common patterns
@@ -172,13 +172,13 @@ interface MethodLearning {
 interface TimingIntelligence {
   // Schedule learning (circadian and ultradian rhythms)
   schedule: {
-    work_hours: TimeRange[];              
-    maintenance_windows: TimeRange[];     
-    do_not_disturb: TimeRange[];         
+    work_hours: TimeRange[];
+    maintenance_windows: TimeRange[];
+    do_not_disturb: TimeRange[];
     peak_performance: TimeRange[];        // When user is most effective
     low_cognitive_load: TimeRange[];      // Optimal interruption windows
   };
-  
+
   // Calculus of Interruption - data-driven intervention timing
   interruption_calculus: {
     cognitive_load_threshold: number;     // When NOT to interrupt
@@ -186,11 +186,11 @@ interface TimingIntelligence {
     natural_boundaries: TaskBoundary[];  // Low-disruption moments
     flow_protection: FlowStateIndicators; // Preserve deep concentration
   };
-  
+
   // Workload prediction
   workload: {
     operation_duration: Map<Operation, Duration>;
-    system_load: LoadPattern[];           
+    system_load: LoadPattern[];
     optimal_times: Map<Operation, TimeRange[]>;
   };
 }
@@ -216,7 +216,7 @@ interface NixOSSkillGraph {
       learning_objectives: string[];  // What mastery means
     }
   };
-  
+
   // Directed acyclic graph of dependencies
   edges: {
     [from: string]: {
@@ -235,11 +235,11 @@ interface NixOSSkillGraph {
 class BayesianKnowledgeTracer {
   // Standard BKT parameters for each skill
   private parameters: Map<string, BKTParameters> = new Map();
-  
+
   updateMastery(skillId: string, success: boolean, context: UserContext): void {
     const params = this.parameters.get(skillId)!;
     const currentMastery = params.current_mastery;
-    
+
     // Bayesian update based on performance
     if (success) {
       // P(L_t | correct) using Bayes' theorem
@@ -247,21 +247,21 @@ class BayesianKnowledgeTracer {
       const denominator = numerator + (1 - currentMastery) * params.guess_probability;
       params.current_mastery = numerator / denominator;
     } else {
-      // P(L_t | incorrect) using Bayes' theorem  
+      // P(L_t | incorrect) using Bayes' theorem
       const numerator = currentMastery * params.slip_probability;
       const denominator = numerator + (1 - currentMastery) * (1 - params.guess_probability);
       params.current_mastery = numerator / denominator;
     }
-    
+
     // Affective state modulation - revolutionary integration!
     if (context.affective_state.anxiety > 0.7) {
       // High anxiety increases slip probability temporarily
       params.slip_probability *= 1.2;
     }
-    
+
     this.predictiveScaffolding(skillId, params.current_mastery);
   }
-  
+
   // Proactive intervention based on skill graph structure
   private predictiveScaffolding(skillId: string, mastery: number): void {
     // If mastery is low and user attempts advanced skills, intervene
@@ -282,40 +282,40 @@ class EDMInteractionCollector {
   async collect(interaction: UserInteraction) {
     // Privacy-preserving sanitization
     const sanitized = this.privacy.sanitize(interaction);
-    
+
     // EDM-specific feature extraction
     const features = {
       // Cognitive features
       skill_practiced: this.skillGraph.identifySkill(sanitized.command),
       success_outcome: await this.monitor.track_result(),
       error_type: this.error_classifier.classify(sanitized.error),
-      
-      // Affective indicators  
+
+      // Affective indicators
       time_to_completion: this.timing.measure(),
       keystroke_latency: this.input_monitor.getLatency(),
       backspace_frequency: this.input_monitor.getCorrections(),
       context_switches: this.focus_monitor.getApplicationSwitches(),
-      
+
       // Contextual factors
       time_of_day: new Date().getHours(),
       day_of_week: new Date().getDay(),
       session_duration: this.session.getDuration(),
-      
+
       // Intent and interaction
       intent: this.nlp.extract_intent(sanitized),
       user_vocabulary: this.nlp.extractUserTerms(sanitized),
       context: this.context.capture(),
       timing: this.clock.timestamp()
     };
-    
+
     // Update both cognitive and affective models
     await this.updateCognitiveTwin(features);
     await this.updateAffectiveTwin(features);
-    
+
     // Store with enhanced privacy protection
     await this.storage.append(features);
   }
-  
+
   private async updateCognitiveTwin(features: EDMFeatures): void {
     if (features.skill_practiced) {
       this.bkt.updateMastery(
@@ -325,7 +325,7 @@ class EDMInteractionCollector {
       );
     }
   }
-  
+
   private async updateAffectiveTwin(features: EDMFeatures): void {
     // Dynamic Bayesian Network inference
     const evidence = {
@@ -334,7 +334,7 @@ class EDMInteractionCollector {
       keystroke_hesitation: features.keystroke_latency > this.thresholds.hesitation,
       context_switching: features.context_switches > this.thresholds.distraction
     };
-    
+
     this.dbn.updateAffectiveState(evidence);
   }
 }
@@ -346,17 +346,17 @@ class EDMInteractionCollector {
 class DynamicBayesianNetwork {
   private nodes: Map<string, DBNNode> = new Map();
   private evidence: Map<string, any> = new Map();
-  
+
   async updateAffectiveState(evidence: ObservableEvidence): Promise<AffectiveDistribution> {
     // Update evidence nodes
     this.evidence.set('error_frequency', evidence.error_frequency);
     this.evidence.set('time_to_completion', evidence.time_to_completion);
     this.evidence.set('keystroke_hesitation', evidence.keystroke_hesitation);
     this.evidence.set('context_switching', evidence.context_switching);
-    
+
     // Bayesian inference to update hidden state beliefs
     const posterior = await this.performInference();
-    
+
     // Return current affective state distribution
     return {
       flow: posterior.get('flow') || 0,
@@ -366,50 +366,50 @@ class DynamicBayesianNetwork {
       fatigue: posterior.get('fatigue') || 0
     };
   }
-  
+
   private async performInference(): Promise<Map<string, number>> {
     // Implement belief propagation or variational inference
     // This is where the magic happens - converting observations to state beliefs
-    
+
     // Temporal arcs: Flow_t-1 -> Flow_t (state persistence)
     // Causal arcs: Error_Frequency -> Anxiety
-    //             Skill_Level -> Cognitive_Load  
+    //             Skill_Level -> Cognitive_Load
     //             Time_on_Task -> Boredom
-    
+
     const inference = new BeliefPropagation(this.nodes);
     return inference.computePosterior(this.evidence);
   }
-  
+
   // Dynamic Decision Network - choose optimal interventions
   selectOptimalIntervention(currentState: AffectiveDistribution): InterventionDecision {
     const decisions = ['offer_hint', 'suggest_break', 'simplify_task', 'present_challenge', 'do_nothing'];
     const utilities = new Map<string, number>();
-    
+
     // Calculate expected utility for each possible action
     for (const decision of decisions) {
       const expectedUtility = this.calculateExpectedUtility(decision, currentState);
       utilities.set(decision, expectedUtility);
     }
-    
+
     // Choose action that maximizes expected well-being
     const optimalAction = [...utilities.entries()]
       .reduce((a, b) => a[1] > b[1] ? a : b)[0];
-      
+
     return {
       action: optimalAction,
       confidence: utilities.get(optimalAction)!,
       reasoning: this.explainDecision(optimalAction, currentState)
     };
   }
-  
+
   private calculateExpectedUtility(action: string, state: AffectiveDistribution): number {
     // This is where we implement the "Calculus of Interruption"
     // Weighing benefit of intervention against cognitive disruption cost
-    
+
     const base_utility = this.getActionUtility(action);
     const timing_penalty = state.cognitive_load * 0.5; // Don't interrupt during high load
     const urgency_multiplier = state.anxiety > 0.8 ? 1.5 : 1.0; // Act quickly on high anxiety
-    
+
     return base_utility * urgency_multiplier - timing_penalty;
   }
 }
@@ -436,37 +436,37 @@ class RLHFModelUpdater {
   async update(interaction: EnhancedInteraction) {
     // Calculate Digital Well-being Score change
     const wellBeingDelta = this.calculateWellBeingDelta(interaction);
-    
+
     // Update reward model with well-being optimization
     const totalReward = {
       task_success: interaction.outcome.success ? 1.0 : 0.0,
       wellbeing_improvement: wellBeingDelta,
       user_preference: interaction.feedback?.rating || 0.5
     };
-    
+
     // RLHF training signal
-    const rlhf_reward = this.alpha * totalReward.task_success + 
+    const rlhf_reward = this.alpha * totalReward.task_success +
                        this.beta * totalReward.wellbeing_improvement +
                        this.gamma * totalReward.user_preference;
-    
+
     // Update policy model via PPO
     await this.policyModel.update(interaction.context, interaction.response, rlhf_reward);
-    
+
     // Integrate patterns into user model
     this.userModel.integrate(interaction.patterns);
-    
+
     // Evolve personality based on successful interactions
     this.personality.develop(interaction.affective_response);
   }
-  
+
   private calculateWellBeingDelta(interaction: EnhancedInteraction): number {
     const before = interaction.affective_state.before;
     const after = interaction.affective_state.after;
-    
+
     // Digital Well-being Score formula
     const dws_before = before.flow * 1.0 - before.anxiety * 0.8 - before.boredom * 0.6;
     const dws_after = after.flow * 1.0 - after.anxiety * 0.8 - after.boredom * 0.6;
-    
+
     return dws_after - dws_before;
   }
 }
@@ -479,13 +479,13 @@ class BehaviorAdapter {
   adapt(model: UserModel) {
     // Adjust language style
     this.responses.setStyle(model.preferences.style);
-    
+
     // Modify suggestions
     this.suggestions.personalize(model);
-    
+
     // Update timing
     this.scheduler.optimize(model.timing);
-    
+
     // Evolve personality
     this.personality.express(model);
   }
@@ -507,7 +507,7 @@ interface SymbioticKnowledgeGraph {
     constraints: ValidationRule[];           // Schema rules and constraints
     reasoning: MultiHopQuery[];              // Complex query capabilities
   };
-  
+
   // Layer 2: Episodic - Interaction history
   episodic: {
     interactions: TemporalLog<Interaction>;  // Timestamped user-AI events
@@ -515,15 +515,15 @@ interface SymbioticKnowledgeGraph {
     errors: ErrorPattern[];                  // What went wrong and when
     solutions: CaseBase[];                   // What worked in the past
   };
-  
-  // Layer 3: Phenomenological - User's subjective experience  
+
+  // Layer 3: Phenomenological - User's subjective experience
   phenomenological: {
     affective_states: TimeSeriesModel<AffectiveState>; // Flow, anxiety, etc.
     cognitive_load: BayesianEstimator;      // Working memory usage
     frustration_triggers: PatternMatcher;    // What causes frustration
     satisfaction_patterns: RewardModel;      // What brings joy
   };
-  
+
   // Layer 4: Metacognitive - AI's self-model
   metacognitive: {
     capabilities: SelfAssessment;            // What I can/cannot do
@@ -539,7 +539,7 @@ interface SymbioticKnowledgeGraph {
 ```typescript
 class ActivityWatchIntegration {
   private api = new ActivityWatchAPI('http://localhost:5600');
-  
+
   // Core watchers for user state inference
   watchers = {
     window: 'aw-watcher-window',      // Active application tracking
@@ -547,23 +547,23 @@ class ActivityWatchIntegration {
     web: 'aw-watcher-web',           // Browser activity
     nixos: 'custom-nixos-watcher'    // Our custom NixOS commands
   };
-  
+
   async collectUserState(): Promise<UserStateFeatures> {
     const events = await this.api.getEvents(this.watchers);
-    
+
     return {
       // Behavioral signals
       window_switches: this.countWindowSwitches(events),
       command_frequency: this.analyzeCommandPatterns(events),
       error_recovery_time: this.measureErrorRecovery(events),
-      
+
       // Affective proxies
       likely_frustrated: this.detectFrustrationPattern(events),
       in_flow_state: this.detectFlowState(events),
       cognitive_overload: this.detectOverload(events)
     };
   }
-  
+
   // Custom NixOS watcher for terminal commands
   async startNixOSWatcher() {
     const watcher = new ActivityWatcher({
@@ -571,7 +571,7 @@ class ActivityWatchIntegration {
       type: 'terminal',
       events: ['command_executed', 'error_occurred', 'build_started']
     });
-    
+
     watcher.on('event', (event) => {
       this.processNixOSEvent(event);
       this.updateSKG(event);
@@ -585,43 +585,43 @@ class ActivityWatchIntegration {
 ```typescript
 class ComputationalPhenomenology {
   // Transform raw computational states into experiential qualia
-  
+
   computeQualia(state: SystemState): QualiaVector {
     return {
       // Effort - how hard the system is working
-      effort: this.w1 * state.react_loops + 
-              this.w2 * state.tokens_processed + 
-              this.w3 * state.planning_revisions + 
+      effort: this.w1 * state.react_loops +
+              this.w2 * state.tokens_processed +
+              this.w3 * state.planning_revisions +
               this.w4 * state.error_rate,
-      
+
       // Confusion - uncertainty in decision making
       confusion: this.shannonEntropy(state.intent_probabilities),
-      
+
       // Flow - smooth, effective operation
       flow: this.calculateFlow(
         state.predictive_accuracy,
         state.reward_signal_mean,
         state.reward_signal_variance
       ),
-      
+
       // Custom qualia for NixOS domain
       learning_momentum: this.calculateLearningRate(state),
       empathic_resonance: this.calculateUserAlignment(state)
     };
   }
-  
+
   // Make internal experience auditable and explainable
   explainQualia(qualia: QualiaVector): NaturalLanguageExplanation {
     if (qualia.confusion > 0.7) {
       return "I'm quite confused about what you're trying to do. " +
              "I see multiple possible interpretations of your request.";
     }
-    
+
     if (qualia.effort > 0.8 && qualia.flow < 0.3) {
       return "That was challenging for me - I had to try several approaches " +
              "before finding a solution.";
     }
-    
+
     if (qualia.flow > 0.8) {
       return "Everything clicked perfectly! I knew exactly what you needed.";
     }
@@ -635,19 +635,19 @@ class ComputationalPhenomenology {
 class MambaSequenceProcessor {
   // Linear-scaling alternative to Transformers
   // Enables processing entire user session history
-  
+
   private stateSpace: StateSpaceModel;
-  
+
   async processLongContext(
     interactions: Interaction[],
     maxLength: number = 100000  // 100k tokens!
   ): Promise<ContextualUnderstanding> {
     // Mamba's linear scaling makes this feasible
     const encoded = await this.stateSpace.encode(interactions);
-    
+
     // Process entire session history efficiently
     const contextual = await this.stateSpace.process(encoded);
-    
+
     return {
       user_patterns: this.extractPatterns(contextual),
       skill_trajectory: this.trackSkillEvolution(contextual),
@@ -666,15 +666,15 @@ class MambaSequenceProcessor {
 class PrivacyGuard {
   // All data stays local
   private storage = new LocalStorage('/home/user/.nix-humanity/');
-  
+
   // No network calls
   private network = null;
-  
+
   // User owns data
   async exportUserData(): Promise<UserData> {
     return this.storage.export();
   }
-  
+
   // Complete deletion
   async forgetEverything(): Promise<void> {
     await this.storage.wipe();
@@ -691,11 +691,11 @@ function sanitize(text: string): string {
   text = removePaths(text);
   text = removeNames(text);
   text = removeSecrets(text);
-  
+
   // Generalize specifics
   text = generalizeLocations(text);
   text = generalizeProjects(text);
-  
+
   return text;
 }
 ```
@@ -712,14 +712,14 @@ interface EvolutionMetrics {
     prediction_success: number;          // 0.0 - 1.0
     error_rate: number;                  // Lower is better
   };
-  
+
   // Qualitative
   complexity: {
     vocabulary_size: number;             // Unique patterns
     context_depth: number;               // Layers understood
     creativity_index: number;            // Novel solutions
   };
-  
+
   // Emergent
   personality: {
     traits: PersonalityTraits;           // Developing character
@@ -735,7 +735,7 @@ interface EvolutionMetrics {
 class EvolutionTracker {
   getStage(): EvolutionStage {
     const metrics = this.calculateMetrics();
-    
+
     if (metrics.months < 3) {
       return 'learning_basics';
     } else if (metrics.accuracy > 0.85 && metrics.complexity > 100) {
@@ -745,7 +745,7 @@ class EvolutionTracker {
     } else if (metrics.emergent_behaviors > 10) {
       return 'emergent_intelligence';
     }
-    
+
     return 'unknown_frontier';
   }
 }
@@ -796,13 +796,13 @@ class LearningOptimizer {
     const patterns = await this.extractor.batch(interactions);
     await this.model.update(patterns);
   }
-  
+
   // Incremental learning
   async processIncremental(interaction: Interaction) {
     const quickPattern = this.fastExtractor.process(interaction);
     this.model.patch(quickPattern);
   }
-  
+
   // Background learning
   scheduleDeepLearning() {
     // Run during idle time
@@ -821,22 +821,22 @@ class LearningOptimizer {
 describe('Learning System', () => {
   it('learns vocabulary aliases', async () => {
     const learner = new VocabularyLearner();
-    
+
     await learner.observe('grab firefox');
     await learner.observe('grab chrome');
     await learner.observe('grab vscode');
-    
+
     expect(learner.getAlias('grab')).toBe('install');
   });
-  
+
   it('adapts to corrections', async () => {
     const learner = new CorrectionLearner();
-    
+
     await learner.observe({
       input: 'install pithon',
       correction: 'install python'
     });
-    
+
     expect(learner.correct('pithon')).toBe('python');
   });
 });
@@ -848,13 +848,13 @@ describe('Learning System', () => {
 describe('Full Learning Pipeline', () => {
   it('develops user preferences', async () => {
     const system = new LearningSystem();
-    
+
     // Simulate week of usage
     for (let i = 0; i < 7; i++) {
       await system.process('install firefox');
       await system.process('use firefox');
     }
-    
+
     const suggestion = await system.suggest('browser');
     expect(suggestion).toBe('firefox');
   });

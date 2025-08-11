@@ -22,9 +22,9 @@ FAILED_TESTS=0
 run_test_suite() {
     local suite_name=$1
     local test_file=$2
-    
+
     echo -e "${YELLOW}Running $suite_name...${NC}"
-    
+
     if python -m pytest "$test_file" -v --tb=short; then
         echo -e "${GREEN}✓ $suite_name passed${NC}"
         ((PASSED_TESTS++))

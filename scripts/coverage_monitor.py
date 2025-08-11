@@ -261,8 +261,8 @@ class CoverageMonitor:
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
                 """
-                INSERT INTO coverage_history 
-                (timestamp, overall_coverage, lines_covered, lines_total, 
+                INSERT INTO coverage_history
+                (timestamp, overall_coverage, lines_covered, lines_total,
                  components, critical_paths, target_progress, git_commit, git_branch)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
@@ -317,9 +317,9 @@ class CoverageMonitor:
             # Get last 10 measurements
             cursor = conn.execute(
                 """
-                SELECT timestamp, overall_coverage, target_progress 
-                FROM coverage_history 
-                ORDER BY timestamp DESC 
+                SELECT timestamp, overall_coverage, target_progress
+                FROM coverage_history
+                ORDER BY timestamp DESC
                 LIMIT 10
             """
             )
@@ -429,7 +429,7 @@ class CoverageMonitor:
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.execute(
                 """
-                SELECT overall_coverage FROM coverage_history 
+                SELECT overall_coverage FROM coverage_history
                 ORDER BY timestamp DESC LIMIT 2
             """
             )
@@ -626,9 +626,9 @@ class CoverageMonitor:
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.execute(
                 """
-                SELECT timestamp, overall_coverage, target_progress 
-                FROM coverage_history 
-                ORDER BY timestamp ASC 
+                SELECT timestamp, overall_coverage, target_progress
+                FROM coverage_history
+                ORDER BY timestamp ASC
                 LIMIT 50
             """
             )
@@ -699,7 +699,7 @@ class CoverageMonitor:
             <p>Nix for Humanity - Testing Foundation Excellence</p>
             <p class="timestamp">Last updated: {metrics.timestamp[:19]}</p>
         </div>
-        
+
         <div class="grid">
             <div class="card metric">
                 <div class="metric-label">Overall Coverage</div>
@@ -709,7 +709,7 @@ class CoverageMonitor:
                 </div>
                 <small>{metrics.lines_covered:,} / {metrics.lines_total:,} lines</small>
             </div>
-            
+
             <div class="card metric">
                 <div class="metric-label">Target Progress</div>
                 <div class="metric-value" style="color: {'#28a745' if metrics.target_progress >= 100 else '#007bff'}">{metrics.target_progress:.1f}%</div>
@@ -718,14 +718,14 @@ class CoverageMonitor:
                 </div>
                 <small>Progress toward 95% goal</small>
             </div>
-            
+
             <div class="card metric">
                 <div class="metric-label">Components at Target</div>
                 <div class="metric-value" style="color: #007bff">{report.milestone_progress['components_at_target']}/{len(metrics.components)}</div>
                 <small>Meeting coverage targets</small>
             </div>
         </div>
-        
+
         <div class="grid">
             <div class="card">
                 <h3>📊 Coverage Trend</h3>
@@ -733,7 +733,7 @@ class CoverageMonitor:
                     <canvas id="coverageChart"></canvas>
                 </div>
             </div>
-            
+
             <div class="card">
                 <h3>🧩 Component Status</h3>
                 <ul class="component-list">
@@ -748,7 +748,7 @@ class CoverageMonitor:
                 </ul>
             </div>
         </div>
-        
+
         <div class="grid">
             <div class="card">
                 <h3>🔥 Critical Paths</h3>
@@ -763,13 +763,13 @@ class CoverageMonitor:
                     ''' for path, coverage in metrics.critical_paths.items()])}
                 </ul>
             </div>
-            
+
             <div class="card recommendations">
                 <h3>💡 Recommendations</h3>
                 {"".join([f"<p>• {rec}</p>" for rec in report.recommendations])}
             </div>
         </div>
-        
+
         {f'''
         <div class="card">
             <h3>🚨 Active Alerts</h3>
@@ -777,7 +777,7 @@ class CoverageMonitor:
         </div>
         ''' if report.alerts else ''}
     </div>
-    
+
     <script>
         // Coverage trend chart
         const ctx = document.getElementById('coverageChart').getContext('2d');

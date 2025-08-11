@@ -53,19 +53,19 @@ This arsenal of non-LLM tools allows us to build a powerful, resilient AI partne
 
 1. **Input**: User types "Plz can u get me the fierfox browser"
 
-2. **NLTK (Normalization)**: 
+2. **NLTK (Normalization)**:
    → `['please', 'can', 'you', 'get', 'me', 'the', 'firefox', 'browser']`
 
-3. **SentenceTransformers (Intent)**: 
+3. **SentenceTransformers (Intent)**:
    The embedding for this sentence is calculated and found to be extremely close to our pre-calculated embedding for `install_package`.
 
-4. **spaCy (NER)**: 
+4. **spaCy (NER)**:
    The model scans the sentence and identifies "firefox" as a `PACKAGE_NAME` entity.
 
-5. **Pandas/Scikit-learn (Context)**: 
+5. **Pandas/Scikit-learn (Context)**:
    The system checks the user's profile. It sees they have a 95% success rate with install commands and a "Friendly" personality preference.
 
-6. **Output Generation**: 
+6. **Output Generation**:
    The system combines these insights to generate the response.
 
 This entire flow is **fast, efficient, and runs on a CPU** with moderate RAM. It's the perfect foundation upon which we can later add an LLM for more advanced, creative reasoning.

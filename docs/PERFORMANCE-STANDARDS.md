@@ -1,8 +1,8 @@
 # ⚡ Performance Standards - Nix for Humanity
 
-**Status**: ACTIVE  
-**Version**: 1.0.0  
-**Last Updated**: 2025-08-11  
+**Status**: ACTIVE
+**Version**: 1.0.0
+**Last Updated**: 2025-08-11
 **Priority**: 🟡 MEDIUM - Critical for user experience
 
 ## 📋 Executive Summary
@@ -63,13 +63,13 @@ def performance_budget(max_seconds: float):
             start = time.perf_counter()
             result = func(*args, **kwargs)
             elapsed = time.perf_counter() - start
-            
+
             if elapsed > max_seconds:
                 logger.warning(
                     f"{func.__name__} exceeded budget: "
                     f"{elapsed:.2f}s > {max_seconds}s"
                 )
-            
+
             return result
         return wrapper
     return decorator
@@ -120,10 +120,10 @@ import os
 def check_memory():
     process = psutil.Process(os.getpid())
     mem_mb = process.memory_info().rss / 1024 / 1024
-    
+
     if mem_mb > 100:  # Base budget
         logger.warning(f"Memory usage high: {mem_mb:.1f}MB")
-    
+
     if mem_mb > 200:  # Maximum
         raise MemoryError(f"Memory limit exceeded: {mem_mb:.1f}MB")
 ```
@@ -158,42 +158,42 @@ import time
 @dataclass
 class PerformanceMetrics:
     """Track performance for each operation."""
-    
+
     operation: str
     start_time: float
     end_time: float
     memory_before: int
     memory_after: int
     cpu_percent: float
-    
+
     @property
     def duration(self) -> float:
         return self.end_time - self.start_time
-    
+
     @property
     def memory_delta(self) -> int:
         return self.memory_after - self.memory_before
-    
+
     def check_budget(self, max_seconds: float) -> bool:
         return self.duration <= max_seconds
 
 class PerformanceMonitor:
     def __init__(self):
         self.metrics: Dict[str, list[PerformanceMetrics]] = {}
-    
+
     def record(self, metric: PerformanceMetrics):
         if metric.operation not in self.metrics:
             self.metrics[metric.operation] = []
         self.metrics[metric.operation].append(metric)
-        
+
         # Check for degradation
         if len(self.metrics[metric.operation]) > 10:
             self._check_trend(metric.operation)
-    
+
     def _check_trend(self, operation: str):
         recent = self.metrics[operation][-10:]
         avg_duration = sum(m.duration for m in recent) / len(recent)
-        
+
         if avg_duration > self.budgets[operation]:
             logger.error(
                 f"Performance degradation in {operation}: "
@@ -210,13 +210,13 @@ from nix_for_humanity import parse_command, execute_command
 
 class TestPerformance:
     """Performance regression tests."""
-    
+
     @pytest.mark.performance
     def test_parse_speed(self, benchmark):
         """Parsing must be under 100ms."""
         result = benchmark(parse_command, "install firefox")
         assert benchmark.stats['mean'] < 0.1  # 100ms
-    
+
     @pytest.mark.performance
     def test_startup_time(self):
         """Cold start must be under 3 seconds."""
@@ -225,7 +225,7 @@ class TestPerformance:
         app = initialize()
         duration = time.perf_counter() - start
         assert duration < 3.0, f"Startup too slow: {duration:.2f}s"
-    
+
     @pytest.mark.performance
     @pytest.mark.parametrize("command,max_time", [
         ("install vim", 2.0),
@@ -248,7 +248,7 @@ class TestPerformance:
 class NixForHumanity:
     def __init__(self):
         self._nlp_engine = None  # Lazy load
-    
+
     @property
     def nlp_engine(self):
         if self._nlp_engine is None:
@@ -273,12 +273,12 @@ class PackageCache:
         self.max_size = max_size_mb * 1024 * 1024
         self.cache = {}
         self.access_times = {}
-    
+
     @lru_cache(maxsize=1000)
     def search_packages(self, query: str) -> List[Package]:
         """Cache search results for common queries."""
         return self._search_impl(query)
-    
+
     def cache_key(self, query: str) -> str:
         """Generate stable cache key."""
         return hashlib.md5(query.encode()).hexdigest()
@@ -288,19 +288,19 @@ class PackageCache:
 ```python
 class ProgressiveInterface:
     """Load features as needed."""
-    
+
     def __init__(self):
         self.core_loaded = True
         self.tui_loaded = False
         self.voice_loaded = False
-    
+
     async def load_tui(self):
         if not self.tui_loaded:
             # Load TUI components async
             from nix_for_humanity.tui import TUI
             self.tui = TUI()
             self.tui_loaded = True
-    
+
     async def load_voice(self):
         if not self.voice_loaded:
             # Load voice components async
@@ -335,25 +335,25 @@ def generate_performance_report() -> str:
     return f"""
     ⚡ Performance Report - {datetime.now()}
     =====================================
-    
+
     Startup Metrics:
     - Cold Start: {metrics.cold_start:.2f}s (Budget: 3s)
     - Warm Start: {metrics.warm_start:.2f}s (Budget: 1s)
-    
+
     Command Performance (last 100):
     - Average Parse: {metrics.avg_parse:.3f}s (Budget: 0.1s)
     - Average Execute: {metrics.avg_execute:.2f}s (Budget: 2s)
     - P95 Response: {metrics.p95_response:.2f}s
     - P99 Response: {metrics.p99_response:.2f}s
-    
+
     Resource Usage:
     - Memory: {metrics.memory_mb:.1f}MB (Budget: 100MB)
     - CPU (avg): {metrics.cpu_percent:.1f}% (Budget: 30%)
     - Cache Size: {metrics.cache_mb:.1f}MB (Budget: 100MB)
-    
+
     Violations:
     {format_violations(metrics.violations)}
-    
+
     Recommendations:
     {generate_recommendations(metrics)}
     """
@@ -385,7 +385,7 @@ PERSONA_PROFILES = {
 def adapt_performance(persona: str, operation: str):
     """Adapt performance strategy to persona."""
     profile = PERSONA_PROFILES.get(persona, {})
-    
+
     if profile.get("tolerance") == "none":
         # Use aggressive caching
         # Preload likely next actions

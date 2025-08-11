@@ -295,5 +295,5 @@ Your documentation is failing if:
 **Every new document is a future maintenance burden. Create wisely.**
 
 ---
-*Last updated: 2025-08-10*  
+*Last updated: 2025-08-10*
 *Next review: Monthly*

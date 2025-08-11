@@ -32,7 +32,7 @@ case $choice in
         echo "  • Add to README: ![Demo](screenshots/01-idle-state.svg)"
         echo "  • Convert to PNG: convert screenshots/*.svg screenshots/*.png"
         ;;
-        
+
     2)
         echo ""
         echo "🎬 Animated Demo Instructions"
@@ -41,7 +41,7 @@ case $choice in
         echo "2. Press Enter to launch the TUI"
         echo "3. Follow these commands:"
         echo "   - help"
-        echo "   - install firefox" 
+        echo "   - install firefox"
         echo "   - voice on"
         echo "   - learn about nix"
         echo "   - (do 5+ commands for flow state)"
@@ -50,16 +50,16 @@ case $choice in
         echo ""
         echo "Press Enter when recording is ready..."
         read
-        
+
         ./run-enhanced-tui.sh
-        
+
         echo ""
         echo "✅ Demo complete! Now:"
         echo "  • Stop your recording"
         echo "  • Trim to 60-90 seconds"
         echo "  • Convert to GIF if needed"
         ;;
-        
+
     3)
         echo ""
         echo "🤖 Launching automated demo..."
@@ -73,7 +73,7 @@ case $choice in
         echo ""
         echo "Press Enter to start..."
         read
-        
+
         # Create a simple launcher for demo mode
         cat > /tmp/demo-launcher.py << 'EOF'
 import sys
@@ -85,23 +85,23 @@ app = EnhancedNixForHumanityTUIWithDemo()
 app._demo_auto_start = True
 app.run()
 EOF
-        
+
         python /tmp/demo-launcher.py
         ;;
-        
+
     4)
         echo ""
         echo "📹 Creating full demo package..."
         echo ""
-        
+
         # Generate screenshots
         echo "Step 1: Generating screenshots..."
         python capture-tui-screenshots.py
-        
+
         # Create demo instructions
         echo ""
         echo "Step 2: Creating demo script..."
-        
+
         cat > demo-materials/DEMO_SCRIPT.md << 'EOF'
 # Demo Script - Nix for Humanity Enhanced TUI
 
@@ -176,7 +176,7 @@ EOF
 - 🌊 Flow state geometry
 - 🧘 Zen mode
 EOF
-        
+
         echo "✅ Demo script created"
         echo ""
         echo "Step 3: Demo materials ready!"

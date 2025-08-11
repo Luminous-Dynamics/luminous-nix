@@ -35,7 +35,7 @@ def show_demo_scenarios():
 ## Demo Scenarios
 
 1. **Permission Error** - Try to install system-wide without sudo
-2. **Package Not Found** - Misspell a package name  
+2. **Package Not Found** - Misspell a package name
 3. **Disk Space Warning** - Preventive suggestion demo
 4. **Network Error** - Connection issues with solutions
 5. **Build Failure** - Complex error with XAI explanation

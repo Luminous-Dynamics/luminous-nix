@@ -15,7 +15,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # Check if running as root
-if [ "$EUID" -eq 0 ]; then 
+if [ "$EUID" -eq 0 ]; then
    echo -e "${YELLOW}⚠️  Running as root - good for NixOS testing${NC}"
 else
    echo -e "${YELLOW}⚠️  Not running as root - some tests may fail${NC}"
@@ -59,11 +59,11 @@ cat > test-nixos-config.nix << 'EOF'
 { config, pkgs, ... }:
 {
   imports = [ ./nixos-module.nix ];
-  
+
   # Minimal test configuration
   boot.loader.grub.device = "nodev";
   fileSystems."/" = { device = "test"; fsType = "ext4"; };
-  
+
   services.nixos-gui = {
     enable = true;
     jwtSecret = "test-jwt-secret-0123456789abcdef";

@@ -28,7 +28,7 @@ Hope this helps!
 
 ### "When will TUI/Voice be available?"
 ```
-Great question! TUI and Voice are already implemented and tested - we just disabled them for v1.0.0 stability. They'll be enabled in v1.1 (targeting 2-4 weeks). 
+Great question! TUI and Voice are already implemented and tested - we just disabled them for v1.0.0 stability. They'll be enabled in v1.1 (targeting 2-4 weeks).
 
 Want to be notified? Watch this repo for releases!
 ```

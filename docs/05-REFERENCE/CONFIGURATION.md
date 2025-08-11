@@ -4,16 +4,16 @@
 
 ---
 
-💡 **Quick Context**: Comprehensive configuration options for personalizing your natural language NixOS experience  
-📍 **You are here**: Reference → Configuration Reference (Customization Guide)  
-🔗 **Related**: [User Guide](../06-TUTORIALS/USER_GUIDE.md) | [CLI Commands](./01-CLI-COMMANDS.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 20 minutes  
+💡 **Quick Context**: Comprehensive configuration options for personalizing your natural language NixOS experience
+📍 **You are here**: Reference → Configuration Reference (Customization Guide)
+🔗 **Related**: [User Guide](../06-TUTORIALS/USER_GUIDE.md) | [CLI Commands](./01-CLI-COMMANDS.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 20 minutes
 📊 **Mastery Level**: 🌿 Intermediate - understanding of YAML, environment variables, and system configuration helpful
 
 🌊 **Natural Next Steps**:
 - **For setup**: Start with [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) before diving into configuration
 - **For troubleshooting**: Reference [Troubleshooting Guide](../04-OPERATIONS/03-TROUBLESHOOTING.md) when configuration issues arise
-- **For advanced usage**: Continue to [CLI Commands Reference](./01-CLI-COMMANDS.md) for command-specific options  
+- **For advanced usage**: Continue to [CLI Commands Reference](./01-CLI-COMMANDS.md) for command-specific options
 - **For comprehensive help**: Explore [User Guide](../06-TUTORIALS/USER_GUIDE.md) for configuration patterns in context
 
 ---
@@ -22,7 +22,7 @@
 
 Nix for Humanity can be configured through multiple methods:
 1. **Environment variables** - Quick runtime settings
-2. **Configuration files** - Persistent user preferences  
+2. **Configuration files** - Persistent user preferences
 3. **Command-line flags** - Per-command overrides
 4. **User profiles** - Persona-specific settings
 
@@ -68,7 +68,7 @@ core:
   cache_directory: "~/.cache/nix-for-humanity"
   log_level: "info"                    # debug, info, warn, error
 
-# User Interface Settings  
+# User Interface Settings
 ui:
   default_personality: "friendly"      # minimal, friendly, encouraging, technical, accessible
   response_format: "structured"        # plain, structured, json, yaml
@@ -76,7 +76,7 @@ ui:
   confirm_actions: true                # Ask before executing commands
   use_colors: true                     # Colored output
   progress_indicators: true            # Show progress bars
-  
+
 # Natural Language Processing
 nlp:
   engine: "hybrid"                     # rule-based, statistical, neural, hybrid
@@ -84,7 +84,7 @@ nlp:
   typo_correction: true                # Auto-correct common typos
   context_memory: 10                   # Remember last N interactions
   learning_enabled: true               # Learn from user interactions
-  
+
 # Performance Settings
 performance:
   fast_mode: false                     # Prioritize speed over accuracy
@@ -92,7 +92,7 @@ performance:
   parallel_processing: true            # Use multiple CPU cores
   memory_limit: "512MB"                # Maximum memory usage
   timeout: 30                          # Command timeout in seconds
-  
+
 # Privacy & Security
 privacy:
   data_collection: "minimal"           # none, minimal, standard, full
@@ -100,7 +100,7 @@ privacy:
   local_only: true                     # Never send data externally
   encrypt_data: true                   # Encrypt stored data
   auto_cleanup: true                   # Clean old data automatically
-  
+
 # Learning System
 learning:
   enabled: true                        # Enable learning from interactions
@@ -109,7 +109,7 @@ learning:
   error_recovery: true                 # Learn from corrections
   privacy_mode: "strict"               # strict, balanced, open
   retention_days: 365                  # Keep learning data for N days
-  
+
 # Accessibility
 accessibility:
   screen_reader: false                 # Optimize for screen readers
@@ -118,7 +118,7 @@ accessibility:
   reduce_motion: false                 # Minimize animations
   keyboard_only: false                 # Optimize for keyboard navigation
   simple_language: false               # Use simpler vocabulary
-  
+
 # Voice Interface (when available)
 voice:
   enabled: false                       # Enable voice commands
@@ -126,8 +126,8 @@ voice:
   language: "en-US"                    # Voice recognition language
   voice_feedback: true                 # Speak responses
   noise_reduction: true                # Filter background noise
-  
-# Development Settings  
+
+# Development Settings
 development:
   debug_mode: false                    # Enable debug features
   test_mode: false                     # Use test data
@@ -226,28 +226,28 @@ ui:
   simple_language: true
   patience_mode: true
   voice_enabled: true
-  
+
 accessibility:
   large_text: true
   simple_vocabulary: true
   extra_confirmations: true
-  
+
 performance:
   fast_mode: false  # Accuracy over speed
 EOF
 
-# Maya (ADHD) profile  
+# Maya (ADHD) profile
 cat > ~/.config/nix-for-humanity/profiles/maya.yaml << EOF
 ui:
   default_personality: "minimal"
   response_format: "plain"
   show_commands: false
   progress_indicators: false
-  
+
 performance:
   fast_mode: true
   timeout: 10  # Shorter timeouts
-  
+
 nlp:
   confidence_threshold: 0.6  # Lower threshold for speed
 EOF
@@ -258,13 +258,13 @@ ui:
   default_personality: "accessible"
   response_format: "structured"
   use_colors: false
-  
+
 accessibility:
   screen_reader: true
   structured_output: true
   keyboard_only: true
   consistent_terminology: true
-  
+
 development:
   show_all_details: true
 EOF
@@ -275,7 +275,7 @@ EOF
 ```bash
 # Use a specific profile
 ask-nix --profile grandma-rose "install firefox"
-ask-nix --profile maya "update system"  
+ask-nix --profile maya "update system"
 ask-nix --profile alex "search for text editors"
 
 # Set default profile
@@ -296,18 +296,18 @@ Create custom personality definitions:
 custom_teacher:
   name: "Patient Teacher"
   description: "Educational responses with examples"
-  
+
   response_style:
     verbosity: "detailed"
     tone: "encouraging"
     include_examples: true
     include_explanations: true
-    
+
   language:
     vocabulary_level: "intermediate"
     technical_terms: "explained"
     sentence_length: "medium"
-    
+
   behavior:
     ask_follow_ups: true
     offer_alternatives: true
@@ -326,23 +326,23 @@ nlp:
       enabled: true
       weight: 0.4
       patterns_file: "~/.config/nix-for-humanity/patterns/custom.yaml"
-      
+
     statistical:
-      enabled: true  
+      enabled: true
       weight: 0.3
       model_path: "~/.local/share/nix-for-humanity/models/statistical.model"
-      
+
     neural:
       enabled: true
       weight: 0.3
       model_name: "local-llm"
       temperature: 0.7
-      
+
   pattern_matching:
     fuzzy_threshold: 0.8
     typo_distance: 2
     synonym_expansion: true
-    
+
   context_tracking:
     conversation_memory: 10
     session_persistence: true
@@ -358,18 +358,18 @@ plugins:
   enabled: true
   directory: "~/.config/nix-for-humanity/plugins"
   auto_update: false
-  
+
   # Core plugins
   weather:
     enabled: true
     api_key: "your-api-key"
     default_location: "auto"
-    
+
   system_monitor:
     enabled: true
     update_interval: 60
     show_details: false
-    
+
   # Custom plugins
   development_tools:
     enabled: true
@@ -432,19 +432,19 @@ ask-nix --config-compatibility
 privacy:
   # Data collection levels
   data_collection: "none"              # none, minimal, standard, full
-  
+
   # What to never log
   never_log:
     - "passwords"
-    - "ssh_keys"  
+    - "ssh_keys"
     - "personal_files"
     - "network_credentials"
-    
+
   # Data retention
   log_retention_days: 30
   cache_retention_days: 7
   learning_data_retention_days: 365
-  
+
   # Encryption
   encrypt_logs: true
   encrypt_cache: true
@@ -462,14 +462,14 @@ security:
     - "nix-env"
     - "nixos-rebuild"
     - "nix-channel"
-    
+
   # File system access
   restrict_paths: true                 # Restrict file system access
   allowed_paths:                       # Allowed paths
     - "/etc/nixos/"
     - "~/.config/"
     - "~/Downloads/"
-    
+
   # Network access
   allow_network: false                 # Allow network operations
   allowed_hosts:                       # Allowed hosts
@@ -491,7 +491,7 @@ alias nix='ask-nix'
 alias ni='ask-nix --minimal'
 alias nh='ask-nix --help'
 
-# Functions  
+# Functions
 install() { ask-nix "install $*"; }
 search() { ask-nix "search for $*"; }
 update() { ask-nix "update system"; }
@@ -508,11 +508,11 @@ editors:
   vscode:
     enabled: true
     extension_path: "~/.vscode/extensions/nix-for-humanity"
-    
+
   vim:
     enabled: true
     plugin_path: "~/.vim/pack/nix-for-humanity"
-    
+
   emacs:
     enabled: true
     package_path: "~/.emacs.d/packages/nix-for-humanity"
@@ -559,11 +559,11 @@ ui:
   show_commands: false
   use_colors: false
   progress_indicators: false
-  
+
 performance:
   fast_mode: true
   timeout: 5
-  
+
 nlp:
   confidence_threshold: 0.5
 ```
@@ -574,12 +574,12 @@ ui:
   default_personality: "encouraging"
   show_commands: true
   confirm_actions: true
-  
+
 learning:
   enabled: true
   personal_preferences: true
   provide_examples: true
-  
+
 nlp:
   context_memory: 20
   explain_reasoning: true
@@ -591,11 +591,11 @@ ui:
   default_personality: "technical"
   response_format: "structured"
   show_commands: true
-  
+
 development:
   debug_mode: true
   api_logging: true
-  
+
 performance:
   fast_mode: false  # Accuracy over speed
 ```
@@ -606,13 +606,13 @@ ui:
   default_personality: "accessible"
   response_format: "structured"
   use_colors: false
-  
+
 accessibility:
   screen_reader: true
   structured_output: true
   keyboard_only: true
   consistent_terminology: true
-  
+
 voice:
   enabled: true
   voice_feedback: true

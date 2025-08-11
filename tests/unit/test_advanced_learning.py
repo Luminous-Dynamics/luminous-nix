@@ -21,15 +21,11 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
-from nix_for_humanity.learning.preferences import (
-    LearningMetrics,
-    LearningMode,
-    PreferencePair,
-    UserModel,
-)
+from nix_for_humanity.learning.preferences import LearningMetrics, LearningMode
 from nix_for_humanity.learning.preferences import (
     PreferenceManager as AdvancedPreferenceManager,
 )
+from nix_for_humanity.learning.preferences import PreferencePair, UserModel
 
 
 class TestAdvancedPreferenceManagerCore(unittest.TestCase):

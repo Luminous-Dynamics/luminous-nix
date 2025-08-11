@@ -16,14 +16,14 @@ while true; do
         echo
         echo "Or test directly:"
         echo "  ./bin/ask-nix-hybrid-v2 --execute 'install firefox'"
-        
+
         # Play a sound if available
         if command -v paplay &> /dev/null && [ -f /usr/share/sounds/freedesktop/stereo/complete.oga ]; then
             paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null
         elif command -v beep &> /dev/null; then
             beep 2>/dev/null
         fi
-        
+
         break
     else
         echo -n "."

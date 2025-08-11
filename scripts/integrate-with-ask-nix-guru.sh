@@ -20,7 +20,7 @@ ASK_NIX_GURU_PATH="/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
 
 if [[ -f "$ASK_NIX_GURU_PATH" ]]; then
     echo "✅ Found ask-nix-guru at: $ASK_NIX_GURU_PATH"
-    
+
     # Create updated version that uses trained model
     cat > "${ASK_NIX_GURU_PATH}.trained" << 'EOF'
 #!/usr/bin/env bash
@@ -56,23 +56,23 @@ ensure_ollama() {
 # Function to ask the guru
 ask_guru() {
     local question="$*"
-    
+
     # Add NixOS context to improve responses
     local prompt="You are a NixOS expert trained on official documentation. Answer this question concisely and accurately: $question"
-    
+
     # Save Q&A for future training
     local timestamp=$(date +%Y%m%d_%H%M%S)
     local knowledge_dir="${NIXOS_KNOWLEDGE_DIR:-$HOME/.nix-for-humanity/knowledge}"
     mkdir -p "$knowledge_dir/questions" "$knowledge_dir/answers"
-    
+
     echo "$question" > "$knowledge_dir/questions/q_$timestamp.txt"
-    
+
     # Get response
     local response=$(ollama run "$MODEL" "$prompt" 2>/dev/null)
-    
+
     # Save response
     echo "$response" > "$knowledge_dir/answers/a_$timestamp.txt"
-    
+
     # Display response
     echo "$response"
 }
@@ -98,7 +98,7 @@ EOF
 
     # Make executable
     chmod +x "${ASK_NIX_GURU_PATH}.trained"
-    
+
     echo "✅ Created enhanced ask-nix-guru with trained model support"
     echo ""
     echo "To use the trained version:"
@@ -108,7 +108,7 @@ EOF
 else
     echo "⚠️  ask-nix-guru not found at expected location"
     echo "Creating a new one..."
-    
+
     mkdir -p "$(dirname "$ASK_NIX_GURU_PATH")"
     cat > "$ASK_NIX_GURU_PATH" << 'EOF'
 #!/usr/bin/env bash
@@ -136,7 +136,7 @@ fi
 # Ask the trained model
 ollama run "$MODEL" "You are a NixOS expert. Answer concisely: $*"
 EOF
-    
+
     chmod +x "$ASK_NIX_GURU_PATH"
     echo "✅ Created new ask-nix-guru script"
 fi

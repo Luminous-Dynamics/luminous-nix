@@ -13,7 +13,7 @@
 # Traditional NixOS
 $ nix-env -iA nixos.firefox  # What does -iA even mean?
 
-# Nix for Humanity  
+# Nix for Humanity
 $ ask-nix "install firefox"  # Just say what you want!
 $ ask-nix "add firefox"      # Or this
 $ ask-nix "get me firefox"   # Or even this!
@@ -31,7 +31,7 @@ $ ask-nix "get me firefox"   # Or even this!
 ```bash
 # All of these work:
 ask-nix "install vim"
-ask-nix "add neovim" 
+ask-nix "add neovim"
 ask-nix "get me a text editor"
 ask-nix "what's installed?"
 ask-nix "show me my packages"
@@ -94,13 +94,13 @@ Run our benchmark to see for yourself:
 This project proves a revolutionary development model:
 
 1. **Human (Tristan)** - Vision, requirements, and testing
-2. **Claude Code Max** - Architecture and implementation  
+2. **Claude Code Max** - Architecture and implementation
 3. **Local LLM (Mistral-7B)** - NixOS domain expertise
 
 **Result**: Production-quality software at 0.5% of traditional cost!
 
-Traditional team cost: ~$35,000/month (4 developers)  
-Our cost: $200/month (Claude API + local compute)  
+Traditional team cost: ~$35,000/month (4 developers)
+Our cost: $200/month (Claude API + local compute)
 **ROI: 175x**
 
 ## 🎯 Current Status (Honest Assessment)
@@ -176,9 +176,9 @@ MIT License - Free as in freedom, free as in consciousness.
 
 ---
 
-**From the Sacred Trinity with Love** 🕉️  
+**From the Sacred Trinity with Love** 🕉️
 *Making NixOS accessible to all beings through natural conversation*
 
-**Status**: Working CLI with natural language  
-**Next**: Beautiful TUI, then voice control  
+**Status**: Working CLI with natural language
+**Next**: Beautiful TUI, then voice control
 **Vision**: Technology that amplifies consciousness

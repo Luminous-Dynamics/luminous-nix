@@ -193,18 +193,18 @@ logger = logging.getLogger(__name__)
 
 class NixOSModelTrainer:
     \"\"\"Trainer for NixOS expert models\"\"\"
-    
+
     def __init__(self, base_dir: str):
         self.base_dir = Path(base_dir)
         self.data_dir = self.base_dir / 'data'
         self.models_dir = self.base_dir / 'models'
         self.models_dir.mkdir(exist_ok=True)
-    
+
     def check_dependencies(self) -> bool:
         \"\"\"Check if required dependencies are installed\"\"\"
         # Implementation here
         return True
-    
+
 """
         + content
     )

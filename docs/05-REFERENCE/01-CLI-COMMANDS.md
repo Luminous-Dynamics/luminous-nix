@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Complete command-line reference for all natural language NixOS tools and options  
-📍 **You are here**: Reference → CLI Commands (Command Handbook)  
-🔗 **Related**: [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) | [User Guide](../06-TUTORIALS/USER_GUIDE.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 20 minutes  
+💡 **Quick Context**: Complete command-line reference for all natural language NixOS tools and options
+📍 **You are here**: Reference → CLI Commands (Command Handbook)
+🔗 **Related**: [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) | [User Guide](../06-TUTORIALS/USER_GUIDE.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 20 minutes
 📊 **Mastery Level**: 🌿 Intermediate - comprehensive reference for power users and developers
 
 🌊 **Natural Next Steps**:
@@ -32,7 +32,7 @@ ask-nix [options] "natural language query"
 #### Examples
 ```bash
 ask-nix "install firefox"
-ask-nix "my wifi isn't working"  
+ask-nix "my wifi isn't working"
 ask-nix "update my system"
 ask-nix "search for text editors"
 ```
@@ -52,7 +52,7 @@ ask-nix "search for text editors"
 ##### Response Control
 ```bash
 --quiet             # Minimal output
---verbose           # Detailed output  
+--verbose           # Detailed output
 --explain           # Include explanations
 --show-command      # Display the actual command that would run
 --structured        # Organized, hierarchical output
@@ -144,7 +144,7 @@ Fast, minimal responses for power users.
 ask-nix-minimal "install firefox"
 # Output: "nix-env -iA nixos.firefox"
 
-ask-nix-minimal "update system"  
+ask-nix-minimal "update system"
 # Output: "sudo nixos-rebuild switch"
 ```
 
@@ -180,7 +180,7 @@ nix-tui --help             # TUI help
 
 **Features:**
 - Interactive conversations
-- Visual progress indicators  
+- Visual progress indicators
 - Mouse and keyboard support
 - Multiple panes and tabs
 - Real-time system monitoring
@@ -332,7 +332,7 @@ response:
 performance:
   fast_mode: false       # Prioritize accuracy over speed
   cache_responses: true  # Cache common responses
-  
+
 # Learning
 learning:
   enabled: true          # Learn from interactions

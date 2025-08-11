@@ -20,9 +20,9 @@ FAILED_CHECKS=0
 check() {
     local name="$1"
     local cmd="$2"
-    
+
     echo -n "Checking $name... "
-    
+
     if eval "$cmd" &> /dev/null; then
         echo -e "${GREEN}✓${NC}"
         return 0
@@ -37,9 +37,9 @@ check() {
 check_with_output() {
     local name="$1"
     shift
-    
+
     echo -e "\n${YELLOW}Checking $name...${NC}"
-    
+
     if "$@"; then
         echo -e "${GREEN}✓ $name passed${NC}"
         return 0

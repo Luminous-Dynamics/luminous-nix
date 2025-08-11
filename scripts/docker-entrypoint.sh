@@ -21,7 +21,7 @@ wait_for_service() {
     local service=$3
     local max_attempts=30
     local attempt=0
-    
+
     echo -n "Waiting for $service..."
     while ! nc -z $host $port 2>/dev/null; do
         attempt=$((attempt + 1))
@@ -50,48 +50,48 @@ case "${1:-tauri}" in
         echo "Starting in Tauri mode..."
         export START_TAURI=true
         export START_REDIS=true
-        
+
         # Check if running with display
         if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
             echo -e "${YELLOW}Warning: No display detected. Tauri may not start properly.${NC}"
             echo "Consider running with: docker run -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix"
         fi
         ;;
-        
+
     python)
         echo "Starting in Python fallback mode..."
         export START_PYTHON=true
         export START_REDIS=true
         ;;
-        
+
     web)
         echo "Starting in web-only mode..."
         # Only nginx will run
         ;;
-        
+
     dev)
         echo "Starting in development mode..."
         export START_TAURI=true
         export START_PYTHON=true
         export START_REDIS=true
-        
+
         # Enable debug logging
         export RUST_LOG=debug
         export NODE_ENV=development
         export LOG_LEVEL=debug
         ;;
-        
+
     test)
         echo "Starting in test mode..."
         export START_PYTHON=true
-        
+
         # Run tests and exit
         echo "Running test suite..."
         cd /app/test
         ./run-basic-tests.sh
         exit $?
         ;;
-        
+
     *)
         echo -e "${RED}Unknown mode: $1${NC}"
         echo "Available modes: tauri, python, web, dev, test"

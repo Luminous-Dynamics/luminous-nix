@@ -18,7 +18,7 @@ This guide helps experienced NixOS users transition to Nix for Humanity while ma
   environment.systemPackages = with pkgs; [
     nix-for-humanity
   ];
-  
+
   # Optional: Enable voice interface
   services.nixForHumanity = {
     enable = true;
@@ -240,26 +240,26 @@ ask-nix workflow run daily-update
 
 ### DO Continue Using
 
-✅ Your existing configuration.nix  
-✅ Custom nix expressions  
-✅ Overlays and overrides  
-✅ Your preferred editor  
-✅ Version control workflows  
+✅ Your existing configuration.nix
+✅ Custom nix expressions
+✅ Overlays and overrides
+✅ Your preferred editor
+✅ Version control workflows
 
 ### DO Start Using
 
-✅ Natural language for discovery  
-✅ AI assistance for errors  
-✅ Voice interface when convenient  
-✅ Persona adaptation  
-✅ Educational explanations  
+✅ Natural language for discovery
+✅ AI assistance for errors
+✅ Voice interface when convenient
+✅ Persona adaptation
+✅ Educational explanations
 
 ### DON'T Feel Pressured To
 
-❌ Abandon traditional commands  
-❌ Rewrite existing configs  
-❌ Change your workflow completely  
-❌ Use features you don't need  
+❌ Abandon traditional commands
+❌ Rewrite existing configs
+❌ Change your workflow completely
+❌ Use features you don't need
 
 ## 🔍 Discovering New Features
 
@@ -321,7 +321,7 @@ ask-nix suggest "better way to..."
 ### Developer Team Migration
 > "We introduced Nix for Humanity alongside our existing setup. New team members use the natural language interface while experienced users stick to traditional commands. Everyone's happy, and onboarding time dropped from days to hours."
 
-### System Administrator Experience  
+### System Administrator Experience
 > "I still use traditional commands for complex tasks but love the discovery features. Finding packages by description and getting AI help with errors saves me hours each week."
 
 ### Home User Transition
@@ -335,7 +335,7 @@ ask-nix suggest "better way to..."
 - [ ] Use for simple installs
 - [ ] Explore help system
 
-### Week 2: Integration  
+### Week 2: Integration
 - [ ] Create command aliases
 - [ ] Try generation management
 - [ ] Test configuration assistance

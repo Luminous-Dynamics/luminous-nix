@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Database schema for implementing the SKG architecture from Oracle research  
-📍 **You are here**: Architecture → SKG Schema Design  
-🔗 **Related**: [Oracle Research Synthesis](../01-VISION/research/ORACLE_RESEARCH_SYNTHESIS.md) | [Learning System Architecture](./09-LEARNING-SYSTEM.md)  
-⏱️ **Implementation**: Ready for immediate use  
+💡 **Quick Context**: Database schema for implementing the SKG architecture from Oracle research
+📍 **You are here**: Architecture → SKG Schema Design
+🔗 **Related**: [Oracle Research Synthesis](../01-VISION/research/ORACLE_RESEARCH_SYNTHESIS.md) | [Learning System Architecture](./09-LEARNING-SYSTEM.md)
+⏱️ **Implementation**: Ready for immediate use
 📊 **Database**: SQLite 3.x compatible
 
 ---
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS ontological_relationships (
     from_entity_id INTEGER NOT NULL,
     to_entity_id INTEGER NOT NULL,
     relationship_type TEXT NOT NULL CHECK(relationship_type IN (
-        'depends_on', 'imports', 'extends', 'implements', 
+        'depends_on', 'imports', 'extends', 'implements',
         'has_option', 'provides', 'conflicts_with', 'replaces'
     )),
     strength REAL DEFAULT 1.0, -- Relationship strength/weight
@@ -129,7 +129,7 @@ CREATE INDEX idx_episodic_intent ON episodic_interactions(intent_recognized);
 CREATE TABLE IF NOT EXISTS episodic_patterns (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     pattern_type TEXT NOT NULL CHECK(pattern_type IN (
-        'command_sequence', 'error_recovery', 'learning_moment', 
+        'command_sequence', 'error_recovery', 'learning_moment',
         'workflow', 'preference', 'correction'
     )),
     pattern_signature TEXT NOT NULL, -- Hash or identifier
@@ -365,7 +365,7 @@ COMMIT;
 
 ### 1. Find user's current emotional state
 ```sql
-SELECT 
+SELECT
     ps.*,
     ei.user_input,
     ei.ai_response
@@ -382,9 +382,9 @@ WITH RECURSIVE skill_tree AS (
     FROM ontological_skills s
     LEFT JOIN skill_mastery sm ON s.id = sm.skill_id
     WHERE s.skill_name = 'nix-flakes'
-    
+
     UNION ALL
-    
+
     SELECT s.*, sm.current_mastery, st.depth + 1
     FROM ontological_skills s
     JOIN skill_tree st ON s.id IN (
@@ -397,7 +397,7 @@ SELECT * FROM skill_tree ORDER BY depth;
 
 ### 3. Analyze reasoning patterns
 ```sql
-SELECT 
+SELECT
     mr.reasoning_type,
     COUNT(*) as count,
     AVG(json_extract(mr.confidence_scores, '$.final')) as avg_confidence
@@ -426,6 +426,6 @@ ORDER BY count DESC;
 
 *"A knowledge graph that grows with understanding, modeling not just what we know, but how we know it."*
 
-**Status**: Ready for implementation  
-**Next Step**: Run migration script on development database  
+**Status**: Ready for implementation
+**Next Step**: Run migration script on development database
 **Remember**: Start with Layer 1 & 2, add phenomenological features gradually 🌊

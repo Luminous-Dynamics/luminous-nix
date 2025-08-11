@@ -87,7 +87,7 @@ declare -A PACKAGE_DESCRIPTIONS=(
 # Create individual packages
 for pkg in core nlp executor patterns personality learning ui; do
   echo "📦 Setting up @nix-humanity/$pkg..."
-  
+
   # Package.json
   cat > packages/$pkg/package.json << EOF
 {
@@ -163,7 +163,7 @@ export * from './constants';
 export * from './utils';
 EOF
       ;;
-    
+
     "nlp")
       cat > packages/$pkg/src/index.ts << 'EOF'
 // @nix-humanity/nlp - Natural Language Processing engine
@@ -182,7 +182,7 @@ export { ContextTracker } from './context-tracker';
 export { ErrorRecovery } from './error-recovery';
 EOF
       ;;
-    
+
     "executor")
       cat > packages/$pkg/src/index.ts << 'EOF'
 // @nix-humanity/executor - Safe command execution engine
@@ -201,7 +201,7 @@ export { Sandbox } from './sandbox';
 export { PermissionChecker } from './permissions';
 EOF
       ;;
-    
+
     "patterns")
       cat > packages/$pkg/src/index.ts << 'EOF'
 // @nix-humanity/patterns - Single source of truth for all patterns
@@ -215,14 +215,14 @@ export const PATTERNS = {
     ],
     examples: [
       'install firefox',
-      'add nodejs', 
+      'add nodejs',
       'get me chrome',
       'i need python',
       'please install vscode for me'
     ],
     nixCommand: 'nix-env -iA nixos.{package}'
   },
-  
+
   remove: {
     patterns: [
       /^(remove|uninstall|delete)\s+(.+)$/i,
@@ -235,7 +235,7 @@ export const PATTERNS = {
     ],
     nixCommand: 'nix-env -e {package}'
   },
-  
+
   update: {
     patterns: [
       /^update(\s+system)?$/i,
@@ -248,7 +248,7 @@ export const PATTERNS = {
     ],
     nixCommand: 'nixos-rebuild switch'
   },
-  
+
   search: {
     patterns: [
       /^search\s+(?:for\s+)?(.+)$/i,
@@ -273,7 +273,7 @@ export interface Pattern {
 }
 EOF
       ;;
-    
+
     "personality")
       cat > packages/$pkg/src/index.ts << 'EOF'
 // @nix-humanity/personality - Adaptive personality system
@@ -282,12 +282,12 @@ import type { PersonalityStyle } from '@nix-humanity/core';
 
 export class PersonalityAdapter {
   private currentStyle: PersonalityStyle['name'] = 'friendly';
-  
+
   adaptResponse(baseResponse: string, style?: PersonalityStyle['name']): string {
     // TODO: Implement style adaptation
     return baseResponse;
   }
-  
+
   detectPreferredStyle(history: string[]): PersonalityStyle['name'] {
     // TODO: Implement style detection
     return 'friendly';
@@ -298,7 +298,7 @@ export { styles } from './styles';
 export { ResponseGenerator } from './response-generator';
 EOF
       ;;
-    
+
     "learning")
       cat > packages/$pkg/src/index.ts << 'EOF'
 // @nix-humanity/learning - User preference learning system
@@ -309,7 +309,7 @@ export class LearningSystem {
   async recordInteraction(command: string, success: boolean): Promise<void> {
     // TODO: Implement learning
   }
-  
+
   async getPreferences(): Promise<UserPreferences> {
     // TODO: Implement preference retrieval
     throw new Error('Not implemented yet');
@@ -320,7 +320,7 @@ export { PreferenceStore } from './preference-store';
 export { PatternLearner } from './pattern-learner';
 EOF
       ;;
-    
+
     "ui")
       cat > packages/$pkg/src/index.ts << 'EOF'
 // @nix-humanity/ui - User interfaces
@@ -329,7 +329,7 @@ export class CLI {
   async start(): Promise<void> {
     console.log('🗣️ Nix for Humanity - Natural Language NixOS Interface');
     console.log('Type your commands naturally, or say "help" to learn more.\n');
-    
+
     // TODO: Implement CLI interface
   }
 }
@@ -340,7 +340,7 @@ export { Renderer } from './renderer';
 EOF
       ;;
   esac
-  
+
   # Create basic test file
   cat > packages/$pkg/test/index.test.js << EOF
 import { test } from 'node:test';
@@ -368,7 +368,7 @@ touch packages/nlp/src/error-recovery/index.ts
 # Executor subdirectories
 mkdir -p packages/executor/src/{validator,sandbox,permissions}
 touch packages/executor/src/validator/index.ts
-touch packages/executor/src/sandbox/index.ts  
+touch packages/executor/src/sandbox/index.ts
 touch packages/executor/src/permissions/index.ts
 
 # Create main entry point

@@ -1,7 +1,7 @@
 # 🚀 CI/CD Guide - Nix for Humanity
 
-**Status**: ACTIVE  
-**Last Updated**: 2025-08-11  
+**Status**: ACTIVE
+**Last Updated**: 2025-08-11
 **Purpose**: Automated quality enforcement and release management
 
 ## 📋 Overview
@@ -12,7 +12,7 @@ Our CI/CD pipeline automatically enforces all project standards, ensuring consis
 
 ### 1. Standards Compliance Check (`standards-check.yml`)
 
-**Triggers**: Every PR, push to main/develop  
+**Triggers**: Every PR, push to main/develop
 **Purpose**: Enforce all project standards automatically
 
 #### What It Checks:
@@ -46,7 +46,7 @@ poetry run pre-commit run --all-files
 
 ### 2. Performance Testing (`performance-test.yml`)
 
-**Triggers**: Weekly (Sunday 2 AM UTC), manual, performance-related PRs  
+**Triggers**: Weekly (Sunday 2 AM UTC), manual, performance-related PRs
 **Purpose**: Prevent performance regressions
 
 #### Performance Budgets:
@@ -71,7 +71,7 @@ poetry run python scripts/performance_benchmark.py
 
 ### 3. Release Automation (`release.yml`)
 
-**Triggers**: Git tags (v*.*.*), manual dispatch  
+**Triggers**: Git tags (v*.*.*), manual dispatch
 **Purpose**: Automated, consistent releases
 
 #### Release Process:
@@ -102,7 +102,7 @@ git push origin main --tags
 
 ### 4. Dependency Updates (`dependabot.yml`)
 
-**Schedule**: Weekly (Monday 4 AM UTC)  
+**Schedule**: Weekly (Monday 4 AM UTC)
 **Purpose**: Keep dependencies secure and up-to-date
 
 #### Configuration:

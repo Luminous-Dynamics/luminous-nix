@@ -10,12 +10,12 @@ graph TD
     Start[User Installs] --> FirstRun{First Run?}
     FirstRun -->|Yes| Welcome[Welcome Screen]
     FirstRun -->|No| Main[Main Interface]
-    
+
     Welcome --> Demo[Mini Demo]
     Demo --> FirstTask[Try One Command]
     FirstTask --> Success[Celebrate Success!]
     Success --> Main
-    
+
     style Success fill:#90EE90
     style Demo fill:#FFE4B5
 ```
@@ -24,23 +24,23 @@ graph TD
 ```python
 def first_run_experience():
     """Progressive disclosure at its finest."""
-    
+
     print("""
     🌟 Welcome to Nix for Humanity!
-    
+
     I'll help you use NixOS with natural language.
     No need to memorize commands - just tell me what you need!
-    
+
     Let's start with something simple:
     """)
-    
+
     # Guided first command
     suggestion = random.choice([
         "Try: 'install firefox'",
-        "Try: 'search text editor'", 
+        "Try: 'search text editor'",
         "Try: 'what is nix?'"
     ])
-    
+
     print(f"💡 {suggestion}")
 ```
 
@@ -53,12 +53,12 @@ Progressive Tasks:
     - Install a package
     - Search for software
     - Get help on a topic
-    
+
   Level 2 - Exploration:
     - Install multiple packages
     - Discover similar software
     - View package details
-    
+
   Level 3 - Configuration:
     - Generate simple config
     - Preview changes
@@ -73,7 +73,7 @@ $ ask-nix --tutorial
 
 Lesson 1: Installing Software
 ────────────────────────────
-Instead of memorizing "nix-env -iA nixpkgs.firefox", 
+Instead of memorizing "nix-env -iA nixpkgs.firefox",
 just say what you want!
 
 Try it now: Type "install a web browser"
@@ -102,13 +102,13 @@ sequenceDiagram
     participant User
     participant System
     participant Learning
-    
+
     User->>System: Uses commands
     System->>Learning: Track patterns
     Learning->>Learning: Identify preferences
     Learning->>System: Adapt responses
     System->>User: Personalized UX
-    
+
     Note over User,System: System learns:
     Note over User,System: - Preferred tools
     Note over User,System: - Expertise level
@@ -153,7 +153,7 @@ achievements = {
 $ ask-nix "install firefox"
 
 # After successful install:
-💡 Pro tip: You can also say "install my usual browser" 
+💡 Pro tip: You can also say "install my usual browser"
    and I'll remember Firefox is your preference!
 
 # Based on user level:
@@ -218,11 +218,11 @@ All commands run in dry-run mode here!
 1. "I'm a web developer" →
    - Installs: nodejs, npm, git, vscode
    - Configures: Development environment
-   
+
 2. "I'm switching from Ubuntu" →
    - Maps familiar commands
    - Shows equivalent packages
-   
+
 3. "I need a secure system" →
    - Hardening recommendations
    - Security tools
@@ -281,7 +281,7 @@ Config created: 🎨 Beautiful! Your first configuration!
 ```python
 encouragements = [
     "You're learning fast! 🌟",
-    "That was perfect! ✨", 
+    "That was perfect! ✨",
     "You're a natural at this! 🎯",
     "NixOS mastery +1! 📈",
     "Exactly right! You've got this! 💪"
@@ -291,7 +291,7 @@ encouragements = [
 ### Easter Eggs
 ```bash
 $ ask-nix "make me happy"
-🌈 Installing joy... Just kidding! 
+🌈 Installing joy... Just kidding!
 Here's a fortune cookie: [random uplifting quote]
 
 $ ask-nix "i love nix"
@@ -306,7 +306,7 @@ class OnboardingFlow:
     def __init__(self, user_profile):
         self.stage = self.detect_stage(user_profile)
         self.personality = self.select_personality(user_profile)
-        
+
     def guide_user(self, command):
         """Contextual guidance based on stage."""
         if self.stage == "first_contact":
@@ -315,13 +315,13 @@ class OnboardingFlow:
             return self.progressive_hints(command)
         else:
             return self.power_user_info(command)
-    
+
     def celebrate_milestone(self, achievement):
         """Make success feel amazing."""
         animation = self.get_celebration_animation(achievement)
         message = self.get_encouragement(achievement)
         next_goal = self.suggest_next_challenge(achievement)
-        
+
         return {
             "animation": animation,
             "message": message,

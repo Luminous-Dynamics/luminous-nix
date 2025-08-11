@@ -17,15 +17,7 @@ from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Container, Vertical, VerticalScroll
 from textual.reactive import reactive
-from textual.widgets import (
-    Button,
-    Footer,
-    Header,
-    Input,
-    Label,
-    ListView,
-    Static,
-)
+from textual.widgets import Button, Footer, Header, Input, Label, ListView, Static
 
 from ..core.engine import NixForHumanityBackend
 from .demo_mode import DemoRecorder, DemoScript
@@ -55,44 +47,44 @@ class EnhancedNixForHumanityTUIWithDemo(App):
         grid-columns: 2fr 1fr;
         grid-rows: 1fr;
     }
-    
+
     #left-panel {
         border: solid $primary;
         padding: 1;
         margin: 1;
     }
-    
+
     #right-panel {
         border: solid $secondary;
         padding: 1;
         margin: 1;
     }
-    
+
     #orb-container {
         height: 20;
         border: none;
         align: center middle;
     }
-    
+
     #status-container {
         height: 10;
         border: solid $accent;
         padding: 1;
     }
-    
+
     #input-container {
         height: 3;
         dock: bottom;
         border: solid $primary;
         padding: 0 1;
     }
-    
+
     #history-container {
         border: solid $secondary;
         padding: 1;
         overflow-y: scroll;
     }
-    
+
     #demo-banner {
         background: $warning;
         color: $text;
@@ -100,28 +92,28 @@ class EnhancedNixForHumanityTUIWithDemo(App):
         text-align: center;
         display: none;
     }
-    
+
     .demo-active #demo-banner {
         display: block;
     }
-    
+
     Input {
         dock: bottom;
     }
-    
+
     .status-label {
         color: $text-muted;
         text-style: italic;
     }
-    
+
     .command-success {
         color: $success;
     }
-    
+
     .command-error {
         color: $error;
     }
-    
+
     .thinking {
         color: $warning;
         text-style: italic;

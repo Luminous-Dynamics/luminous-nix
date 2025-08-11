@@ -96,7 +96,7 @@ class SacredModelManager:
             'coder': 'nix-coder',        # Code generation
             'quick': 'nix-quick'         # Fast responses
         }
-    
+
     def select_model(self, query, context):
         # Analyze query intent
         if "grandma" in query.lower() or "explain simply" in query:
@@ -118,7 +118,7 @@ save_qa_pair() {
     timestamp=$(date +%s)
     echo "$1" > knowledge/questions/q_${timestamp}.txt
     echo "$2" > knowledge/answers/a_${timestamp}.txt
-    
+
     # Tag with metadata
     echo "model:$3,score:$4,category:$5" > knowledge/meta/m_${timestamp}.txt
 }
@@ -165,8 +165,8 @@ nix-trinity-20250101  # Monthly checkpoint
 # Automated cleanup
 cleanup_old_models() {
     # Keep: current, last week, last month
-    ollama list | grep nix-trinity | 
-    sort -r | tail -n +4 | 
+    ollama list | grep nix-trinity |
+    sort -r | tail -n +4 |
     xargs -I {} ollama rm {}
 }
 ```
@@ -216,16 +216,16 @@ cleanup_old_models() {
 # Enhanced ask-nix-guru with model selection
 ask-nix-guru() {
     query="$1"
-    
+
     # Select optimal model
     model=$(python3 -c "
 from model_manager import select_model
 print(select_model('$query'))
     ")
-    
+
     # Add context awareness
     context="User skill: $USER_LEVEL, Time: $(date +%H)"
-    
+
     # Query with selected model
     ollama run "$model" "$query"
 }

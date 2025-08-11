@@ -23,7 +23,7 @@ from .types import Intent, IntentType
 
 class IntentEngine:
     """Recognizes user intent from natural language"""
-    
+
     def __init__(self):
         # Pattern definitions (extracted from ask-nix)
         # Order matters - more specific patterns first
@@ -93,7 +93,7 @@ class IntentEngine:
                 (r'^(explain|tutorial)\\s+(.+)$', 0),
             ],
         }
-        
+
         # Common package aliases - order matters for multi-word matches
         self.package_aliases = {
             # Browsers
@@ -102,7 +102,7 @@ class IntentEngine:
             'firefox browser': 'firefox',
             'firefox web browser': 'firefox',
             'chrome': 'google-chrome',
-            
+
             # Editors
             'editor': 'vim',
             'text editor': 'vim',
@@ -112,7 +112,7 @@ class IntentEngine:
             'code': 'vscode',
             'vi': 'vim',
             'vim': 'vim',
-            
+
             # Programming languages and runtimes
             'python': 'python3',
             'python package': 'python3',
@@ -122,38 +122,38 @@ class IntentEngine:
             'nodejs': 'nodejs',
             'nodejs javascript runtime': 'nodejs',
             'javascript runtime': 'nodejs',
-            
+
             # Containers
             'docker': 'docker',
             'docker container system': 'docker',
             'container system': 'docker',
-            
+
             # Common software
             'firefox': 'firefox',
         }
-        
+
         # Test compatibility properties
         self.install_patterns = [pattern[0] for pattern in self.patterns.get(IntentType.INSTALL, [])]
         self.update_patterns = [pattern[0] for pattern in self.patterns.get(IntentType.UPDATE, [])]
         self.search_patterns = [pattern[0] for pattern in self.patterns.get(IntentType.SEARCH, [])]
         self._embeddings_loaded = False
-        
+
     def _normalize(self, text: str) -> str:
         """Normalize text for processing"""
         # Remove extra whitespace and punctuation
         text = re.sub(r'[^\\w\\s]', '', text)
         text = re.sub(r'\\s+', ' ', text)
         return text.strip().lower()
-    
+
     def extract_entities(self, text: str, intent_type: IntentType) -> dict:
         """Extract entities for given intent type"""
         entities = {}
-        
+
         if intent_type == IntentType.INSTALL:
             package = self.extract_package_name(text)
             if package:
                 entities['package'] = package
-                
+
         elif intent_type == IntentType.SEARCH:
             # Extract search query
             words = text.lower().split()
@@ -162,7 +162,7 @@ class IntentEngine:
             query_words = [w for w in words if w not in command_words]
             if query_words:
                 entities['query'] = ' '.join(query_words)
-                
+
         elif intent_type == IntentType.CONFIG:
             # Extract config target
             words = text.lower().split()
@@ -170,7 +170,7 @@ class IntentEngine:
             target_words = [w for w in words if w not in config_words]
             if target_words:
                 entities['config'] = target_words[0]
-                
+
         elif intent_type == IntentType.INFO:
             # Extract info topic
             words = text.lower().split()
@@ -178,14 +178,14 @@ class IntentEngine:
             topic_words = [w for w in words if w not in info_words]
             if topic_words:
                 entities['topic'] = ' '.join(topic_words)
-        
+
         return entities
-        
+
     def recognize(self, text: str) -> Intent:
         """Extract intent from user input"""
         # Normalize input
         text = text.strip().lower()
-        
+
         # Try each intent type
         for intent_type, patterns in self.patterns.items():
             for pattern, target_group in patterns:
@@ -200,7 +200,7 @@ class IntentEngine:
                         # If extraction fails, try direct alias lookup
                         if not target:
                             target = self.package_aliases.get(raw_target, raw_target)
-                    
+
                     return Intent(
                         type=intent_type,
                         entities={'target': target, 'package': target},
@@ -208,7 +208,7 @@ class IntentEngine:
                         confidence=0.95,
                         raw_input=text
                     )
-        
+
         # No pattern matched
         return Intent(
             type=IntentType.UNKNOWN,
@@ -217,7 +217,7 @@ class IntentEngine:
             confidence=0.0,
             raw_input=text
         )
-    
+
     def extract_package_name(self, text: str) -> Optional[str]:
         """Extract package name from various phrasings"""
         # Remove common words
@@ -226,26 +226,26 @@ class IntentEngine:
             'for', 'me', 'i', 'need', 'want', 'install', 'get',
             'add', 'download', 'remove', 'uninstall', 'delete'
         }
-        
+
         words = text.lower().split()
         filtered = [w for w in words if w not in noise_words]
-        
+
         if filtered:
             # Try exact match first
             potential_package = ' '.join(filtered)
             if potential_package in self.package_aliases:
                 return self.package_aliases[potential_package]
-            
+
             # Try individual words for single word matches
             if len(filtered) == 1:
                 return self.package_aliases.get(filtered[0], filtered[0])
-            
+
             # For multi-word, try to find known packages by reducing from end
             for i in range(len(filtered), 0, -1):
                 candidate = ' '.join(filtered[:i])
                 if candidate in self.package_aliases:
                     return self.package_aliases[candidate]
-                    
+
             # Handle special cases like "python package" -> "python"
             if len(filtered) >= 2:
                 first_word = filtered[0]
@@ -253,30 +253,30 @@ class IntentEngine:
                     return self.package_aliases[first_word]
                 elif first_word in ['python', 'node', 'vim', 'docker', 'firefox']:
                     return self.package_aliases.get(first_word, first_word)
-            
+
             # Return the cleaned up text
             return potential_package
-        
+
         return None
-    
+
     def suggest_alternatives(self, text: str) -> List[str]:
         """Suggest alternative interpretations"""
         suggestions = []
-        
+
         # Check for common misspellings
         if 'fierfix' in text or 'firfox' in text:
             suggestions.append("Did you mean 'firefox'?")
-        
+
         if 'pyton' in text or 'pythn' in text:
             suggestions.append("Did you mean 'python'?")
-            
+
         # Check for ambiguous requests
         if any(word in text for word in ['editor', 'ide']):
             suggestions.extend([
                 "Popular editors: vim, neovim, emacs, vscode",
                 "Try 'search editor' to see all options"
             ])
-            
+
         return suggestions
 
 

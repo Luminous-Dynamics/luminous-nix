@@ -7,12 +7,11 @@ including XAI explanations and persona adaptation.
 
 # REMOVED MOCK IMPORT: Mock, patch
 
-from nix_for_humanity.core.backend import EnhancedBackend
-from src.nix_for_humanity.error_intelligence import (
-    ResolutionOutcome,
-)
 from src.nix_humanity.core.types import IntentType, PersonalityStyle, Request
 from src.nix_humanity.ui.persona_styles import PersonaType
+
+from nix_for_humanity.core.backend import EnhancedBackend
+from src.nix_for_humanity.error_intelligence import ResolutionOutcome
 
 
 class TestErrorIntelligenceIntegration(unittest.TestCase):

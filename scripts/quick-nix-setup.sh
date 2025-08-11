@@ -55,7 +55,7 @@ case $choice in
 
 pkgs.mkShell {
   name = "nix-humanity-minimal";
-  
+
   buildInputs = with pkgs; [
     python311
     portaudio
@@ -63,7 +63,7 @@ pkgs.mkShell {
     sox
     ffmpeg
   ];
-  
+
   shellHook = ''
     echo "🎤 Minimal voice environment loaded"
     echo "Use python venv for additional packages if needed"
@@ -75,7 +75,7 @@ EOF
             nix-shell shell-voice-minimal.nix
         fi
         ;;
-        
+
     2)
         echo -e "\n${BLUE}Checking dependency cache...${NC}"
         if check_deps_cached; then
@@ -84,7 +84,7 @@ EOF
             echo -e "${YELLOW}⚠️  Dependencies not cached. Run option 4 outside Claude Code.${NC}"
         fi
         ;;
-        
+
     3)
         echo -e "\n${GREEN}Starting in mock mode...${NC}"
         echo "No downloads needed - using mock implementations"
@@ -97,7 +97,7 @@ EOF
         echo ""
         echo "Now run: ./bin/nix-voice"
         ;;
-        
+
     4)
         echo -e "\n${YELLOW}Full environment setup${NC}"
         echo "This needs to run OUTSIDE Claude Code due to download size."
@@ -111,7 +111,7 @@ EOF
         echo ""
         echo "Alternative: ./scripts/prefetch-dependencies.sh"
         ;;
-        
+
     5)
         echo -e "\n${BLUE}Help: Managing Nix Downloads${NC}"
         echo ""
@@ -125,7 +125,7 @@ EOF
         echo ""
         echo "Once downloaded, Nix caches everything - subsequent runs are instant!"
         ;;
-        
+
     *)
         echo -e "${RED}Invalid choice${NC}"
         exit 1

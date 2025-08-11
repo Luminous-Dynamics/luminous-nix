@@ -267,7 +267,7 @@ Response Times:
   Maya (ADHD): <1000ms
   Grandma Rose: <2000ms (with progress)
   Default: <1500ms
-  
+
 Accessibility:
   Alex (Screen Reader): 100% compatibility
   Viktor (ESL): Plain language scoring >90%
@@ -301,7 +301,7 @@ Our persona-driven design has created success stories:
 
 Each persona represents real people who depend on our system:
 - **Grandma Rose** wants to connect with her grandchildren online
-- **Maya** needs to focus on schoolwork without system friction  
+- **Maya** needs to focus on schoolwork without system friction
 - **David** just wants his family's computer to work reliably
 - **Dr. Sarah** is advancing human knowledge through research
 

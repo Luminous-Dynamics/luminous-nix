@@ -16,7 +16,7 @@
 
 ### The Brutal Truth 🎯
 
-**Vision vs Reality Gap**: 
+**Vision vs Reality Gap**:
 - **Vision**: Revolutionary AI assistant making NixOS accessible to everyone
 - **Reality**: A partially working prototype with excellent ideas but poor execution
 
@@ -81,7 +81,7 @@ docs/            # Accurate documentation
 
 **NOT Top Priority**:
 - Consciousness orbs
-- Sacred geometries  
+- Sacred geometries
 - 10 different personas
 - Voice interfaces (yet)
 
@@ -146,7 +146,7 @@ def test_real_package_install():
 
 This project has **amazing ideas** but is drowning in its own complexity. The consciousness-first philosophy is beautiful, but users need a tool that **actually works** first.
 
-**My Recommendation**: 
+**My Recommendation**:
 1. Archive 90% of the current code
 2. Start fresh with core functionality
 3. Build up from a working foundation

@@ -145,7 +145,7 @@ async def handle_system_update(user_input):
         action = Action.BOOT
     else:
         action = Action.SWITCH
-    
+
     # 2. Use nixos-rebuild-ng directly
     if has_flake():
         flake = Flake.parse("/etc/nixos")
@@ -153,10 +153,10 @@ async def handle_system_update(user_input):
     else:
         build_attr = BuildAttr.from_arg(None, None)
         path = nix.build("config.system.build.toplevel", build_attr)
-    
+
     # 3. Apply configuration
     nix.switch_to_configuration(path, action, profile)
-    
+
     # 4. Natural response
     return f"System updated! Configuration {action.value} complete."
 """

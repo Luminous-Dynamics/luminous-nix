@@ -2,7 +2,7 @@
 
 ## The Core Problems
 
-1. **Python Version Mismatch**: 
+1. **Python Version Mismatch**:
    - System has Python 3.13
    - Some dependencies need Python 3.11 (DoWhy)
    - shell.nix provides both but they conflict
@@ -38,42 +38,42 @@ Create `shell-dev.nix`:
 
 pkgs.mkShell {
   name = "nix-for-humanity-dev";
-  
+
   buildInputs = with pkgs; [
     # Use Python 3.11 for compatibility
     python311
     python311Packages.pip
     python311Packages.virtualenv
-    
+
     # Poetry for dependency management
     poetry
-    
+
     # Required system libraries
     pkg-config
     openssl
-    
+
     # For TUI
     ncurses
-    
+
     # Development tools
     git
     curl
     jq
   ];
-  
+
   shellHook = ''
     echo "🌟 Nix for Humanity Development Environment"
     echo "Python: $(python3 --version)"
-    
+
     # Create venv if it doesn't exist
     if [ ! -d "venv" ]; then
       echo "Creating virtual environment..."
       python3 -m venv venv
     fi
-    
+
     # Activate venv
     source venv/bin/activate
-    
+
     # Install dependencies
     if [ ! -f "venv/.deps_installed" ]; then
       echo "Installing dependencies..."
@@ -82,13 +82,13 @@ pkgs.mkShell {
       pip install textual rich blessed
       touch venv/.deps_installed
     fi
-    
+
     # Set PYTHONPATH
     export PYTHONPATH="$PWD/src:$PWD/features/v3.0/xai:$PYTHONPATH"
-    
+
     # Enable features
     export NIX_HUMANITY_PYTHON_BACKEND=true
-    
+
     echo "✅ Environment ready!"
     echo "Run: ./bin/ask-nix 'help'"
   '';
@@ -108,32 +108,32 @@ from pathlib import Path
 
 def fix_imports(directory):
     """Fix all import statements"""
-    
+
     fixes = {
         r'from nix_humanity': 'from nix_for_humanity',
         r'import nix_humanity': 'import nix_for_humanity',
         r'nixos_rebuild_mock': 'nixos_rebuild',  # Remove mock references
     }
-    
+
     py_files = Path(directory).rglob('*.py')
-    
+
     for file_path in py_files:
         if 'venv' in str(file_path) or '__pycache__' in str(file_path):
             continue
-            
+
         try:
             with open(file_path, 'r') as f:
                 content = f.read()
-            
+
             original = content
             for pattern, replacement in fixes.items():
                 content = re.sub(pattern, replacement, content)
-            
+
             if content != original:
                 with open(file_path, 'w') as f:
                     f.write(content)
                 print(f"✅ Fixed: {file_path}")
-                
+
         except Exception as e:
             print(f"⚠️ Error processing {file_path}: {e}")
 

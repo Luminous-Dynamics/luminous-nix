@@ -151,7 +151,7 @@ class MyPlugin(Plugin):
             version="1.0.0",
             description="My awesome plugin"
         )
-    
+
     @hook("pre_execute")
     def modify_command(self, query):
         return query.replace("please", "")
@@ -222,7 +222,7 @@ class MyPlugin(Plugin):
 
 All requested features have been implemented:
 - ✅ Plugin Discovery System - Extensible architecture
-- ✅ Interactive TUI - Beautiful terminal interface  
+- ✅ Interactive TUI - Beautiful terminal interface
 - ✅ Voice Interface - Natural speech control
 
 The project now offers:
@@ -242,7 +242,7 @@ The Nix for Humanity project has achieved all its goals and is ready for:
 
 ---
 
-**Congratulations!** 🎉 
+**Congratulations!** 🎉
 
 Nix for Humanity is now a complete, production-ready system that makes NixOS accessible to everyone through natural language, beautiful interfaces, and voice control.
 

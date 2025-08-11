@@ -16,16 +16,16 @@ ask_and_save() {
     local question="$1"
     local category="${2:-general}"
     local filename=$(echo "$question" | tr ' ' '_' | tr -cd '[:alnum:]_' | cut -c1-50)
-    
+
     echo "🤔 Asking: $question"
     echo
-    
+
     # Save question
     echo "$question" > "$KNOWLEDGE_DIR/questions/${DATE}_${filename}.txt"
-    
+
     # Get answer
     answer=$(ask-nix-guru "$question" 2>/dev/null || echo "Error getting answer")
-    
+
     # Save answer
     {
         echo "Question: $question"
@@ -34,7 +34,7 @@ ask_and_save() {
         echo "---"
         echo "$answer"
     } > "$KNOWLEDGE_DIR/answers/${DATE}_${filename}.md"
-    
+
     echo "✅ Saved to: $KNOWLEDGE_DIR/answers/${DATE}_${filename}.md"
     echo
 }
@@ -90,7 +90,7 @@ DEV_QUESTIONS=(
 while true; do
     show_menu
     read -p "Choose an option: " choice
-    
+
     case $choice in
         1)
             echo "📚 NixOS Basics Questions:"
@@ -140,7 +140,7 @@ while true; do
             echo "Invalid option. Please try again."
             ;;
     esac
-    
+
     echo
     read -p "Press Enter to continue..."
     clear

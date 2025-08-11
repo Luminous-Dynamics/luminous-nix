@@ -1,7 +1,7 @@
 # 🐍 Python Packaging & Style Standards for Nix for Humanity
 
-**Decision Date**: 2025-08-11  
-**Status**: RECOMMENDED  
+**Decision Date**: 2025-08-11
+**Status**: RECOMMENDED
 **Context**: NixOS-integrated Python project with multiple deployment targets
 
 ## 📦 Package Management: Poetry, NOT pip
@@ -120,15 +120,15 @@ def execute_command(
     dry_run: bool = False
 ) -> NixCommand:
     """Execute a Nix command with optional arguments.
-    
+
     Args:
         command: The Nix command to execute
         args: Optional list of arguments
         dry_run: If True, only simulate execution
-        
+
     Returns:
         NixCommand object with execution results
-        
+
     Raises:
         NixCommandError: If command execution fails
     """

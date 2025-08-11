@@ -18,9 +18,9 @@ NC='\033[0m' # No Color
 run_test() {
     local test_file=$1
     local test_name=$2
-    
+
     echo -e "${YELLOW}Testing $test_name...${NC}"
-    
+
     if python3 "$test_file" -v 2>&1 | tee /tmp/test_output.txt; then
         echo -e "${GREEN}✅ $test_name passed${NC}\n"
         return 0

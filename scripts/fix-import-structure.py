@@ -26,7 +26,7 @@ def fix_imports():
 
 def process(text: str, context: Optional[Dict[str, Any]] = None) -> Optional[Intent]:
     """Process natural language text and return intent.
-    
+
     This is a convenience function that creates an NLPPipeline instance
     and processes the text.
     """
@@ -36,21 +36,21 @@ def process(text: str, context: Optional[Dict[str, Any]] = None) -> Optional[Int
 
 def extract_package_name(text: str) -> Optional[str]:
     """Extract package name from user input.
-    
+
     Args:
         text: User input text
-        
+
     Returns:
         Extracted package name or None
     """
     # Simple extraction logic
     import re
-    
+
     # Remove common words
     text = text.lower()
     for word in ['install', 'remove', 'search', 'please', 'can', 'you', 'i', 'want', 'to', 'for', 'the']:
         text = text.replace(word, '')
-    
+
     # Look for package-like words
     words = text.strip().split()
     if words:
@@ -58,13 +58,13 @@ def extract_package_name(text: str) -> Optional[str]:
         for word in words:
             if word and re.match(r'^[a-z][a-z0-9-]*$', word):
                 return word
-    
+
     return None
 
 
 def record_interaction_feedback(intent: Any, success: bool, feedback: Optional[str] = None) -> None:
     """Record user feedback for learning.
-    
+
     Args:
         intent: The processed intent
         success: Whether the operation was successful
@@ -76,16 +76,16 @@ def record_interaction_feedback(intent: Any, success: bool, feedback: Optional[s
 
 def get_explanation_for_user(intent: Any) -> str:
     """Get human-readable explanation of what will happen.
-    
+
     Args:
         intent: The processed intent
-        
+
     Returns:
         Human-readable explanation
     """
     if not intent:
         return "I couldn't understand your request."
-    
+
     explanations = {
         'INSTALL': f"I'll install the {intent.entities.get('package', 'requested package')} for you.",
         'REMOVE': f"I'll remove {intent.entities.get('package', 'the package')} from your system.",
@@ -95,7 +95,7 @@ def get_explanation_for_user(intent: Any) -> str:
         'LIST': f"I'll list {intent.entities.get('target', 'the requested items')} for you.",
         'STATUS': f"I'll check the status of {intent.entities.get('target', 'your system')}."
     }
-    
+
     return explanations.get(str(intent.type), f"I'll execute the {intent.type} operation.")
 '''
 

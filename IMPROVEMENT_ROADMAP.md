@@ -26,10 +26,10 @@
 class TestEdgeCases:
     def test_voice_without_microphone(self):
         """Graceful fallback when no audio device"""
-    
+
     def test_plugin_malicious_code(self):
         """Verify sandbox prevents harmful operations"""
-    
+
     def test_tui_unicode_handling(self):
         """Handle emoji and special characters"""
 ```
@@ -41,11 +41,11 @@ class TestEdgeCases:
 
 class NixStoreInterface:
     """Direct interface to Nix store without subprocess"""
-    
+
     def __init__(self):
         self.store_path = Path("/nix/store")
         self.db = sqlite3.connect("/nix/var/nix/db/db.sqlite")
-    
+
     def query_package(self, name: str) -> Optional[Package]:
         """Query directly from Nix database"""
         # 100x faster than subprocess
@@ -67,7 +67,7 @@ class OfflineVoiceInterface:
     def __init__(self):
         # Download small model (50MB)
         self.model = vosk.Model("vosk-model-small-en-us")
-        
+
     def recognize_offline(self, audio) -> str:
         """Works without internet connection"""
 ```
@@ -76,7 +76,7 @@ class OfflineVoiceInterface:
 ```python
 class SmartSuggestions:
     """Anticipate user needs based on context"""
-    
+
     def suggest_next(self, history: List[Command]) -> List[str]:
         # If user installed postgres, suggest:
         # - "create postgres database"
@@ -88,7 +88,7 @@ class SmartSuggestions:
 ```python
 class ProgressTracker:
     """Save progress for long operations"""
-    
+
     def checkpoint(self, operation: str, progress: float):
         # If system update interrupted at 60%
         # Can resume from that point
@@ -114,7 +114,7 @@ class LazyLoader:
 ```python
 class SmartCache:
     """Multi-level caching with TTL"""
-    
+
     def __init__(self):
         self.memory_cache = {}  # Instant
         self.disk_cache = {}    # Fast
@@ -143,7 +143,7 @@ async def execute_batch(commands: List[str]):
 ```python
 class PatternLearner:
     """Learn from user behavior"""
-    
+
     def detect_workflow(self, commands: List[Command]) -> Workflow:
         # User always: update → backup → restart
         # Suggest: "Would you like to create an alias?"
@@ -153,7 +153,7 @@ class PatternLearner:
 ```python
 class PredictiveAssistant:
     """Anticipate issues before they happen"""
-    
+
     def analyze_system(self) -> List[Warning]:
         # "Your disk is 90% full, updates might fail"
         # "Package X conflicts with Y you're about to install"
@@ -276,7 +276,7 @@ Weekend: Community engagement
 
 1. **Today**: Release v1.0.0
 2. **Tomorrow**: Create v1.1 milestone in GitHub
-3. **This Week**: 
+3. **This Week**:
    - Gather initial user feedback
    - Fix critical bugs
    - Start test coverage improvements

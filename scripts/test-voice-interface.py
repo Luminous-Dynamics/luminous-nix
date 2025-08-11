@@ -106,12 +106,12 @@ async def test_voice_interface():
 
     test_response = """
     To install Firefox, you have several options:
-    
+
     1. **Declarative (Recommended)** - Add to your system configuration
        ```
        environment.systemPackages = with pkgs; [ firefox ];
        ```
-    
+
     2. **Imperative** - Quick installation
        ```
        nix-env -iA nixos.firefox

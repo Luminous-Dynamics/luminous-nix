@@ -16,50 +16,50 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.11', '3.12', '3.13']
-    
+
     steps:
     - name: 🔄 Checkout code
       uses: actions/checkout@v4
-    
+
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: 📦 Install Poetry
       uses: snok/install-poetry@v1
       with:
         version: latest
         virtualenvs-create: true
         virtualenvs-in-project: true
-    
+
     - name: 💾 Cache Poetry dependencies
       uses: actions/cache@v3
       with:
         path: .venv
         key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
-    
+
     - name: 📥 Install dependencies
       run: |
         poetry install --all-extras
-    
+
     - name: 🎨 Check formatting with Black
       run: |
         poetry run black --check .
-    
+
     - name: 🔍 Lint with Ruff
       run: |
         poetry run ruff check .
-    
+
     - name: 🎯 Type check with mypy
       run: |
         poetry run mypy .
       continue-on-error: true  # Don't fail on type errors yet
-    
+
     - name: 🧪 Run tests with pytest
       run: |
         poetry run pytest --cov=nix_for_humanity --cov-report=xml --cov-report=term
-    
+
     - name: 📊 Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
@@ -71,27 +71,27 @@ jobs:
   security:
     name: 🔒 Security Check
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: 🔄 Checkout code
       uses: actions/checkout@v4
-    
+
     - name: 🐍 Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    
+
     - name: 📦 Install Poetry
       uses: snok/install-poetry@v1
-    
+
     - name: 📥 Install dependencies
       run: |
         poetry install --all-extras
-    
+
     - name: 🔒 Security check with Bandit
       run: |
         poetry run bandit -r src/ -ll
-    
+
     - name: 🔍 Check for known vulnerabilities
       run: |
         poetry run pip-audit
@@ -99,23 +99,23 @@ jobs:
   integration:
     name: 🌐 Integration Tests
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: 🔄 Checkout code
       uses: actions/checkout@v4
-    
+
     - name: 🐍 Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    
+
     - name: 📦 Install Poetry
       uses: snok/install-poetry@v1
-    
+
     - name: 📥 Install dependencies
       run: |
         poetry install --all-extras
-    
+
     - name: 🌐 Run integration tests
       run: |
         poetry run pytest tests/integration/ -v

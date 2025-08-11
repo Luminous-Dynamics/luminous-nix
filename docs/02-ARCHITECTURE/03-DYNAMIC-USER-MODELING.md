@@ -34,7 +34,7 @@ The convergence of these advanced modeling techniques—a structured skill graph
 The Oracle research introduces a revolutionary four-layer Symbiotic Knowledge Graph (SKG) architecture that provides a concrete implementation framework for our digital twin concept:
 
 1. **Ontological Layer**: Provides the schema and constraints for NixOS domain knowledge
-2. **Episodic Layer**: Captures the temporal history of user-AI interactions  
+2. **Episodic Layer**: Captures the temporal history of user-AI interactions
 3. **Phenomenological Layer**: Models the user's subjective experience and internal states
 4. **Metacognitive Layer**: Enables AI self-awareness and transparent reasoning
 
@@ -182,7 +182,7 @@ The DBN will consist of three types of nodes:
 - **Cognitive_Load**: The amount of working memory resources being used.
 - **Fatigue**: Mental or physical tiredness affecting performance.
 
-**Observable Evidence Nodes**: These are the quantifiable data points that the system can collect directly from the user's interaction. These observations serve as evidence to update the beliefs about the hidden states. 
+**Observable Evidence Nodes**: These are the quantifiable data points that the system can collect directly from the user's interaction. These observations serve as evidence to update the beliefs about the hidden states.
 
 #### Research Enhancement: ActivityWatch Integration
 The Oracle research recommends ActivityWatch as the ideal foundation for collecting these behavioral signals:
@@ -276,7 +276,7 @@ Building on these principles, a composite Digital Well-being Score (DWS) can be 
 - **Positive Valence**: The probability of being in a state of Flow.
 - **Negative Valence**: The combined probability of being in states like Anxiety, Boredom, and Fatigue.
 
-The final DWS will be a weighted function that combines these behavioral and affective components. For example: 
+The final DWS will be a weighted function that combines these behavioral and affective components. For example:
 
 ```
 DWS = w₁·P(Flow) − w₂·P(Anxiety) − w₃·(ErrorRate) − w₄·(ContextSwitches)

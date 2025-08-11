@@ -264,7 +264,7 @@ class ModernNixOSKnowledgeEngine:
         for solution in solutions:
             cursor.execute(
                 """
-                INSERT OR REPLACE INTO solutions 
+                INSERT OR REPLACE INTO solutions
                 (intent, category, solution, example, explanation, related, requires_sudo)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             """,

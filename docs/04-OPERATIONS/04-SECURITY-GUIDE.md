@@ -287,7 +287,7 @@ threats:
    ```bash
    # Edit security configuration
    nano ~/.config/nix-humanity/security.yaml
-   
+
    # Reload configuration
    ask-nix --reload-config
    ```
@@ -315,7 +315,7 @@ threats:
    ```bash
    ask-nix --report-security-issue
    ```
-   
+
    Or email: security@luminousdynamics.org
 
 3. **Temporary Mitigation**

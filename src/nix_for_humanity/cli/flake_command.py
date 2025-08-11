@@ -299,7 +299,7 @@ ask-nix flake create "node.js development environment"
 ask-nix flake create "react app with typescript webpack"
 ask-nix flake create "vue.js project with vite tailwind"
 
-## Backend Development  
+## Backend Development
 ask-nix flake create "express api with typescript jest"
 ask-nix flake create "nest.js api with postgresql"
 

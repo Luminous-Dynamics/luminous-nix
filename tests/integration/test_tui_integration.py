@@ -8,12 +8,11 @@ Tests the complete integration between TUI and backend functionality.
 import asyncio
 
 import pytest
+from src.nix_humanity.core.backend import NixForHumanityBackend
+from src.nix_humanity.ui.main_app import NixForHumanityApp
 
 # REMOVED MOCK IMPORT: Mock, patch, AsyncMock
 from textual.widgets import Button, Input
-
-from src.nix_humanity.core.backend import NixForHumanityBackend
-from src.nix_humanity.ui.main_app import NixForHumanityApp
 
 
 class TestTUIIntegration:

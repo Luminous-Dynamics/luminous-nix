@@ -182,7 +182,7 @@ class TestCoverageMonitor(unittest.TestCase):
         with sqlite3.connect(self.monitor.db_path) as conn:
             conn.execute(
                 """
-                INSERT INTO coverage_history 
+                INSERT INTO coverage_history
                 (overall_coverage, critical_coverage, core_coverage, ui_coverage, details, commit_hash)
                 VALUES (?, ?, ?, ?, ?, ?)
             """,

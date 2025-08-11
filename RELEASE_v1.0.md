@@ -14,7 +14,7 @@ A revolutionary natural language interface to NixOS that makes system management
 ./bin/ask-nix "web server with nginx and postgresql"
 ```
 
-### 2. **Configuration Generation** 
+### 2. **Configuration Generation**
 Transform descriptions into complete NixOS configurations:
 ```bash
 ./bin/ask-nix "development environment with python rust and docker"
@@ -181,10 +181,10 @@ class CustomPlugin(Plugin):
     @property
     def name(self):
         return "custom_plugin"
-    
+
     def can_handle(self, intent):
         return intent.query.contains("custom")
-    
+
     async def process(self, intent, context):
         # Your custom logic here
         return Result(success=True, output="Custom result")
@@ -219,7 +219,7 @@ backend.register_plugin(CustomPlugin())
 
 We welcome contributions! The project uses the Sacred Trinity development model:
 - Human vision and testing
-- AI architecture and implementation  
+- AI architecture and implementation
 - Local LLM domain expertise
 
 See [CONTRIBUTING.md](docs/03-DEVELOPMENT/01-CONTRIBUTING.md) for details.

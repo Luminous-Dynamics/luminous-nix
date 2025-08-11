@@ -5,8 +5,8 @@
 Features advanced error handling, recovery options, and error history.
 """
 
-import sys
 import os
+import sys
 from pathlib import Path
 
 # Add the project root to Python path
@@ -16,7 +16,7 @@ sys.path.insert(0, str(project_root))
 # Import and run the enhanced TUI
 try:
     from nix_for_humanity.ui.enhanced_tui import main
-    
+
     print("🌟 Launching Enhanced Nix for Humanity TUI...")
     print("✨ Features: Advanced error handling, recovery options, error history")
     print("\nKeyboard shortcuts:")
@@ -26,9 +26,9 @@ try:
     print("  Ctrl+Z - Toggle zen mode")
     print("  F1     - Help")
     print("  Ctrl+C - Quit\n")
-    
+
     main()
-    
+
 except ImportError as e:
     print(f"❌ Error: Could not import enhanced TUI components: {e}")
     print("\nPlease ensure you're in the development environment:")

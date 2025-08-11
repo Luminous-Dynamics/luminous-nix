@@ -4,7 +4,7 @@
 security:
   # Global security level: strict, balanced, or permissive
   level: balanced
-  
+
   # Rate limiting configuration
   rate_limiting:
     enabled: true
@@ -18,7 +18,7 @@ security:
     whitelist:
       - "127.0.0.1"
       - "::1"
-  
+
   # Input validation settings
   validation:
     # Maximum input length (characters)
@@ -32,7 +32,7 @@ security:
       history_window: 20
       # Anomaly detection threshold (0.0-1.0)
       anomaly_threshold: 0.7
-    
+
   # Command execution policies
   execution:
     # Require confirmation for privileged commands
@@ -46,7 +46,7 @@ security:
     max_execution_time: 300
     # Enable dry-run by default for new users
     default_dry_run: true
-    
+
   # Trust levels and progression
   trust:
     # Initial trust level for new users (0.0-1.0)
@@ -65,7 +65,7 @@ security:
       high_trust: 0.7
       # Above this level, minimal restrictions
       trusted: 0.9
-      
+
   # Threat detection patterns
   threats:
     # Enable pattern-based threat detection
@@ -85,7 +85,7 @@ security:
       - pattern: "base64.*decode"
         threat_type: "obfuscation"
         severity: "medium"
-        
+
   # Privacy settings
   privacy:
     # Anonymize user data in logs
@@ -96,7 +96,7 @@ security:
     enable_learning: true
     # Share anonymous usage statistics
     share_statistics: false
-    
+
   # Session security
   session:
     # Session timeout (minutes)
@@ -105,7 +105,7 @@ security:
     max_concurrent: 3
     # Require re-authentication for privileged commands
     reauth_privileged: true
-    
+
   # Logging and monitoring
   monitoring:
     # Log all commands
@@ -121,7 +121,7 @@ security:
       - type: "email"
         enabled: false
         to: "admin@example.com"
-        
+
   # Persona-specific settings
   personas:
     # Grandma Rose - Maximum safety
@@ -144,7 +144,7 @@ security:
       security_level: "strict"
       anonymize_everything: true
       no_logging: true
-      
+
 # Feature flags for security features
 features:
   # Enable new enhanced validator

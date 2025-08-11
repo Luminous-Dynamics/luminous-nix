@@ -4,7 +4,7 @@
 
 ### 1. Updated CLAUDE.md with Development Principles
 - **NO MOCKS**: Never create mock implementations
-- **NO TECHNICAL DEBT**: Solve properly or not at all  
+- **NO TECHNICAL DEBT**: Solve properly or not at all
 - **ENVIRONMENT FIRST**: Fix the environment, don't patch code
 - **USE FLAKES**: Always use Nix flakes for reproducible environments
 - **USE POETRY**: Always use Poetry for Python dependency management
@@ -56,7 +56,7 @@ export NIX_HUMANITY_PYTHON_BACKEND=true
 # Test imports work
 python3 -c "from nix_for_humanity.core.engine import NixForHumanityBackend; print('✅ Works!')"
 
-# Test XAI works  
+# Test XAI works
 python3 -c "from causal_xai_engine import CausalXAIEngine; print('✅ XAI Works!')"
 ```
 

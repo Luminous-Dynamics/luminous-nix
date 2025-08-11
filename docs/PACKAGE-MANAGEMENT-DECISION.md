@@ -1,7 +1,7 @@
 # 📦 Package Management Decision: Poetry vs pip
 
-**Date**: 2025-08-11  
-**Decision**: **Use Poetry, NOT pip**  
+**Date**: 2025-08-11
+**Decision**: **Use Poetry, NOT pip**
 **Status**: CONFIRMED ✅
 
 ## 🎯 Executive Summary

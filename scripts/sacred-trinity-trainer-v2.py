@@ -123,8 +123,8 @@ class SacredTrinityTrainer:
         # Also collect from tracking database
         cursor = self.conn.execute(
             """
-            SELECT question, answer, category, timestamp 
-            FROM qa_history 
+            SELECT question, answer, category, timestamp
+            FROM qa_history
             WHERE timestamp > ? AND user_rating >= 4
         """,
             (cutoff_time,),
@@ -203,12 +203,12 @@ class SacredTrinityTrainer:
 ```nix
 {
   description = "Python project";
-  
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
-  
+
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
@@ -224,7 +224,7 @@ class SacredTrinityTrainer:
             pythonPackages.black
             pythonPackages.pylint
           ];
-          
+
           shellHook = ''
             echo "🐍 Python development environment"
             echo "Run 'python --version' to verify"
@@ -330,7 +330,7 @@ PARAMETER temperature {config['temperature']}
                 # Update tracking
                 self.conn.execute(
                     """
-                    INSERT INTO model_versions 
+                    INSERT INTO model_versions
                     (model_name, version, created_at, base_model, qa_count, performance_score)
                     VALUES (?, ?, ?, ?, ?, ?)
                 """,
@@ -497,52 +497,52 @@ class ModelSelector:
     def __init__(self):
         self.models_dir = Path("/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/models")
         self.current_models = {}
-        
+
         # Load current models
         for model_type in ['empathy', 'expert', 'coder', 'quick']:
             current_file = self.models_dir / f"current_{model_type}.txt"
             if current_file.exists():
                 self.current_models[model_type] = current_file.read_text().strip()
-    
+
     def select_model(self, query: str) -> str:
         """Select best model based on query"""
         q_lower = query.lower()
-        
+
         # Empathy model for beginners and help
         if any(word in q_lower for word in ['grandma', 'simple', 'explain', 'afraid', 'help me understand', 'worried']):
             return self.current_models.get('empathy', 'nix-trinity')
-        
+
         # Coder model for code generation
         elif any(word in q_lower for word in ['code', 'script', 'flake', 'configuration.nix', 'systemd', 'overlay']):
             return self.current_models.get('coder', 'nix-trinity')
-        
+
         # Expert model for deep technical questions
         elif any(word in q_lower for word in ['architecture', 'theory', 'explain how', 'deep dive', 'derivation', 'stdenv']):
             return self.current_models.get('expert', 'nix-trinity')
-        
+
         # Quick model for simple queries
         else:
             return self.current_models.get('quick', 'nix-trinity')
-    
+
     def query(self, question: str):
         """Query the appropriate model"""
         model = self.select_model(question)
         print(f"🤖 Using {model.split('-')[1]} model...\\n")
-        
+
         try:
             result = subprocess.run(
                 ["ollama", "run", model, question],
                 capture_output=True,
                 text=True
             )
-            
+
             if result.returncode == 0:
                 print(result.stdout)
             else:
                 print(f"Error: {result.stderr}")
                 # Fallback to default
                 subprocess.run(["ollama", "run", "nix-trinity", question])
-                
+
         except Exception as e:
             print(f"Error: {e}")
             print("Falling back to default model...")
@@ -552,7 +552,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: ask-trinity 'your question'")
         sys.exit(1)
-    
+
     selector = ModelSelector()
     selector.query(' '.join(sys.argv[1:]))
 '''

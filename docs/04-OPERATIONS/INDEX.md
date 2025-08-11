@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Everything needed to run Nix for Humanity in production  
-📍 **Location**: `docs/04-OPERATIONS/`  
-🔗 **Parent**: [Documentation Hub](../README.md)  
-⏱️ **Read time**: 4 minutes for navigation  
+💡 **Quick Context**: Everything needed to run Nix for Humanity in production
+📍 **Location**: `docs/04-OPERATIONS/`
+🔗 **Parent**: [Documentation Hub](../README.md)
+⏱️ **Read time**: 4 minutes for navigation
 📊 **Mastery Level**: 🌿 Intermediate - operational knowledge required
 
 ---

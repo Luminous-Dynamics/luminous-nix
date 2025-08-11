@@ -28,17 +28,17 @@ class NixForHumanityCore:
     def __init__(self):
         self.plugins = PluginRegistry()
         self.hooks = HookSystem()
-    
+
     def execute(self, intent: Intent) -> Result:
         # Pre-execution hooks
         intent = self.hooks.run("pre_execute", intent)
-        
+
         # Core execution
         result = self._execute_native(intent)
-        
+
         # Post-execution hooks
         result = self.hooks.run("post_execute", result)
-        
+
         return result
 ```
 
@@ -50,7 +50,7 @@ class NixAPIv1:
     def install(self, package: str) -> Result:
         return self._legacy_install(package)
 
-@api_version("v2")  
+@api_version("v2")
 class NixAPIv2:
     def install(self, package: str, options: InstallOptions = None) -> Result:
         return self._modern_install(package, options)
@@ -63,12 +63,12 @@ class NixAPIv2:
 # nix_for_humanity/core/native/
 class NativeNixOperations:
     """Direct Python-Nix bindings - NO subprocess"""
-    
+
     def build(self, derivation: str) -> StorePath:
         """Native build using nixos-rebuild-ng"""
         from nixos_rebuild import nix
         return nix.build(derivation)
-    
+
     def query(self, expression: str) -> Any:
         """Direct Nix expression evaluation"""
         return nix.eval(expression)
@@ -79,11 +79,11 @@ class NativeNixOperations:
 # nix_for_humanity/core/intelligence/
 class IntentEngine:
     """Natural language understanding"""
-    
+
     def __init__(self):
         self.nlp = ModularNLP()  # Pluggable NLP backend
         self.knowledge = KnowledgeGraph()  # Evolving knowledge
-        
+
     async def understand(self, query: str) -> Intent:
         # Multiple understanding strategies
         candidates = await asyncio.gather(
@@ -99,27 +99,27 @@ class IntentEngine:
 # nix_for_humanity/core/execution/
 class ExecutionEngine:
     """Orchestrates complex operations"""
-    
+
     def __init__(self):
         self.native = NativeNixOperations()
         self.planner = ExecutionPlanner()
         self.monitor = ProgressMonitor()
-        
+
     async def execute(self, intent: Intent) -> Result:
         # Plan execution strategy
         plan = self.planner.create_plan(intent)
-        
+
         # Execute with monitoring
         async with self.monitor.track(plan):
             results = []
             for step in plan.steps:
                 result = await self._execute_step(step)
                 results.append(result)
-                
+
                 # Adaptive execution
                 if result.requires_adaptation:
                     plan = self.planner.adapt(plan, result)
-                    
+
         return self.aggregate_results(results)
 ```
 
@@ -128,19 +128,19 @@ class ExecutionEngine:
 # nix_for_humanity/core/learning/
 class AdaptiveLearning:
     """Learns from every interaction"""
-    
+
     def __init__(self):
         self.patterns = PatternRecognizer()
         self.preferences = UserPreferences()
         self.feedback = FeedbackLoop()
-        
+
     async def learn(self, interaction: Interaction):
         # Learn patterns
         pattern = self.patterns.extract(interaction)
-        
+
         # Update preferences
         self.preferences.update(interaction.user, pattern)
-        
+
         # Optimize future behavior
         if interaction.feedback:
             self.feedback.incorporate(interaction.feedback)
@@ -151,19 +151,19 @@ class AdaptiveLearning:
 # nix_for_humanity/api/
 class UnifiedAPI:
     """Single API for all frontends"""
-    
+
     @endpoint("/execute", version="v1")
     async def execute(self, request: ExecuteRequest) -> ExecuteResponse:
         # Validate request
         request = self.validate(request)
-        
+
         # Process through core
         intent = await self.engine.understand(request.query)
         result = await self.engine.execute(intent)
-        
+
         # Format response for client
         return self.format_response(result, request.format)
-    
+
     @endpoint("/stream", version="v2")
     async def stream_execute(self, request: StreamRequest):
         """Real-time streaming for long operations"""
@@ -177,17 +177,17 @@ class UnifiedAPI:
 ```python
 class ModelProvider(ABC):
     """Pluggable AI models"""
-    
+
     @abstractmethod
     async def complete(self, prompt: str) -> str:
         pass
 
 class LocalLLM(ModelProvider):
     """Ollama, llama.cpp, etc."""
-    
+
 class CloudLLM(ModelProvider):
     """OpenAI, Anthropic, etc."""
-    
+
 class HybridLLM(ModelProvider):
     """Best of both worlds"""
 ```
@@ -196,17 +196,17 @@ class HybridLLM(ModelProvider):
 ```python
 class DistributedExecutor:
     """Execute across multiple machines"""
-    
+
     async def execute_distributed(self, plan: ExecutionPlan):
         # Distribute work
         tasks = self.distribute(plan.steps)
-        
+
         # Execute in parallel
         results = await asyncio.gather(*[
             self.execute_remote(task, node)
             for task, node in tasks
         ])
-        
+
         return self.merge_results(results)
 ```
 
@@ -214,21 +214,21 @@ class DistributedExecutor:
 ```python
 class ConfigGenerator:
     """Natural language to Nix configurations"""
-    
+
     def generate(self, description: str) -> NixConfig:
         # Parse requirements
         requirements = self.parse_requirements(description)
-        
+
         # Generate config
         config = NixConfig()
         for req in requirements:
             module = self.module_library.find_best_match(req)
             config.add_module(module)
-            
+
         # Optimize and validate
         config = self.optimizer.optimize(config)
         self.validator.validate(config)
-        
+
         return config
 ```
 
@@ -236,14 +236,14 @@ class ConfigGenerator:
 ```python
 class SystemTimeline:
     """Track and replay system states"""
-    
+
     def checkpoint(self) -> Checkpoint:
         return Checkpoint(
             generation=self.get_current_generation(),
             packages=self.get_installed_packages(),
             config=self.get_configuration()
         )
-    
+
     def restore(self, checkpoint: Checkpoint):
         """Restore to exact system state"""
         self.native.switch_to_generation(checkpoint.generation)
@@ -267,7 +267,7 @@ class NixForHumanityBackend:
         self.native = NativeNixOperations()
         self.intent = IntentEngine()
         self.executor = ExecutionEngine()
-        
+
     async def process(self, query: str) -> Result:
         intent = await self.intent.understand(query)
         return await self.executor.execute(intent)
@@ -279,12 +279,12 @@ class NixForHumanityBackend:
 class CLIFrontend:
     def __init__(self):
         self.backend = NixForHumanityBackend()
-        
-# TUI frontend  
+
+# TUI frontend
 class TUIFrontend:
     def __init__(self):
         self.backend = NixForHumanityBackend()
-        
+
 # Voice frontend
 class VoiceFrontend:
     def __init__(self):
@@ -304,16 +304,16 @@ class VoiceFrontend:
 # nix_for_humanity/core/__init__.py
 class NixForHumanity:
     """Minimal, extensible core"""
-    
+
     def __init__(self):
         self.native = NativeAPI()
         self.plugins = []
-        
+
     def execute(self, query: str) -> Result:
         # Simple, working implementation
         intent = self.parse(query)
         return self.native.execute(intent)
-        
+
     def register_plugin(self, plugin: Plugin):
         # Extensibility from day one
         self.plugins.append(plugin)
@@ -343,7 +343,7 @@ class TestableCore:
     def __init__(self, native=None):
         # Dependency injection
         self.native = native or NativeAPI()
-        
+
     def execute(self, query: str, dry_run: bool = False):
         # Testability built in
         if dry_run:
@@ -387,14 +387,14 @@ graph TD
     C --> D[Native Nix Operations]
     C --> E[Learning System]
     C --> F[Plugin System]
-    
+
     D --> G[Result]
     E --> G
     F --> G
-    
+
     G --> H[Response Formatting]
     H --> I[User]
-    
+
     E -.-> J[(Knowledge Base)]
     E -.-> K[(User Preferences)]
 ```

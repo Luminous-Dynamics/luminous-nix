@@ -69,7 +69,7 @@ services.phpfpm.pools.nginx = {
   };
 };
 
-📝 Save to configuration.nix? [Y/n]: 
+📝 Save to configuration.nix? [Y/n]:
 ```
 
 **[1:10 - 1:30] Learning System**

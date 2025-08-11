@@ -13,7 +13,7 @@
 # Traditional NixOS
 $ nix-env -iA nixos.firefox  # What does -iA even mean?
 
-# Nix for Humanity  
+# Nix for Humanity
 $ ask-nix "install firefox"  # Just say what you want!
 $ ask-nix "add firefox"      # Or this
 $ ask-nix "get me firefox"   # Or even this!
@@ -31,7 +31,7 @@ $ ask-nix "get me firefox"   # Or even this!
 ```bash
 # All of these work:
 ask-nix "install vim"
-ask-nix "add neovim" 
+ask-nix "add neovim"
 ask-nix "get me a text editor"
 ask-nix "what's installed?"
 ask-nix "show me my packages"
@@ -188,6 +188,6 @@ MIT License - Free as in freedom, free as in consciousness.
 
 *Making NixOS accessible to everyone through natural conversation*
 
-**Status**: Alpha - Core CLI working, seeking contributors  
-**Next**: Connecting TUI, improving tests, adding more patterns  
+**Status**: Alpha - Core CLI working, seeking contributors
+**Next**: Connecting TUI, improving tests, adding more patterns
 **Vision**: Technology that serves human consciousness

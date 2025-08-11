@@ -1,8 +1,8 @@
 # 🔄 API Versioning Standards - Nix for Humanity
 
-**Status**: ACTIVE  
-**Version**: 1.0.0  
-**Last Updated**: 2025-08-11  
+**Status**: ACTIVE
+**Version**: 1.0.0
+**Last Updated**: 2025-08-11
 **Priority**: 🔴 HIGH - Critical for v1.0.0 stability
 
 ## 📋 Executive Summary
@@ -28,7 +28,7 @@ Nix for Humanity follows **Semantic Versioning 2.0.0** with additional guarantee
 ## 📊 API Surfaces & Versioning Rules
 
 ### 1. CLI Interface (`bin/ask-nix`)
-**Version**: Follows package version  
+**Version**: Follows package version
 **Stability Promise**: v1.x.x commands will work until v2.0.0
 
 ```bash
@@ -50,7 +50,7 @@ ask-nix --dry-run "command"
 - ✅ Improving error messages
 
 ### 2. Python API (`nix_for_humanity`)
-**Version**: Synchronized with package version  
+**Version**: Synchronized with package version
 **Import Stability**: Public API locked at v1.0.0
 
 ```python
@@ -102,7 +102,7 @@ settings:
 - User notified of changes
 
 ### 4. Web API (Future)
-**Version**: `/api/v1/` URL prefix  
+**Version**: `/api/v1/` URL prefix
 **Stability**: Each version supported for 1 year minimum
 
 ```
@@ -327,13 +327,13 @@ users_on_deprecated = 5  # Target: <10%
 ```python
 class NixForHumanityAPI:
     """Public API - v1.0.0 stable."""
-    
+
     def __init__(self, config: Optional[Config] = None):
         """Initialize with optional config."""
         self._config = config or Config.default()
-    
+
     def query(
-        self, 
+        self,
         text: str,
         *,  # Force keyword-only args (Python 3.8+)
         timeout: int = 30,
@@ -341,16 +341,16 @@ class NixForHumanityAPI:
         **kwargs  # Future expansion
     ) -> Response:
         """Process natural language query.
-        
+
         Args:
             text: Natural language command
             timeout: Maximum seconds to wait
             dry_run: If True, don't execute
             **kwargs: Reserved for future use
-            
+
         Returns:
             Response object with results
-            
+
         Since: v1.0.0
         Stable: Yes
         """
@@ -362,13 +362,13 @@ class NixForHumanityAPI:
 def check_api_version():
     """Check if API version is compatible."""
     from importlib.metadata import version
-    
+
     current = version("nix-for-humanity")
     major, minor, patch = current.split(".")
-    
+
     if int(major) < 1:
         raise RuntimeError("Beta version not supported")
-    
+
     if int(major) > 1:
         warnings.warn("Using v2 API with v1 client")
 ```

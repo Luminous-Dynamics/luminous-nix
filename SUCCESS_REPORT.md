@@ -53,7 +53,7 @@ python ask-nix-simple.py --execute install hello
 
 Using Native Python-Nix API instead of subprocess:
 - **Search**: 10x faster
-- **Install**: 50x faster  
+- **Install**: 50x faster
 - **System rebuild**: 1500x faster (no timeout!)
 - **No subprocess overhead**
 - **Real-time progress tracking possible**
@@ -91,7 +91,7 @@ Actual NixOS Operations
 - `src/nix_for_humanity/nlp/personas.py` - Persona management
 - `ask-nix-simple.py` - Simple working CLI demonstration
 
-### Fixed Files  
+### Fixed Files
 - `src/nix_for_humanity/config/schema.py` - Fixed config parsing
 - `src/nix_for_humanity/nix/__init__.py` - Added new API exports
 
@@ -127,7 +127,7 @@ This is a game-changer for making NixOS accessible through natural language.
 
 ## 🏆 Mission Status
 
-**Original Goal**: Fix the CLI and make it work  
+**Original Goal**: Fix the CLI and make it work
 **Status**: ✅ **ACHIEVED AND EXCEEDED**
 
 We didn't just fix the CLI - we:

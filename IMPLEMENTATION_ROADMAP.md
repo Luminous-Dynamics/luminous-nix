@@ -25,26 +25,26 @@ Any Frontend → Unified API → Headless Core → Native Python API → NixOS
 # nix_for_humanity/backend.py
 class NixForHumanityBackend:
     """Single source of truth for all operations"""
-    
+
     def __init__(self):
         # Use what we already built
         self.native_api = NixPythonAPI()
         self.knowledge = ModernNixOSKnowledgeEngine()
         self.executor = CommandExecutor()
-        
+
         # Prepare for future
         self.plugins = PluginRegistry()
         self.hooks = HookSystem()
-        
+
     async def execute(self, query: str, options: Options = None) -> Result:
         """Single entry point for all operations"""
         # Current implementation
         intent = self.knowledge.extract_intent(query)
         result = self.executor.execute(intent.name, **intent.params)
-        
+
         # Future hooks
         result = await self.hooks.run("post_execute", result)
-        
+
         return result
 ```
 
@@ -102,12 +102,12 @@ if __name__ == "__main__":
 # nix_for_humanity/plugins/base.py
 class Plugin(ABC):
     """Base class for all plugins"""
-    
+
     @property
     @abstractmethod
     def name(self) -> str:
         pass
-    
+
     @abstractmethod
     async def process(self, intent: Intent) -> Optional[Result]:
         """Process intent if this plugin handles it"""
@@ -116,7 +116,7 @@ class Plugin(ABC):
 # nix_for_humanity/plugins/config_generator.py
 class ConfigGeneratorPlugin(Plugin):
     name = "config_generator"
-    
+
     async def process(self, intent: Intent) -> Optional[Result]:
         if intent.name == "generate_config":
             config = self.generate_nix_config(intent.params)
@@ -129,13 +129,13 @@ class ConfigGeneratorPlugin(Plugin):
 # nix_for_humanity/hooks.py
 class HookSystem:
     """Lifecycle hooks for extensibility"""
-    
+
     def __init__(self):
         self.hooks = defaultdict(list)
-    
+
     def register(self, event: str, callback: Callable):
         self.hooks[event].append(callback)
-    
+
     async def run(self, event: str, data: Any) -> Any:
         for callback in self.hooks[event]:
             data = await callback(data)
@@ -173,7 +173,7 @@ streaming = false  # Coming in v2
 # nix_for_humanity/streaming.py
 class StreamingExecutor:
     """Real-time progress for long operations"""
-    
+
     async def execute_streaming(self, intent: Intent):
         """Yield progress updates"""
         async with self.monitor.track() as tracker:
@@ -191,19 +191,19 @@ class StreamingExecutor:
 # nix_for_humanity/learning/engine.py
 class LearningEngine:
     """Learn from user interactions"""
-    
+
     def __init__(self):
         self.db = Database("learning.db")
         self.patterns = PatternMatcher()
-    
+
     async def learn(self, interaction: Interaction):
         # Record interaction
         await self.db.record(interaction)
-        
+
         # Extract patterns
         if pattern := self.patterns.match(interaction):
             await self.improve_intent_recognition(pattern)
-        
+
         # Update user preferences
         await self.update_preferences(interaction.user, interaction)
 ```
@@ -213,7 +213,7 @@ class LearningEngine:
 # nix_for_humanity/generators/config.py
 class NixConfigGenerator:
     """Natural language to Nix configuration"""
-    
+
     def generate(self, description: str) -> str:
         """
         Example:
@@ -225,12 +225,12 @@ class NixConfigGenerator:
         }
         """
         requirements = self.parse_requirements(description)
-        
+
         config = NixConfig()
         for req in requirements:
             if module := self.module_db.find(req):
                 config.add(module)
-        
+
         return config.render()
 ```
 
@@ -246,7 +246,7 @@ class NixTUI(App):
     def __init__(self):
         super().__init__()
         self.backend = NixForHumanityBackend()
-    
+
     async def on_command(self, command: str):
         result = await self.backend.execute(command)
         self.display(result)
@@ -262,7 +262,7 @@ class VoiceInterface:
     def __init__(self):
         self.backend = NixForHumanityBackend()
         self.recognizer = sr.Recognizer()
-    
+
     async def listen_and_execute(self):
         with sr.Microphone() as source:
             audio = self.recognizer.listen(source)
@@ -281,7 +281,7 @@ class VoiceInterface:
       pname = "nix-for-humanity";
       version = "1.0.0";
       src = ./.;
-      
+
       propagatedBuildInputs = with nixpkgs.legacyPackages.x86_64-linux.python3Packages; [
         click
         rich

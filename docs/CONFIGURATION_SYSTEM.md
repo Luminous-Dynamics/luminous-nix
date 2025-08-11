@@ -64,7 +64,7 @@ aliases:
     i: "install"
     s: "search"
     up: "update system"
-  
+
   shortcuts:
     dev-setup:
       - "install git vim tmux"
@@ -95,7 +95,7 @@ ui:
   use_colors: true                # Colored output
   progress_indicators: true       # Show progress bars
   theme: "default"                # default, dark, light, high-contrast
-  
+
   # Custom messages
   greeting: "Hello! How can I help?"
   farewell: "Goodbye!"
@@ -112,7 +112,7 @@ performance:
   parallel_processing: true     # Use multiple cores
   memory_limit: "512MB"         # Max memory usage
   timeout: 30                   # Command timeout (seconds)
-  
+
   # Advanced
   worker_threads: 4
   cache_size: 1000
@@ -129,12 +129,12 @@ privacy:
   local_only: true
   encrypt_data: true
   auto_cleanup: true
-  
+
   # Retention
   log_retention_days: 30
   cache_retention_days: 7
   learning_retention_days: 365
-  
+
   # Security
   allowed_commands:
     - "nix-env"
@@ -273,11 +273,11 @@ aliases:
       - "install git vim tmux"
       - "install docker"
       - "install vscode"
-    
+
     clean:
       - "collect garbage"
       - "optimize store"
-    
+
     full-update:
       - "update channels"
       - "update system"

@@ -365,8 +365,8 @@ class PerformanceBenchmark:
 
                     conn.execute(
                         """
-                        INSERT INTO benchmark_history 
-                        (timestamp, operation, duration_ms, memory_mb, success, 
+                        INSERT INTO benchmark_history
+                        (timestamp, operation, duration_ms, memory_mb, success,
                          target_ms, performance_ratio, metadata)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,

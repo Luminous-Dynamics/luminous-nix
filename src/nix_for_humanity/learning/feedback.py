@@ -122,8 +122,8 @@ class FeedbackCollector:
 
         c.execute(
             """
-            INSERT INTO feedback 
-            (feedback_id, session_id, query, response, helpful, rating, 
+            INSERT INTO feedback
+            (feedback_id, session_id, query, response, helpful, rating,
              improved_response, user_comment)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
@@ -236,7 +236,7 @@ class FeedbackCollector:
         # Helpfulness rate
         c.execute(
             """
-            SELECT 
+            SELECT
                 COUNT(CASE WHEN helpful = 1 THEN 1 END) as helpful_count,
                 COUNT(CASE WHEN helpful IS NOT NULL THEN 1 END) as rated_count
             FROM feedback
@@ -256,7 +256,7 @@ class FeedbackCollector:
         # Success rate
         c.execute(
             """
-            SELECT 
+            SELECT
                 COUNT(CASE WHEN success = 1 THEN 1 END) as success_count,
                 COUNT(*) as total_count
             FROM usage_patterns

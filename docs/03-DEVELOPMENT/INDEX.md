@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: Everything you need to contribute to Nix for Humanity  
-📍 **Location**: `docs/03-DEVELOPMENT/`  
-🔗 **Parent**: [Documentation Hub](../README.md)  
-⏱️ **Read time**: 3 minutes for navigation  
+💡 **Quick Context**: Everything you need to contribute to Nix for Humanity
+📍 **Location**: `docs/03-DEVELOPMENT/`
+🔗 **Parent**: [Documentation Hub](../README.md)
+⏱️ **Read time**: 3 minutes for navigation
 📊 **Mastery Level**: 🌱 Beginner to 🌳 Advanced - content for all skill levels
 
 ---

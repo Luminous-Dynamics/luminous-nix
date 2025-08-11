@@ -12,7 +12,7 @@ echo
 echo
 
 echo "2. Testing with verbose output:"
-echo "   Command: ./bin/nix-humanity search firefox -v"  
+echo "   Command: ./bin/nix-humanity search firefox -v"
 echo
 ./bin/nix-humanity search firefox -v
 echo

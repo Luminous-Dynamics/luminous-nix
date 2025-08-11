@@ -16,9 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from nix_for_humanity.config.config_manager import ConfigManager
-from nix_for_humanity.config.schema import (
-    Personality,
-)
+from nix_for_humanity.config.schema import Personality
 from nix_for_humanity.utils.logging import get_logger
 
 logger = get_logger(__name__)

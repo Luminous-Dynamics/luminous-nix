@@ -71,7 +71,7 @@ nix-env --set-flag priority 0 package1
 ask-nix "resolve collision between package1 and package2"
 # Offers options:
 # 1. Keep package1 (set higher priority)
-# 2. Keep package2 (set higher priority)  
+# 2. Keep package2 (set higher priority)
 # 3. Remove one package
 # 4. Use both with different names
 ```

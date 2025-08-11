@@ -6,8 +6,7 @@ deterministic, real implementations that honor the principles of
 consciousness-first development.
 """
 
-from .test_implementations import (
-    # Persona test data
+from .test_implementations import (  # Persona test data; Core test implementations; Utility functions; Test fixtures
     PERSONA_TEST_DATA,
     TestBackendAPI,
     TestContextManager,
@@ -16,7 +15,6 @@ from .test_implementations import (
     TestKnowledgeBase,
     TestLearningEngine,
     TestNLPEngine,
-    # Core test implementations
     TestProcess,
     TestProgressCallback,
     async_test_fixture,
@@ -24,11 +22,9 @@ from .test_implementations import (
     create_successful_process,
     create_test_database,
     create_test_nlp_engine,
-    # Utility functions
     create_test_process,
     performance_test,
     persona_test,
-    # Test fixtures
     test_fixture,
 )
 

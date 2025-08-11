@@ -50,19 +50,19 @@ class QuantumResistantVault:
     def __init__(self, user_passphrase: str):
         # Derive master key from passphrase using Argon2id
         self.master_key = self._derive_key(user_passphrase)
-        
+
         # Generate Kyber keypair for future-proofing
         self.kyber_pk, self.kyber_sk = generate_keypair()
-        
+
         # Current encryption using ChaCha20
         self.cipher = ChaCha20Poly1305(self.master_key)
-    
+
     def _derive_key(self, passphrase: str) -> bytes:
         """
         Argon2id with aggressive parameters for key derivation
         """
         import argon2
-        
+
         return argon2.low_level.hash_secret_raw(
             secret=passphrase.encode(),
             salt=self._get_device_salt(),
@@ -82,13 +82,13 @@ import sqlcipher3
 class SecureLocalStorage:
     def __init__(self, vault: QuantumResistantVault):
         self.db = sqlcipher3.connect("sanctuary.db")
-        
+
         # Configure SQLCipher with maximum security
         self.db.execute(f"PRAGMA key = '{vault.master_key.hex()}'")
         self.db.execute("PRAGMA cipher_page_size = 4096")
         self.db.execute("PRAGMA kdf_iter = 256000")
         self.db.execute("PRAGMA cipher_hmac_algorithm = HMAC_SHA512")
-        
+
     def store_interaction(self, interaction: dict):
         """
         Store user interaction with full encryption
@@ -132,7 +132,7 @@ class TEEComputationLayer:
     def __init__(self):
         self.tee_type = self._detect_tee()
         self.enclave = self._initialize_enclave()
-        
+
     def _initialize_enclave(self):
         """
         Initialize appropriate TEE based on hardware
@@ -164,14 +164,14 @@ class RemoteAttestation:
         quote = self.enclave.get_quote(
             report_data=hashlib.sha256(challenge).digest()
         )
-        
+
         return {
             "quote": quote,
             "certificate": self.get_certificate_chain(),
             "timestamp": datetime.utcnow().isoformat(),
             "tee_type": self.tee_type
         }
-    
+
     def verify_quote(self, quote_data: dict, expected_measurement: bytes) -> bool:
         """
         Client-side verification of TEE attestation
@@ -179,16 +179,16 @@ class RemoteAttestation:
         # Verify certificate chain
         if not self._verify_certificate_chain(quote_data["certificate"]):
             return False
-            
+
         # Verify enclave measurement matches expected
         quote = self._parse_quote(quote_data["quote"])
         if quote.measurement != expected_measurement:
             return False
-            
+
         # Verify freshness (prevent replay)
         if self._is_stale(quote_data["timestamp"]):
             return False
-            
+
         return True
 ```
 
@@ -208,13 +208,13 @@ class SecureLearning:
         with self.enclave.secured_context():
             # Decrypt using session key
             data = self.decrypt_in_enclave(encrypted_batch)
-            
+
             # Compute gradients
             gradients = self.model.compute_gradients(data)
-            
+
             # Apply differential privacy
             noisy_gradients = self.add_calibrated_noise(gradients)
-            
+
             # Encrypt results
             return self.encrypt_in_enclave(noisy_gradients)
 ```
@@ -248,14 +248,14 @@ class HomomorphicAggregator:
             coeff_mod_bit_sizes=[60, 40, 40, 40, 40, 60]
         )
         self.context.global_scale = 2**40
-        
+
     def create_encrypted_metric(self, value: float) -> ts.CKKSVector:
         """
         User encrypts their metric locally
         """
         return ts.ckks_vector(self.context, [value])
-    
-    def aggregate_encrypted_metrics(self, 
+
+    def aggregate_encrypted_metrics(self,
                                   encrypted_metrics: List[ts.CKKSVector]
                                   ) -> ts.CKKSVector:
         """
@@ -263,16 +263,16 @@ class HomomorphicAggregator:
         """
         # Initialize with first metric
         result = encrypted_metrics[0]
-        
+
         # Add all other metrics (homomorphic addition)
         for metric in encrypted_metrics[1:]:
             result += metric
-            
+
         # Compute average (homomorphic scalar multiplication)
         result *= (1.0 / len(encrypted_metrics))
-        
+
         return result
-    
+
     def decrypt_aggregate(self, encrypted_result: ts.CKKSVector) -> float:
         """
         Only possible with private key (held by DAO)
@@ -292,18 +292,18 @@ class CollectiveWisdom:
         Without knowing WHO succeeded.
         """
         encrypted_successes = []
-        
+
         for user in self.active_users:
             # Each user computes locally
             success = 1.0 if user.last_command_succeeded() else 0.0
-            
+
             # Encrypt and send
             encrypted = self.he.create_encrypted_metric(success)
             encrypted_successes.append(encrypted)
-        
+
         # Server aggregates
         encrypted_avg = self.he.aggregate_encrypted_metrics(encrypted_successes)
-        
+
         # DAO decrypts aggregate only
         return self.he.decrypt_aggregate(encrypted_avg)
 ```

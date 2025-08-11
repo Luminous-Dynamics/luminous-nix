@@ -4,21 +4,21 @@
 
 ---
 
-💡 **Quick Context**: Complete guide for all types of contributions - from code to feedback to testing  
-📍 **You are here**: Development → Contributing Guide (Community Participation)  
-🔗 **Related**: [Quick Start](./03-QUICK-START.md) | [Code Standards](./04-CODE-STANDARDS.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 12 minutes  
+💡 **Quick Context**: Complete guide for all types of contributions - from code to feedback to testing
+📍 **You are here**: Development → Contributing Guide (Community Participation)
+🔗 **Related**: [Quick Start](./03-QUICK-START.md) | [Code Standards](./04-CODE-STANDARDS.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)
+⏱️ **Read time**: 12 minutes
 📊 **Mastery Level**: 🌱 Beginner - designed for all skill levels and contribution types
 
 🌊 **Natural Next Steps**:
 - **For new contributors**: Start with [Quick Start Guide](./03-QUICK-START.md) to set up your development environment
-- **For developers**: Continue to [Code Standards](./04-CODE-STANDARDS.md) for technical implementation guidelines  
+- **For developers**: Continue to [Code Standards](./04-CODE-STANDARDS.md) for technical implementation guidelines
 - **For collaborators**: Review [Sacred Trinity Workflow](./02-SACRED-TRINITY-WORKFLOW.md) to understand our process
 - **For testers**: Explore [Testing Guide](./05-TESTING-GUIDE.md) for quality assurance approaches
 
 ---
 
-## Welcome Contributors! 
+## Welcome Contributors!
 
 We're building something revolutionary - a genuine AI partner that makes NixOS accessible to all. Whether you're fixing a typo or implementing a major feature, every contribution matters.
 
@@ -306,7 +306,7 @@ Every contribution, no matter how small, helps make NixOS accessible to someone 
 
 Welcome to the Sacred Trinity of development:
 - **Human** (you!) - Vision and empathy
-- **Claude** - Architecture and implementation  
+- **Claude** - Architecture and implementation
 - **Local LLM** - Domain expertise
 
 Together, we flow! 🌊

@@ -48,7 +48,7 @@ Paste relevant logs here
 - [ ] Maya (16, ADHD)
 - [ ] Viktor (67, ESL)
 - [ ] Dr. Sarah (35, researcher)
-- [ ] Other: 
+- [ ] Other:
 
 ## 🎯 Severity
 - [ ] 🔴 Critical - System unusable

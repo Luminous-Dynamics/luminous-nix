@@ -47,15 +47,15 @@ jobs:
         run: |
           echo "## ⏱️ Startup Performance" >> performance_report.md
           echo "" >> performance_report.md
-          
+
           # Test cold start
           start_time=$(date +%s%N)
           poetry run python -c "from nix_for_humanity import initialize; initialize()" 2>/dev/null
           end_time=$(date +%s%N)
           cold_start=$((($end_time - $start_time) / 1000000))
-          
+
           echo "**Cold Start**: ${cold_start}ms (Budget: <3000ms)" >> performance_report.md
-          
+
           # Test warm start
           poetry run python -c "
 import time
@@ -72,7 +72,7 @@ print(f'**Warm Start**: {elapsed:.0f}ms (Budget: <1000ms)')
           echo "" >> performance_report.md
           echo "## 💬 Command Processing" >> performance_report.md
           echo "" >> performance_report.md
-          
+
           poetry run python -c "
 import time
 from nix_for_humanity.core import NixCommand
@@ -91,7 +91,7 @@ for cmd in commands:
     NixCommand(cmd, dry_run=True)
     elapsed = (time.perf_counter() - start) * 1000
     results.append(f'- \`{cmd}\`: {elapsed:.0f}ms')
-    
+
 print('\n'.join(results))
           " >> performance_report.md 2>/dev/null || echo "Command processing tests not available" >> performance_report.md
 
@@ -100,7 +100,7 @@ print('\n'.join(results))
           echo "" >> performance_report.md
           echo "## 💾 Memory Usage" >> performance_report.md
           echo "" >> performance_report.md
-          
+
           poetry run python -c "
 import psutil
 import os
@@ -118,7 +118,7 @@ print(f'**Base Memory**: {mem_mb:.1f}MB (Budget: <100MB)')
 from nix_for_humanity.core import NixCommand
 for i in range(100):
     cmd = NixCommand(f'install package{i}', dry_run=True)
-    
+
 mem_after = process.memory_info().rss / 1024 / 1024
 print(f'**After 100 commands**: {mem_after:.1f}MB (Budget: <200MB)')
 print(f'**Memory growth**: {mem_after - mem_mb:.1f}MB')
@@ -129,9 +129,9 @@ print(f'**Memory growth**: {mem_after - mem_mb:.1f}MB')
           echo "" >> performance_report.md
           echo "## 📊 Pytest Benchmarks" >> performance_report.md
           echo "" >> performance_report.md
-          
+
           poetry run pytest tests/performance/ -v --benchmark-only --benchmark-autosave >> benchmark_output.txt 2>&1 || true
-          
+
           if [ -f benchmark_output.txt ]; then
             tail -20 benchmark_output.txt >> performance_report.md
           else
@@ -143,7 +143,7 @@ print(f'**Memory growth**: {mem_after - mem_mb:.1f}MB')
           echo "" >> performance_report.md
           echo "## 🎯 Performance Budget Compliance" >> performance_report.md
           echo "" >> performance_report.md
-          
+
           # Parse performance report and check against budgets
           python3 << 'EOF'
 import re
@@ -208,7 +208,7 @@ EOF
           script: |
             const fs = require('fs');
             const report = fs.readFileSync('performance_report.md', 'utf8');
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

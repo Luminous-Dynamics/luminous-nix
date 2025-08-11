@@ -10,7 +10,7 @@ Share our working natural language NixOS interface with the world, highlighting 
 feat: Natural language NixOS CLI that actually works! 🎉
 
 - Add working natural language interface with 20+ variations
-- Implement 10x-1500x performance via native Python-Nix API  
+- Implement 10x-1500x performance via native Python-Nix API
 - Create comprehensive demo suite (5 interactive demos)
 - Fix critical bugs (KeyError, intent mapping, list command)
 - Add learning system that adapts to user patterns
@@ -78,7 +78,7 @@ Built by solo developer using AI collaboration:
 
 Features:
 • Natural language that works
-• 10x-1500x faster 
+• 10x-1500x faster
 • Learns your patterns
 • Educational errors
 

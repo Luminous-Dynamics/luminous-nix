@@ -61,7 +61,7 @@ User Input ──► Intent Recognition ──► Command Building ──► Exe
 ┌─────────────────┐
 │   CLI (v1.0)    │  - Natural language command line
 ├─────────────────┤  - Streaming output
-│   TUI (v1.1)    │  - Rich terminal interface  
+│   TUI (v1.1)    │  - Rich terminal interface
 ├─────────────────┤  - Visual feedback
 │  Voice (v1.1)   │  - Speech recognition
 ├─────────────────┤  - Natural conversation
@@ -194,7 +194,7 @@ git clone ──> pip install -e ──> ./bin/ask-nix
 
 ✅ **Working Now**
 - CLI with natural language
-- Python-Nix native integration  
+- Python-Nix native integration
 - Learning system foundation
 - Error translation
 

@@ -94,7 +94,7 @@ class PatternLearner:
         # Update or insert pattern
         c.execute(
             """
-            INSERT INTO patterns (pattern_key, input_template, total_count, 
+            INSERT INTO patterns (pattern_key, input_template, total_count,
                                 success_count, failure_count, success_rate)
             VALUES (?, ?, 1, ?, ?, ?)
             ON CONFLICT(pattern_key) DO UPDATE SET
@@ -119,7 +119,7 @@ class PatternLearner:
         # Record specific instance
         c.execute(
             """
-            INSERT INTO command_instances 
+            INSERT INTO command_instances
             (pattern_key, raw_input, command_executed, success, execution_time)
             VALUES (?, ?, ?, ?, ?)
         """,

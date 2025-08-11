@@ -25,7 +25,7 @@ if [ -f ".improvement-progress" ]; then
     DAYS_ELAPSED=$(( ($(date +%s) - $(date -d "$START_DATE" +%s)) / 86400 ))
     WEEK=$(( (DAYS_ELAPSED / 7) + 1 ))
     DAY_OF_WEEK=$(( DAYS_ELAPSED % 7 + 1 ))
-    
+
     echo -e "${YELLOW}Sprint Status:${NC} Week $WEEK, Day $DAY_OF_WEEK"
     echo -e "${YELLOW}Days Remaining:${NC} $(( 42 - DAYS_ELAPSED )) days"
 else
@@ -137,7 +137,7 @@ case $WEEK in
         echo "2. Create real integration tests"
         echo "3. Fix import paths"
         ;;
-        
+
     3|4)
         echo "Focus: Core Features & Reliability"
         echo ""
@@ -145,7 +145,7 @@ case $WEEK in
         echo "2. Fix command reliability (95% target)"
         echo "3. Connect TUI to backend"
         ;;
-        
+
     5|6)
         echo "Focus: Polish & Release"
         echo ""
@@ -153,7 +153,7 @@ case $WEEK in
         echo "2. Run release checklist"
         echo "3. Final performance validation"
         ;;
-        
+
     *)
         echo "Sprint complete! Focus on maintenance"
         ;;

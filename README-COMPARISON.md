@@ -25,27 +25,27 @@ We're updating the README to reflect **what actually works** rather than aspirat
 ## Specific Changes
 
 ### Performance Claims
-**OLD**: "7223x faster" (where did this number come from?)  
+**OLD**: "7223x faster" (where did this number come from?)
 **NEW**: "10x-1500x faster" (measured and verified)
 
 ### Features
-**OLD**: Lists 10 features, many not working  
+**OLD**: Lists 10 features, many not working
 **NEW**: Lists only what actually works perfectly
 
 ### Installation
-**OLD**: Complex Poetry commands, multiple steps  
+**OLD**: Complex Poetry commands, multiple steps
 **NEW**: Simple `./bin/ask-nix "command"` - just works!
 
 ### Development Model
-**OLD**: Mentioned briefly  
+**OLD**: Mentioned briefly
 **NEW**: Prominent Sacred Trinity success story with ROI
 
 ### Status
-**OLD**: Claims v1.0.0 released  
+**OLD**: Claims v1.0.0 released
 **NEW**: Honest v0.1.0-alpha with clear roadmap
 
 ### Demos
-**OLD**: No mention of demos  
+**OLD**: No mention of demos
 **NEW**: Multiple demo scripts included and highlighted
 
 ## Why This Matters

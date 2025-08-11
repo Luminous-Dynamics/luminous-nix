@@ -170,6 +170,6 @@ Remember: Perfect is the enemy of good. Fix what blocks progress, document the r
 
 ---
 
-*Sprint Start: When ready*  
-*Sprint End: When Phase 3 blockers cleared*  
+*Sprint Start: When ready*
+*Sprint End: When Phase 3 blockers cleared*
 *Success: Voice development unblocked* 🌊

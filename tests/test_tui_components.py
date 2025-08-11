@@ -156,9 +156,7 @@ def test_visual_state_controller():
     console.print("\n[bold cyan]🔗 Testing Visual State Controller...[/bold cyan]")
 
     try:
-        from nix_for_humanity.ui.visual_state_controller import (
-            VisualStateController,
-        )
+        from nix_for_humanity.ui.visual_state_controller import VisualStateController
 
         # Mock engine
         class MockEngine:
@@ -226,7 +224,6 @@ def test_tui_entry_point():
     console.print("\n[bold cyan]🚪 Testing TUI Entry Point...[/bold cyan]")
 
     try:
-
         console.print("  ✅ TUI entry point imports correctly")
 
         # Check if nix-tui script exists

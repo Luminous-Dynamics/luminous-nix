@@ -122,11 +122,11 @@ class UnifiedNixAssistant:
         # self.knowledge = NixOSKnowledgeEngine()
         # self.feedback = FeedbackCollector()
         # self.plugin_manager = get_plugin_manager()
-        
+
         # NEW: One unified backend!
         self.backend = UnifiedNixBackend()
         self.use_new_backend = os.getenv('USE_PYTHON_BACKEND', 'true') == 'true'
-    
+
     def process_query(self, query, personality='friendly'):
         if self.use_new_backend:
             # NEW: Clean, simple API
@@ -137,7 +137,7 @@ class UnifiedNixAssistant:
                 'execution_mode': self.execution_mode
             }
             response = self.backend.process_intent(intent, context)
-            
+
             # Format for terminal display
             return self._format_response(response)
         else:

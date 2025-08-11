@@ -77,7 +77,7 @@ if [ -f "../bin/ask-nix-ai-env" ]; then
     # Test help
     ../bin/ask-nix-ai-env --help > /dev/null 2>&1 || true
     echo "✅ Command line tool exists and responds"
-    
+
     # Test preview mode
     echo "Testing preview mode..."
     echo "n" | ../bin/ask-nix-ai-env --preview "Create a simple ML environment" > /tmp/ai-env-test.log 2>&1

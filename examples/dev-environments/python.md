@@ -170,7 +170,7 @@ ask-nix "python with numpy pandas matplotlib seaborn plotly"
 # PostgreSQL development
 ask-nix "python with postgresql driver and admin tools"
 
-# MongoDB development  
+# MongoDB development
 ask-nix "python with mongodb pymongo and compass"
 
 # Multi-database

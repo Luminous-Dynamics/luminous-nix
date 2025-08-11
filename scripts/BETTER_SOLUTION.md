@@ -67,10 +67,10 @@ class IntentRouter:
     def route(self, query):
         # LLM understands the question
         intent = self.llm.extract_intent(query)
-        
+
         # Knowledge provides the answer
         solution = self.knowledge.find_solution(intent)
-        
+
         # Make it friendly
         return self.format_response(solution, intent.persona_style)
 ```
@@ -175,21 +175,21 @@ class NixForHumanityKnowledge:
         pkg = self.find_package(package_name)
         if not pkg:
             return self.suggest_alternatives(package_name)
-            
+
         # 2. Get installation methods
         methods = {
             'declarative': f"Add to configuration.nix:\n  {pkg.attribute}",
             'imperative': f"Run: nix-env -iA nixos.{pkg.attribute}",
             'temporary': f"Try it: nix-shell -p {pkg.attribute}"
         }
-        
+
         # 3. Add context
         context = {
             'description': pkg.description,
             'size': pkg.size,
             'alternatives': self.find_similar(pkg)
         }
-        
+
         # 4. Format for user
         return self.format_install_response(methods, context)
 ```

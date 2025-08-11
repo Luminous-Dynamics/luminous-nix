@@ -11,7 +11,7 @@ Smart Package Discovery brings natural language understanding to NixOS package m
 ### 1. Natural Language Search
 Describe what you need, not what it's called:
 - "I need a web browser" → firefox, chromium, brave
-- "something to edit photos" → gimp, inkscape, krita  
+- "something to edit photos" → gimp, inkscape, krita
 - "tool for writing markdown" → pandoc, grip, markdown
 
 ### 2. Command-to-Package Resolution

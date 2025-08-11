@@ -64,7 +64,7 @@ tui:
   animations: true
   complexity: "adaptive"  # or "beginner", "expert"
 
-# Voice settings (optional)  
+# Voice settings (optional)
 voice:
   wake_word: "hey nix"
   persona: "friendly"  # or "professional", "technical"

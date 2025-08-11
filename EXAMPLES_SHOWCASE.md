@@ -23,7 +23,7 @@ We've created comprehensive real-world examples and demonstrations that showcase
 - Essential commands for beginners
 - Pro tips for immediate productivity
 
-#### **[Migration Guide](./examples/02-migration-guide.md)** - For Existing NixOS Users  
+#### **[Migration Guide](./examples/02-migration-guide.md)** - For Existing NixOS Users
 - Complete command translation table
 - Step-by-step migration process
 - Advanced pattern translations

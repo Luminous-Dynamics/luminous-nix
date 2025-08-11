@@ -41,22 +41,22 @@ def fix_missing_modules():
 
 class CacheManager:
     """Manages caching for package searches and system queries"""
-    
+
     def __init__(self):
         self.cache = {}
-    
+
     def get(self, key: str):
         """Get value from cache"""
         return self.cache.get(key)
-    
+
     def set(self, key: str, value, ttl: int = 3600):
         """Set value in cache with TTL"""
         self.cache[key] = value
-        
+
     def clear(self):
         """Clear all cache"""
         self.cache.clear()
-        
+
     def invalidate(self, pattern: str):
         """Invalidate cache entries matching pattern"""
         keys_to_remove = [k for k in self.cache.keys() if pattern in k]
@@ -72,11 +72,11 @@ from pathlib import Path
 
 class ConfigManager:
     """Manages user configuration and preferences"""
-    
+
     def __init__(self):
         self.config_file = Path.home() / ".config/nix-humanity/config.json"
         self.config = self.load_config()
-    
+
     def load_config(self) -> dict:
         """Load configuration from file"""
         if self.config_file.exists():
@@ -86,7 +86,7 @@ class ConfigManager:
                 # TODO: Add proper error handling
                 pass  # Silent for now, should log error
         return self.get_default_config()
-    
+
     def get_default_config(self) -> dict:
         """Get default configuration"""
         return {
@@ -95,16 +95,16 @@ class ConfigManager:
             "auto_update": False,
             "learning_enabled": True
         }
-    
+
     def save_config(self):
         """Save configuration to file"""
         self.config_file.parent.mkdir(parents=True, exist_ok=True)
         self.config_file.write_text(json.dumps(self.config, indent=2))
-    
+
     def get(self, key: str, default=None):
         """Get configuration value"""
         return self.config.get(key, default)
-    
+
     def set(self, key: str, value):
         """Set configuration value"""
         self.config[key] = value
@@ -119,12 +119,12 @@ from .types import Intent, IntentType
 
 class LearningSystem:
     """Learns from user interactions to improve responses"""
-    
+
     def __init__(self):
         self.interactions = []
         self.patterns = {}
         self.preferences = {}
-    
+
     def record_interaction(self, query: str, intent: Intent, success: bool):
         """Record user interaction for learning"""
         self.interactions.append({
@@ -132,17 +132,17 @@ class LearningSystem:
             'intent': intent,
             'success': success
         })
-    
+
     def get_user_preferences(self, user_id: str) -> Dict:
         """Get learned user preferences"""
         return self.preferences.get(user_id, {})
-    
+
     def update_preferences(self, user_id: str, prefs: Dict):
         """Update user preferences"""
         if user_id not in self.preferences:
             self.preferences[user_id] = {}
         self.preferences[user_id].update(prefs)
-    
+
     def suggest_corrections(self, error_text: str) -> List[str]:
         """Suggest corrections for common errors"""
         suggestions = []
@@ -151,14 +151,14 @@ class LearningSystem:
         if "permission" in error_text.lower():
             suggestions.append("You may need sudo privileges")
         return suggestions
-    
+
     def get_error_solution(self, error: str) -> Optional[str]:
         """Get solution for known errors"""
         error = error.lower()
         if "firefox" in error and "not found" in error:
             return "Try 'nix search firefox'"
         return None
-    
+
     def adapt_response(self, base_response: str, user_context: Dict) -> str:
         """Adapt response based on user context"""
         return base_response
@@ -171,7 +171,7 @@ from typing import Dict, Any
 
 class PersonalitySystem:
     """Manages different personality styles for responses"""
-    
+
     STYLES = {
         "minimal": {
             "greeting": "Hi.",
@@ -192,19 +192,19 @@ class PersonalitySystem:
             "question": "What can I help you with today?"
         }
     }
-    
+
     def __init__(self):
         self.current_style = "friendly"
-    
+
     def set_style(self, style: str):
         """Set personality style"""
         if style in self.STYLES:
             self.current_style = style
-    
+
     def get_style(self) -> str:
         """Get current personality style"""
         return self.current_style
-    
+
     def format_response(self, response: str, context: Dict[str, Any] = None) -> str:
         """Format response according to current personality"""
         if context and context.get("type") == "greeting":
@@ -215,7 +215,7 @@ class PersonalitySystem:
             return self.STYLES[self.current_style]["error"]
         else:
             return response
-    
+
     def detect_optimal_style(self, user_behavior: Dict) -> str:
         """Detect optimal personality style for user"""
         return "friendly"  # Default for now
@@ -229,7 +229,7 @@ from ..core.types import Request, Response, Context
 
 class CLIAdapter:
     """Adapter for command-line interface"""
-    
+
     def __init__(self, backend=None):
         self.backend = backend
         self.personality = "friendly"
@@ -240,7 +240,7 @@ class CLIAdapter:
         except ImportError:
             # TODO: Add proper error handling
             pass  # Silent for now, should log error
-    
+
     def process_query(self, query: str, **kwargs) -> Response:
         """Process a query and return response"""
         context = Context(
@@ -248,9 +248,9 @@ class CLIAdapter:
             execute=kwargs.get("execute", False),
             dry_run=kwargs.get("dry_run", False)
         )
-        
+
         request = Request(query=query, context=context)
-        
+
         if self.backend:
             return self.backend.process_request(request)
         else:
@@ -260,18 +260,18 @@ class CLIAdapter:
                 text=f"Processed: {query}",
                 data={"query": query}
             )
-    
+
     def display_response(self, response: Response):
         """Display response to user"""
         if self.rich_available:
             self._display_rich(response)
         else:
             self._display_simple(response)
-    
+
     def _display_rich(self, response: Response):
         """Display using rich formatting"""
         print(response.text)
-    
+
     def _display_simple(self, response: Response):
         """Display using simple formatting"""
         print(response.text)
@@ -279,20 +279,20 @@ class CLIAdapter:
             print("\\nSuggestions:")
             for suggestion in response.suggestions:
                 print(f"- {suggestion}")
-    
+
     def set_personality(self, style: str):
         """Set personality style"""
         self.personality = style
-    
+
     def get_user_id(self) -> str:
         """Get user identifier"""
         import os
         return os.environ.get("USER", "unknown")
-    
+
     def gather_feedback(self, response_id: str) -> Dict[str, Any]:
         """Gather user feedback"""
         return {"helpful": True, "comment": ""}
-    
+
     def get_stats(self) -> Dict[str, Any]:
         """Get usage statistics"""
         return {"total_queries": 0, "success_rate": 1.0}
@@ -335,14 +335,14 @@ def fix_knowledge_base_issues():
                 'example': 'nix-env -iA nixpkgs.firefox'
             }
         ]
-    
+
     def get_problem_solution(self, problem: str) -> Dict[str, str]:
         """Get solution for common problems"""
         problem = problem.lower()
         if "disk" in problem or "space" in problem:
             return {
                 'symptom': 'disk space',
-                'cause': 'out of space', 
+                'cause': 'out of space',
                 'solution': 'Run `nix-collect-garbage -d` to free disk space by removing old generations',
                 'prevention': 'Regularly clean old generations'
             }

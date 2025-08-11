@@ -6,9 +6,9 @@
 
 The Causal XAI (Explainable AI) Engine provides transparent, multi-level explanations for all AI decisions in Nix for Humanity. Using Microsoft's DoWhy framework for causal inference, it enables users to understand not just what the system recommends, but why - building trust and enabling informed decision-making.
 
-**Phase**: Phase 2 Core Excellence  
-**Priority**: P1 (Critical)  
-**Dependencies**: DoWhy, NetworkX, Current NLP Engine  
+**Phase**: Phase 2 Core Excellence
+**Priority**: P1 (Critical)
+**Dependencies**: DoWhy, NetworkX, Current NLP Engine
 **Estimated Effort**: 4-6 weeks
 
 ## Core Requirements
@@ -110,34 +110,34 @@ class Explanation:
 
 class CausalXAIEngine:
     """Main engine for generating causal explanations"""
-    
+
     def __init__(self):
         self.knowledge_base = CausalKnowledgeBase()
         self.model_builder = CausalModelBuilder()
         self.inference_engine = CausalInferenceEngine()
         self.explainer = ExplanationGenerator()
-    
+
     def explain_decision(
-        self, 
-        decision: Decision, 
+        self,
+        decision: Decision,
         level: ExplanationLevel = ExplanationLevel.SIMPLE,
         user_profile: Optional[UserProfile] = None
     ) -> Explanation:
         """Generate explanation for a decision"""
         # Build causal model for this decision type
         causal_model = self.model_builder.build_model(decision)
-        
+
         # Perform causal inference
         causal_effects = self.inference_engine.analyze(causal_model, decision)
-        
+
         # Generate explanation at requested level
         explanation = self.explainer.generate(
-            decision, 
-            causal_effects, 
+            decision,
+            causal_effects,
             level,
             user_profile
         )
-        
+
         return explanation
 ```
 
@@ -146,21 +146,21 @@ class CausalXAIEngine:
 ```python
 class CausalModelBuilder:
     """Builds causal models for different decision types"""
-    
+
     def __init__(self):
         self.model_templates = self._load_model_templates()
-    
+
     def build_model(self, decision: Decision) -> CausalModel:
         """Build causal model for specific decision"""
         # Identify decision type
         decision_type = self._classify_decision(decision)
-        
+
         # Get appropriate template
         template = self.model_templates.get(decision_type)
-        
+
         # Build causal graph
         graph = self._build_causal_graph(template, decision.context)
-        
+
         # Create DoWhy causal model
         model = CausalModel(
             data=self._prepare_data(decision),
@@ -168,29 +168,29 @@ class CausalModelBuilder:
             outcome=self._identify_outcome(decision),
             graph=graph.to_string()
         )
-        
+
         return model
-    
+
     def _build_causal_graph(self, template: Dict, context: Dict) -> nx.DiGraph:
         """Construct causal graph based on template and context"""
         graph = nx.DiGraph()
-        
+
         # Add nodes from template
         for node in template['nodes']:
             graph.add_node(node['id'], **node['attributes'])
-        
+
         # Add edges with causal relationships
         for edge in template['edges']:
             graph.add_edge(
-                edge['from'], 
+                edge['from'],
                 edge['to'],
                 mechanism=edge.get('mechanism', 'direct'),
                 strength=edge.get('strength', 1.0)
             )
-        
+
         # Adapt based on context
         self._adapt_to_context(graph, context)
-        
+
         return graph
 ```
 
@@ -199,12 +199,12 @@ class CausalModelBuilder:
 ```python
 class CausalKnowledgeBase:
     """Stores causal relationships for NixOS operations"""
-    
+
     def __init__(self):
         self.operation_models = self._initialize_operation_models()
         self.user_patterns = self._initialize_user_patterns()
         self.system_constraints = self._initialize_constraints()
-    
+
     def _initialize_operation_models(self) -> Dict:
         """Define causal models for each operation type"""
         return {
@@ -249,15 +249,15 @@ class CausalKnowledgeBase:
 ```python
 class CausalInferenceEngine:
     """Performs causal inference using DoWhy"""
-    
+
     def analyze(self, model: CausalModel, decision: Decision) -> CausalEffects:
         """Analyze causal effects for decision"""
         # Identify causal effect
         identified_estimand = model.identify_effect(proceed_when_unidentifiable=True)
-        
+
         # Estimate causal effect using multiple methods
         estimates = []
-        
+
         # Method 1: Propensity Score Matching
         if self._can_use_psm(model):
             psm_estimate = model.estimate_effect(
@@ -265,14 +265,14 @@ class CausalInferenceEngine:
                 method_name="backdoor.propensity_score_matching"
             )
             estimates.append(psm_estimate)
-        
+
         # Method 2: Linear Regression
         linear_estimate = model.estimate_effect(
             identified_estimand,
             method_name="backdoor.linear_regression"
         )
         estimates.append(linear_estimate)
-        
+
         # Method 3: Instrumental Variables (if available)
         if self._has_instruments(model):
             iv_estimate = model.estimate_effect(
@@ -280,21 +280,21 @@ class CausalInferenceEngine:
                 method_name="iv.instrumental_variable"
             )
             estimates.append(iv_estimate)
-        
+
         # Refute and validate
         refutations = self._refute_estimates(model, estimates)
-        
+
         # Combine results
         return CausalEffects(
             estimates=estimates,
             refutations=refutations,
             confidence=self._calculate_confidence(estimates, refutations)
         )
-    
+
     def _refute_estimates(self, model: CausalModel, estimates: List) -> List:
         """Test robustness of causal estimates"""
         refutations = []
-        
+
         for estimate in estimates:
             # Add random common cause
             refute_random = model.refute_estimate(
@@ -302,21 +302,21 @@ class CausalInferenceEngine:
                 method_name="random_common_cause"
             )
             refutations.append(refute_random)
-            
+
             # Placebo treatment
             refute_placebo = model.refute_estimate(
                 estimate,
                 method_name="placebo_treatment_refuter"
             )
             refutations.append(refute_placebo)
-            
+
             # Data subset
             refute_subset = model.refute_estimate(
                 estimate,
                 method_name="data_subset_refuter"
             )
             refutations.append(refute_subset)
-        
+
         return refutations
 ```
 
@@ -325,33 +325,33 @@ class CausalInferenceEngine:
 ```python
 class ExplanationGenerator:
     """Generates human-readable explanations from causal analysis"""
-    
+
     def __init__(self):
         self.templates = ExplanationTemplates()
         self.persona_adapter = PersonaAdapter()
-    
+
     def generate(
-        self, 
+        self,
         decision: Decision,
         causal_effects: CausalEffects,
         level: ExplanationLevel,
         user_profile: Optional[UserProfile]
     ) -> Explanation:
         """Generate explanation at requested level"""
-        
+
         # Extract key factors
         factors = self._extract_causal_factors(causal_effects)
-        
+
         # Generate base explanations
         simple = self._generate_simple(decision, factors)
         detailed = self._generate_detailed(decision, factors, causal_effects)
         expert = self._generate_expert(decision, factors, causal_effects)
-        
+
         # Adapt to user persona if provided
         if user_profile:
             simple = self.persona_adapter.adapt(simple, user_profile)
             detailed = self.persona_adapter.adapt(detailed, user_profile)
-        
+
         # Build explanation object
         return Explanation(
             simple=simple,
@@ -362,12 +362,12 @@ class ExplanationGenerator:
             alternatives_rejected=self._explain_alternatives(decision),
             causal_graph=causal_effects.get_graph()
         )
-    
+
     def _generate_simple(self, decision: Decision, factors: List[CausalFactor]) -> str:
         """Generate one-sentence explanation"""
         # Find strongest factor
         primary_factor = max(factors, key=lambda f: abs(f.influence))
-        
+
         template = self.templates.get_simple_template(decision.action)
         return template.format(
             action=decision.action,
@@ -375,40 +375,40 @@ class ExplanationGenerator:
             reason=primary_factor.name,
             confidence=self._confidence_to_words(decision.confidence)
         )
-    
+
     def _generate_detailed(
-        self, 
-        decision: Decision, 
+        self,
+        decision: Decision,
         factors: List[CausalFactor],
         effects: CausalEffects
     ) -> str:
         """Generate paragraph explanation with reasoning steps"""
         explanation_parts = []
-        
+
         # Opening statement
         explanation_parts.append(
             f"I recommend {decision.action} {decision.target} based on several factors:"
         )
-        
+
         # List influential factors
         for factor in sorted(factors, key=lambda f: abs(f.influence), reverse=True)[:3]:
             explanation_parts.append(
                 f"• {factor.name}: {self._explain_factor_influence(factor)}"
             )
-        
+
         # Add confidence statement
         explanation_parts.append(
             f"\nMy confidence in this recommendation is {decision.confidence:.0%} "
             f"based on {len(effects.estimates)} different analysis methods."
         )
-        
+
         # Mention alternatives if relevant
         if decision.alternatives:
             explanation_parts.append(
                 f"\nI also considered {len(decision.alternatives)} alternatives but "
                 f"found this option most suitable for your needs."
             )
-        
+
         return "\n".join(explanation_parts)
 ```
 
@@ -418,20 +418,20 @@ class ExplanationGenerator:
 # Extension to current NLP engine
 class NLPEngineWithXAI(NLPEngine):
     """Enhanced NLP engine with causal explanations"""
-    
+
     def __init__(self):
         super().__init__()
         self.xai_engine = CausalXAIEngine()
-    
+
     async def process_with_explanation(
-        self, 
+        self,
         input_text: str,
         explain_level: ExplanationLevel = ExplanationLevel.SIMPLE
     ) -> IntentWithExplanation:
         """Process input and generate explanation"""
         # Standard NLP processing
         intent = await self.recognize_intent(input_text)
-        
+
         # Create decision object
         decision = Decision(
             action=intent.action,
@@ -440,14 +440,14 @@ class NLPEngineWithXAI(NLPEngine):
             confidence=intent.confidence,
             alternatives=intent.alternatives
         )
-        
+
         # Generate explanation
         explanation = self.xai_engine.explain_decision(
             decision,
             explain_level,
             self.user_profile
         )
-        
+
         return IntentWithExplanation(
             intent=intent,
             explanation=explanation
@@ -512,9 +512,9 @@ def test_simple_explanation_generation():
         confidence=0.95,
         alternatives=[]
     )
-    
+
     explanation = xai_engine.explain_decision(decision, ExplanationLevel.SIMPLE)
-    
+
     assert isinstance(explanation.simple, str)
     assert len(explanation.simple) < 100  # One sentence
     assert "firefox" in explanation.simple.lower()
@@ -530,7 +530,7 @@ def test_full_explanation_pipeline():
         "install firefox",
         ExplanationLevel.DETAILED
     )
-    
+
     # Verify all explanation levels
     assert result.explanation.simple is not None
     assert result.explanation.detailed is not None
@@ -543,13 +543,13 @@ def test_full_explanation_pipeline():
 def test_explanation_performance():
     """Ensure explanation generation meets performance targets"""
     start_time = time.time()
-    
+
     for _ in range(100):
         explanation = xai_engine.explain_decision(
             sample_decision,
             ExplanationLevel.DETAILED
         )
-    
+
     avg_time = (time.time() - start_time) / 100
     assert avg_time < 0.15  # 150ms target
 ```
@@ -566,7 +566,7 @@ print(response.explanation.simple)
 # Detailed explanation
 response = await ask_nix.process_with_detail("install firefox", level="detailed")
 print(response.explanation.detailed)
-# Output: 
+# Output:
 # I recommend install firefox based on several factors:
 # • User need match: You asked for a web browser and Firefox perfectly matches this need
 # • Package availability: Firefox is readily available in nixpkgs
@@ -608,7 +608,7 @@ nx.draw(response.explanation.causal_graph, with_labels=True)
 1. **Federated Learning Integration**
    - Explain why model updates improve system
    - Show causal effects of community learning
-   
+
 2. **Temporal Causal Models**
    - Track how causal relationships change over time
    - Predict future system behavior
@@ -625,7 +625,7 @@ This specification provides a complete blueprint for implementation during Phase
 
 ---
 
-*Specification Status*: Ready for implementation  
-*Estimated Effort*: 4-6 weeks  
-*Dependencies*: DoWhy 0.11+, NetworkX 3.0+  
+*Specification Status*: Ready for implementation
+*Estimated Effort*: 4-6 weeks
+*Dependencies*: DoWhy 0.11+, NetworkX 3.0+
 *Sacred Trinity Review*: Pending

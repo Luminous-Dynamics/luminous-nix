@@ -130,14 +130,14 @@ class CLIAdapter:
     def __init__(self):
         # Initialize the brain
         self.core = NixForHumanityCore(config)
-        
+
     def process_query(self, query_text: str) -> Response:
         # Create query object
         query = Query(text=query_text, ...)
-        
+
         # Let the brain process
         response = self.core.process(query)
-        
+
         # Display results
         self.display_response(response)
 ```

@@ -15,10 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from nix_for_humanity.api.schema import Request, Response, Result
-from nix_for_humanity.core.error_handler import (
-    ErrorContext,
-    error_handler,
-)
+from nix_for_humanity.core.error_handler import ErrorContext, error_handler
 from nix_for_humanity.core.intents import Intent, IntentRecognizer, IntentType
 
 from .executor import SafeExecutor

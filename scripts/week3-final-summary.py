@@ -12,7 +12,7 @@ def generate_summary():
     summary = f"""
 # 🎉 Nix for Humanity - Week 3 Final Summary
 
-**Date**: {datetime.now().strftime('%Y-%m-%d %H:%M')}  
+**Date**: {datetime.now().strftime('%Y-%m-%d %H:%M')}
 **Project Status**: 8.5/10 → Ready for final polish
 
 ## 📊 Week 3 Achievements

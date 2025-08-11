@@ -3,7 +3,7 @@ info:
   title: Nix for Humanity API
   description: |
     REST API for natural language NixOS operations.
-    
+
     The Nix for Humanity API provides programmatic access to:
     - Natural language query processing
     - Package search and management
@@ -550,7 +550,7 @@ components:
       in: header
       name: X-API-Key
       description: API key for authentication (future)
-    
+
     BearerAuth:
       type: http
       scheme: bearer

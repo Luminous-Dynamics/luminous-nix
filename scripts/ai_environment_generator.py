@@ -285,7 +285,7 @@ class SimpleNet(nn.Module):
         super(SimpleNet, self).__init__()
         self.fc1 = nn.Linear(10, 50)
         self.fc2 = nn.Linear(50, 1)
-        
+
     def forward(self, x):
         x = torch.relu(self.fc1(x))
         x = self.fc2(x)
@@ -310,7 +310,7 @@ for epoch in range(10):
     loss = criterion(outputs, y)
     loss.backward()
     optimizer.step()
-    
+
     if epoch % 2 == 0:
         print(f"Epoch {epoch}, Loss: {loss.item():.4f}")
 """,

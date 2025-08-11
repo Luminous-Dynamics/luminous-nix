@@ -276,9 +276,9 @@ class TestIntegration(unittest.TestCase):
             "title": "NixOS Test Page",
             "content": """
                 How do I install packages in NixOS?
-                
+
                 You can install packages by adding them to your configuration.nix file.
-                
+
                 Q: How do I update NixOS?
                 A: Run sudo nixos-rebuild switch to update your system.
             """,

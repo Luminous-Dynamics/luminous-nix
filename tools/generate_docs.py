@@ -428,13 +428,13 @@ class DocumentationGenerator:
         docstring = f'''
     """
     Brief description of {name}.
-    
+
     [Add detailed description here]
     '''
 
         if args and args[0] != "self":
             docstring += """
-    
+
     Args:"""
             for arg in args:
                 if arg not in ["self", "cls"]:
@@ -444,21 +444,21 @@ class DocumentationGenerator:
         if has_return:
             if is_async and "yield" in name.lower():
                 docstring += """
-    
+
     Yields:
         Description of yielded values"""
             else:
                 docstring += """
-    
+
     Returns:
         Description of return value"""
 
         docstring += '''
-    
+
     Example:
         >>> # Add example here
         pass
-    
+
     Since: v1.0.0
     """
     '''
@@ -480,17 +480,17 @@ class DocumentationGenerator:
         return f'''
     """
     Brief description of {name}.
-    
+
     [Add detailed description here]
-    
+
     Attributes:
         attribute1 (Type): Description
         attribute2 (Type): Description
-    
+
     Example:
         >>> obj = {name}()
         >>> # Add example here
-    
+
     Since: v1.0.0
     """
     '''

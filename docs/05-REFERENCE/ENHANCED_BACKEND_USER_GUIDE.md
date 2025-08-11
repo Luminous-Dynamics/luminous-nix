@@ -4,10 +4,10 @@
 
 ---
 
-💡 **Quick Context**: How to use the revolutionary performance improvements in Nix for Humanity  
-📍 **You are here**: Reference → Enhanced Backend User Guide  
-🔗 **Related**: [Performance Guide](../04-OPERATIONS/PERFORMANCE.md) | [Configuration Reference](./CONFIGURATION.md)  
-⏱️ **Read time**: 5 minutes  
+💡 **Quick Context**: How to use the revolutionary performance improvements in Nix for Humanity
+📍 **You are here**: Reference → Enhanced Backend User Guide
+🔗 **Related**: [Performance Guide](../04-OPERATIONS/PERFORMANCE.md) | [Configuration Reference](./CONFIGURATION.md)
+⏱️ **Read time**: 5 minutes
 📊 **Mastery Level**: 🌱 Beginner - no technical knowledge required
 
 ---

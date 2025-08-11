@@ -103,7 +103,7 @@ NixForHumanityEngine = NixForHumanityBackend
 
 __all__ = [
     'Intent',
-    'IntentType', 
+    'IntentType',
     'KnowledgeBase',
     'SafeExecutor',
     'NixForHumanityBackend',

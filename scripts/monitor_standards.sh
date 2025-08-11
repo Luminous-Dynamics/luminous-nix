@@ -29,7 +29,7 @@ check_python() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${WHITE}🐍 Python Standards${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    
+
     # Black formatting
     echo -n "  Black Formatting: "
     if poetry run black --check src/ tests/ scripts/ >/dev/null 2>&1; then
@@ -38,7 +38,7 @@ check_python() {
         UNFORMATTED=$(poetry run black --check src/ tests/ scripts/ 2>&1 | grep -c "would be reformatted")
         echo -e "${YELLOW}⚠️  $UNFORMATTED files need formatting${NC}"
     fi
-    
+
     # Ruff linting
     echo -n "  Ruff Linting: "
     RUFF_OUTPUT=$(poetry run ruff check src/ tests/ scripts/ 2>&1)
@@ -48,7 +48,7 @@ check_python() {
         ISSUES=$(echo "$RUFF_OUTPUT" | grep -E "^\w" | wc -l)
         echo -e "${YELLOW}⚠️  $ISSUES issues found${NC}"
     fi
-    
+
     # Type checking
     echo -n "  Type Checking: "
     if poetry run mypy src/ --strict >/dev/null 2>&1; then
@@ -57,7 +57,7 @@ check_python() {
         ERRORS=$(poetry run mypy src/ --strict 2>&1 | grep -c ": error:")
         echo -e "${YELLOW}⚠️  $ERRORS type errors${NC}"
     fi
-    
+
     # Import sorting
     echo -n "  Import Sorting: "
     if poetry run isort --check-only src/ tests/ scripts/ >/dev/null 2>&1; then
@@ -72,7 +72,7 @@ check_tests() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${WHITE}🧪 Test Coverage${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    
+
     if command_exists pytest; then
         # Quick coverage check (not running full tests for speed)
         echo -n "  Coverage Status: "
@@ -103,7 +103,7 @@ check_docs() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${WHITE}📚 Documentation${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    
+
     REQUIRED_DOCS=(
         "README.md"
         "CHANGELOG.md"
@@ -111,21 +111,21 @@ check_docs() {
         "docs/README.md"
         "CLAUDE.md"
     )
-    
+
     MISSING=0
     for doc in "${REQUIRED_DOCS[@]}"; do
         if [ ! -f "$doc" ]; then
             MISSING=$((MISSING + 1))
         fi
     done
-    
+
     echo -n "  Required Files: "
     if [ $MISSING -eq 0 ]; then
         echo -e "${GREEN}✅ All present${NC}"
     else
         echo -e "${YELLOW}⚠️  $MISSING missing${NC}"
     fi
-    
+
     # Check for TODO items in docs
     echo -n "  TODO Items: "
     TODO_COUNT=$(grep -r "TODO" docs/ 2>/dev/null | wc -l)
@@ -141,7 +141,7 @@ check_git() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${WHITE}📊 Git Status${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    
+
     # Uncommitted changes
     echo -n "  Working Tree: "
     if git diff --quiet && git diff --cached --quiet; then
@@ -150,11 +150,11 @@ check_git() {
         CHANGED=$(git status --porcelain | wc -l)
         echo -e "${YELLOW}⚠️  $CHANGED changes${NC}"
     fi
-    
+
     # Branch info
     BRANCH=$(git branch --show-current)
     echo "  Current Branch: $BRANCH"
-    
+
     # Commits ahead/behind
     if [ "$BRANCH" != "main" ]; then
         AHEAD=$(git rev-list --count origin/main..$BRANCH 2>/dev/null || echo "0")
@@ -168,20 +168,20 @@ check_performance() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${WHITE}⚡ Performance${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    
+
     # Simple startup time check
     echo -n "  Startup Time: "
     START=$(date +%s%N)
     python3 -c "from nix_for_humanity import initialize; initialize()" 2>/dev/null
     END=$(date +%s%N)
     ELAPSED=$((($END - $START) / 1000000))
-    
+
     if [ $ELAPSED -lt 3000 ]; then
         echo -e "${GREEN}✅ ${ELAPSED}ms${NC}"
     else
         echo -e "${RED}❌ ${ELAPSED}ms (>3000ms)${NC}"
     fi
-    
+
     # Check if performance benchmarks exist
     if [ -f "metrics/raw/latest_performance.json" ]; then
         echo "  Latest Benchmark: $(date -r metrics/raw/latest_performance.json '+%Y-%m-%d %H:%M')"
@@ -195,27 +195,27 @@ show_summary() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${WHITE}📈 Standards Summary${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    
+
     # Calculate overall health
     HEALTH_SCORE=100
     ISSUES=""
-    
+
     # Check various conditions and adjust score
     if ! poetry run black --check src/ tests/ scripts/ >/dev/null 2>&1; then
         HEALTH_SCORE=$((HEALTH_SCORE - 10))
         ISSUES="${ISSUES}  - Run: poetry run black .\n"
     fi
-    
+
     if ! poetry run ruff check src/ tests/ scripts/ >/dev/null 2>&1; then
         HEALTH_SCORE=$((HEALTH_SCORE - 15))
         ISSUES="${ISSUES}  - Run: poetry run ruff check --fix .\n"
     fi
-    
+
     if ! poetry run mypy src/ --strict >/dev/null 2>&1; then
         HEALTH_SCORE=$((HEALTH_SCORE - 20))
         ISSUES="${ISSUES}  - Fix type hints\n"
     fi
-    
+
     # Display health score with color
     echo -n "  Overall Health: "
     if [ $HEALTH_SCORE -ge 90 ]; then
@@ -225,7 +225,7 @@ show_summary() {
     else
         echo -e "${RED}${HEALTH_SCORE}% ❌${NC}"
     fi
-    
+
     if [ ! -z "$ISSUES" ]; then
         echo -e "\n  ${WHITE}Quick Fixes:${NC}"
         echo -e "$ISSUES"
@@ -282,15 +282,15 @@ main() {
         echo -e "${RED}❌ Poetry not found. Please install Poetry first.${NC}"
         exit 1
     fi
-    
+
     echo -e "${GREEN}🚀 Starting Nix for Humanity Standards Monitor...${NC}"
     echo -e "${BLUE}📁 Project root: $PROJECT_ROOT${NC}"
     echo
-    
+
     # Main loop
     while true; do
         show_header
-        
+
         check_python
         echo
         check_tests
@@ -302,9 +302,9 @@ main() {
         check_performance
         echo
         show_summary
-        
+
         show_footer
-        
+
         # Wait for refresh interval or user input
         for ((i=0; i<$REFRESH_INTERVAL; i++)); do
             if handle_input; then

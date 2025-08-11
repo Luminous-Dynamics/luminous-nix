@@ -158,7 +158,7 @@ services.nixForHumanity = {{
 ```nix
 {{
   inputs.nix-for-humanity.url = "github:Luminous-Dynamics/nix-for-humanity/v1.0.0";
-  
+
   outputs = {{ self, nixpkgs, nix-for-humanity }}: {{
     nixosConfigurations.mySystem = nixpkgs.lib.nixosSystem {{
       modules = [
@@ -356,7 +356,7 @@ services.nixForHumanity = {
 
         flake_content = """{
   inputs.nix-for-humanity.url = "github:Luminous-Dynamics/nix-for-humanity/v{version}";
-  
+
   outputs = { self, nixpkgs, nix-for-humanity }: {
     nixosConfigurations.mySystem = nixpkgs.lib.nixosSystem {
       modules = [
@@ -376,18 +376,18 @@ services.nixForHumanity = {
   services.nixForHumanity = {
     enable = true;
     package = pkgs.nixForHumanity;
-    
+
     # Optional features
     voice = {
       enable = true;
       wakeWord = "hey nix";
     };
-    
+
     learning = {
       enable = true;
       privacy = "local-only";
     };
-    
+
     # Personalization
     defaultPersona = "maya";  # Fast responses for ADHD
     theme = "consciousness";  # Sacred theme
@@ -396,12 +396,12 @@ services.nixForHumanity = {
 
         flake_detailed = """{
   description = "My NixOS configuration with Nix for Humanity";
-  
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nix-for-humanity.url = "github:Luminous-Dynamics/nix-for-humanity/v{version}";
   };
-  
+
   outputs = { self, nixpkgs, nix-for-humanity }: {
     nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -824,7 +824,7 @@ Nix for Humanity transforms the NixOS experience from complex command-line opera
 ## Revolutionary Performance
 
 Through our Native Python-Nix API integration, we've achieved:
-- **10x-1500x faster operations** 
+- **10x-1500x faster operations**
 - **Zero timeout issues**
 - **Real-time progress tracking**
 - **Instant system information**
@@ -837,7 +837,7 @@ Through our Native Python-Nix API integration, we've achieved:
 - Voice interface ready
 - 10 personality styles
 
-### For Power Users  
+### For Power Users
 - Configuration generation from descriptions
 - Smart package discovery
 - Flake management
@@ -933,7 +933,7 @@ services.nixForHumanity.enable = true;
 
 This release proves our development model: $200/month achieving what traditionally costs $4.2M through:
 - Human vision and empathy
-- AI architecture and implementation  
+- AI architecture and implementation
 - Local LLM domain expertise
 
 ### 📚 Documentation
@@ -983,7 +983,7 @@ include_patterns = [
     "frontends/",
     "docs/",
     "flake.nix",
-    "flake.lock", 
+    "flake.lock",
     "pyproject.toml",
     "README.md",
     "LICENSE",
@@ -1006,17 +1006,17 @@ exclude_patterns = [
 
 def should_include(path):
     path_str = str(path)
-    
+
     # Check excludes first
     for pattern in exclude_patterns:
         if pattern in path_str:
             return False
-    
+
     # Check includes
     for pattern in include_patterns:
         if path_str.startswith(pattern) or pattern in path_str:
             return True
-    
+
     return False
 
 # Create tarball
@@ -1027,11 +1027,11 @@ with tarfile.open(output_file, "w:gz") as tar:
     for root, dirs, files in os.walk(project_root):
         # Filter directories
         dirs[:] = [d for d in dirs if not any(ex in d for ex in exclude_patterns)]
-        
+
         for file in files:
             file_path = Path(root) / file
             relative_path = file_path.relative_to(project_root)
-            
+
             if should_include(relative_path):
                 print(f"  Adding: {{relative_path}}")
                 tar.add(file_path, arcname=f"nix-for-humanity-v{{version}}/{{relative_path}}")
@@ -1090,7 +1090,7 @@ print(f"✅ Checksum: {{sha256}}")
 
 ### Performance
 - List generations: ∞x improvement (now instant)
-- System info: ∞x improvement (now instant)  
+- System info: ∞x improvement (now instant)
 - Package search: 10x improvement
 - Rollback operations: 50x improvement
 - Configuration generation: <1s for complex configs

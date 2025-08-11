@@ -30,7 +30,7 @@ echo -e "\n🔧 Creating unified dependency management..."
 # Check if using poetry2nix correctly
 if grep -q "poetry2nix" flake.nix 2>/dev/null; then
     echo "  ✓ poetry2nix found in flake.nix"
-    
+
     # Create a patch for proper poetry2nix usage
     cat > fix-poetry2nix.patch << 'PATCH'
 --- a/flake.nix
@@ -39,7 +39,7 @@ if grep -q "poetry2nix" flake.nix 2>/dev/null; then
        let
          pkgs = nixpkgs.legacyPackages.${system};
          poetry2nix-lib = poetry2nix.lib.mkPoetry2Nix { inherit pkgs; };
-         
+
 -        # Manual Python package list - REMOVE THIS
 -        poetryEnv = pkgs.python311.withPackages (ps: with ps; [
 -          click rich blessed pyperclip
@@ -51,7 +51,7 @@ if grep -q "poetry2nix" flake.nix 2>/dev/null; then
 +          python = pkgs.python311;
 +          preferWheels = true;
 +        };
-         
+
        in {
          devShells.default = pkgs.mkShell {
 -          buildInputs = with pkgs; [
@@ -59,7 +59,7 @@ if grep -q "poetry2nix" flake.nix 2>/dev/null; then
 -            # ... other inputs
 -          ];
 +          buildInputs = [ poetryEnv ];
-+          
++
 +          shellHook = ''
 +            echo "🐍 Python environment from pyproject.toml"
 +            echo "✅ All dependencies managed by Poetry + Nix"
@@ -68,7 +68,7 @@ if grep -q "poetry2nix" flake.nix 2>/dev/null; then
        };
      };
 PATCH
-    
+
     echo "  📄 Created fix-poetry2nix.patch"
     echo "  💡 Apply with: git apply fix-poetry2nix.patch"
 fi
@@ -138,7 +138,7 @@ echo "🧪 Testing development environment..."
 test_import() {
     local module=$1
     local name=${2:-$module}
-    
+
     echo -n "  Testing $name... "
     if python -c "import $module" 2>/dev/null; then
         echo "✅"

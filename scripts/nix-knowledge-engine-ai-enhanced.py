@@ -69,7 +69,7 @@ class EnhancedNixOSKnowledgeEngine(NixOSKnowledgeEngine):
         for solution in ai_solutions:
             c.execute(
                 """
-                INSERT OR IGNORE INTO solutions 
+                INSERT OR IGNORE INTO solutions
                 (intent, category, solution, example, explanation, related)
                 VALUES (?, ?, ?, ?, ?, ?)
             """,

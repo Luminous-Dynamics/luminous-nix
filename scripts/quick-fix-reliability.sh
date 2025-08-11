@@ -15,23 +15,23 @@ cat > /tmp/executor_fix.py << 'PYTHON'
 def execute_with_retry(self, command: str, max_retries: int = 3) -> Result:
     """Execute command with automatic retry on failure."""
     last_error = None
-    
+
     for attempt in range(max_retries):
         try:
             result = self.execute(command)
             if result.success:
                 return result
             last_error = result.error
-            
+
             # Wait before retry with exponential backoff
             if attempt < max_retries - 1:
                 time.sleep(2 ** attempt)
-                
+
         except Exception as e:
             last_error = str(e)
             if attempt < max_retries - 1:
                 time.sleep(2 ** attempt)
-    
+
     # All retries failed
     return Result(
         success=False,
@@ -44,17 +44,17 @@ def validate_command(self, command: str) -> Tuple[bool, str]:
     # Check for common issues
     if not command.strip():
         return False, "Empty command"
-    
+
     # Check for dangerous patterns
     dangerous = ['rm -rf /', 'mkfs', 'dd if=']
     for pattern in dangerous:
         if pattern in command:
             return False, f"Dangerous command pattern: {pattern}"
-    
+
     # Check Nix availability
     if command.startswith('nix') and not shutil.which('nix'):
         return False, "Nix command not found in PATH"
-    
+
     return True, ""
 PYTHON
 
@@ -66,8 +66,8 @@ import asyncio
 from typing import Optional
 
 async def execute_with_timeout(
-    self, 
-    command: str, 
+    self,
+    command: str,
     timeout: int = 30
 ) -> Result:
     """Execute command with timeout."""
@@ -78,25 +78,25 @@ async def execute_with_timeout(
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE
         )
-        
+
         # Wait with timeout
         stdout, stderr = await asyncio.wait_for(
             proc.communicate(),
             timeout=timeout
         )
-        
+
         return Result(
             success=proc.returncode == 0,
             output=stdout.decode('utf-8'),
             error=stderr.decode('utf-8') if proc.returncode != 0 else None
         )
-        
+
     except asyncio.TimeoutError:
         # Kill the process
         if proc and proc.returncode is None:
             proc.kill()
             await proc.wait()
-        
+
         return Result(
             success=False,
             output="",
@@ -112,7 +112,7 @@ def normalize_package_name(self, name: str) -> str:
     """Normalize package name for Nix."""
     # Remove common prefixes users might add
     name = name.lower().strip()
-    
+
     # Handle common variations
     replacements = {
         'firefox browser': 'firefox',
@@ -128,23 +128,23 @@ def normalize_package_name(self, name: str) -> str:
         'node': 'nodejs',
         'nodejs npm': 'nodejs',
     }
-    
+
     # Apply known replacements
     for old, new in replacements.items():
         if name == old:
             name = new
             break
-    
+
     # Handle python packages
     if name.startswith('python-'):
         name = f"python311Packages.{name[7:]}"
-    
+
     return name
 
 def suggest_alternatives(self, package: str) -> List[str]:
     """Suggest alternative package names."""
     suggestions = []
-    
+
     # Common alternatives
     alternatives = {
         'firefox': ['firefox-esr', 'firefox-bin', 'librewolf'],
@@ -153,14 +153,14 @@ def suggest_alternatives(self, package: str) -> List[str]:
         'emacs': ['emacs-nox', 'emacs-gtk', 'emacs29'],
         'vscode': ['vscodium', 'code-server'],
     }
-    
+
     if package in alternatives:
         suggestions.extend(alternatives[package])
-    
+
     # Try variations
     if not package.endswith('-bin'):
         suggestions.append(f"{package}-bin")
-    
+
     return suggestions
 PYTHON
 
@@ -171,10 +171,10 @@ cat > /tmp/search_fix.py << 'PYTHON'
 async def search_packages(self, query: str) -> List[Dict[str, str]]:
     """Enhanced package search with fuzzy matching."""
     results = []
-    
+
     # Normalize query
     query = query.lower().strip()
-    
+
     # Try exact search first
     try:
         # Use nix search with JSON output
@@ -184,13 +184,13 @@ async def search_packages(self, query: str) -> List[Dict[str, str]]:
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE
         )
-        
+
         stdout, _ = await asyncio.wait_for(proc.communicate(), timeout=10)
-        
+
         if stdout:
             import json
             packages = json.loads(stdout.decode('utf-8'))
-            
+
             for pkg_name, pkg_info in packages.items():
                 results.append({
                     'name': pkg_name.split('.')[-1],
@@ -199,7 +199,7 @@ async def search_packages(self, query: str) -> List[Dict[str, str]]:
                 })
     except:
         pass
-    
+
     # If no results, try fuzzy search
     if not results and len(query) > 2:
         # Search with wildcards
@@ -210,14 +210,14 @@ async def search_packages(self, query: str) -> List[Dict[str, str]]:
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE
             )
-            
+
             stdout, _ = await asyncio.wait_for(proc.communicate(), timeout=15)
-            
+
             if stdout:
                 # Parse fuzzy results
                 import json
                 packages = json.loads(stdout.decode('utf-8'))
-                
+
                 for pkg_name, pkg_info in list(packages.items())[:10]:
                     results.append({
                         'name': pkg_name.split('.')[-1],
@@ -226,7 +226,7 @@ async def search_packages(self, query: str) -> List[Dict[str, str]]:
                     })
         except:
             pass
-    
+
     return results
 PYTHON
 
@@ -239,25 +239,25 @@ import sys
 
 class ProgressIndicator:
     """Simple progress indicator for long operations."""
-    
+
     def __init__(self, message: str = "Working"):
         self.message = message
         self.spinner = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
         self.index = 0
         self.active = False
-    
+
     def start(self):
         """Start showing progress."""
         self.active = True
         self._update()
-    
+
     def _update(self):
         """Update spinner."""
         if self.active:
             sys.stdout.write(f'\r{self.message} {self.spinner[self.index]}')
             sys.stdout.flush()
             self.index = (self.index + 1) % len(self.spinner)
-    
+
     def stop(self, success: bool = True):
         """Stop progress and show result."""
         self.active = False
@@ -272,7 +272,7 @@ async def install_with_progress(self, package: str) -> Result:
     """Install package with progress indicator."""
     progress = ProgressIndicator(f"Installing {package}")
     progress.start()
-    
+
     try:
         result = await self.install_package(package)
         progress.stop(success=result.success)
@@ -291,7 +291,7 @@ cat > fix-reliability.patch << 'PATCH'
 ## Summary of Fixes
 
 1. **Retry Logic**: Automatic retry for failed commands
-2. **Timeout Handling**: Prevent hanging operations  
+2. **Timeout Handling**: Prevent hanging operations
 3. **Package Normalization**: Better package name handling
 4. **Enhanced Search**: Fuzzy search with fallbacks
 5. **Progress Indicators**: Visual feedback for long operations

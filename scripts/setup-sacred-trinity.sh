@@ -51,7 +51,7 @@ if ! curl -s http://localhost:11434/api/tags >/dev/null 2>&1; then
     OLLAMA_PID=$!
     echo "Waiting for Ollama to start..."
     sleep 5
-    
+
     # Check if it started successfully
     if ! curl -s http://localhost:11434/api/tags >/dev/null 2>&1; then
         echo -e "${RED}❌ Failed to start Ollama service${NC}"
@@ -113,12 +113,12 @@ cat > sacred-trinity-quickstart.md << 'EOF'
    - Provides vision and requirements
    - Tests with real users
    - Makes design decisions
-   
+
 2. **Claude Code Max** 🏗️
    - Architects solutions
    - Writes production code
    - Creates documentation
-   
+
 3. **Local LLM (Mistral-7B)** 🧙
    - Provides NixOS expertise
    - Suggests best practices

@@ -120,7 +120,7 @@ bash scripts/api/examples/curl_examples.sh
 ### Rate Limits
 
 - Query endpoint: 30/minute
-- Search endpoint: 20/minute  
+- Search endpoint: 20/minute
 - Feedback endpoint: 10/minute
 - Default: 200/day, 50/hour
 
@@ -179,7 +179,7 @@ systemd.services.nix-api = {
   description = "Nix for Humanity API";
   wantedBy = [ "multi-user.target" ];
   after = [ "network.target" ];
-  
+
   serviceConfig = {
     ExecStart = "${pkgs.python3}/bin/python /srv/nix-for-humanity/scripts/api/nix_api_server.py";
     Restart = "always";
@@ -208,17 +208,17 @@ systemd.services.nix-api = {
 server {
     listen 443 ssl http2;
     server_name api.nixforhumanity.org;
-    
+
     ssl_certificate /etc/letsencrypt/live/api.nixforhumanity.org/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/api.nixforhumanity.org/privkey.pem;
-    
+
     location /api/ {
         proxy_pass http://localhost:5000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        
+
         # WebSocket support
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;

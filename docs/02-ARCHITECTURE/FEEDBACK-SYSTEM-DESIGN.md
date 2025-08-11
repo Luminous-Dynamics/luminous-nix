@@ -14,47 +14,47 @@ graph TB
         Voice[Voice Feedback]
         API[API Feedback]
     end
-    
+
     subgraph "Collection Layer"
         Collector[Feedback Collector]
         Validator[Privacy Validator]
         Enricher[Context Enricher]
     end
-    
+
     subgraph "Processing Layer"
         Analyzer[Pattern Analyzer]
         Learning[Learning Engine]
         Aggregator[Community Aggregator]
     end
-    
+
     subgraph "Storage Layer"
         Local[Local Storage]
         Anon[Anonymous Metrics]
         Community[Community Pool]
     end
-    
+
     subgraph "Application Layer"
         Improve[Improvements]
         Suggest[Suggestions]
         Docs[Documentation]
     end
-    
+
     CLI --> Collector
     TUI --> Collector
     Voice --> Collector
     API --> Collector
-    
+
     Collector --> Validator
     Validator --> Enricher
     Enricher --> Analyzer
-    
+
     Analyzer --> Learning
     Analyzer --> Aggregator
-    
+
     Learning --> Local
     Aggregator --> Anon
     Aggregator --> Community
-    
+
     Local --> Improve
     Community --> Suggest
     Anon --> Docs
@@ -66,7 +66,7 @@ graph TB
 ```python
 class ImplicitFeedback:
     """Collected automatically, privacy-preserving."""
-    
+
     command_success: bool      # Did command work?
     response_time: float       # How fast?
     retry_count: int          # How many attempts?
@@ -78,7 +78,7 @@ class ImplicitFeedback:
 ```python
 class ExplicitFeedback:
     """User voluntarily provides."""
-    
+
     satisfaction: int         # 1-5 scale
     suggestion: str          # Free text
     would_recommend: bool    # NPS score
@@ -89,7 +89,7 @@ class ExplicitFeedback:
 ```python
 class ContextualFeedback:
     """System requests at right moment."""
-    
+
     after_error: str         # "Did this help?"
     after_success: str       # "Was this what you wanted?"
     after_learning: str      # "Should I remember this?"
@@ -175,18 +175,18 @@ sequenceDiagram
     participant System
     participant Local
     participant Community
-    
+
     User->>System: Uses command
     System->>System: Collect implicit feedback
     System->>Local: Store locally
     Local->>Local: Update personal model
-    
+
     alt User gives explicit feedback
         User->>System: Rates experience
         System->>Local: Enhance local model
         System->>Community: Share anonymized
     end
-    
+
     Community->>System: Aggregate insights
     System->>User: Improved experience
 ```
@@ -227,7 +227,7 @@ def show_community_trends():
 ```yaml
 Feedback Loop:
   1. Collect: User struggles with package name
-  2. Analyze: 30% of users make same mistake  
+  2. Analyze: 30% of users make same mistake
   3. Improve: Add autocorrection
   4. Validate: Success rate improves to 95%
   5. Document: Add to FAQ
@@ -254,15 +254,15 @@ class FeedbackCollector:
         self.local_store = LocalFeedbackStore()
         self.privacy_guard = PrivacyValidator()
         self.rate_limiter = RateLimiter(max_per_hour=3)
-    
+
     async def collect(self, feedback: Feedback):
         """Collect feedback with privacy and respect."""
         if not self.rate_limiter.should_ask():
             return  # Don't annoy users
-        
+
         validated = self.privacy_guard.clean(feedback)
         await self.local_store.save(validated)
-        
+
         if feedback.share_anonymous:
             await self.share_with_community(validated)
 ```
@@ -271,15 +271,15 @@ class FeedbackCollector:
 ```python
 def should_request_feedback(context):
     """Request feedback at meaningful moments."""
-    
+
     # Good times to ask
     if context.just_succeeded_after_struggle:
         return True
     if context.discovered_new_feature:
-        return True  
+        return True
     if context.had_great_error_recovery:
         return True
-        
+
     # Bad times to ask
     if context.user_frustrated:
         return False
@@ -347,11 +347,11 @@ Your Impact This Month:
 graph TD
     Today[Individual Learning] --> Tomorrow[Collective Wisdom]
     Tomorrow --> Future[Self-Improving System]
-    
+
     Future --> Auto[Auto-fixing errors]
     Future --> Predict[Predicting needs]
     Future --> Evolve[Evolving features]
-    
+
     style Future fill:#90EE90
 ```
 
