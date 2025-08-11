@@ -17,16 +17,17 @@ from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from typing import List
 
-# REMOVED MOCK IMPORT: patch  # Only for patching sys.argv and input
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Add project root to path for imports
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
 # Import the components we're testing
-from frontends.cli.adapter import CLIAdapter
-from src.nix_humanity.core.interface import Intent, IntentType, Response
-from src.nix_humanity.core.types import Command
+from scripts.adapters.cli_adapter import CLIAdapter
+from nix_for_humanity.core import Intent, IntentType
+from nix_for_humanity.core.responses import Response
+from nix_for_humanity.core.intents import Command
 
 # Import our consciousness-first test infrastructure
 from tests.fixtures.sacred_test_base import ConsciousnessTestBackend, SacredTestBase
