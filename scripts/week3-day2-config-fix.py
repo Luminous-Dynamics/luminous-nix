@@ -2,7 +2,8 @@
 """Week 3 Day 2: Configuration Management Fix Summary"""
 
 import sys
-sys.path.insert(0, 'src')
+
+sys.path.insert(0, "src")
 
 print("🎯 Week 3 Day 2: Configuration Management Fixed!\n")
 
@@ -19,17 +20,17 @@ print("  ✅ Now provides proper nixos-rebuild test guidance")
 print("\n🧪 Testing Results:")
 
 # Run the actual test
-from nix_humanity.core.engine import NixForHumanityBackend
-from nix_humanity.api.schema import Request
+from nix_for_humanity.api.schema import Request
+from nix_for_humanity.core.engine import NixForHumanityBackend
 
 backend = NixForHumanityBackend()
 
 config_tests = [
-    'show configuration',
-    'how to edit configuration', 
-    'validate my config',
-    'check my configuration',
-    'test config syntax'
+    "show configuration",
+    "how to edit configuration",
+    "validate my config",
+    "check my configuration",
+    "test config syntax",
 ]
 
 print("\nConfiguration Management Tests:")
@@ -39,14 +40,19 @@ pass_count = 0
 for query in config_tests:
     request = Request(query=query)
     response = backend.process(request)
-    
-    has_config = 'config' in response.text.lower()
-    has_proper_guidance = any(cmd in response.text.lower() for cmd in ['nixos-rebuild', 'configuration.nix', '/etc/nixos'])
-    
-    status = '✅' if (response.success and (has_config or has_proper_guidance)) else '❌'
+
+    has_config = "config" in response.text.lower()
+    has_proper_guidance = any(
+        cmd in response.text.lower()
+        for cmd in ["nixos-rebuild", "configuration.nix", "/etc/nixos"]
+    )
+
+    status = (
+        "✅" if (response.success and (has_config or has_proper_guidance)) else "❌"
+    )
     print(f"{status} '{query}'")
-    
-    if status == '✅':
+
+    if status == "✅":
         pass_count += 1
 
 print(f"\n🎆 Result: {pass_count}/{len(config_tests)} tests passing")

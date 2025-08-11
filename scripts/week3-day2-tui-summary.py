@@ -2,7 +2,8 @@
 """Week 3 Day 2: TUI Connection Summary"""
 
 import sys
-sys.path.insert(0, 'src')
+
+sys.path.insert(0, "src")
 
 print("🎯 Week 3 Day 2: TUI Connection Complete!\n")
 
@@ -37,16 +38,16 @@ print("  - Final testing in full environment")
 
 # Test the connection one more time
 try:
-    from nix_humanity.core.engine import NixForHumanityBackend
-    from nix_humanity.api.schema import Request
-    
+    from nix_for_humanity.api.schema import Request
+    from nix_for_humanity.core.engine import NixForHumanityBackend
+
     backend = NixForHumanityBackend()
     request = Request(query="test connection")
     response = backend.process(request)
-    
+
     print("\n✅ Final Connection Test: SUCCESS")
     print(f"   Backend response: {response.success}")
-    
+
 except Exception as e:
     print(f"\n❌ Connection test failed: {e}")
 

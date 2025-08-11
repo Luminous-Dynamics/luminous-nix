@@ -1,0 +1,52 @@
+{
+  "documentation": {
+    "README.md": true,
+    "CHANGELOG.md": true,
+    "LICENSE": true,
+    "docs/README.md": true,
+    "docs/DOCUMENTATION-STANDARDS.md": true,
+    "docs/PYTHON-PACKAGING-STANDARDS.md": true,
+    "docs/API-VERSIONING-STANDARDS.md": true,
+    "docs/PERFORMANCE-STANDARDS.md": true,
+    "docs/GIT-STANDARDS.md": true
+  },
+  "python": {
+    "pyproject.toml exists": true,
+    "Uses Poetry": true,
+    "Black configured": true,
+    "Black 88 chars": true,
+    "Ruff configured": true,
+    "mypy configured": true,
+    "pytest configured": true,
+    "poetry.lock exists": true
+  },
+  "git": {
+    ".github/pull_request_template.md": true,
+    ".github/ISSUE_TEMPLATE/bug_report.md": true,
+    ".github/ISSUE_TEMPLATE/feature_request.md": true,
+    "Pre-commit config": true,
+    "Black 88 chars in pre-commit": true,
+    "Flake8 88 chars in pre-commit": true
+  },
+  "structure": {
+    "src/nix_for_humanity": true,
+    "tests": true,
+    "docs": true,
+    "bin": true,
+    "scripts": true
+  },
+  "tools": {
+    "Python 3.11+": true,
+    "poetry available": false,
+    "black available": false,
+    "ruff available": false,
+    "mypy available": false,
+    "pytest available": true
+  },
+  "files": {
+    "total_files": 122,
+    "with_type_hints": 84,
+    "with_docstrings": 122,
+    "imports_future": 0
+  }
+}

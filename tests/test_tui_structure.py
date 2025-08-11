@@ -3,7 +3,6 @@
 Test TUI structure and verify all components exist
 """
 
-import os
 from pathlib import Path
 
 print("🔍 Checking TUI implementation structure...")
@@ -12,13 +11,13 @@ print("🔍 Checking TUI implementation structure...")
 tui_dir = Path("src/tui")
 if tui_dir.exists():
     print(f"✅ TUI directory exists: {tui_dir}")
-    
+
     # List TUI files
     tui_files = list(tui_dir.glob("*.py"))
     print(f"\n📁 TUI files found ({len(tui_files)}):")
     for file in sorted(tui_files):
         print(f"  - {file.name}")
-        
+
     # Check for key files
     key_files = ["app.py", "enhanced_app.py", "widgets.py", "styles.css"]
     for file in key_files:
@@ -42,7 +41,7 @@ else:
 # Check requirements
 req_file = Path("requirements-tui.txt")
 if req_file.exists():
-    print(f"\n✅ TUI requirements file exists")
+    print("\n✅ TUI requirements file exists")
     with open(req_file) as f:
         deps = [line.strip() for line in f if line.strip() and not line.startswith("#")]
     print(f"  Required dependencies ({len(deps)}):")
@@ -51,7 +50,7 @@ if req_file.exists():
     if len(deps) > 5:
         print(f"    ... and {len(deps) - 5} more")
 else:
-    print(f"\n❌ TUI requirements file not found")
+    print("\n❌ TUI requirements file not found")
 
 print("\n📊 Summary:")
 print("  - TUI implementation exists ✅")

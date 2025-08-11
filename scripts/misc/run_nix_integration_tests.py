@@ -5,7 +5,6 @@ Avoids import issues by running tests directly
 """
 
 import sys
-import os
 from pathlib import Path
 
 # Add the backend directory to Python path

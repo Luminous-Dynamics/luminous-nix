@@ -55,6 +55,7 @@ if self.learning_enabled and hasattr(self, 'learning_system'):
             print(f"   • {suggestion['command']} ({suggestion['learned_from']})")
 """
 
+
 def generate_integration_patch():
     """Generate a patch file for integrating learning"""
     patch = '''
@@ -120,8 +121,9 @@ def generate_integration_patch():
 +                    self.learning_system.record_outcome(self.current_command_id, success=False, error=str(e))
                  self.handle_install_error(e, package)
 '''
-    
+
     return patch
+
 
 if __name__ == "__main__":
     print("🧠 Learning System Integration Guide")

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Generate Week 3 Final Summary"""
 
-from datetime import datetime
 import json
+from datetime import datetime
 from pathlib import Path
+
 
 def generate_summary():
     """Generate comprehensive Week 3 summary"""
-    
+
     summary = f"""
 # 🎉 Nix for Humanity - Week 3 Final Summary
 
@@ -139,11 +140,11 @@ The journey from "it kind of works" to "it works beautifully" required:
 ---
 *"Making NixOS accessible through consciousness-first computing"*
 """
-    
+
     # Save summary
     summary_path = Path("WEEK3_FINAL_SUMMARY.md")
     summary_path.write_text(summary)
-    
+
     # Also create a metrics file
     metrics = {
         "week": 3,
@@ -160,16 +161,17 @@ The journey from "it kind of works" to "it works beautifully" required:
             "config_management_fixed": True,
             "production_prep_complete": True,
             "documentation_validated": True,
-            "rough_edges_polished": True
-        }
+            "rough_edges_polished": True,
+        },
     }
-    
+
     metrics_path = Path("week3_metrics.json")
     metrics_path.write_text(json.dumps(metrics, indent=2))
-    
+
     print(summary)
     print(f"\n📄 Summary saved to: {summary_path}")
     print(f"📊 Metrics saved to: {metrics_path}")
+
 
 if __name__ == "__main__":
     generate_summary()

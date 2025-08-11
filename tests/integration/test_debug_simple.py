@@ -11,7 +11,7 @@ print("Starting debug test...")
 
 try:
     print("Importing Query and ExecutionMode...")
-    from nix_humanity.core.interface import Query
+    from nix_for_humanity.core.interface import Query
     print("✓ Imports successful")
     
     print("\nCreating Query object...")
@@ -19,7 +19,7 @@ try:
     print(f"✓ Query created: {query}")
     
     print("\nImporting Engine...")
-    from nix_humanity.core.engine import NixForHumanityBackend as Engine
+    from nix_for_humanity.core.engine import NixForHumanityBackend as Engine
     print("✓ Engine imported")
     
     print("\nCreating Engine instance...")

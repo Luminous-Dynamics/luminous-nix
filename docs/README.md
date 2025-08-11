@@ -1,62 +1,46 @@
-# 📚 Nix for Humanity Documentation
+# Nix for Humanity Documentation
 
-*Making NixOS accessible through natural conversation*
+**Natural language for NixOS.** Say what you want, we handle the complexity.
 
----
+## 🚀 [START HERE](./START-HERE.md)
 
-## 🎉 v1.0.0 Released - CLI Excellence Achieved!
+Choose your path: **User** | **Developer** | **Deployer**
 
-**This documentation reflects the v1.0.0 release status.** We've achieved rock-solid CLI functionality with lightning-fast native operations.
+## Quick Links
 
-**What's Delivered**:
-- ✅ Natural language CLI that actually works
-- ✅ Lightning-fast native operations (<0.5s)
-- ✅ Smart learning from your patterns
-- ✅ 95% accuracy on common commands
+### Essential
+- [Start Here](./START-HERE.md) - Single entry point
+- [Troubleshooting](./TROUBLESHOOTING.md) - When things break
+- [Architecture](./ARCHITECTURE-VISUAL.md) - How it works (with diagrams!)
 
-**Coming Soon**: TUI and voice interfaces are planned for future releases.
+### Documentation Map
+- **[01-VISION/](./01-VISION/)** - Why we built this
+- **[02-ARCHITECTURE/](./02-ARCHITECTURE/)** - Technical design
+- **[03-DEVELOPMENT/](./03-DEVELOPMENT/)** - Contributing guide
+- **[04-OPERATIONS/](./04-OPERATIONS/)** - Deployment & ops
+- **[05-REFERENCE/](./05-REFERENCE/)** - API & commands
+- **[06-TUTORIALS/](./06-TUTORIALS/)** - Step-by-step guides
 
----
+## What Works (v1.0)
 
-💡 **Quick Context**: Complete documentation hub for revolutionary symbiotic AI partner making NixOS accessible to everyone  
-📍 **You are here**: Documentation Hub (Master Navigation)  
-🔗 **Related**: [Quick Start](./03-DEVELOPMENT/03-QUICK-START.md) | [Unified Vision](./01-VISION/01-UNIFIED-VISION.md) | [System Architecture](./02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md)  
-⏱️ **Read time**: 4 minutes for navigation, 25+ minutes for comprehensive understanding  
-📊 **Mastery Level**: 🌱 Beginner - designed as the universal entry point for all audiences
+✅ Natural language CLI - `ask-nix "install firefox"`  
+✅ Fast responses - <0.5s via native Python-Nix  
+✅ Smart learning - Improves with use  
+✅ Clear errors - No more cryptic Nix messages  
 
-🌊 **Natural Next Steps**:
-- **For new users**: Start with [Quick Start Guide](./03-DEVELOPMENT/03-QUICK-START.md) for immediate hands-on experience
-- **For understanding the vision**: Continue to [Unified Vision](./01-VISION/01-UNIFIED-VISION.md) for complete project overview
-- **For technical implementation**: Explore [System Architecture](./02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md) for deep technical details
-- **For contribution**: Review [Sacred Trinity Workflow](./03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md) for collaboration process
+## Coming Soon (v1.1)
 
----
+🚧 Terminal UI - Beautiful interface  
+🚧 Voice control - Speak naturally  
+📅 Advanced personas - Adaptive styles  
 
-## 🎯 Quick Navigation
+## Development
 
-### 🚀 Getting Started  
-- **[Quick Start](./03-DEVELOPMENT/03-QUICK-START.md)** - Get running in 5 minutes
-- **[User Guide](./06-TUTORIALS/USER_GUIDE.md)** - Complete natural language NixOS guide
-- **[Advanced Features](./06-TUTORIALS/ADVANCED_FEATURES.md)** - Master all power features 🆕
-- **[Installation & Setup](./04-OPERATIONS/01-INSTALLATION.md)** - System requirements and installation
-- **[Troubleshooting Guide](./04-OPERATIONS/03-TROUBLESHOOTING.md)** - Solutions to common issues
+**Sacred Trinity Model**: Human + AI + Local LLM = $200/month achieving $4.2M quality
 
-### 👥 Understanding the Vision
-- **[Unified Vision](./01-VISION/01-UNIFIED-VISION.md)** - What we're building and why
-- **[Implementation Roadmap](./01-VISION/02-ROADMAP.md)** - Path from prototype to production
-- **[Consciousness-First Philosophy](../docs/philosophy/CONSCIOUSNESS_FIRST_COMPUTING.md)** - Our foundational principles
-- **[The 10 Core Personas](./01-VISION/03-PERSONAS.md)** - Serving everyone from Grandma Rose to power users
-
-## 🎯 Reader-Specific Navigation Paths
-
-### 🏗️ For Developers (Implementation Focus)
-**Get Started**: [Quick Start](./03-DEVELOPMENT/03-QUICK-START.md) → [System Architecture](./02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md) → [Sacred Trinity Workflow](./03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md)  
-**Current Priority**: [Implementation Priority Guide](./IMPLEMENTATION_PRIORITY_GUIDE.md) - Research organized by development phases  
-**Daily Reference**: [Current Status Dashboard](./04-OPERATIONS/CURRENT_STATUS_DASHBOARD.md) - Real-time progress tracking
-
-### 🎓 For Researchers (Theory to Practice)
-**Foundation**: [Unified Vision](./01-VISION/01-UNIFIED-VISION.md) → [Symbiotic Intelligence Research](./01-VISION/00-WHITEPAPER-SYMBIOTIC-INTELLIGENCE/README.md)  
-**Deep Dive**: [Dynamic User Modeling](./02-ARCHITECTURE/03-DYNAMIC-USER-MODELING.md) - "Persona of One" research  
+- GitHub: [Luminous-Dynamics/nix-for-humanity](https://github.com/Luminous-Dynamics/nix-for-humanity)
+- Issues: [Report bugs](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+- License: MIT  
 **Implementation**: [Learning System Architecture](./02-ARCHITECTURE/09-LEARNING-SYSTEM.md) - Four-dimensional AI evolution
 
 ### 👥 For Product Managers (Feature Priority)

@@ -9,51 +9,50 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_humanity.core import (
-    NixForHumanityBackend,
-    PersonalitySystem
-)
+from nix_for_humanity.core import NixForHumanityBackend
 
 
 def test_core():
     """Test the core engine with various queries"""
-    
+
     # Initialize core
     core = NixForHumanityBackend()
-    
+
     # Test queries
     test_queries = [
         "install firefox",
         "search python",
-        "update my system", 
+        "update my system",
         "help",
         "remove vim",
         "what's a generation?",
-        "my wifi isn't working"
+        "my wifi isn't working",
     ]
-    
+
     print("🧪 Testing Nix for Humanity Core Engine\n")
     print("=" * 60)
-    
+
     for query_text in test_queries:
         print(f"\n📝 Query: {query_text}")
         print("-" * 40)
-        
+
         # Process the query directly
         result = core.execute_command(query_text, dry_run=True)
-        
+
         # Display results
-        if result.get('success'):
-            print(f"✅ Success: {result.get('message', 'Command processed successfully')}")
-            if result.get('command'):
+        if result.get("success"):
+            print(
+                f"✅ Success: {result.get('message', 'Command processed successfully')}"
+            )
+            if result.get("command"):
                 print(f"💻 Command: {result['command']}")
-            if result.get('response'):
+            if result.get("response"):
                 print(f"\n💬 Response:\n{result['response']}")
         else:
             print(f"❌ Error: {result.get('error', 'Unknown error')}")
-            
+
         print("=" * 60)
-        
+
     # Test shows basic functionality
     print("\n\n✅ Basic core functionality test complete")
     print("=" * 60)

@@ -44,6 +44,15 @@ Backend:
   Database: SQLite                # Local-first, no PostgreSQL
   Execution: child_process.spawn  # Direct, no abstractions
 
+Python:
+  Package Manager: Poetry         # NOT pip or conda
+  Formatter: Black (88 chars)     # NOT manual PEP 8
+  Linter: Ruff                    # Fast, comprehensive
+  Type Checker: mypy --strict     # Full type safety
+  Virtual Envs: Poetry manages    # NOT venv/virtualenv
+  Version: 3.11+ minimum          # Type hints required
+  Style Guide: See PYTHON-PACKAGING-STANDARDS.md
+
 Desktop:
   Framework: Tauri                # DECIDED - not Electron
   Language: Rust + TypeScript     # Standard Tauri stack
@@ -179,6 +188,216 @@ describe('Voice Commands', () => {
   });
 });
 ```
+
+## 🐍 Python-Specific Standards
+
+### Package Management with Poetry
+```bash
+# ✅ CORRECT - Using Poetry
+poetry add requests
+poetry add pytest --group dev
+poetry install --all-extras
+poetry run python script.py
+
+# ❌ WRONG - Using pip directly
+pip install requests  # NO! Breaks reproducibility
+pip freeze > requirements.txt  # NO! Use poetry.lock
+```
+
+### Code Style with Black + Ruff
+```python
+# ✅ CORRECT - Black-formatted, typed, documented
+from typing import Optional, List
+from nix_for_humanity.core import NixCommand
+
+def execute_command(
+    command: str,
+    args: Optional[List[str]] = None,
+    dry_run: bool = False
+) -> NixCommand:
+    """Execute a Nix command with optional arguments.
+    
+    Args:
+        command: The Nix command to execute
+        args: Optional list of arguments  
+        dry_run: If True, only simulate execution
+        
+    Returns:
+        NixCommand object with execution results
+    """
+    args = args or []
+    # Implementation...
+
+# ❌ WRONG - No types, poor formatting
+def execute_command(command,args=None,dry_run=False):
+    if args == None: args = []  # Multiple issues here
+```
+
+### Type Hints Are MANDATORY
+```python
+# ✅ CORRECT - Full type annotations
+from typing import Dict, List, Optional, Union
+from pathlib import Path
+
+class NixPackageManager:
+    def __init__(self, config: Dict[str, str]) -> None:
+        self.config = config
+    
+    def find_package(self, name: str) -> Optional[str]:
+        """Find a package by name."""
+        return self.packages.get(name)
+    
+    def install_packages(
+        self, 
+        packages: List[str],
+        system_wide: bool = False
+    ) -> bool:
+        """Install multiple packages."""
+        # Implementation
+
+# ❌ WRONG - Missing type hints
+class NixPackageManager:
+    def __init__(self, config):
+        self.config = config
+    
+    def find_package(self, name):
+        return self.packages.get(name)
+```
+
+### Error Handling
+```python
+# ✅ CORRECT - Specific exceptions with context
+class NixCommandError(Exception):
+    """Base exception for Nix command errors."""
+    pass
+
+class PackageNotFoundError(NixCommandError):
+    """Raised when a package cannot be found."""
+    def __init__(self, package: str, suggestions: List[str]) -> None:
+        self.package = package
+        self.suggestions = suggestions
+        super().__init__(
+            f"Package '{package}' not found. "
+            f"Did you mean: {', '.join(suggestions[:3])}?"
+        )
+
+# ❌ WRONG - Generic exceptions
+try:
+    result = run_command(cmd)
+except Exception as e:  # Too broad!
+    print(f"Error: {e}")
+```
+
+### Testing with Pytest
+```python
+# ✅ CORRECT - Descriptive, focused tests
+import pytest
+from nix_for_humanity.core import NixCommand
+
+class TestNixCommand:
+    """Test NixCommand functionality."""
+    
+    def test_parses_install_command(self):
+        """Test that install commands are parsed correctly."""
+        cmd = NixCommand("install firefox")
+        assert cmd.action == "install"
+        assert cmd.package == "firefox"
+    
+    def test_validates_dangerous_commands(self):
+        """Test that dangerous commands are caught."""
+        with pytest.raises(DangerousCommandError):
+            NixCommand("rm -rf /")
+    
+    @pytest.mark.parametrize("input,expected", [
+        ("install firefox", "nix-env -iA nixpkgs.firefox"),
+        ("remove vim", "nix-env -e vim"),
+    ])
+    def test_command_generation(self, input: str, expected: str):
+        """Test command generation for various inputs."""
+        cmd = NixCommand(input)
+        assert cmd.to_nix() == expected
+
+# ❌ WRONG - Poor test structure
+def test_stuff():
+    # Test everything in one function
+    cmd = NixCommand("install firefox")
+    assert cmd.action == "install"
+    cmd2 = NixCommand("remove vim")
+    assert cmd2.action == "remove"
+    # etc...
+```
+
+### Async/Await Patterns
+```python
+# ✅ CORRECT - Proper async handling
+import asyncio
+from typing import List
+
+async def fetch_package_info(package: str) -> Dict[str, str]:
+    """Fetch package information asynchronously."""
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"/api/packages/{package}") as resp:
+            return await resp.json()
+
+async def batch_install(packages: List[str]) -> List[bool]:
+    """Install multiple packages concurrently."""
+    tasks = [install_package(pkg) for pkg in packages]
+    return await asyncio.gather(*tasks)
+
+# ❌ WRONG - Blocking in async code
+async def bad_fetch(package: str):
+    # DON'T use blocking calls in async functions
+    response = requests.get(f"/api/packages/{package}")  # Blocks!
+    return response.json()
+```
+
+### Sacred Python Conventions
+```python
+# File naming
+nix_command.py         # ✅ snake_case for modules
+test_nix_command.py    # ✅ test_ prefix for test files
+NixCommand.py          # ❌ PascalCase for files
+
+# Class naming
+class NixCommand:      # ✅ PascalCase for classes
+class nixCommand:      # ❌ Wrong case
+
+# Function/variable naming
+def parse_command():   # ✅ snake_case for functions
+package_name = "vim"   # ✅ snake_case for variables
+parseCommand()         # ❌ camelCase (JavaScript style)
+
+# Constants
+MAX_RETRIES = 3       # ✅ UPPER_SNAKE_CASE
+DEFAULT_TIMEOUT = 30  # ✅ Module-level constants
+```
+
+### Poetry Commands Quick Reference
+```bash
+# Development workflow
+poetry install              # Install dependencies
+poetry install --with dev   # Include dev dependencies
+poetry install --extras tui # Install with TUI support
+poetry update              # Update all dependencies
+poetry add package         # Add new dependency
+poetry remove package      # Remove dependency
+poetry run pytest          # Run tests
+poetry shell              # Activate virtual environment
+poetry build             # Build distribution packages
+poetry publish           # Publish to PyPI
+```
+
+### Pre-commit Hooks for Python
+```yaml
+# Already configured in .pre-commit-config.yaml
+- Black (formatting)
+- Ruff (linting) 
+- isort (import sorting)
+- mypy (type checking)
+- bandit (security)
+```
+
+For full Python packaging and style details, see: [PYTHON-PACKAGING-STANDARDS.md](../PYTHON-PACKAGING-STANDARDS.md)
 
 ## 🚫 Stop Doing These!
 

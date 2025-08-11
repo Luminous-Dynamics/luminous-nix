@@ -4,11 +4,11 @@
 
 ---
 
-💡 **Quick Context**: Revolutionary four-dimensional AI learning system with "Persona of One" digital twins  
-📍 **You are here**: Architecture → Learning System (AI Evolution Engine)  
+💡 **Quick Context**: Pragmatic learning system that tracks observable behaviors to save time and reduce frustration  
+📍 **You are here**: Architecture → Learning System (Practical Personalization)  
 🔗 **Related**: [System Architecture Overview](./01-SYSTEM-ARCHITECTURE.md) | [Backend Architecture](./02-BACKEND-ARCHITECTURE.md) | [Master Documentation Map](../MASTER_DOCUMENTATION_MAP.md)  
-⏱️ **Read time**: 18 minutes  
-📊 **Mastery Level**: 🌿 Advanced - requires understanding of machine learning, Bayesian networks, and educational data mining
+⏱️ **Read time**: 8 minutes  
+📊 **Mastery Level**: 🌱 Intermediate - straightforward behavioral tracking and pattern recognition
 
 🌊 **Natural Next Steps**:
 - **For implementers**: Start with [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) to see the system in action
@@ -20,29 +20,42 @@
 
 ## Overview
 
-The learning system enables genuine AI evolution through the revolutionary "Persona of One" approach - a dynamic, high-fidelity individual representation that moves beyond static user models. Through Bayesian Knowledge Tracing, Dynamic Bayesian Networks, and reinforcement learning from human feedback, we create a comprehensive cognitive-affective digital twin that learns, adapts, and grows with each user. All learning happens locally with strong privacy guarantees.
+The Nix for Humanity learning system provides practical, privacy-respecting personalization by tracking observable user behaviors and patterns. Rather than attempting complex cognitive modeling, we focus on what actually helps users save time and reduce frustration. All learning happens locally with complete transparency.
 
-*Sacred Humility Context: Our "Persona of One" learning architecture represents innovative early-stage research in personalized AI systems. While our technical foundation draws from established educational data mining and Bayesian modeling techniques, the practical effectiveness of this four-dimensional learning approach requires extensive validation across diverse user populations and usage contexts beyond our development environment.*
+### Core Philosophy
+- **Observable over Inferrable** - Track what we can see, not guess mental states
+- **Value over Complexity** - Every feature saves keystrokes or prevents errors
+- **Transparency over Magic** - Users see exactly what we learn
+- **Privacy by Default** - All data stays local, deletable anytime
 
-## Revolutionary "Persona of One" Architecture
+*Note: Advanced research concepts like Bayesian Knowledge Tracing and Dynamic Bayesian Networks remain documented below as future possibilities, but v1.x focuses on pragmatic, observable learning.*
 
-Our learning system implements cutting-edge Educational Data Mining (EDM) techniques to create a persistent, deeply personalized, and evolving digital representation of each user's:
-- **Cognitive States**: Skill mastery through Bayesian Knowledge Tracing
-- **Affective Landscape**: Emotional and mental states via Dynamic Bayesian Networks  
-- **Behavioral Patterns**: Workflow preferences and timing intelligence
-- **Value Alignment**: Digital well-being optimization through RLHF
+## Pragmatic Learning Architecture (v1.x)
 
-This "Persona of One" transcends traditional user modeling by creating a living, breathing representation that mirrors the user's complete learning journey.
+Our learning system tracks simple, observable patterns that provide immediate value:
+- **Command Aliases**: User says "grab" meaning "install"
+- **Package Preferences**: They always choose firefox over chrome
+- **Error Recovery**: How they fix common problems
+- **Usage Patterns**: When they're typically active
+- **Command Sequences**: Common multi-step workflows
 
-### The Three Digital Twins
+### What We Actually Track
 
-1. **Cognitive Twin**: Bayesian Knowledge Tracing mapped onto the NixOS Skill Graph
-2. **Affective Twin**: Dynamic Bayesian Network modeling emotional states over time
-3. **Preference Twin**: RLHF reward model capturing user values and well-being optimization
+```python
+# Simple, transparent data structure
+{
+  "aliases": {"grab": "install"},
+  "package_choices": {"browser": "firefox"},
+  "sequences": [["nixos-rebuild", "nix-collect-garbage"]],
+  "error_solutions": {"permission denied": "use sudo"},
+  "active_hours": [9, 10, 11, 14, 15, 16],
+  "command_frequency": {"install": 42, "search": 31}
+}
+```
 
-## Core Learning Dimensions: The Four-Dimensional Model
+## Core Learning Dimensions: Pragmatic Observable Behaviors
 
-### 1. WHO - User Modeling (Cognitive & Affective Digital Twins)
+### 1. WHO - Simple User Preferences
 
 ```typescript
 interface UserModel {

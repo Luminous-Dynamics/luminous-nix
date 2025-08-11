@@ -2,7 +2,7 @@
 """Rewrite prepare-production-release.py to fix f-string issues"""
 
 # Read the broken file to understand the structure
-with open('scripts/prepare-production-release.py', 'r') as f:
+with open("scripts/prepare-production-release.py") as f:
     lines = f.readlines()
 
 # Extract the class and method structure
@@ -11,12 +11,12 @@ methods = []
 current_method = None
 
 for i, line in enumerate(lines):
-    if line.strip().startswith('class ReleasePreparation'):
+    if line.strip().startswith("class ReleasePreparation"):
         class_def = i
-    elif line.strip().startswith('def '):
+    elif line.strip().startswith("def "):
         if current_method:
             methods.append(current_method)
-        current_method = {'start': i, 'name': line.strip()}
+        current_method = {"start": i, "name": line.strip()}
 
 if current_method:
     methods.append(current_method)
@@ -1283,7 +1283,7 @@ if __name__ == "__main__":
 '''
 
 # Write the new version
-with open('scripts/prepare-production-release.py', 'w') as f:
+with open("scripts/prepare-production-release.py", "w") as f:
     f.write(new_content)
 
 print("✅ Rewrote prepare-production-release.py with fixed syntax!")

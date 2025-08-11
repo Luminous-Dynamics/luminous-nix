@@ -16,7 +16,7 @@ import asyncio
 from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 from typing import List
-from unittest.mock import patch  # Only for patching sys.argv and input
+# REMOVED MOCK IMPORT: patch  # Only for patching sys.argv and input
 
 # Add project root to path for imports
 project_root = Path(__file__).parent.parent.parent
@@ -29,8 +29,8 @@ from tests.utils.async_test_runner import AsyncTestCase
 
 # Import the components we're testing
 from frontends.cli.adapter import CLIAdapter
-from src.nix_for_humanity.core.interface import  Response, Intent, IntentType
-from src.nix_for_humanity.core.types import Command
+from src.nix_humanity.core.interface import  Response, Intent, IntentType
+from src.nix_humanity.core.types import Command
 
 
 class TestCLIAdapter(SacredTestBase):

@@ -7,60 +7,68 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
+
 def test_tui_imports():
     """Test that all TUI components can be imported"""
     try:
         print("Testing TUI imports...")
-        
+
         # Core TUI components
-        from nix_humanity.ui.main_app import NixForHumanityTUI
+        from nix_for_humanity.ui.main_app import NixForHumanityTUI
+
         print("✓ Main TUI app imported")
-        
-        from nix_humanity.ui.consciousness_orb import ConsciousnessOrb
+
+        from nix_for_humanity.ui.consciousness_orb import ConsciousnessOrb
+
         print("✓ Consciousness orb imported")
-        
-        from nix_humanity.ui.adaptive_interface import AdaptiveInterface
+
+        from nix_for_humanity.ui.adaptive_interface import AdaptiveInterface
+
         print("✓ Adaptive interface imported")
-        
+
         # Backend connection
-        from nix_humanity.core.backend import NixForHumanityBackend
+        from nix_for_humanity.core.backend import NixForHumanityBackend
+
         print("✓ Backend imported")
-        
+
         # TUI interface
-        from nix_humanity.interfaces.tui import main
+        from nix_for_humanity.interfaces.tui import main
+
         print("✓ TUI interface imported")
-        
+
         print("\n✅ All TUI components imported successfully!")
         print("\nYou can now run: poetry run nix-tui")
-        
+
         return True
-        
+
     except ImportError as e:
         print(f"\n❌ Import error: {e}")
         print("\nMake sure you've run: poetry install -E tui")
         return False
 
+
 def test_backend_connection():
     """Test that TUI can connect to backend"""
     try:
-        from nix_humanity.core.backend import NixForHumanityBackend
-        
+        from nix_for_humanity.core.backend import NixForHumanityBackend
+
         print("\nTesting backend connection...")
         backend = NixForHumanityBackend()
-        
+
         # Test a simple command
         result = backend.execute_command("help", dry_run=True)
         if result and result.success:
             print("✓ Backend responds to commands")
         else:
             print("⚠ Backend connection works but command failed")
-            
+
     except Exception as e:
         print(f"⚠ Backend test failed: {e}")
 
+
 if __name__ == "__main__":
     print("=== Nix for Humanity v1.1 TUI Test ===\n")
-    
+
     if test_tui_imports():
         test_backend_connection()
         print("\n🎉 TUI is ready for v1.1 launch!")

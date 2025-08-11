@@ -2,13 +2,15 @@
 """Test TUI connection to backend."""
 
 import sys
-sys.path.insert(0, 'src')
+
+sys.path.insert(0, "src")
 
 print("🧪 Testing TUI Connection to Backend\n")
 
 # Test 1: Can we import the backend?
 try:
-    from nix_humanity.core.engine import NixForHumanityBackend
+    from nix_for_humanity.core.engine import NixForHumanityBackend
+
     backend = NixForHumanityBackend()
     print("✅ Backend imported and initialized successfully")
 except Exception as e:
@@ -18,26 +20,26 @@ except Exception as e:
 # Test 2: Can backend process requests?
 if backend:
     try:
-        from nix_humanity.api.schema import Request
-        
+        from nix_for_humanity.api.schema import Request
+
         test_queries = [
             "install firefox",
             "search for text editors",
-            "what's my current generation?"
+            "what's my current generation?",
         ]
-        
+
         print("\n📝 Testing backend processing:")
         for query in test_queries:
             request = Request(command=query)
             response = backend.process_request(request)
-            
+
             if response.success:
                 print(f"✅ '{query}' → Success")
-                if hasattr(response, 'intent'):
+                if hasattr(response, "intent"):
                     print(f"   Intent: {response.intent}")
             else:
                 print(f"❌ '{query}' → Failed: {response.error}")
-                
+
     except Exception as e:
         print(f"❌ Request processing failed: {e}")
 
@@ -47,6 +49,7 @@ print("\n📋 TUI Requirements Check:")
 # Check Textual
 try:
     import textual
+
     print(f"✅ Textual installed: v{textual.__version__}")
 except ImportError:
     print("❌ Textual not installed (required for TUI)")
@@ -55,13 +58,15 @@ except ImportError:
 # Check Rich
 try:
     import rich
+
     print(f"✅ Rich installed: v{rich.__version__}")
 except ImportError:
     print("❌ Rich not installed (required for TUI)")
 
 # Check if TUI module structure exists
 try:
-    from nix_humanity.ui import __all__ as ui_exports
+    from nix_for_humanity.ui import __all__ as ui_exports
+
     print(f"✅ UI module exports: {len(ui_exports)} components")
 except Exception as e:
     print(f"❌ UI module issue: {e}")
@@ -72,12 +77,12 @@ print("\n🔗 Integration Points:")
 # Check if backend has the methods TUI expects
 if backend:
     expected_methods = [
-        'process_request',
-        'search_packages',
-        'get_current_context',
-        'get_settings'
+        "process_request",
+        "search_packages",
+        "get_current_context",
+        "get_settings",
     ]
-    
+
     for method in expected_methods:
         if hasattr(backend, method):
             print(f"✅ Backend has {method}()")

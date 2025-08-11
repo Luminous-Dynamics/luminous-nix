@@ -4,10 +4,10 @@ Proof of concept: Direct integration with nixos-rebuild-ng Python module
 This demonstrates how Nix for Humanity can use the native Python API
 """
 
-import sys
-import os
 import subprocess
+import sys
 from pathlib import Path
+
 
 # First, find the nixos-rebuild-ng module in the nix store
 def find_nixos_rebuild_module():
@@ -15,33 +15,31 @@ def find_nixos_rebuild_module():
     try:
         # Get the path to nixos-rebuild
         result = subprocess.run(
-            ["which", "nixos-rebuild"],
-            capture_output=True,
-            text=True
+            ["which", "nixos-rebuild"], capture_output=True, text=True
         )
         rebuild_path = result.stdout.strip()
-        
+
         # Follow symlinks to get the actual nix store path
         real_path = Path(rebuild_path).resolve()
-        
+
         # Extract the nix store package path
         nix_package = str(real_path.parent.parent)
-        
+
         # Construct the Python module path
         python_path = Path(nix_package) / "lib" / "python3.13" / "site-packages"
-        
+
         if python_path.exists():
             return str(python_path)
-        else:
-            # Try python3.12 as fallback
-            python_path = Path(nix_package) / "lib" / "python3.12" / "site-packages"
-            if python_path.exists():
-                return str(python_path)
-                
+        # Try python3.12 as fallback
+        python_path = Path(nix_package) / "lib" / "python3.12" / "site-packages"
+        if python_path.exists():
+            return str(python_path)
+
     except Exception as e:
         print(f"Error finding nixos-rebuild module: {e}")
-    
+
     return None
+
 
 # Add the module to Python path
 nixos_rebuild_path = find_nixos_rebuild_module()
@@ -55,27 +53,29 @@ else:
 # Now we can import the module
 try:
     from nixos_rebuild import models, nix
-    from nixos_rebuild.models import Action, Profile, BuildAttr, Flake
+    from nixos_rebuild.models import Action, BuildAttr, Flake, Profile
+
     print("✅ Successfully imported nixos_rebuild module!")
 except ImportError as e:
     print(f"❌ Failed to import nixos_rebuild: {e}")
     sys.exit(1)
 
+
 class NixForHumanitySystemManager:
     """
     Demonstrates how Nix for Humanity can integrate with nixos-rebuild-ng
     """
-    
+
     def __init__(self):
         self.profile = Profile.from_arg("system")
         print(f"📦 Using profile: {self.profile.path}")
-        
+
     def list_available_actions(self):
         """Show all available nixos-rebuild actions."""
         print("\n🎯 Available NixOS actions:")
         for action in Action:
             print(f"  - {action.value}: {self._describe_action(action)}")
-    
+
     def _describe_action(self, action):
         """Natural language description of each action."""
         descriptions = {
@@ -86,40 +86,36 @@ class NixForHumanitySystemManager:
             Action.DRY_BUILD: "Show what would be built",
             Action.DRY_RUN: "Show what would happen without doing it",
             Action.BUILD_VM: "Build a virtual machine with this configuration",
-            Action.LIST_GENERATIONS: "Show all system configurations"
+            Action.LIST_GENERATIONS: "Show all system configurations",
         }
         return descriptions.get(action, "Unknown action")
-    
+
     def check_flake_status(self):
         """Check if the system uses flakes."""
         flake_path = Path("/etc/nixos/flake.nix")
         if flake_path.exists():
             print(f"\n🌸 System uses flakes: {flake_path}")
             return True
-        else:
-            print("\n📜 System uses traditional configuration.nix")
-            return False
-    
+        print("\n📜 System uses traditional configuration.nix")
+        return False
+
     def demonstrate_build_attr(self):
         """Show how to create build attributes."""
         print("\n🔨 Build attribute examples:")
-        
+
         # Default build attribute
         default_attr = BuildAttr.from_arg(None, None)
         print(f"  Default: {default_attr.path}")
-        
+
         # Custom file
         if Path("/etc/nixos/configuration.nix").exists():
-            custom_attr = BuildAttr.from_arg(
-                "system",
-                "/etc/nixos/configuration.nix"
-            )
+            custom_attr = BuildAttr.from_arg("system", "/etc/nixos/configuration.nix")
             print(f"  Custom: {custom_attr.path} with attr '{custom_attr.attr}'")
-    
+
     def demonstrate_natural_language_mapping(self):
         """Show how natural language maps to nixos-rebuild actions."""
         print("\n💬 Natural language to action mapping:")
-        
+
         mappings = [
             ("update my system", Action.SWITCH),
             ("update system", Action.SWITCH),
@@ -130,14 +126,15 @@ class NixForHumanitySystemManager:
             ("show me past configurations", Action.LIST_GENERATIONS),
             ("build but don't apply", Action.BUILD),
         ]
-        
+
         for phrase, action in mappings:
             print(f'  "{phrase}" → {action.value}')
-    
+
     def show_integration_example(self):
         """Show how this would integrate with Nix for Humanity."""
         print("\n🤖 Integration example:")
-        print("""
+        print(
+            """
 # In Nix for Humanity's backend:
 
 async def handle_system_update(user_input):
@@ -162,22 +159,25 @@ async def handle_system_update(user_input):
     
     # 4. Natural response
     return f"System updated! Configuration {action.value} complete."
-""")
+"""
+        )
+
 
 def main():
     print("🌟 Nix for Humanity - NixOS Rebuild Integration Demo\n")
-    
+
     manager = NixForHumanitySystemManager()
-    
+
     # Demonstrate various features
     manager.list_available_actions()
     manager.check_flake_status()
     manager.demonstrate_build_attr()
     manager.demonstrate_natural_language_mapping()
     manager.show_integration_example()
-    
+
     print("\n✨ This demonstrates direct Python integration with nixos-rebuild!")
     print("🚀 No subprocess calls needed - we can use the native Python API!")
+
 
 if __name__ == "__main__":
     main()

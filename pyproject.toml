@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "nix-for-humanity"
-version = "1.1.0"
+version = "1.0.0"
 description = "Natural language interface for NixOS - making NixOS accessible to everyone"
 readme = "README.md"
 license = "MIT"
@@ -19,7 +19,7 @@ keywords = [
     "consciousness-first",
 ]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: End Users/Desktop",
     "Intended Audience :: System Administrators",
@@ -75,7 +75,7 @@ numpy = {version = "^1.26.0", optional = true}  # Compatible with latest pandas
 nltk = {version = "^3.8.0", optional = true}
 spacy = {version = "^3.5.0", optional = true}
 transformers = {version = "^4.55.0", optional = true}  # Latest: 4.55.0
-torch = {version = "^2.8.0", optional = true}  # Latest: 2.8.0
+torch = {version = "^2.0.0", optional = true, python = "<3.14"}  # Compatible with Python 3.11-3.13
 scikit-learn = {version = "^1.7.0", optional = true}  # Latest: 1.7.1
 sentence-transformers = {version = "^3.3.0", optional = true}  # Latest: 3.3.2
 beautifulsoup4 = {version = "^4.12.0", optional = true}
@@ -87,13 +87,13 @@ huggingface-hub = {version = "^0.34.0", optional = true}  # Latest: 0.34.3
 safetensors = {version = "^0.6.0", optional = true}  # Latest: 0.6.1
 
 # Advanced - For research and advanced features
-accelerate = {version = "^0.36.0", optional = true}  # Latest: 0.36.0
-datasets = {version = "^4.0.0", optional = true}  # Latest: 4.0.0
-peft = {version = "^0.17.0", optional = true}  # Latest: 0.17.0
+accelerate = {version = "^0.33.0", optional = true}  # Works with current Python
+datasets = {version = "^2.14.0", optional = true}  # Compatible version
+peft = {version = "^0.5.0", optional = true}  # Compatible version
 trl = {version = "^0.7.0", optional = true}
-lancedb = {version = "^0.24.0", optional = true}  # Latest: 0.24.1
-optimum = {version = "^1.27.0", optional = true}  # Latest: 1.27.0
-evaluate = {version = "^0.4.5", optional = true}  # Latest: 0.4.5
+lancedb = {version = "^0.6.0", optional = true}  # Compatible version
+optimum = {version = "^1.13.0", optional = true}  # Compatible version
+evaluate = {version = "^0.4.0", optional = true}  # Compatible version
 networkx = {version = "^3.0", optional = true}
 dowhy = {version = "^0.11.0", optional = true, python = ">=3.8,<3.12"}  # Causal inference - only for Python <3.12
 shap = {version = "^0.42.0", optional = true}
@@ -129,6 +129,7 @@ mkdocstrings = {extras = ["python"], version = "^0.24.0"}
 watchdog = "^3.0.0"
 tqdm = "^4.65.0"
 ipython = "^8.17.0"
+pre-commit = "^4.3.0"
 
 [tool.poetry.extras]
 tui = ["textual", "textual-dev", "rich", "blessed", "pyperclip"]
@@ -173,6 +174,8 @@ extend-exclude = '''
 [tool.ruff]
 target-version = "py311"
 line-length = 88
+
+[tool.ruff.lint]
 select = [
     "E",    # pycodestyle errors
     "W",    # pycodestyle warnings
@@ -189,9 +192,13 @@ select = [
 ignore = [
     "E501",  # line too long (handled by black)
     "S101",  # use of assert (common in tests)
+    "S603",  # subprocess without shell=False (we need this)
+    "S607",  # partial path in subprocess (we use system commands)
+    "S605",  # shell=True (sometimes needed for complex commands)
+    "S110",  # try-except-pass (sometimes needed for silent failures)
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]  # Allow asserts in tests
 
 [tool.mypy]

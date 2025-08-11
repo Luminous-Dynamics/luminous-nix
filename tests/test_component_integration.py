@@ -19,7 +19,7 @@ def test_backend_initialization():
     print("=" * 50)
     
     try:
-        from nix_humanity.core.engine import NixForHumanityBackend
+        from nix_for_humanity.core.engine import NixForHumanityBackend
         
         # Create backend
         print("Creating backend...")
@@ -74,7 +74,7 @@ def test_mock_components_directly():
     print("=" * 50)
     
     try:
-        from features.v3_0.intelligence.mocks import (
+        # REMOVED MOCK IMPORT: (
             MockSymbioticKnowledgeGraph,
             MockTrustEngine,
             MockSacredMetricsCollector,
@@ -121,8 +121,8 @@ def test_request_processing():
     print("=" * 50)
     
     try:
-        from nix_humanity.core.engine import NixForHumanityBackend
-        from nix_humanity.api.schema import Request
+        from nix_for_humanity.core.engine import NixForHumanityBackend
+        from nix_for_humanity.api.schema import Request
         
         backend = NixForHumanityBackend()
         

@@ -2,12 +2,12 @@
 """Week 3 Action Plan - Building on Strengths"""
 
 import json
-from pathlib import Path
 from datetime import datetime
+
 
 def create_action_plan():
     """Create a detailed action plan for Week 3."""
-    
+
     plan = {
         "week": 3,
         "theme": "Polish & Performance - Making Excellence Visible",
@@ -19,20 +19,20 @@ def create_action_plan():
                 "Native API: 9064x faster (0.29ms avg)",
                 "NLP: 4.54ms processing time",
                 "Project structure: 10/10",
-                "Type hints: 78.6% coverage"
+                "Type hints: 78.6% coverage",
             ],
             "working_features": [
                 "Natural Language (4/5 tests)",
                 "Native API (100%)",
                 "Generation Management",
-                "Settings/Profiles"
+                "Settings/Profiles",
             ],
             "broken_features": [
                 "TUI (not connected)",
                 "Smart Discovery (1/4 tests)",
                 "Flake Support (0/3 tests)",
-                "Error Handling (0/3 tests)"
-            ]
+                "Error Handling (0/3 tests)",
+            ],
         },
         "priorities": [
             {
@@ -44,8 +44,8 @@ def create_action_plan():
                     "Identify which natural language test is failing",
                     "Fix the specific parsing/intent issue",
                     "Add regression tests",
-                    "Update CLI examples in README"
-                ]
+                    "Update CLI examples in README",
+                ],
             },
             {
                 "id": 2,
@@ -56,8 +56,8 @@ def create_action_plan():
                     "Create performance comparison script",
                     "Generate visual benchmarks",
                     "Add performance section to README",
-                    "Create demo video/GIF"
-                ]
+                    "Create demo video/GIF",
+                ],
             },
             {
                 "id": 3,
@@ -68,8 +68,8 @@ def create_action_plan():
                     "Fix circular imports in core/engine.py",
                     "Consolidate security module imports",
                     "Create import test script",
-                    "Document module structure"
-                ]
+                    "Document module structure",
+                ],
             },
             {
                 "id": 4,
@@ -80,8 +80,8 @@ def create_action_plan():
                     "Analyze failing discovery tests",
                     "Fix fuzzy matching logic",
                     "Improve category detection",
-                    "Add package metadata"
-                ]
+                    "Add package metadata",
+                ],
             },
             {
                 "id": 5,
@@ -92,49 +92,49 @@ def create_action_plan():
                     "Update README with real examples",
                     "Create WORKING_FEATURES.md",
                     "Add performance metrics",
-                    "Remove aspirational claims"
-                ]
-            }
+                    "Remove aspirational claims",
+                ],
+            },
         ],
         "daily_goals": {
             "day1": {
                 "focus": "Fix Natural Language CLI",
                 "deliverables": [
                     "5/5 natural language tests passing",
-                    "Updated CLI documentation"
-                ]
+                    "Updated CLI documentation",
+                ],
             },
             "day2": {
                 "focus": "Performance Showcase",
                 "deliverables": [
                     "Performance comparison script",
                     "README performance section",
-                    "Benchmark visualizations"
-                ]
+                    "Benchmark visualizations",
+                ],
             },
             "day3": {
                 "focus": "Import & Structure Fixes",
                 "deliverables": [
                     "All imports working",
                     "No circular dependencies",
-                    "Import test suite"
-                ]
+                    "Import test suite",
+                ],
             },
             "day4": {
                 "focus": "Smart Discovery",
                 "deliverables": [
                     "4/4 discovery tests passing",
-                    "Improved fuzzy matching"
-                ]
+                    "Improved fuzzy matching",
+                ],
             },
             "day5": {
                 "focus": "Polish & Documentation",
                 "deliverables": [
                     "Honest README",
                     "Working examples",
-                    "Quick start guide"
-                ]
-            }
+                    "Quick start guide",
+                ],
+            },
         },
         "success_metrics": {
             "quantitative": {
@@ -142,37 +142,38 @@ def create_action_plan():
                 "smart_discovery_tests": "4/4 (from 1/4)",
                 "working_features": "5/10 (from 3/10)",
                 "import_errors": "0 (from unknown)",
-                "performance_documented": True
+                "performance_documented": True,
             },
             "qualitative": {
                 "contributor_experience": "Can run code immediately",
                 "user_trust": "README matches reality",
-                "performance_visibility": "Benchmarks prominently displayed"
-            }
+                "performance_visibility": "Benchmarks prominently displayed",
+            },
         },
         "scripts_to_create": [
             "scripts/find-failing-tests.py",
             "scripts/performance-comparison.py",
             "scripts/fix-imports.py",
             "scripts/test-smart-discovery.py",
-            "scripts/generate-working-features.py"
-        ]
+            "scripts/generate-working-features.py",
+        ],
     }
-    
+
     # Save the plan
-    with open('docs/planning/WEEK3_ACTION_PLAN.json', 'w') as f:
+    with open("docs/planning/WEEK3_ACTION_PLAN.json", "w") as f:
         json.dump(plan, f, indent=2)
-    
+
     # Generate markdown version
     generate_markdown_plan(plan)
-    
+
     print("✅ Week 3 Action Plan created")
     print("📄 JSON: docs/planning/WEEK3_ACTION_PLAN.json")
     print("📄 Markdown: docs/planning/WEEK3_ACTION_PLAN.md")
 
+
 def generate_markdown_plan(plan):
     """Generate readable markdown version of the plan."""
-    
+
     md = f"""# Week 3 Action Plan: {plan['theme']}
 
 Generated: {plan['generated']}
@@ -191,37 +192,37 @@ Generated: {plan['generated']}
 ## 📋 Week 3 Priorities
 
 """
-    
-    for priority in plan['priorities']:
+
+    for priority in plan["priorities"]:
         md += f"### {priority['id']}. {priority['title']}\n"
         md += f"- **Impact**: {priority['impact']}\n"
         md += f"- **Effort**: {priority['effort']}\n"
-        md += f"- **Tasks**:\n"
-        for task in priority['tasks']:
+        md += "- **Tasks**:\n"
+        for task in priority["tasks"]:
             md += f"  - {task}\n"
         md += "\n"
-    
+
     md += "## 📅 Daily Focus\n\n"
-    for day, details in plan['daily_goals'].items():
+    for day, details in plan["daily_goals"].items():
         md += f"### {day.title()}: {details['focus']}\n"
         md += "**Deliverables**:\n"
-        for deliverable in details['deliverables']:
+        for deliverable in details["deliverables"]:
             md += f"- {deliverable}\n"
         md += "\n"
-    
+
     md += "## 📊 Success Metrics\n\n"
     md += "### Quantitative\n"
-    for metric, value in plan['success_metrics']['quantitative'].items():
+    for metric, value in plan["success_metrics"]["quantitative"].items():
         md += f"- **{metric.replace('_', ' ').title()}**: {value}\n"
-    
+
     md += "\n### Qualitative\n"
-    for metric, value in plan['success_metrics']['qualitative'].items():
+    for metric, value in plan["success_metrics"]["qualitative"].items():
         md += f"- **{metric.replace('_', ' ').title()}**: {value}\n"
-    
-    md += f"\n## 🛠️ Scripts to Create\n"
-    for script in plan['scripts_to_create']:
+
+    md += "\n## 🛠️ Scripts to Create\n"
+    for script in plan["scripts_to_create"]:
         md += f"- {script}\n"
-    
+
     md += """
 ## 🚀 Key Insight
 
@@ -232,9 +233,10 @@ basics that users actually touch.
 **Remember**: Fast software feels magical. Let's make sure users can experience 
 that magic from their very first command.
 """
-    
-    with open('docs/planning/WEEK3_ACTION_PLAN.md', 'w') as f:
+
+    with open("docs/planning/WEEK3_ACTION_PLAN.md", "w") as f:
         f.write(md)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     create_action_plan()

@@ -2,14 +2,15 @@
 """Test all smart discovery features."""
 
 import sys
-sys.path.insert(0, 'src')
 
-from nix_humanity.core.package_discovery import PackageDiscovery
+sys.path.insert(0, "src")
+
+from nix_for_humanity.core.package_discovery import PackageDiscovery
 
 discovery = PackageDiscovery()
 
 print("🧪 Comprehensive Smart Discovery Testing\n")
-print("="*60)
+print("=" * 60)
 
 # Test 1: Direct package names
 print("\n📦 Test 1: Direct Package Names")
@@ -68,7 +69,7 @@ for name, desc in popular[:5]:
     print(f"  - {name}: {desc}")
 
 # Summary
-print("\n\n" + "="*60)
+print("\n\n" + "=" * 60)
 print("✅ All smart discovery features tested successfully!")
 print("\nCapabilities demonstrated:")
 print("  • Direct package name search")

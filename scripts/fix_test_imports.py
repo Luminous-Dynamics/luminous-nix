@@ -20,18 +20,27 @@ test_files = [
     "tests/unit/test_tui_app_simple.py",
     "tests/unit/test_cli_adapter_comprehensive.py",
     "tests/integration/test_debug_simple.py",
-    "tests/cli/test_cli_adapter_comprehensive.py"
+    "tests/cli/test_cli_adapter_comprehensive.py",
 ]
 
 replacements = [
     # Simple replacements
-    (r'\bNixForHumanityCore\b', 'NixForHumanityBackend'),
+    (r"\bNixForHumanityCore\b", "NixForHumanityBackend"),
     # Import statement replacements
-    (r'from nix_humanity\.core import NixForHumanityCore', 'from nix_humanity.core import NixForHumanityBackend'),
-    (r'from nix_humanity\.core import (.*?)NixForHumanityCore', r'from nix_humanity.core import \1NixForHumanityBackend'),
+    (
+        r"from nix_for_humanity\.core import NixForHumanityCore",
+        "from nix_for_humanity.core import NixForHumanityBackend",
+    ),
+    (
+        r"from nix_for_humanity\.core import (.*?)NixForHumanityCore",
+        r"from nix_for_humanity.core import \1NixForHumanityBackend",
+    ),
     # Fix Query and ExecutionMode imports
-    (r'from nix_humanity\.core import (.*?), Query, ExecutionMode', r'from nix_humanity.core import \1'),
-    (r'from nix_humanity\.core import Query, ExecutionMode', ''),
+    (
+        r"from nix_for_humanity\.core import (.*?), Query, ExecutionMode",
+        r"from nix_for_humanity.core import \1",
+    ),
+    (r"from nix_for_humanity\.core import Query, ExecutionMode", ""),
 ]
 
 fixed_count = 0
@@ -40,28 +49,28 @@ for test_file in test_files:
     if not os.path.exists(test_file):
         print(f"⚠️  File not found: {test_file}")
         continue
-    
+
     try:
-        with open(test_file, 'r') as f:
+        with open(test_file) as f:
             content = f.read()
-        
+
         original_content = content
-        
+
         # Apply replacements
         for pattern, replacement in replacements:
             content = re.sub(pattern, replacement, content)
-        
+
         # Remove empty import lines
-        content = re.sub(r'\nfrom nix_humanity\.core import\s*\n', '\n', content)
-        
+        content = re.sub(r"\nfrom nix_for_humanity\.core import\s*\n", "\n", content)
+
         if content != original_content:
-            with open(test_file, 'w') as f:
+            with open(test_file, "w") as f:
                 f.write(content)
             print(f"✅ Fixed: {test_file}")
             fixed_count += 1
         else:
             print(f"  No changes needed: {test_file}")
-            
+
     except Exception as e:
         print(f"❌ Error processing {test_file}: {e}")
 

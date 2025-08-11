@@ -1,31 +1,60 @@
 ---
-name: Bug report
+name: 🐛 Bug Report
 about: Create a report to help us improve
 title: '[BUG] '
-labels: 'bug'
+labels: 'bug, needs-triage'
 assignees: ''
 ---
 
-**Describe the bug**
-A clear description of what the bug is.
+## 🐛 Bug Description
+<!-- A clear and concise description of what the bug is -->
 
-**To Reproduce**
+## 📝 To Reproduce
 Steps to reproduce the behavior:
-1. Run command: `ask-nix "..."`
-2. See error
+1. Run command '...'
+2. Click on '...'
+3. Scroll down to '...'
+4. See error
 
-**Expected behavior**
-What you expected to happen.
+## ✅ Expected Behavior
+<!-- What you expected to happen -->
 
-**Actual output**
+## 💻 Environment
+- **OS**: [e.g., NixOS 25.11]
+- **Version**: [e.g., v1.0.0]
+- **Python**: [e.g., 3.11]
+- **Node**: [e.g., 20.x]
+- **Installation method**: [nix develop / poetry / npm]
+
+## 📸 Screenshots
+<!-- If applicable, add screenshots to help explain your problem -->
+
+## 📋 Logs
+<details>
+<summary>Click to expand logs</summary>
+
 ```
-Paste the actual output here
+Paste relevant logs here
 ```
 
-**Environment:**
- - OS: [e.g. NixOS 24.05]
- - Python version: [e.g. 3.11]
- - Nix for Humanity version: [e.g. 1.0.0]
+</details>
 
-**Additional context**
-Add any other context about the problem here.
+## 🔍 Additional Context
+<!-- Add any other context about the problem here -->
+
+## 👤 Persona Impact
+<!-- Which user persona is most affected by this bug? -->
+- [ ] Grandma Rose (75, non-technical)
+- [ ] Maya (16, ADHD)
+- [ ] Viktor (67, ESL)
+- [ ] Dr. Sarah (35, researcher)
+- [ ] Other: 
+
+## 🎯 Severity
+- [ ] 🔴 Critical - System unusable
+- [ ] 🟠 High - Major feature broken
+- [ ] 🟡 Medium - Minor feature issue
+- [ ] 🟢 Low - Cosmetic issue
+
+---
+<!-- Thank you for reporting this bug! We'll investigate as soon as possible. -->

@@ -4,39 +4,42 @@ Simple test for automated coverage monitoring system
 Tests core functionality without running full analysis
 """
 
-import os
-import sys
-import tempfile
 import shutil
+import sys
 from pathlib import Path
 
 # Add src to path for testing
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
+
 def test_coverage_monitor_simple():
     """Test coverage monitoring system with simplified approach."""
-    
+
     print("🧪 Testing Automated Coverage Monitoring System (Simple)")
     print("=" * 60)
-    
+
     project_root = Path(__file__).parent.parent
     print(f"📍 Project root: {project_root}")
-    
+
     monitor_script = project_root / "scripts" / "coverage_monitor.py"
     print(f"📊 Monitor script: {monitor_script}")
-    
+
     if not monitor_script.exists():
         print("❌ Coverage monitor script not found!")
         return False
-    
+
     print("\n🔍 Test 1: Validating script imports...")
     try:
         # Test basic import without running analysis
         import subprocess
-        result = subprocess.run([
-            sys.executable, str(monitor_script), "--help"
-        ], capture_output=True, text=True, timeout=10)
-        
+
+        result = subprocess.run(
+            [sys.executable, str(monitor_script), "--help"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+
         if result.returncode == 0 and "usage:" in result.stdout.lower():
             print("✅ Script imports successfully and shows help")
         else:
@@ -45,21 +48,25 @@ def test_coverage_monitor_simple():
     except Exception as e:
         print(f"❌ Import test failed: {e}")
         return False
-    
+
     print("\n🔍 Test 2: Testing directory structure creation...")
     coverage_dir = project_root / ".coverage_monitor"
     reports_dir = coverage_dir / "reports"
-    
+
     # Clean up first
     if coverage_dir.exists():
         shutil.rmtree(coverage_dir)
-    
+
     try:
         # Test initialization without analysis
-        result = subprocess.run([
-            sys.executable, str(monitor_script), "--init-only"
-        ], capture_output=True, text=True, timeout=10, cwd=project_root)
-        
+        result = subprocess.run(
+            [sys.executable, str(monitor_script), "--init-only"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+            cwd=project_root,
+        )
+
         if coverage_dir.exists() and reports_dir.exists():
             print("✅ Directory structure created successfully")
         else:
@@ -67,22 +74,23 @@ def test_coverage_monitor_simple():
             return False
     except Exception as e:
         print(f"⚠️ Directory test failed, continuing: {e}")
-    
+
     print("\n🔍 Test 3: Testing database creation...")
     db_path = coverage_dir / "coverage_history.db"
-    
+
     if db_path.exists():
         print(f"✅ Database created: {db_path} ({db_path.stat().st_size} bytes)")
     else:
         print("❌ Database not created")
         return False
-    
+
     print("\n🔍 Test 4: Testing sample data generation...")
     try:
         # Create sample coverage file
         sample_coverage = project_root / "coverage.xml"
-        with open(sample_coverage, 'w') as f:
-            f.write('''<?xml version="1.0" ?>
+        with open(sample_coverage, "w") as f:
+            f.write(
+                """<?xml version="1.0" ?>
 <coverage version="6.5.0" timestamp="1640995200000" lines-valid="1000" lines-covered="750" line-rate="0.75">
     <sources>
         <source>./src</source>
@@ -103,17 +111,18 @@ def test_coverage_monitor_simple():
             </classes>
         </package>
     </packages>
-</coverage>''')
-        
+</coverage>"""
+            )
+
         print("✅ Sample coverage data generated")
-        
+
         # Clean up
         sample_coverage.unlink()
-        
+
     except Exception as e:
         print(f"❌ Sample data generation failed: {e}")
         return False
-    
+
     print("\n🔍 Test 5: Testing configuration validation...")
     try:
         # Check if we can validate the monitoring configuration
@@ -124,7 +133,7 @@ def test_coverage_monitor_simple():
             print("⚠️ GitHub Actions directory not found")
     except Exception as e:
         print(f"⚠️ Configuration test failed: {e}")
-    
+
     print("\n🔍 Test 6: Testing cleanup...")
     try:
         if coverage_dir.exists():
@@ -136,7 +145,7 @@ def test_coverage_monitor_simple():
         print("✅ Test cleanup completed")
     except Exception as e:
         print(f"⚠️ Cleanup failed: {e}")
-    
+
     print("\n🎉 Coverage Monitoring System Test Summary:")
     print("─" * 50)
     print("✅ Script imports and shows help")
@@ -145,11 +154,12 @@ def test_coverage_monitor_simple():
     print("✅ Sample data handling")
     print("✅ Configuration validation")
     print("✅ Cleanup procedures")
-    
+
     print("\n🌊 Testing Foundation Infrastructure Complete!")
     print("Ready for automated coverage monitoring in CI/CD pipeline")
-    
+
     return True
+
 
 if __name__ == "__main__":
     success = test_coverage_monitor_simple()

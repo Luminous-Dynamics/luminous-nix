@@ -4,14 +4,11 @@ Patch script to integrate AI Environment Architect into ask-nix
 This adds the ability to detect and handle AI/ML environment requests
 """
 
-import os
-import sys
-from pathlib import Path
 
 def create_integration_snippet():
     """Create the code snippet to integrate AI environments"""
-    
-    return '''
+
+    return """
         # Check if this is an AI environment request
         if hasattr(self, 'ai_integration') and self.ai_integration.is_environment_request(query):
             # Handle AI environment generation
@@ -59,12 +56,13 @@ def create_integration_snippet():
                 print("Environment creation cancelled.")
             
             return
-'''
+"""
+
 
 def create_import_snippet():
     """Create import statements for AI integration"""
-    
-    return '''
+
+    return """
 # Import AI Environment integration
 try:
     from ai_environment_integration import AIEnvironmentIntegration
@@ -72,12 +70,13 @@ try:
 except ImportError:
     AI_ENV_AVAILABLE = False
     print("Warning: AI Environment Architect not available", file=sys.stderr)
-'''
+"""
+
 
 def create_init_snippet():
     """Create initialization code for AI integration"""
-    
-    return '''
+
+    return """
         # Initialize AI Environment integration if available
         if AI_ENV_AVAILABLE:
             try:
@@ -87,45 +86,51 @@ def create_init_snippet():
                 self.ai_integration = None
         else:
             self.ai_integration = None
-'''
+"""
+
 
 def main():
     """Generate integration instructions"""
-    
+
     print("AI Environment Architect Integration Instructions")
     print("=" * 50)
     print()
     print("To integrate AI Environment Architect into ask-nix, add the following:")
     print()
-    
+
     print("1. Add imports near the top of ask-nix (after other imports):")
     print("-" * 40)
     print(create_import_snippet())
     print()
-    
+
     print("2. Add initialization in __init__ method of UnifiedNixAssistant:")
     print("-" * 40)
     print(create_init_snippet())
     print()
-    
-    print("3. Add this at the beginning of the answer() method (after intent extraction):")
+
+    print(
+        "3. Add this at the beginning of the answer() method (after intent extraction):"
+    )
     print("-" * 40)
     print(create_integration_snippet())
     print()
-    
+
     print("4. Update the usage information to include AI environment examples:")
     print("-" * 40)
-    print('''
+    print(
+        """
         console.print("  ask-nix 'Create a PyTorch environment with CUDA'")
         console.print("  ask-nix 'Set up Jupyter notebook for ML'")
         console.print("  ask-nix 'I want to run Llama locally'")
-''')
+"""
+    )
     print()
-    
+
     print("5. Test the integration:")
     print("-" * 40)
     print("ask-nix 'Create an AI environment with transformers and CUDA support'")
     print()
+
 
 if __name__ == "__main__":
     main()

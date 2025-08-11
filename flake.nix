@@ -86,7 +86,7 @@
           export PYTHONPATH="${toString ./.}:$PYTHONPATH"
           
           # Launch the TUI with poetry2nix-managed Python
-          exec ${poetryEnv}/bin/python -m nix_humanity.interfaces.tui "$@"
+          exec ${poetryEnv}/bin/python -m nix_for_humanity.interfaces.tui "$@"
         '';
         
         # Create our custom ask-nix-guru command

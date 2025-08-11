@@ -4,14 +4,11 @@ Production Release Preparation Script for Nix for Humanity
 Prepares all necessary files and documentation for v1.0.0 release
 """
 
+import datetime
 import os
 import sys
-import json
-import shutil
-import subprocess
-import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+
 
 class ReleasePreparation:
     def __init__(self, version: str = "1.0.0"):
@@ -20,42 +17,46 @@ class ReleasePreparation:
         self.release_date = datetime.date.today().strftime("%Y-%m-%d")
         self.project_root = Path(__file__).parent.parent
         self.release_dir = self.project_root / "release" / f"v{version}"
-        
+
         # Create release directory
         self.release_dir.mkdir(parents=True, exist_ok=True)
-        
+
     def update_version_files(self):
         """Update version in all relevant files"""
         print("📝 Updating version files...")
-        
+
         # Update VERSION file
         version_file = self.project_root / "VERSION"
         version_file.write_text(self.version)
-        
+
         # Update pyproject.toml
         pyproject_path = self.project_root / "pyproject.toml"
         if pyproject_path.exists():
             content = pyproject_path.read_text()
-            content = content.replace(f'version = "{self.prev_version}"', f'version = "{self.version}"')
+            content = content.replace(
+                f'version = "{self.prev_version}"', f'version = "{self.version}"'
+            )
             pyproject_path.write_text(content)
-        
+
         # Update flake.nix
         flake_path = self.project_root / "flake.nix"
         if flake_path.exists():
             content = flake_path.read_text()
-            content = content.replace(f'version = "{self.prev_version}";', f'version = "{self.version}";')
+            content = content.replace(
+                f'version = "{self.prev_version}";', f'version = "{self.version}";'
+            )
             flake_path.write_text(content)
-        
+
         print(f"✅ Version updated to {self.version}")
-    
+
     def generate_release_notes(self):
         """Generate comprehensive release notes"""
         print("📋 Generating release notes...")
-        
-        # Use format() instead of f-strings for content with special characters
-        release_notes = """# Nix for Humanity v{version} Release Notes
 
-**Release Date**: {release_date}
+        # Use format() instead of f-strings for content with special characters
+        release_notes = f"""# Nix for Humanity v{self.version} Release Notes
+
+**Release Date**: {self.release_date}
 
 ## 🎉 Overview
 
@@ -238,17 +239,17 @@ Special thanks to all contributors and early testers who helped make NixOS acces
 **Philosophy**: Making NixOS accessible through consciousness-first computing, where technology amplifies human awareness rather than fragmenting it.
 
 **Achievement**: $200/month development model delivering $4.2M enterprise quality - proving sacred technology can be practical.
-""".format(version=self.version, release_date=self.release_date)
-        
+"""
+
         release_notes_path = self.release_dir / "RELEASE_NOTES.md"
         release_notes_path.write_text(release_notes)
         print(f"✅ Release notes generated: {release_notes_path}")
-    
+
     def generate_release_checklist(self):
         """Generate comprehensive release checklist"""
         print("✅ Generating release checklist...")
-        
-        checklist = """# Nix for Humanity v{version} Release Checklist
+
+        checklist = f"""# Nix for Humanity v{self.version} Release Checklist
 
 ## Pre-Release Testing
 - [ ] All unit tests passing (`pytest tests/`)
@@ -313,7 +314,7 @@ Special thanks to all contributors and early testers who helped make NixOS acces
 
 ## Git & GitHub
 - [ ] Create release branch
-- [ ] Tag version (v{version})
+- [ ] Tag version (v{self.version})
 - [ ] Push tag to GitHub
 - [ ] Create GitHub release
 - [ ] Upload release artifacts
@@ -335,16 +336,16 @@ Special thanks to all contributors and early testers who helped make NixOS acces
 ---
 **Release Manager**: _______________________
 **Date Completed**: _______________________
-""".format(version=self.version)
-        
+"""
+
         checklist_path = self.release_dir / "RELEASE_CHECKLIST.md"
         checklist_path.write_text(checklist)
         print(f"✅ Release checklist generated: {checklist_path}")
-    
+
     def create_installation_instructions(self):
         """Generate detailed installation instructions"""
         print("📦 Creating installation instructions...")
-        
+
         # Create the instructions content separately
         nix_config_content = """# Add to configuration.nix
 services.nixForHumanity = {
@@ -414,8 +415,8 @@ services.nixForHumanity = {
     };
   };
 }"""
-        
-        instructions = """# Nix for Humanity v{version} Installation Guide
+
+        instructions = f"""# Nix for Humanity v{self.version} Installation Guide
 
 ## System Requirements
 
@@ -476,7 +477,7 @@ source ~/.bashrc
 ### Method 4: Try Without Installing
 
 ```bash
-nix run github:Luminous-Dynamics/nix-for-humanity#{version} -- "help"
+nix run github:Luminous-Dynamics/nix-for-humanity#{self.version} -- "help"
 ```
 
 ## Post-Installation Setup
@@ -569,21 +570,17 @@ rm -rf ~/.cache/nix-for-humanity
 ---
 
 **Next Steps**: Run `ask-nix tutorial` to start learning!
-""".format(
-            version=self.version,
-            nix_config_detailed=nix_config_detailed,
-            flake_detailed=flake_detailed
-        )
-        
+"""
+
         install_path = self.release_dir / "INSTALLATION.md"
         install_path.write_text(instructions)
         print(f"✅ Installation instructions created: {install_path}")
-    
+
     def generate_migration_guide(self):
         """Generate migration guide from v0.8.3 to v1.0.0"""
         print("📚 Generating migration guide...")
-        
-        migration = """# Migration Guide: v0.8.3 to v{version}
+
+        migration = f"""# Migration Guide: v0.8.3 to v{self.version}
 
 ## Overview
 
@@ -801,18 +798,18 @@ sudo nixos-rebuild switch
 ---
 
 **Remember**: This upgrade brings 10x-1500x performance improvements and powerful new features. The migration effort is worth it!
-""".format(version=self.version)
-        
+"""
+
         migration_path = self.release_dir / "MIGRATION_GUIDE_v1.0.0.md"
         migration_path.write_text(migration)
         print(f"✅ Migration guide generated: {migration_path}")
-    
+
     def generate_announcement_templates(self):
         """Generate announcement templates for various platforms"""
         print("📢 Generating announcement templates...")
-        
+
         # Blog post
-        blog_post = """# Announcing Nix for Humanity v{version}: Natural Language for NixOS
+        blog_post = f"""# Announcing Nix for Humanity v{self.version}: Natural Language for NixOS
 
 We're thrilled to announce the production release of Nix for Humanity v1.0.0, a revolutionary tool that makes NixOS accessible through natural conversation.
 
@@ -881,10 +878,10 @@ This release proves that sacred technology can be practical. We invite you to:
 - Discussion: https://github.com/Luminous-Dynamics/nix-for-humanity/discussions
 
 Together, we're building a future where technology serves consciousness.
-""".format(version=self.version)
-        
+"""
+
         # Social media
-        twitter_announcement = """🎉 Nix for Humanity v{version} is here!
+        twitter_announcement = f"""🎉 Nix for Humanity v{self.version} is here!
 
 Natural language for NixOS that actually works:
 ✨ "Install Firefox" → It just happens
@@ -898,10 +895,10 @@ Try now:
 nix run github:Luminous-Dynamics/nix-for-humanity -- "help"
 
 #NixOS #AI #OpenSource #ConsciousnessFirst
-""".format(version=self.version)
-        
+"""
+
         # GitHub Release
-        github_release = """## 🎉 Nix for Humanity v{version} - Production Release
+        github_release = f"""## 🎉 Nix for Humanity v{self.version} - Production Release
 
 ### Natural Language for NixOS That Actually Works
 
@@ -951,31 +948,31 @@ This release proves our development model: $200/month achieving what traditional
 ### Contributors
 [List of contributors]
 
-**Full Changelog**: https://github.com/Luminous-Dynamics/nix-for-humanity/compare/v0.8.3...v{version}
-""".format(version=self.version)
-        
+**Full Changelog**: https://github.com/Luminous-Dynamics/nix-for-humanity/compare/v0.8.3...v{self.version}
+"""
+
         # Save all templates
         templates_dir = self.release_dir / "announcements"
         templates_dir.mkdir(exist_ok=True)
-        
+
         (templates_dir / "blog_post.md").write_text(blog_post)
         (templates_dir / "twitter.txt").write_text(twitter_announcement)
         (templates_dir / "github_release.md").write_text(github_release)
-        
+
         print(f"✅ Announcement templates generated in: {templates_dir}")
-    
+
     def create_release_package(self):
         """Create release package with all necessary files"""
         print("📦 Creating release package...")
-        
+
         # Create package script with {{ }} escaped for format strings
-        package_script = """#!/usr/bin/env python3
+        package_script = f"""#!/usr/bin/env python3
 import os
 import tarfile
 import hashlib
 from pathlib import Path
 
-version = "{version}"
+version = "{self.version}"
 project_root = Path(__file__).parent.parent.parent
 
 # Files to include in release
@@ -1049,20 +1046,20 @@ with open(f"{{output_file}}.sha256", "w") as f:
 
 print(f"\n✅ Release package created: {{output_file}}")
 print(f"✅ Checksum: {{sha256}}")
-""".format(version=self.version)
-        
+"""
+
         package_script_path = self.release_dir / "create_package.py"
         package_script_path.write_text(package_script)
         os.chmod(package_script_path, 0o755)
-        
+
         print(f"✅ Package script created: {package_script_path}")
-    
+
     def generate_changelog_update(self):
         """Update CHANGELOG.md with new version"""
         print("📝 Updating CHANGELOG.md...")
-        
-        changelog_entry = """
-## [{version}] - {release_date}
+
+        changelog_entry = f"""
+## [{self.version}] - {self.release_date}
 
 ### Added
 - Native Python-Nix API integration for 10x-1500x performance
@@ -1103,23 +1100,23 @@ print(f"✅ Checksum: {{sha256}}")
 - Input validation hardening
 - Permission checking improvements
 
-""".format(version=self.version, release_date=self.release_date)
-        
+"""
+
         changelog_path = self.project_root / "CHANGELOG.md"
         if changelog_path.exists():
             content = changelog_path.read_text()
             # Insert after header
-            lines = content.split('\n')
+            lines = content.split("\n")
             for i, line in enumerate(lines):
-                if line.startswith('# Changelog'):
+                if line.startswith("# Changelog"):
                     lines.insert(i + 2, changelog_entry)
                     break
-            
-            changelog_path.write_text('\n'.join(lines))
-            print(f"✅ CHANGELOG.md updated")
+
+            changelog_path.write_text("\n".join(lines))
+            print("✅ CHANGELOG.md updated")
         else:
             # Create new changelog
-            new_changelog = """# Changelog
+            new_changelog = f"""# Changelog
 
 All notable changes to Nix for Humanity will be documented in this file.
 
@@ -1133,18 +1130,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic natural language processing
 - CLI interface
 - Initial documentation
-""".format(changelog_entry=changelog_entry)
+"""
             changelog_path.write_text(new_changelog)
-            print(f"✅ CHANGELOG.md created")
-    
+            print("✅ CHANGELOG.md created")
+
     def create_final_summary(self):
         """Create summary of all release preparation steps"""
         print("\n📋 Creating release summary...")
-        
-        summary = """# Nix for Humanity v{version} Release Preparation Summary
 
-**Date**: {release_date}
-**Version**: {prev_version} → {version}
+        summary = f"""# Nix for Humanity v{self.version} Release Preparation Summary
+
+**Date**: {self.release_date}
+**Version**: {self.prev_version} → {self.version}
 
 ## ✅ Completed Steps
 
@@ -1154,10 +1151,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    - flake.nix updated
 
 2. **Documentation Generated**
-   - Release Notes: `release/v{version}/RELEASE_NOTES.md`
-   - Installation Guide: `release/v{version}/INSTALLATION.md`
-   - Migration Guide: `release/v{version}/MIGRATION_GUIDE_v1.0.0.md`
-   - Release Checklist: `release/v{version}/RELEASE_CHECKLIST.md`
+   - Release Notes: `release/v{self.version}/RELEASE_NOTES.md`
+   - Installation Guide: `release/v{self.version}/INSTALLATION.md`
+   - Migration Guide: `release/v{self.version}/MIGRATION_GUIDE_v1.0.0.md`
+   - Release Checklist: `release/v{self.version}/RELEASE_CHECKLIST.md`
 
 3. **Announcements Created**
    - Blog post template
@@ -1174,17 +1171,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 2. **Run final tests** using the checklist
 3. **Create release package**:
    ```bash
-   cd release/v{version}
+   cd release/v{self.version}
    python3 create_package.py
    ```
 
 4. **Git operations**:
    ```bash
    git add .
-   git commit -m "Prepare v{version} release"
-   git tag -a v{version} -m "Release v{version}: Natural Language for NixOS"
+   git commit -m "Prepare v{self.version} release"
+   git tag -a v{self.version} -m "Release v{self.version}: Natural Language for NixOS"
    git push origin main
-   git push origin v{version}
+   git push origin v{self.version}
    ```
 
 5. **Create GitHub release**:
@@ -1208,31 +1205,32 @@ This release represents:
 - A new paradigm in human-AI partnership
 
 Thank you for making sacred technology practical! 🙏
-""".format(version=self.version, release_date=self.release_date, prev_version=self.prev_version)
-        
+"""
+
         summary_path = self.release_dir / "RELEASE_SUMMARY.md"
         summary_path.write_text(summary)
-        
+
         print(f"\n{"="*60}")
-        print(f"✅ Release preparation complete!")
+        print("✅ Release preparation complete!")
         print(f"📁 All files generated in: {self.release_dir}")
         print(f"📋 Review the summary at: {summary_path}")
         print(f"{"="*60}\n")
 
+
 def main():
     """Main execution function"""
     print(f"\n{"="*60}")
-    print(f"🚀 Nix for Humanity Production Release Preparation")
+    print("🚀 Nix for Humanity Production Release Preparation")
     print(f"{"="*60}\n")
-    
+
     # Check if we're in the right directory
     if not Path("pyproject.toml").exists():
         print("❌ Error: Must run from nix-for-humanity root directory")
         sys.exit(1)
-    
+
     # Create release preparation instance
     prep = ReleasePreparation(version="1.0.0")
-    
+
     # Execute all preparation steps
     prep.update_version_files()
     prep.generate_release_notes()
@@ -1243,10 +1241,11 @@ def main():
     prep.create_release_package()
     prep.generate_changelog_update()
     prep.create_final_summary()
-    
+
     print("🎉 Production release preparation complete!")
-    print(f"📁 Check the release directory: release/v1.0.0/")
+    print("📁 Check the release directory: release/v1.0.0/")
     print("📋 Follow the checklist to complete the release process.")
+
 
 if __name__ == "__main__":
     main()

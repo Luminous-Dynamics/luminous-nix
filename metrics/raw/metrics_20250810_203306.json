@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "timestamp": "2025-08-10T20:33:06.648311",
+    "project": "Nix for Humanity",
+    "version": "1.0.0"
+  },
+  "coverage": {
+    "timestamp": "2025-08-10T20:33:06.648311",
+    "error": "Coverage collection not available"
+  },
+  "types": {
+    "timestamp": "2025-08-10T20:33:06.648311",
+    "error": "Type checking not available"
+  },
+  "linting": {
+    "timestamp": "2025-08-10T20:33:06.648311",
+    "error": "Linting not available"
+  },
+  "complexity": {
+    "timestamp": "2025-08-10T20:33:06.648311",
+    "error": "Complexity analysis not available"
+  },
+  "performance": {
+    "cold_start_ms": 36,
+    "cold_start_pass": true,
+    "timestamp": "2025-08-10T20:33:06.648311"
+  },
+  "documentation": {
+    "timestamp": "2025-08-10T20:33:06.648311",
+    "required_files": {
+      "README.md": true,
+      "CHANGELOG.md": true,
+      "LICENSE": true,
+      "docs/README.md": true,
+      "docs/QUICK_REFERENCE.md": true,
+      "CLAUDE.md": true,
+      ".github/pull_request_template.md": true
+    },
+    "total_required": 7,
+    "total_present": 7,
+    "completeness_percent": 100.0
+  },
+  "git": {
+    "timestamp": "2025-08-10T20:33:06.648311",
+    "recent_commits": 20,
+    "conventional_commits": 14,
+    "conventional_percent": 70.0
+  }
+}

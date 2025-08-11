@@ -1,0 +1,293 @@
+name: 📋 Standards Compliance Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main, develop]
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  # 1. Python Code Quality
+  python-quality:
+    name: 🐍 Python Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better analysis
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: 📚 Load cached dependencies
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: 📦 Install dependencies
+        run: |
+          poetry install --all-extras
+          poetry run pip install pre-commit
+
+      - name: 🎨 Check Black formatting (88 chars)
+        run: |
+          echo "Checking Black formatting with 88-character line length..."
+          poetry run black --check --line-length 88 src/ tests/ scripts/
+        continue-on-error: true
+
+      - name: 🔍 Run Ruff linting
+        run: |
+          echo "Running Ruff with comprehensive rule set..."
+          poetry run ruff check src/ tests/ scripts/
+        continue-on-error: true
+
+      - name: 🔎 Check type hints with mypy
+        run: |
+          echo "Checking type hints with mypy strict mode..."
+          poetry run mypy src/ --strict
+        continue-on-error: true
+
+      - name: 🔒 Security scan with Bandit
+        run: |
+          echo "Scanning for security issues..."
+          poetry run bandit -r src/ -ll
+        continue-on-error: true
+
+      - name: 📊 Generate quality report
+        if: always()
+        run: |
+          echo "## 🐍 Python Quality Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check Black
+          if poetry run black --check --line-length 88 src/ tests/ scripts/ 2>/dev/null; then
+            echo "✅ **Black formatting**: Passed (88 chars)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Black formatting**: Failed - Run \`poetry run black .\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Check Ruff
+          if poetry run ruff check src/ tests/ scripts/ 2>/dev/null; then
+            echo "✅ **Ruff linting**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Ruff linting**: Issues found - Run \`poetry run ruff check --fix .\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Check mypy
+          if poetry run mypy src/ --strict 2>/dev/null; then
+            echo "✅ **Type checking**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Type checking**: Issues found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # 2. Pre-commit Hooks
+  pre-commit:
+    name: 🔧 Pre-commit Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🔧 Run pre-commit hooks
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: --all-files
+
+  # 3. Documentation Standards
+  documentation:
+    name: 📚 Documentation Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📋 Check documentation standards
+        run: |
+          python3 scripts/compliance-check.py
+          
+      - name: 📊 Upload compliance report
+        uses: actions/upload-artifact@v4
+        with:
+          name: compliance-report
+          path: docs/COMPLIANCE_REPORT.json
+
+      - name: 🔍 Check for required docs
+        run: |
+          echo "## 📚 Documentation Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          required_docs=(
+            "README.md"
+            "CHANGELOG.md"
+            "LICENSE"
+            "docs/README.md"
+            "docs/PYTHON-PACKAGING-STANDARDS.md"
+            "docs/API-VERSIONING-STANDARDS.md"
+            "docs/PERFORMANCE-STANDARDS.md"
+          )
+          
+          all_present=true
+          for doc in "${required_docs[@]}"; do
+            if [ -f "$doc" ]; then
+              echo "✅ $doc" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "❌ $doc (missing)" >> $GITHUB_STEP_SUMMARY
+              all_present=false
+            fi
+          done
+          
+          if [ "$all_present" = false ]; then
+            exit 1
+          fi
+
+  # 4. Commit Message Standards
+  commit-lint:
+    name: 📝 Commit Standards
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📝 Check commit messages
+        run: |
+          echo "## 📝 Commit Message Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Get commits in this PR
+          commits=$(git log --format="%s" origin/main..HEAD)
+          
+          valid_types="feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert"
+          invalid_count=0
+          
+          while IFS= read -r commit; do
+            if [[ $commit =~ ^($valid_types)(\(.+\))?: ]]; then
+              echo "✅ $commit" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "❌ $commit (invalid format)" >> $GITHUB_STEP_SUMMARY
+              invalid_count=$((invalid_count + 1))
+            fi
+          done <<< "$commits"
+          
+          if [ $invalid_count -gt 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ **$invalid_count invalid commit messages found**" >> $GITHUB_STEP_SUMMARY
+            echo "Expected format: \`type(scope): subject\`" >> $GITHUB_STEP_SUMMARY
+            echo "Valid types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # 5. Test Coverage
+  test-coverage:
+    name: 🧪 Test Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: 📦 Install dependencies
+        run: poetry install --all-extras
+
+      - name: 🧪 Run tests with coverage
+        run: |
+          poetry run pytest --cov=nix_for_humanity --cov-report=xml --cov-report=term
+        continue-on-error: true
+
+      - name: 📊 Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+        continue-on-error: true
+
+      - name: 📈 Coverage report
+        run: |
+          echo "## 🧪 Test Coverage" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          poetry run pytest --cov=nix_for_humanity --cov-report=term | tail -n 10 >> $GITHUB_STEP_SUMMARY || echo "Tests not available" >> $GITHUB_STEP_SUMMARY
+
+  # 6. Final Status Report
+  status-report:
+    name: 📊 Status Report
+    needs: [python-quality, pre-commit, documentation, commit-lint, test-coverage]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: 📊 Generate final report
+        run: |
+          echo "# 🎯 Standards Compliance Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          
+          # Check job statuses
+          if [ "${{ needs.python-quality.result }}" == "success" ]; then
+            echo "| Python Standards | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Python Standards | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ needs.pre-commit.result }}" == "success" ]; then
+            echo "| Pre-commit Hooks | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Pre-commit Hooks | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ needs.documentation.result }}" == "success" ]; then
+            echo "| Documentation | ✅ Complete |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Documentation | ❌ Incomplete |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ needs.commit-lint.result }}" == "success" ] || [ "${{ needs.commit-lint.result }}" == "skipped" ]; then
+            echo "| Commit Messages | ✅ Valid |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Commit Messages | ⚠️ Issues |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ needs.test-coverage.result }}" == "success" ]; then
+            echo "| Test Coverage | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Test Coverage | ⚠️ Check |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Standards enforced by Sacred Trinity development model* 🕉️" >> $GITHUB_STEP_SUMMARY

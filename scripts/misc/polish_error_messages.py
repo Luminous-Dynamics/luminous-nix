@@ -4,8 +4,6 @@ from typing import List
 Polish error messages for v1.0 - Make them educational and helpful
 """
 
-import os
-import re
 from pathlib import Path
 
 # Educational error message templates
@@ -26,11 +24,10 @@ NixOS packages are stored in channels (repositories). Sometimes a package:
             "Check the exact name at: https://search.nixos.org",
             "Try variations: '{package}', '{package}-bin', '{package}Packages'",
             "For Python packages: `python3Packages.{package}`",
-            "For Node packages: `nodePackages.{package}`"
+            "For Node packages: `nodePackages.{package}`",
         ],
-        "next_steps": "Would you like me to search for packages similar to '{package}'?"
+        "next_steps": "Would you like me to search for packages similar to '{package}'?",
     },
-    
     # Permission denied errors
     "PERMISSION_ERROR": {
         "message": "This operation requires administrator privileges.",
@@ -47,11 +44,10 @@ System operations need 'sudo' because they affect all users.
             "For system-wide changes: Add 'sudo' before the command",
             "For user-only installation: Use `nix profile install` instead",
             "Check if you're in the 'wheel' group for sudo access",
-            "Consider using Home Manager for user-specific configs"
+            "Consider using Home Manager for user-specific configs",
         ],
-        "next_steps": "Should I show you both user and system installation methods?"
+        "next_steps": "Should I show you both user and system installation methods?",
     },
-    
     # Network errors
     "NETWORK_ERROR": {
         "message": "I'm having trouble connecting to the NixOS package servers.",
@@ -68,11 +64,10 @@ NixOS fetches packages from binary caches:
             "Test NixOS cache: `curl -I https://cache.nixos.org`",
             "Try again - could be temporary",
             "Check proxy settings if behind a firewall",
-            "Use `--offline` for already-downloaded packages"
+            "Use `--offline` for already-downloaded packages",
         ],
-        "next_steps": "Would you like me to help diagnose your network connection?"
+        "next_steps": "Would you like me to help diagnose your network connection?",
     },
-    
     # Configuration syntax errors
     "CONFIG_SYNTAX_ERROR": {
         "message": "There's a syntax error in your NixOS configuration.",
@@ -95,11 +90,10 @@ Common syntax rules:
             "Ensure all brackets match: { }, [ ], ( )",
             "Verify string quotes are closed",
             "Use `nixos-rebuild test` to validate",
-            "Try `nix-instantiate --parse` to check syntax"
+            "Try `nix-instantiate --parse` to check syntax",
         ],
-        "next_steps": "Would you like me to help identify the syntax issue?"
+        "next_steps": "Would you like me to help identify the syntax issue?",
     },
-    
     # Disk space errors
     "DISK_SPACE_ERROR": {
         "message": "Not enough disk space to complete this operation.",
@@ -116,11 +110,10 @@ NixOS keeps all package versions in /nix/store:
             "Check disk usage: `df -h`",
             "See Nix store size: `du -sh /nix/store`",
             "Remove old generations: `sudo nix-collect-garbage --delete-older-than 7d`",
-            "Consider moving /nix to a larger partition"
+            "Consider moving /nix to a larger partition",
         ],
-        "next_steps": "Would you like me to help you free up disk space safely?"
+        "next_steps": "Would you like me to help you free up disk space safely?",
     },
-    
     # Channel errors
     "CHANNEL_ERROR": {
         "message": "There's an issue with your NixOS channels.",
@@ -137,11 +130,10 @@ Channels are like package repositories:
             "List channels: `sudo nix-channel --list`",
             "Add nixos-unstable: `sudo nix-channel --add https://nixos.org/channels/nixos-unstable`",
             "Check channel status: `nix-channel --list`",
-            "Rebuild after channel changes: `sudo nixos-rebuild switch`"
+            "Rebuild after channel changes: `sudo nixos-rebuild switch`",
         ],
-        "next_steps": "Should I help you manage your channels?"
+        "next_steps": "Should I help you manage your channels?",
     },
-    
     # Build errors
     "BUILD_ERROR": {
         "message": "The package failed to build from source.",
@@ -160,11 +152,10 @@ This requires development tools and can take time.
             "Look for build logs: `nix log {derivation}`",
             "Try a different version or channel",
             "Ensure build dependencies are available",
-            "Consider using a binary cache: cachix"
+            "Consider using a binary cache: cachix",
         ],
-        "next_steps": "Would you like to see the detailed build error?"
+        "next_steps": "Would you like to see the detailed build error?",
     },
-    
     # Service errors
     "SERVICE_ERROR": {
         "message": "The service '{service}' encountered an error.",
@@ -183,26 +174,27 @@ Service states: active, failed, inactive
             "View service logs: `journalctl -u {service} -e`",
             "Restart service: `sudo systemctl restart {service}`",
             "Check configuration: `nixos-option services.{service}`",
-            "Validate config: `sudo nixos-rebuild test`"
+            "Validate config: `sudo nixos-rebuild test`",
         ],
-        "next_steps": "Would you like me to help diagnose the service issue?"
-    }
+        "next_steps": "Would you like me to help diagnose the service issue?",
+    },
 }
+
 
 def enhance_error_handler():
     """Enhance the error handler with educational messages"""
     error_handler_path = Path("backend/core/error_handler.py")
-    
+
     # Read the current file
-    with open(error_handler_path, 'r') as f:
+    with open(error_handler_path) as f:
         content = f.read()
-    
+
     # Find the _get_user_friendly_info method
     method_start = content.find("def _get_user_friendly_info")
     if method_start == -1:
         print("❌ Could not find _get_user_friendly_info method")
         return
-    
+
     # Create enhanced version
     enhanced_method = '''    def _get_user_friendly_info(self, exception: Exception, category: ErrorCategory) -> tuple[str, List[str]]:
         """
@@ -297,83 +289,85 @@ def enhance_error_handler():
             category, 
             ("An unexpected error occurred", ["Try again or ask for help", "\\n🎓 Learning from errors makes us better"])
         )'''
-    
+
     # Add the educational templates as a class variable
     class_start = content.find("class ErrorHandler:")
     if class_start == -1:
         print("❌ Could not find ErrorHandler class")
         return
-        
+
     # Insert educational templates
     insert_pos = content.find("NIXOS_ERROR_PATTERNS = {", class_start)
     if insert_pos == -1:
         print("❌ Could not find NIXOS_ERROR_PATTERNS")
         return
-    
+
     # Add import for re if not present
     if "import re" not in content:
         import_pos = content.find("from typing import")
         content = content[:import_pos] + "import re\n" + content[import_pos:]
-    
+
     # Replace the method
     method_end = content.find("\n    def ", method_start + 1)
     if method_end == -1:
         method_end = len(content)
-    
+
     # Get current method
     current_method = content[method_start:method_end]
-    
+
     # Check if already enhanced
     if "EDUCATIONAL_TEMPLATES" in current_method:
         print("✅ Error handler already enhanced")
         return
-    
+
     # Create the full enhanced content
     enhanced_content = content[:method_start] + enhanced_method + content[method_end:]
-    
+
     # Write back
-    with open(error_handler_path, 'w') as f:
+    with open(error_handler_path, "w") as f:
         f.write(enhanced_content)
-    
+
     print("✅ Enhanced error handler with educational messages")
+
 
 def add_educational_templates():
     """Add educational templates to error handler module"""
     error_handler_path = Path("backend/core/error_handler.py")
-    
-    with open(error_handler_path, 'r') as f:
+
+    with open(error_handler_path) as f:
         content = f.read()
-    
+
     # Add after imports
     import_end = content.rfind("logger = logging.getLogger(__name__)")
     if import_end == -1:
         print("❌ Could not find logger initialization")
         return
-    
+
     # Create templates string
     templates_str = f"\n\n# Educational error message templates for v1.0\nEDUCATIONAL_TEMPLATES = {str(EDUCATIONAL_TEMPLATES)}\n\n"
-    
+
     # Insert after logger
     insert_pos = content.find("\n", import_end) + 1
     enhanced_content = content[:insert_pos] + templates_str + content[insert_pos:]
-    
+
     # Write back
-    with open(error_handler_path, 'w') as f:
+    with open(error_handler_path, "w") as f:
         f.write(enhanced_content)
-    
+
     print("✅ Added educational templates to error handler")
+
 
 def main():
     """Main function to polish error messages"""
     print("🎨 Polishing error messages for v1.0...")
     print("=" * 60)
-    
+
     # First add templates
     add_educational_templates()
-    
+
     # Then enhance the method
     enhance_error_handler()
-    
+
     print("\n✅ Error messages polished!")
     print("\nEnhancements:")
     print("- Educational explanations for common errors")
@@ -381,6 +375,7 @@ def main():
     print("- Links to documentation where relevant")
     print("- Friendly, encouraging tone")
     print("- Context-aware help offers")
+
 
 if __name__ == "__main__":
     main()

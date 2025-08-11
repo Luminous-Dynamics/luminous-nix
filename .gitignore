@@ -1,52 +1,115 @@
-# Dependencies
-node_modules/
-package-lock.json
-
-# Build outputs
+# Python
+*.py[cod]
+*$py.class
+*.so
+__pycache__/
+*.egg-info/
 dist/
-*.tsbuildinfo
+build/
+*.egg
+.Python
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.manifest
+*.spec
 
-# Logs
-*.log
-npm-debug.log*
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
 
-# Environment
-.env
-.env.local
+# Testing
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
 
-# IDE
+# Documentation
+docs/_build/
+docs/api/
+
+# IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.project
+.pydevproject
+.spyderproject
+.spyproject
+.ropeproject
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Test coverage
-coverage/
-.nyc_output/
+# Environment
+.env
+.env.local
+*.env
+
+# Logs
+*.log
+logs/
+
+# Databases
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Cache
+.cache/
+*.cache
+
+# Project specific
+learning/*.db
+learning/*.db-journal
+results/*.json
+results/*.log
+benchmark_results.json
+nixos_knowledge.db
+config/user_config.json
+data/
+archives/
+.coverage_monitor/
+.performance_monitoring/
 
 # Temporary
 tmp/
 temp/
+*.tmp
+*.bak
+*.backup
 
-# Learning system databases
-learning/*.db
-learning/*.db-journal
+# Package files
+*.tar.gz
+*.zip
 
-# Test results
-results/*.json
-results/*.log
+# Nix
+result
+result-*
 
-# Cache files
-*.cache
-*.pyc
-__pycache__/
-
-# Test coverage and monitoring
-.coverage
-.coverage_monitor/
-.performance_monitoring/
-.postgres/
+# Node (for any JS components)
+node_modules/
+package-lock.json
+npm-debug.log*

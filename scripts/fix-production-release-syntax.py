@@ -4,7 +4,7 @@
 import re
 
 # Read the file
-with open('scripts/prepare-production-release.py', 'r') as f:
+with open("scripts/prepare-production-release.py") as f:
     content = f.read()
 
 # Find the problematic f-string
@@ -12,7 +12,7 @@ with open('scripts/prepare-production-release.py', 'r') as f:
 # Look for unclosed braces in the f-string
 
 # Split into lines
-lines = content.split('\n')
+lines = content.split("\n")
 
 # Find where the f-string starts and ends
 in_fstring = False
@@ -31,32 +31,33 @@ print(f"F-string starts at line {fstring_start + 1} and ends at line {fstring_en
 
 # Check for unclosed braces in the f-string content
 if fstring_start >= 0 and fstring_end >= 0:
-    fstring_content = '\n'.join(lines[fstring_start:fstring_end+1])
-    
+    fstring_content = "\n".join(lines[fstring_start : fstring_end + 1])
+
     # Count braces
-    open_braces = fstring_content.count('{')
-    close_braces = fstring_content.count('}')
-    
+    open_braces = fstring_content.count("{")
+    close_braces = fstring_content.count("}")
+
     print(f"Open braces: {open_braces}, Close braces: {close_braces}")
-    
+
     # Look for the specific problem
     # The issue is likely {VERSION or similar without closing brace
-    
+
     # Find unclosed placeholders
     import re
-    unclosed = re.findall(r'{[A-Z_]+(?!})', fstring_content)
+
+    unclosed = re.findall(r"{[A-Z_]+(?!})", fstring_content)
     print(f"Potential unclosed placeholders: {unclosed}")
-    
+
     # Fix by finding {VERSION and adding missing }
     for i in range(fstring_start, fstring_end + 1):
-        if '{VERSION' in lines[i] and '{VERSION}' not in lines[i]:
+        if "{VERSION" in lines[i] and "{VERSION}" not in lines[i]:
             print(f"Found unclosed {{VERSION at line {i+1}")
-            lines[i] = lines[i].replace('{VERSION', '{VERSION}')
-            
+            lines[i] = lines[i].replace("{VERSION", "{VERSION}")
+
     # Write back
-    with open('scripts/prepare-production-release.py', 'w') as f:
-        f.write('\n'.join(lines))
-    
+    with open("scripts/prepare-production-release.py", "w") as f:
+        f.write("\n".join(lines))
+
     print("✅ Fixed!")
 else:
     print("Could not find f-string boundaries")

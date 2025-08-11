@@ -4,43 +4,45 @@
 import json
 from pathlib import Path
 
-print("""
+print(
+    """
 ╔══════════════════════════════════════════════════════════════╗
 ║          🚀 Nix for Humanity Performance Results 🚀          ║
 ║                                                              ║
 ║     Revolutionary Speed Through Native Python-Nix API        ║
 ╚══════════════════════════════════════════════════════════════╝
-""")
+"""
+)
 
 # Load validated test results
-test_results = Path('config/v1_integration_test_results.json')
+test_results = Path("config/v1_integration_test_results.json")
 if test_results.exists():
     with open(test_results) as f:
         data = json.load(f)
-    
-    native_time = data['features']['native_api']['avg_time']
-    nlp_time = data['features']['natural_language']['avg_time']
-    
+
+    native_time = data["features"]["native_api"]["avg_time"]
+    nlp_time = data["features"]["natural_language"]["avg_time"]
+
     print("\n📊 Validated Performance Metrics:")
     print("=" * 60)
-    
-    print(f"\n⚡ Native Python-Nix API:")
+
+    print("\n⚡ Native Python-Nix API:")
     print(f"   Average operation time: {native_time*1000:.2f}ms")
-    print(f"   All operations < 100ms: ✅")
-    
-    print(f"\n🧠 Natural Language Processing:")
+    print("   All operations < 100ms: ✅")
+
+    print("\n🧠 Natural Language Processing:")
     print(f"   Average processing time: {nlp_time*1000:.2f}ms")
-    print(f"   Success rate: 100% (9/9 tests)")
+    print("   Success rate: 100% (9/9 tests)")
 
 # Show typical subprocess times from documentation
 print("\n\n📊 Comparison with Traditional Subprocess:")
 print("=" * 60)
 
 comparisons = [
-    ("List generations", 2000, native_time*1000),
-    ("Package search", 5000, native_time*1000),
-    ("System info", 1000, native_time*1000),
-    ("Version check", 500, native_time*1000)
+    ("List generations", 2000, native_time * 1000),
+    ("Package search", 5000, native_time * 1000),
+    ("System info", 1000, native_time * 1000),
+    ("Version check", 500, native_time * 1000),
 ]
 
 total_speedup = 0
@@ -72,7 +74,7 @@ print(f"\nThat's {avg_speedup:.0f}x faster - operations complete before you can 
 print("\n\n💡 What This Means for Users:")
 print("=" * 60)
 print("✅ No more waiting for commands to complete")
-print("✅ No more timeout errors") 
+print("✅ No more timeout errors")
 print("✅ Instant feedback for every operation")
 print("✅ Natural language processing in <5ms")
 print("✅ Entire workflow 9000x more responsive")
@@ -102,7 +104,7 @@ Nix for Humanity achieves revolutionary performance through native Python-Nix AP
 """
 
 # Save README section
-with open('docs/status/PERFORMANCE_README_SECTION.md', 'w') as f:
+with open("docs/status/PERFORMANCE_README_SECTION.md", "w") as f:
     f.write(readme_section)
 
 print("\n\n✅ Performance section for README saved to:")

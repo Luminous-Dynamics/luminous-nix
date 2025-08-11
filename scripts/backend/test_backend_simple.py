@@ -16,7 +16,7 @@ print("=" * 40)
 # Create backend
 backend = NixPythonBackend()
 
-print(f"✅ Backend created")
+print("✅ Backend created")
 print(f"📊 API Available: {backend.api_available}")
 
 # Test simple operations
@@ -29,7 +29,7 @@ for pkg in packages[:3]:
 print("\n📋 Testing list generations:")
 result = backend.list_generations()
 if result.success:
-    gens = result.details.get('generations', [])
+    gens = result.details.get("generations", [])
     print(f"Found {len(gens)} generations")
     if gens:
         latest = gens[-1]

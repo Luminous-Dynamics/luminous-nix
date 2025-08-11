@@ -25,14 +25,14 @@ from tests.test_utils.test_implementations import (
     create_successful_process
 )
 
-from nix_humanity.core.engine import NixForHumanityBackend
-from nix_humanity.core.interface import (
+from nix_for_humanity.core.engine import NixForHumanityBackend
+from nix_for_humanity.core.interface import (
      Response, Intent, IntentType
 )
-from nix_humanity.core.intents import Command, ExecutionResult
-from nix_humanity.core.planning import Plan
-from nix_humanity.core.responses import PersonalityStyle
-from nix_humanity.learning.preferences import Interaction
+from nix_for_humanity.core.intents import Command, ExecutionResult
+from nix_for_humanity.core.planning import Plan
+from nix_for_humanity.core.responses import PersonalityStyle
+from nix_for_humanity.learning.preferences import Interaction
 
 
 class TestEngineEnhanced:
@@ -102,8 +102,8 @@ class TestEngineEnhanced:
             'learning_db_path': '/tmp/learning.db'
         }
         
-        with patch('nix_for_humanity.core.knowledge_base.KnowledgeBase') as MockKB, \
-             patch('nix_for_humanity.core.learning_system.PreferenceManager') as MockLS:
+        with patch('nix_humanity.core.knowledge_base.KnowledgeBase') as MockKB, \
+             patch('nix_humanity.core.learning_system.PreferenceManager') as MockLS:
             
             engine = NixForHumanityBackend(config)
             

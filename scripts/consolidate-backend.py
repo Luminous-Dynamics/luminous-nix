@@ -5,30 +5,30 @@ Consolidate multiple backend implementations into a single, clean architecture.
 This script analyzes duplicate code and creates a unified backend.
 """
 
-import os
 import ast
 import hashlib
-from pathlib import Path
-from typing import Dict, List, Set, Tuple
+import os
 from collections import defaultdict
+from pathlib import Path
+
 
 class CodeAnalyzer:
     """Analyze code for duplication and create consolidation plan."""
-    
+
     def __init__(self):
-        self.function_signatures: Dict[str, List[Path]] = defaultdict(list)
-        self.class_definitions: Dict[str, List[Path]] = defaultdict(list)
-        self.duplicate_functions: Dict[str, List[Path]] = defaultdict(list)
-        self.import_graph: Dict[Path, Set[str]] = {}
-    
+        self.function_signatures: dict[str, list[Path]] = defaultdict(list)
+        self.class_definitions: dict[str, list[Path]] = defaultdict(list)
+        self.duplicate_functions: dict[str, list[Path]] = defaultdict(list)
+        self.import_graph: dict[Path, set[str]] = {}
+
     def analyze_file(self, filepath: Path):
         """Analyze a Python file for classes and functions."""
         try:
-            with open(filepath, 'r') as f:
+            with open(filepath) as f:
                 content = f.read()
-            
+
             tree = ast.parse(content)
-            
+
             # Extract imports
             imports = set()
             for node in ast.walk(tree):
@@ -38,42 +38,46 @@ class CodeAnalyzer:
                 elif isinstance(node, ast.ImportFrom):
                     if node.module:
                         imports.add(node.module)
-            
+
             self.import_graph[filepath] = imports
-            
+
             # Extract functions and classes
             for node in ast.walk(tree):
                 if isinstance(node, ast.FunctionDef):
                     sig = self._get_function_signature(node)
                     self.function_signatures[sig].append(filepath)
-                    
+
                     # Check for duplicate implementation
                     func_hash = self._hash_function(node)
                     if func_hash:
-                        self.duplicate_functions[func_hash].append((filepath, node.name))
-                
+                        self.duplicate_functions[func_hash].append(
+                            (filepath, node.name)
+                        )
+
                 elif isinstance(node, ast.ClassDef):
                     self.class_definitions[node.name].append(filepath)
-        
+
         except Exception as e:
             print(f"Error analyzing {filepath}: {e}")
-    
+
     def _get_function_signature(self, node: ast.FunctionDef) -> str:
         """Get a normalized function signature."""
         args = []
         for arg in node.args.args:
             args.append(arg.arg)
         return f"{node.name}({','.join(args)})"
-    
+
     def _hash_function(self, node: ast.FunctionDef) -> str:
         """Create a hash of function implementation."""
         # Simple hash based on function structure
         try:
             # Remove docstrings for comparison
-            body = [n for n in node.body if not (
-                isinstance(n, ast.Expr) and isinstance(n.value, ast.Str)
-            )]
-            
+            body = [
+                n
+                for n in node.body
+                if not (isinstance(n, ast.Expr) and isinstance(n.value, ast.Str))
+            ]
+
             if body:
                 # Create a simple hash of the function structure
                 structure = ast.dump(body[0])[:100]  # First statement structure
@@ -82,21 +86,21 @@ class CodeAnalyzer:
             # TODO: Add proper error handling
             pass  # Silent for now, should log error
         return ""
-    
-    def find_duplicates(self) -> Dict[str, List[Tuple[Path, str]]]:
+
+    def find_duplicates(self) -> dict[str, list[tuple[Path, str]]]:
         """Find duplicate implementations."""
         duplicates = {}
-        
+
         for func_hash, locations in self.duplicate_functions.items():
             if len(locations) > 1:
                 duplicates[func_hash] = locations
-        
+
         return duplicates
-    
-    def suggest_consolidation(self) -> List[str]:
+
+    def suggest_consolidation(self) -> list[str]:
         """Suggest consolidation strategy."""
         suggestions = []
-        
+
         # Find duplicate classes
         for class_name, locations in self.class_definitions.items():
             if len(locations) > 1:
@@ -104,7 +108,7 @@ class CodeAnalyzer:
                     f"Class '{class_name}' found in {len(locations)} files: "
                     f"{', '.join(str(p) for p in locations)}"
                 )
-        
+
         # Find duplicate function signatures
         for sig, locations in self.function_signatures.items():
             if len(locations) > 1:
@@ -112,46 +116,47 @@ class CodeAnalyzer:
                     f"Function '{sig}' found in {len(locations)} files: "
                     f"{', '.join(str(p) for p in locations)}"
                 )
-        
+
         return suggestions
+
 
 def create_unified_backend():
     """Create a unified backend structure."""
-    
+
     print("🔍 Analyzing existing backend code...")
-    
+
     analyzer = CodeAnalyzer()
-    
+
     # Analyze all Python files in backend directories
-    backend_dirs = ['backend', 'nix_humanity', 'src/nix_humanity']
-    
+    backend_dirs = ["backend", "nix_humanity", "src/nix_humanity"]
+
     for dir_path in backend_dirs:
         if Path(dir_path).exists():
-            for py_file in Path(dir_path).rglob('*.py'):
-                if 'test' not in str(py_file) and '__pycache__' not in str(py_file):
+            for py_file in Path(dir_path).rglob("*.py"):
+                if "test" not in str(py_file) and "__pycache__" not in str(py_file):
                     analyzer.analyze_file(py_file)
-    
+
     # Find duplicates
     duplicates = analyzer.find_duplicates()
-    
+
     if duplicates:
         print("\n⚠️  Found duplicate implementations:")
         for func_hash, locations in duplicates.items():
-            print(f"\nDuplicate function implementations:")
+            print("\nDuplicate function implementations:")
             for path, func_name in locations:
                 print(f"  - {func_name} in {path}")
-    
+
     # Get consolidation suggestions
     suggestions = analyzer.suggest_consolidation()
-    
+
     if suggestions:
         print("\n📋 Consolidation suggestions:")
         for suggestion in suggestions[:10]:  # Limit output
             print(f"  - {suggestion}")
-    
+
     # Create consolidation plan
     print("\n📝 Creating consolidation plan...")
-    
+
     plan = """
 # Backend Consolidation Plan
 
@@ -237,19 +242,20 @@ class UnifiedExecutor:
         return await self.backend.execute(command)
 ```
 """
-    
+
     # Write consolidation plan
-    with open('CONSOLIDATION_PLAN.md', 'w') as f:
+    with open("CONSOLIDATION_PLAN.md", "w") as f:
         f.write(plan)
-    
+
     print("\n✅ Consolidation plan created: CONSOLIDATION_PLAN.md")
-    
+
     # Create migration script
     create_migration_script()
 
+
 def create_migration_script():
     """Create a script to perform the actual consolidation."""
-    
+
     migration_script = '''#!/usr/bin/env python3
 """
 Automated backend consolidation script.
@@ -401,11 +407,12 @@ def main():
 if __name__ == "__main__":
     main()
 '''
-    
-    with open('scripts/perform-consolidation.py', 'w') as f:
-        f.write(migration_script)
-    
-    os.chmod('scripts/perform-consolidation.py', 0o755)
 
-if __name__ == '__main__':
+    with open("scripts/perform-consolidation.py", "w") as f:
+        f.write(migration_script)
+
+    os.chmod("scripts/perform-consolidation.py", 0o755)
+
+
+if __name__ == "__main__":
     create_unified_backend()

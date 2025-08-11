@@ -1,0 +1,24 @@
+# Poetry Configuration for Sacred Trinity Development
+# Optimized for NixOS and consciousness-first development
+
+[virtualenvs]
+# Create virtual envs in project directory for better Nix integration
+in-project = true
+# Use system packages when available (saves space)
+system-site-packages = false
+# Prefer active Python version
+prefer-active-python = true
+
+[installer]
+# Parallel installation for faster dependency resolution
+parallel = true
+# Modern installer for better performance
+modern-installation = true
+
+[experimental]
+# Use new dependency resolver (faster and more accurate)
+new-installer = true
+
+[repositories]
+# Cache directory for offline development
+cache-dir = "~/.cache/pypoetry"

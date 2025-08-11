@@ -1,16 +1,113 @@
-# 05 Reference
+# 📖 05-REFERENCE
 
-**Technical reference materials for Nix for Humanity**
+*Technical reference materials for Nix for Humanity*
 
-## 📚 Contents
+---
 
-- [01-CLI-COMMANDS](01-CLI-COMMANDS.md)
-- [02-API-REFERENCE](02-API-REFERENCE.md)
-- [03-PYTHON-SDK](03-PYTHON-SDK.md)
-- [04-JAVASCRIPT-SDK](04-JAVASCRIPT-SDK.md)
-- [CONFIGURATION](CONFIGURATION.md)
-- [ENHANCED_BACKEND_USER_GUIDE](ENHANCED_BACKEND_USER_GUIDE.md)
-- [FAQ](FAQ.md)
+💡 **Quick Context**: Complete technical reference for APIs, commands, and configuration  
+📍 **Location**: `docs/05-REFERENCE/`  
+🔗 **Parent**: [Documentation Hub](../README.md)  
+⏱️ **Read time**: 2 minutes for navigation  
+📊 **Mastery Level**: 🌿 Intermediate to 🌳 Advanced - technical reference
+
+---
+
+## 🎯 Quick Navigation
+
+### 🔧 Commands & CLI
+- **[01-CLI-COMMANDS](01-CLI-COMMANDS.md)** - Complete CLI reference ⭐
+- **[CONFIGURATION](CONFIGURATION.md)** - Configuration options
+
+### 🌐 APIs & SDKs
+- **[02-API-REFERENCE](02-API-REFERENCE.md)** - REST API documentation
+- **[03-PYTHON-SDK](03-PYTHON-SDK.md)** - Python client library
+- **[04-JAVASCRIPT-SDK](04-JAVASCRIPT-SDK.md)** - JavaScript/TypeScript library
+- **[API_REFERENCE](API_REFERENCE.md)** - Additional API details
+- **[openapi.yaml](openapi.yaml)** - OpenAPI specification
+
+### 📚 Guides & FAQ
+- **[FAQ](FAQ.md)** - Frequently asked questions
+- **[ENHANCED_BACKEND_USER_GUIDE](ENHANCED_BACKEND_USER_GUIDE.md)** - Backend usage guide
+
+---
+
+## 📊 Quick Reference
+
+### CLI Examples
+```bash
+# Natural language commands
+ask-nix "install firefox"
+ask-nix "find markdown editor"
+ask-nix "create python dev environment"
+
+# Advanced features
+ask-nix --diagnose
+ask-nix --metrics
+ask-nix export-data
+```
+
+### Configuration
+```yaml
+# ~/.config/nix-for-humanity/config.yaml
+backend: python
+loglevel: info
+localOnly: true
+personas:
+  default: developer
+  voice: grandma-rose
+```
+
+### API Usage
+```python
+# Python SDK
+from nix_for_humanity import Client
+
+client = Client()
+response = client.query("install firefox")
+print(response.command)
+```
+
+---
+
+## 🔍 Reference Categories
+
+### System Commands
+- Package management (install, remove, update)
+- Configuration generation
+- System health checks
+- Rollback and recovery
+
+### Configuration Options
+- Backend settings
+- Persona customization
+- Performance tuning
+- Privacy controls
+
+### API Endpoints
+- `/api/query` - Natural language processing
+- `/api/execute` - Command execution
+- `/api/learn` - Learning feedback
+- `/api/metrics` - Performance data
+
+### Error Codes
+- 1xx - Input errors
+- 2xx - Execution errors
+- 3xx - System errors
+- 4xx - Network errors
+
+---
+
+## 📈 Performance Reference
+
+### Response Times
+- Intent recognition: <50ms
+- Command building: <100ms
+- Total response: <200ms
+
+### Resource Usage
+- Memory: <150MB idle, <500MB peak
+- CPU: <1% idle, <25% active
+- Disk: <100MB base, <500MB with cache
 
 ---
 

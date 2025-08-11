@@ -5,132 +5,140 @@ Feature Freeze Manager - Enforce focus on stability over new features
 Helps resist scope creep during the improvement phase
 """
 
-import os
-import json
 import hashlib
+import json
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, List, Set
+
 
 class FeatureFreezeManager:
     """Manage feature freeze to ensure focus on quality."""
-    
+
     def __init__(self):
         self.freeze_file = Path(".feature-freeze.json")
         self.freeze_data = self.load_freeze_data()
-        
-    def load_freeze_data(self) -> Dict:
+
+    def load_freeze_data(self) -> dict:
         """Load or create feature freeze configuration."""
         if self.freeze_file.exists():
-            with open(self.freeze_file, 'r') as f:
+            with open(self.freeze_file) as f:
                 return json.load(f)
-        
+
         # Create default freeze configuration
         return {
             "freeze_start": datetime.now().isoformat(),
             "freeze_end": (datetime.now() + timedelta(weeks=6)).isoformat(),
             "allowed_changes": [
                 "bug fixes",
-                "test improvements", 
+                "test improvements",
                 "documentation updates",
                 "performance optimization",
                 "reliability improvements",
-                "code cleanup"
+                "code cleanup",
             ],
             "blocked_patterns": [
                 "new feature",
                 "add support for",
                 "implement new",
                 "create new capability",
-                "introduce"
+                "introduce",
             ],
             "exceptions": [],
-            "baseline_features": self.scan_current_features()
+            "baseline_features": self.scan_current_features(),
         }
-    
-    def scan_current_features(self) -> Dict[str, str]:
+
+    def scan_current_features(self) -> dict[str, str]:
         """Scan codebase for current feature set."""
         features = {}
-        
+
         # Scan for feature indicators
         feature_files = [
             "frontends/voice",
-            "frontends/tui", 
+            "frontends/tui",
             "frontends/gui",
             "features/personas",
             "features/learning",
-            "features/federation"
+            "features/federation",
         ]
-        
+
         for feature_path in feature_files:
             if os.path.exists(feature_path):
                 # Calculate hash of directory
                 dir_hash = self.hash_directory(feature_path)
                 features[feature_path] = dir_hash
-        
+
         return features
-    
+
     def hash_directory(self, path: str) -> str:
         """Create hash of directory contents."""
         hasher = hashlib.md5()
-        
+
         for root, dirs, files in os.walk(path):
             # Skip hidden and cache directories
-            dirs[:] = [d for d in dirs if not d.startswith('.') and d != '__pycache__']
-            
+            dirs[:] = [d for d in dirs if not d.startswith(".") and d != "__pycache__"]
+
             for file in sorted(files):
-                if file.endswith('.py'):
+                if file.endswith(".py"):
                     filepath = os.path.join(root, file)
                     try:
-                        with open(filepath, 'rb') as f:
+                        with open(filepath, "rb") as f:
                             hasher.update(f.read())
                     except Exception:
                         # TODO: Add proper error handling
                         pass  # Silent for now, should log error
-        
+
         return hasher.hexdigest()
-    
+
     def check_commit_message(self, message: str) -> tuple[bool, str]:
         """Check if commit message indicates new feature."""
         message_lower = message.lower()
-        
+
         # Check for blocked patterns
         for pattern in self.freeze_data["blocked_patterns"]:
             if pattern in message_lower:
-                return False, f"Feature freeze active! Commit message contains '{pattern}'"
-        
+                return (
+                    False,
+                    f"Feature freeze active! Commit message contains '{pattern}'",
+                )
+
         # Check for allowed patterns
         for allowed in self.freeze_data["allowed_changes"]:
             if allowed in message_lower:
                 return True, "Commit allowed: " + allowed
-        
+
         # Default suspicious
-        return False, "Feature freeze active! Please clarify if this is a bug fix or new feature"
-    
-    def check_file_changes(self, changed_files: List[str]) -> tuple[bool, List[str]]:
+        return (
+            False,
+            "Feature freeze active! Please clarify if this is a bug fix or new feature",
+        )
+
+    def check_file_changes(self, changed_files: list[str]) -> tuple[bool, list[str]]:
         """Check if file changes indicate new features."""
         violations = []
-        
+
         for file in changed_files:
             # Check for new feature directories
-            if any(part in file for part in ['new_feature', 'v2', 'experimental', 'alpha']):
+            if any(
+                part in file for part in ["new_feature", "v2", "experimental", "alpha"]
+            ):
                 violations.append(f"Suspicious path: {file}")
-            
+
             # Check for new frontend
-            if file.startswith('frontends/') and not any(
-                file.startswith(f'frontends/{known}/') 
-                for known in ['cli', 'tui', 'voice']
+            if file.startswith("frontends/") and not any(
+                file.startswith(f"frontends/{known}/")
+                for known in ["cli", "tui", "voice"]
             ):
                 violations.append(f"New frontend detected: {file}")
-            
+
             # Check for feature expansion
-            if 'features/' in file and file.endswith('.py'):
-                feature_dir = file.split('/')[1]
+            if "features/" in file and file.endswith(".py"):
+                feature_dir = file.split("/")[1]
                 if feature_dir not in self.freeze_data["baseline_features"]:
                     violations.append(f"New feature module: {file}")
-        
+
         return len(violations) == 0, violations
-    
+
     def create_pre_commit_hook(self):
         """Create git pre-commit hook to enforce freeze."""
         hook_content = '''#!/usr/bin/env python3
@@ -190,20 +198,20 @@ def main():
 if __name__ == '__main__':
     sys.exit(main())
 '''
-        
+
         # Create hooks directory
-        os.makedirs('.git/hooks', exist_ok=True)
-        
+        os.makedirs(".git/hooks", exist_ok=True)
+
         # Write hook
-        hook_path = '.git/hooks/prepare-commit-msg'
-        with open(hook_path, 'w') as f:
+        hook_path = ".git/hooks/prepare-commit-msg"
+        with open(hook_path, "w") as f:
             f.write(hook_content)
-        
+
         # Make executable
         os.chmod(hook_path, 0o755)
-        
+
         print("✅ Created git pre-commit hook")
-    
+
     def generate_focus_report(self):
         """Generate report on what to focus on."""
         report = f"""
@@ -272,51 +280,53 @@ By end of freeze, we should have:
 
 Stay focused! 🎯
 """
-        
-        with open('FEATURE_FREEZE_FOCUS.md', 'w') as f:
+
+        with open("FEATURE_FREEZE_FOCUS.md", "w") as f:
             f.write(report)
-        
+
         print("📄 Generated FEATURE_FREEZE_FOCUS.md")
-    
+
     def save_freeze_data(self):
         """Save freeze configuration."""
-        with open(self.freeze_file, 'w') as f:
+        with open(self.freeze_file, "w") as f:
             json.dump(self.freeze_data, f, indent=2)
-    
+
     def enforce_freeze(self):
         """Main enforcement routine."""
         print("🧊 Enforcing Feature Freeze")
         print("=" * 50)
-        
+
         # Save configuration
         self.save_freeze_data()
-        
+
         # Create git hook
         self.create_pre_commit_hook()
-        
+
         # Generate focus report
         self.generate_focus_report()
-        
+
         # Show summary
-        freeze_end = datetime.fromisoformat(self.freeze_data['freeze_end'])
+        freeze_end = datetime.fromisoformat(self.freeze_data["freeze_end"])
         days_remaining = (freeze_end - datetime.now()).days
-        
+
         print(f"\n📅 Feature freeze active for {days_remaining} more days")
         print("\n✅ Allowed changes:")
         for change in self.freeze_data["allowed_changes"]:
             print(f"  - {change}")
-        
+
         print("\n🚫 Blocked patterns in commits:")
         for pattern in self.freeze_data["blocked_patterns"]:
             print(f"  - '{pattern}'")
-        
+
         print("\n📋 See FEATURE_FREEZE_FOCUS.md for detailed guidance")
         print("\n🎯 Remember: Stability > Features!")
+
 
 def main():
     """Enforce feature freeze."""
     manager = FeatureFreezeManager()
     manager.enforce_freeze()
+
 
 if __name__ == "__main__":
     main()

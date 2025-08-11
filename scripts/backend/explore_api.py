@@ -2,10 +2,15 @@
 """Explore the nixos-rebuild API"""
 
 import sys
-sys.path.insert(0, "/nix/store/lwmjrs31xfgn2q1a0b9f81a61ka4ym6z-nixos-rebuild-ng-0.0.0/lib/python3.13/site-packages")
+
+sys.path.insert(
+    0,
+    "/nix/store/lwmjrs31xfgn2q1a0b9f81a61ka4ym6z-nixos-rebuild-ng-0.0.0/lib/python3.13/site-packages",
+)
+
+import inspect
 
 from nixos_rebuild import models
-import inspect
 
 print("🔍 Exploring nixos-rebuild API\n")
 
@@ -15,7 +20,7 @@ print(f"  Attributes: {[a for a in dir(models.Profile) if not a.startswith('_')]
 
 # Check methods with signatures
 for name in dir(models.Profile):
-    if not name.startswith('_') and callable(getattr(models.Profile, name)):
+    if not name.startswith("_") and callable(getattr(models.Profile, name)):
         method = getattr(models.Profile, name)
         try:
             sig = inspect.signature(method)
@@ -41,7 +46,7 @@ except Exception as e:
 # Check other useful classes
 print("\n📋 Other useful items in models:")
 for name in dir(models):
-    if not name.startswith('_') and name not in ['Profile', 'Action']:
+    if not name.startswith("_") and name not in ["Profile", "Action"]:
         item = getattr(models, name)
-        if hasattr(item, '__name__'):
+        if hasattr(item, "__name__"):
             print(f"  {name}: {type(item).__name__}")

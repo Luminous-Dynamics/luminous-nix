@@ -2,7 +2,8 @@
 """Connect the TUI to the backend - identify what needs fixing."""
 
 import sys
-sys.path.insert(0, 'src')
+
+sys.path.insert(0, "src")
 
 print("🔗 Connecting TUI to Backend\n")
 
@@ -29,23 +30,23 @@ for name, (module, attr) in components.items():
 # Step 2: Test backend functionality
 if available.get("Backend") and available.get("Request"):
     print("\n2. Testing backend functionality...")
-    
-    from nix_humanity.core.engine import NixForHumanityBackend
-    from nix_humanity.api.schema import Request
-    
+
+    from nix_for_humanity.api.schema import Request
+    from nix_for_humanity.core.engine import NixForHumanityBackend
+
     backend = NixForHumanityBackend()
-    
+
     # Test a simple request
     try:
         request = Request(query="install firefox")
         response = backend.process_request(request)
-        print(f"  ✅ Backend can process requests")
+        print("  ✅ Backend can process requests")
         print(f"     Success: {response.success}")
-        if hasattr(response, 'message'):
+        if hasattr(response, "message"):
             print(f"     Message: {response.message}")
     except Exception as e:
         print(f"  ❌ Backend request failed: {e}")
-    
+
     # Test search functionality
     try:
         results = backend.search_packages("text editor")
@@ -60,19 +61,20 @@ print("\n3. TUI Requirements Analysis...")
 
 # Check if TUI expects specific backend methods
 expected_backend_methods = [
-    'process_request',
-    'search_packages',
-    'get_current_context',
-    'get_settings',
-    'execute_command',
-    'get_suggestions'
+    "process_request",
+    "search_packages",
+    "get_current_context",
+    "get_settings",
+    "execute_command",
+    "get_suggestions",
 ]
 
 print("\nBackend methods needed by TUI:")
 if available.get("Backend"):
-    from nix_humanity.core.engine import NixForHumanityBackend
+    from nix_for_humanity.core.engine import NixForHumanityBackend
+
     backend = NixForHumanityBackend()
-    
+
     for method in expected_backend_methods:
         if hasattr(backend, method):
             print(f"  ✅ {method}")
@@ -82,7 +84,7 @@ if available.get("Backend"):
 # Step 4: Create connection code
 print("\n4. Creating TUI-Backend connection...")
 
-connection_code = '''
+connection_code = """
 # In main_app.py, the TUI needs to:
 # 1. Initialize the backend in __init__
 self.backend = NixForHumanityBackend()
@@ -101,7 +103,7 @@ async def process_user_input(self, text: str):
 # 3. Use search for autocomplete
 async def get_suggestions(self, partial: str):
     return self.backend.search_packages(partial)
-'''
+"""
 
 print("\nConnection code pattern:")
 print(connection_code)
@@ -109,7 +111,7 @@ print(connection_code)
 # Step 5: What's missing?
 print("\n5. What needs to be done:")
 print("  1. ✅ Backend is working")
-print("  2. ✅ TUI structure exists") 
+print("  2. ✅ TUI structure exists")
 print("  3. ❌ TUI needs Textual dependency")
 print("  4. ❌ TUI needs to use real backend instead of mocks")
 print("  5. ❌ Missing some backend methods TUI expects")

@@ -1,76 +1,64 @@
 version: 2
 updates:
-  # Enable version updates for npm
-  - package-ecosystem: "npm"
+  # Python dependencies via Poetry
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "06:00"
-    open-pull-requests-limit: 10
-    reviewers:
-      - "nixos-gui/maintainers"
+      time: "04:00"
+    open-pull-requests-limit: 5
     labels:
       - "dependencies"
-      - "javascript"
+      - "python"
+    assignees:
+      - "tstoltz"
     commit-message:
       prefix: "chore"
       include: "scope"
-    
-  # Backend dependencies
-  - package-ecosystem: "npm"
-    directory: "/backend"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "06:00"
-    open-pull-requests-limit: 5
+    pull-request-branch-name:
+      separator: "-"
     reviewers:
-      - "nixos-gui/maintainers"
-    labels:
-      - "dependencies"
-      - "backend"
-    
-  # Frontend dependencies
-  - package-ecosystem: "npm"
-    directory: "/frontend"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "06:00"
-    open-pull-requests-limit: 5
-    reviewers:
-      - "nixos-gui/maintainers"
-    labels:
-      - "dependencies"
-      - "frontend"
-    
+      - "tstoltz"
+    groups:
+      development-dependencies:
+        patterns:
+          - "pytest*"
+          - "black"
+          - "ruff"
+          - "mypy"
+          - "pre-commit"
+      
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "06:00"
-    open-pull-requests-limit: 5
-    reviewers:
-      - "nixos-gui/maintainers"
+      time: "04:00"
+    open-pull-requests-limit: 3
     labels:
       - "dependencies"
-      - "ci"
+      - "github-actions"
     commit-message:
       prefix: "ci"
-      
-  # Docker
-  - package-ecosystem: "docker"
+      include: "scope"
+    
+  # npm dependencies (if any)
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "06:00"
-    open-pull-requests-limit: 5
-    reviewers:
-      - "nixos-gui/maintainers"
+      time: "04:00"
+    open-pull-requests-limit: 3
     labels:
       - "dependencies"
-      - "docker"
+      - "javascript"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    ignore:
+      # Ignore major version updates for critical packages
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]

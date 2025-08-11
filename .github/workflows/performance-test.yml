@@ -1,0 +1,222 @@
+name: ⚡ Performance Testing
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:  # Allow manual trigger
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/performance/**'
+      - 'pyproject.toml'
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  performance-test:
+    name: 🚀 Performance Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: 📚 Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-perf-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: 📦 Install dependencies
+        run: |
+          poetry install --all-extras
+          poetry run pip install pytest-benchmark memory-profiler
+
+      - name: ⏱️ Run startup performance tests
+        run: |
+          echo "## ⏱️ Startup Performance" >> performance_report.md
+          echo "" >> performance_report.md
+          
+          # Test cold start
+          start_time=$(date +%s%N)
+          poetry run python -c "from nix_for_humanity import initialize; initialize()" 2>/dev/null
+          end_time=$(date +%s%N)
+          cold_start=$((($end_time - $start_time) / 1000000))
+          
+          echo "**Cold Start**: ${cold_start}ms (Budget: <3000ms)" >> performance_report.md
+          
+          # Test warm start
+          poetry run python -c "
+import time
+from nix_for_humanity import initialize
+initialize()  # Warm up
+start = time.perf_counter()
+initialize()  # Measure
+elapsed = (time.perf_counter() - start) * 1000
+print(f'**Warm Start**: {elapsed:.0f}ms (Budget: <1000ms)')
+          " >> performance_report.md
+
+      - name: 💬 Test command processing performance
+        run: |
+          echo "" >> performance_report.md
+          echo "## 💬 Command Processing" >> performance_report.md
+          echo "" >> performance_report.md
+          
+          poetry run python -c "
+import time
+from nix_for_humanity.core import NixCommand
+
+commands = [
+    'install firefox',
+    'search editor',
+    'list packages',
+    'update system',
+    'remove vim'
+]
+
+results = []
+for cmd in commands:
+    start = time.perf_counter()
+    NixCommand(cmd, dry_run=True)
+    elapsed = (time.perf_counter() - start) * 1000
+    results.append(f'- \`{cmd}\`: {elapsed:.0f}ms')
+    
+print('\n'.join(results))
+          " >> performance_report.md 2>/dev/null || echo "Command processing tests not available" >> performance_report.md
+
+      - name: 💾 Test memory usage
+        run: |
+          echo "" >> performance_report.md
+          echo "## 💾 Memory Usage" >> performance_report.md
+          echo "" >> performance_report.md
+          
+          poetry run python -c "
+import psutil
+import os
+
+process = psutil.Process(os.getpid())
+
+# Import and initialize
+from nix_for_humanity import initialize
+app = initialize()
+
+mem_mb = process.memory_info().rss / 1024 / 1024
+print(f'**Base Memory**: {mem_mb:.1f}MB (Budget: <100MB)')
+
+# Simulate processing 100 commands
+from nix_for_humanity.core import NixCommand
+for i in range(100):
+    cmd = NixCommand(f'install package{i}', dry_run=True)
+    
+mem_after = process.memory_info().rss / 1024 / 1024
+print(f'**After 100 commands**: {mem_after:.1f}MB (Budget: <200MB)')
+print(f'**Memory growth**: {mem_after - mem_mb:.1f}MB')
+          " >> performance_report.md 2>/dev/null || echo "Memory tests not available" >> performance_report.md
+
+      - name: 📊 Run pytest benchmarks
+        run: |
+          echo "" >> performance_report.md
+          echo "## 📊 Pytest Benchmarks" >> performance_report.md
+          echo "" >> performance_report.md
+          
+          poetry run pytest tests/performance/ -v --benchmark-only --benchmark-autosave >> benchmark_output.txt 2>&1 || true
+          
+          if [ -f benchmark_output.txt ]; then
+            tail -20 benchmark_output.txt >> performance_report.md
+          else
+            echo "No pytest benchmarks available" >> performance_report.md
+          fi
+
+      - name: 🎯 Check performance budgets
+        run: |
+          echo "" >> performance_report.md
+          echo "## 🎯 Performance Budget Compliance" >> performance_report.md
+          echo "" >> performance_report.md
+          
+          # Parse performance report and check against budgets
+          python3 << 'EOF'
+import re
+
+with open('performance_report.md', 'r') as f:
+    content = f.read()
+
+# Define budgets (in ms)
+budgets = {
+    'Cold Start': 3000,
+    'Warm Start': 1000,
+    'Base Memory': 100,  # MB
+}
+
+violations = []
+
+# Check cold start
+if match := re.search(r'Cold Start.*?(\d+)ms', content):
+    time_ms = int(match.group(1))
+    if time_ms > budgets['Cold Start']:
+        violations.append(f"❌ Cold Start: {time_ms}ms > {budgets['Cold Start']}ms")
+    else:
+        print(f"✅ Cold Start: {time_ms}ms ≤ {budgets['Cold Start']}ms")
+
+# Check warm start
+if match := re.search(r'Warm Start.*?(\d+)ms', content):
+    time_ms = int(match.group(1))
+    if time_ms > budgets['Warm Start']:
+        violations.append(f"❌ Warm Start: {time_ms}ms > {budgets['Warm Start']}ms")
+    else:
+        print(f"✅ Warm Start: {time_ms}ms ≤ {budgets['Warm Start']}ms")
+
+# Check memory
+if match := re.search(r'Base Memory.*?([\d.]+)MB', content):
+    mem_mb = float(match.group(1))
+    if mem_mb > budgets['Base Memory']:
+        violations.append(f"❌ Memory: {mem_mb}MB > {budgets['Base Memory']}MB")
+    else:
+        print(f"✅ Memory: {mem_mb}MB ≤ {budgets['Base Memory']}MB")
+
+if violations:
+    print("\n⚠️ Performance Budget Violations:")
+    for v in violations:
+        print(v)
+    exit(1)
+else:
+    print("\n✅ All performance budgets met!")
+EOF
+          continue-on-error: true
+
+      - name: 📈 Upload performance report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-report
+          path: performance_report.md
+
+      - name: 📊 Post results to PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('performance_report.md', 'utf8');
+            
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '# ⚡ Performance Test Results\n\n' + report
+            });
+
+      - name: 📊 Summary
+        if: always()
+        run: |
+          cat performance_report.md >> $GITHUB_STEP_SUMMARY

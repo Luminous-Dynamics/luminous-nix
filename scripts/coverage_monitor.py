@@ -10,60 +10,62 @@ provides detailed analysis of coverage trends.
 Part of the Testing Foundation excellence initiative.
 """
 
-import os
-import sys
-import json
-import time
-import sqlite3
-import subprocess
 import argparse
 import datetime
+import json
+import sqlite3
+import subprocess
+from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
-from dataclasses import dataclass, asdict
+from typing import Any
 from xml.etree import ElementTree as ET
+
 
 @dataclass
 class CoverageMetrics:
     """Coverage metrics for a specific timestamp."""
+
     timestamp: str
     overall_coverage: float
     lines_covered: int
     lines_total: int
-    components: Dict[str, float]
-    critical_paths: Dict[str, float]
+    components: dict[str, float]
+    critical_paths: dict[str, float]
     target_progress: float  # Progress toward 95% goal
+
 
 @dataclass
 class CoverageReport:
     """Complete coverage analysis report."""
+
     current_metrics: CoverageMetrics
-    trend_analysis: Dict[str, Any]
-    recommendations: List[str]
-    alerts: List[str]
-    milestone_progress: Dict[str, float]
+    trend_analysis: dict[str, Any]
+    recommendations: list[str]
+    alerts: list[str]
+    milestone_progress: dict[str, float]
+
 
 class CoverageMonitor:
     """Automated coverage monitoring and analysis system."""
-    
+
     def __init__(self, project_root: str = None):
         self.project_root = Path(project_root) if project_root else Path.cwd()
         self.db_path = self.project_root / ".coverage_monitor" / "coverage_history.db"
         self.reports_dir = self.project_root / ".coverage_monitor" / "reports"
-        
+
         # Ensure directories exist
         self.db_path.parent.mkdir(exist_ok=True)
         self.reports_dir.mkdir(exist_ok=True)
-        
+
         # Initialize database
         self._init_database()
-        
+
         # Coverage targets
         self.TARGET_OVERALL = 95.0
         self.TARGET_CRITICAL = 95.0
         self.TARGET_CORE = 90.0
         self.TARGET_UI = 80.0
-        
+
         # Component mapping
         self.COMPONENTS = {
             "nlp": ["src/nlp/", "nix_humanity/nlp/"],
@@ -72,21 +74,22 @@ class CoverageMonitor:
             "backend": ["src/backend/", "nix_humanity/backend/"],
             "learning": ["src/learning/", "nix_humanity/learning/"],
             "security": ["src/security/", "nix_humanity/security/"],
-            "ui": ["src/ui/", "src/tui/", "nix_humanity/ui/"]
+            "ui": ["src/ui/", "src/tui/", "nix_humanity/ui/"],
         }
-        
+
         # Critical paths (must meet 95% target)
         self.CRITICAL_PATHS = [
             "nix_humanity/nlp/intent_recognition.py",
             "nix_humanity/executor/command_executor.py",
             "nix_humanity/security/input_validator.py",
-            "nix_humanity/backend/native_api.py"
+            "nix_humanity/backend/native_api.py",
         ]
-    
+
     def _init_database(self):
         """Initialize SQLite database for coverage tracking."""
         with sqlite3.connect(self.db_path) as conn:
-            conn.execute("""
+            conn.execute(
+                """
                 CREATE TABLE IF NOT EXISTS coverage_history (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     timestamp TEXT NOT NULL,
@@ -99,9 +102,11 @@ class CoverageMonitor:
                     git_commit TEXT,
                     git_branch TEXT
                 )
-            """)
-            
-            conn.execute("""
+            """
+            )
+
+            conn.execute(
+                """
                 CREATE TABLE IF NOT EXISTS coverage_alerts (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     timestamp TEXT NOT NULL,
@@ -111,41 +116,52 @@ class CoverageMonitor:
                     severity TEXT NOT NULL,
                     resolved BOOLEAN DEFAULT FALSE
                 )
-            """)
-    
-    def run_coverage_analysis(self, skip_tests: bool = False) -> Optional[CoverageMetrics]:
+            """
+            )
+
+    def run_coverage_analysis(self, skip_tests: bool = False) -> CoverageMetrics | None:
         """Run comprehensive coverage analysis."""
         if skip_tests:
             print("📊 Parsing existing coverage data...")
             # Parse existing coverage results
             if not self._coverage_files_exist():
                 print("⚠️ No existing coverage files found. Run tests first with:")
-                print("   python -m pytest --cov=nix_humanity --cov-report=xml --cov-report=json")
+                print(
+                    "   python -m pytest --cov=nix_humanity --cov-report=xml --cov-report=json"
+                )
                 return None
             return self._parse_coverage_results()
-        
+
         print("🔍 Running coverage analysis with tests...")
-        
+
         try:
             # Run tests with coverage (optimized for speed)
-            result = subprocess.run([
-                "python", "-m", "pytest", 
-                "--cov=nix_humanity",
-                "--cov-report=xml",
-                "--cov-report=json",
-                "--cov-report=html:htmlcov",
-                "-x",  # Stop on first failure
-                "--tb=short",  # Short traceback format
-                "tests/"
-            ], capture_output=True, text=True, cwd=self.project_root, timeout=300)  # 5 minute timeout
-            
+            result = subprocess.run(
+                [
+                    "python",
+                    "-m",
+                    "pytest",
+                    "--cov=nix_humanity",
+                    "--cov-report=xml",
+                    "--cov-report=json",
+                    "--cov-report=html:htmlcov",
+                    "-x",  # Stop on first failure
+                    "--tb=short",  # Short traceback format
+                    "tests/",
+                ],
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
+                timeout=300,
+            )  # 5 minute timeout
+
             if result.returncode != 0:
                 print(f"❌ Tests failed: {result.stderr}")
                 return None
-            
+
             # Parse coverage results
             return self._parse_coverage_results()
-            
+
         except subprocess.TimeoutExpired:
             print("⚠️ Coverage analysis timed out after 5 minutes")
             print("💡 Try using --no-run to analyze existing coverage data")
@@ -153,69 +169,79 @@ class CoverageMonitor:
         except Exception as e:
             print(f"❌ Coverage analysis failed: {e}")
             return None
-    
+
     def _coverage_files_exist(self) -> bool:
         """Check if coverage files exist."""
         xml_path = self.project_root / "coverage.xml"
         json_path = self.project_root / "coverage.json"
         return xml_path.exists() or json_path.exists()
-    
+
     def _parse_coverage_results(self) -> CoverageMetrics:
         """Parse coverage results from XML and JSON reports."""
         timestamp = datetime.datetime.now().isoformat()
-        
+
         # Parse XML coverage report
         xml_path = self.project_root / "coverage.xml"
         if xml_path.exists():
             tree = ET.parse(xml_path)
             root = tree.getroot()
-            
+
             # Overall coverage
-            overall_coverage = float(root.get('line-rate', 0)) * 100
-            lines_covered = int(root.get('lines-covered', 0))
-            lines_total = int(root.get('lines-valid', 0))
+            overall_coverage = float(root.get("line-rate", 0)) * 100
+            lines_covered = int(root.get("lines-covered", 0))
+            lines_total = int(root.get("lines-valid", 0))
         else:
             overall_coverage = 0.0
             lines_covered = 0
             lines_total = 0
-        
+
         # Parse JSON for detailed component analysis
         json_path = self.project_root / "coverage.json"
         components = {}
         critical_paths = {}
-        
+
         if json_path.exists():
-            with open(json_path, 'r') as f:
+            with open(json_path) as f:
                 coverage_data = json.load(f)
-                files_data = coverage_data.get('files', {})
-                
+                files_data = coverage_data.get("files", {})
+
                 # Calculate component coverage
                 for component, paths in self.COMPONENTS.items():
                     component_files = []
                     for file_path, file_data in files_data.items():
                         if any(path in file_path for path in paths):
                             component_files.append(file_data)
-                    
+
                     if component_files:
-                        total_covered = sum(f['summary']['covered_lines'] for f in component_files)
-                        total_lines = sum(f['summary']['num_statements'] for f in component_files)
-                        components[component] = (total_covered / total_lines * 100) if total_lines > 0 else 0
+                        total_covered = sum(
+                            f["summary"]["covered_lines"] for f in component_files
+                        )
+                        total_lines = sum(
+                            f["summary"]["num_statements"] for f in component_files
+                        )
+                        components[component] = (
+                            (total_covered / total_lines * 100)
+                            if total_lines > 0
+                            else 0
+                        )
                     else:
                         components[component] = 0.0
-                
+
                 # Calculate critical path coverage
                 for critical_path in self.CRITICAL_PATHS:
                     if critical_path in files_data:
                         file_data = files_data[critical_path]
-                        covered = file_data['summary']['covered_lines']
-                        total = file_data['summary']['num_statements']
-                        critical_paths[critical_path] = (covered / total * 100) if total > 0 else 0
+                        covered = file_data["summary"]["covered_lines"]
+                        total = file_data["summary"]["num_statements"]
+                        critical_paths[critical_path] = (
+                            (covered / total * 100) if total > 0 else 0
+                        )
                     else:
                         critical_paths[critical_path] = 0.0
-        
+
         # Calculate progress toward 95% target
         target_progress = (overall_coverage / self.TARGET_OVERALL) * 100
-        
+
         return CoverageMetrics(
             timestamp=timestamp,
             overall_coverage=overall_coverage,
@@ -223,165 +249,203 @@ class CoverageMonitor:
             lines_total=lines_total,
             components=components,
             critical_paths=critical_paths,
-            target_progress=target_progress
+            target_progress=target_progress,
         )
-    
+
     def store_metrics(self, metrics: CoverageMetrics):
         """Store coverage metrics in database."""
         # Get git info
         git_commit = self._get_git_commit()
         git_branch = self._get_git_branch()
-        
+
         with sqlite3.connect(self.db_path) as conn:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO coverage_history 
                 (timestamp, overall_coverage, lines_covered, lines_total, 
                  components, critical_paths, target_progress, git_commit, git_branch)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                metrics.timestamp,
-                metrics.overall_coverage,
-                metrics.lines_covered,
-                metrics.lines_total,
-                json.dumps(metrics.components),
-                json.dumps(metrics.critical_paths),
-                metrics.target_progress,
-                git_commit,
-                git_branch
-            ))
-    
+            """,
+                (
+                    metrics.timestamp,
+                    metrics.overall_coverage,
+                    metrics.lines_covered,
+                    metrics.lines_total,
+                    json.dumps(metrics.components),
+                    json.dumps(metrics.critical_paths),
+                    metrics.target_progress,
+                    git_commit,
+                    git_branch,
+                ),
+            )
+
     def generate_report(self, metrics: CoverageMetrics) -> CoverageReport:
         """Generate comprehensive coverage analysis report."""
         # Analyze trends
         trend_analysis = self._analyze_trends()
-        
+
         # Generate recommendations
         recommendations = self._generate_recommendations(metrics)
-        
+
         # Check for alerts
         alerts = self._check_alerts(metrics)
-        
+
         # Calculate milestone progress
         milestone_progress = {
             "overall_to_95": (metrics.overall_coverage / 95.0) * 100,
-            "critical_paths_ready": sum(1 for cov in metrics.critical_paths.values() if cov >= 95.0),
-            "components_at_target": sum(1 for component, cov in metrics.components.items() 
-                                      if cov >= self._get_component_target(component))
+            "critical_paths_ready": sum(
+                1 for cov in metrics.critical_paths.values() if cov >= 95.0
+            ),
+            "components_at_target": sum(
+                1
+                for component, cov in metrics.components.items()
+                if cov >= self._get_component_target(component)
+            ),
         }
-        
+
         return CoverageReport(
             current_metrics=metrics,
             trend_analysis=trend_analysis,
             recommendations=recommendations,
             alerts=alerts,
-            milestone_progress=milestone_progress
+            milestone_progress=milestone_progress,
         )
-    
-    def _analyze_trends(self) -> Dict[str, Any]:
+
+    def _analyze_trends(self) -> dict[str, Any]:
         """Analyze coverage trends over time."""
         with sqlite3.connect(self.db_path) as conn:
             # Get last 10 measurements
-            cursor = conn.execute("""
+            cursor = conn.execute(
+                """
                 SELECT timestamp, overall_coverage, target_progress 
                 FROM coverage_history 
                 ORDER BY timestamp DESC 
                 LIMIT 10
-            """)
+            """
+            )
             history = cursor.fetchall()
-        
+
         if len(history) < 2:
             return {"trend": "insufficient_data", "measurements": len(history)}
-        
+
         # Calculate trend
         recent_coverage = [row[1] for row in history[:5]]
         older_coverage = [row[1] for row in history[5:]]
-        
+
         recent_avg = sum(recent_coverage) / len(recent_coverage)
-        older_avg = sum(older_coverage) / len(older_coverage) if older_coverage else recent_avg
-        
-        trend_direction = "improving" if recent_avg > older_avg else "declining" if recent_avg < older_avg else "stable"
+        older_avg = (
+            sum(older_coverage) / len(older_coverage) if older_coverage else recent_avg
+        )
+
+        trend_direction = (
+            "improving"
+            if recent_avg > older_avg
+            else "declining" if recent_avg < older_avg else "stable"
+        )
         trend_rate = abs(recent_avg - older_avg)
-        
+
         return {
             "trend": trend_direction,
             "rate": trend_rate,
             "recent_average": recent_avg,
             "measurements": len(history),
-            "velocity": self._calculate_velocity(history)
+            "velocity": self._calculate_velocity(history),
         }
-    
-    def _calculate_velocity(self, history: List[Tuple]) -> float:
+
+    def _calculate_velocity(self, history: list[tuple]) -> float:
         """Calculate coverage improvement velocity (percentage points per day)."""
         if len(history) < 2:
             return 0.0
-        
+
         # Get first and last measurements
         latest = history[0]
         oldest = history[-1]
-        
+
         latest_time = datetime.datetime.fromisoformat(latest[0])
         oldest_time = datetime.datetime.fromisoformat(oldest[0])
-        
+
         time_diff = (latest_time - oldest_time).total_seconds() / 86400  # days
         coverage_diff = latest[1] - oldest[1]
-        
+
         return coverage_diff / time_diff if time_diff > 0 else 0.0
-    
-    def _generate_recommendations(self, metrics: CoverageMetrics) -> List[str]:
+
+    def _generate_recommendations(self, metrics: CoverageMetrics) -> list[str]:
         """Generate actionable recommendations based on current metrics."""
         recommendations = []
-        
+
         # Overall coverage recommendations
         if metrics.overall_coverage < 70:
-            recommendations.append("🚨 URGENT: Overall coverage below 70%. Focus on basic unit tests.")
+            recommendations.append(
+                "🚨 URGENT: Overall coverage below 70%. Focus on basic unit tests."
+            )
         elif metrics.overall_coverage < 85:
-            recommendations.append("📈 Priority: Add integration tests to reach 85% milestone.")
+            recommendations.append(
+                "📈 Priority: Add integration tests to reach 85% milestone."
+            )
         elif metrics.overall_coverage < 95:
-            recommendations.append("🎯 Target: Focus on edge cases and error paths to reach 95%.")
-        
+            recommendations.append(
+                "🎯 Target: Focus on edge cases and error paths to reach 95%."
+            )
+
         # Component-specific recommendations
         for component, coverage in metrics.components.items():
             target = self._get_component_target(component)
             if coverage < target - 10:
-                recommendations.append(f"⚠️ Component '{component}': {coverage:.1f}% (target: {target}%)")
+                recommendations.append(
+                    f"⚠️ Component '{component}': {coverage:.1f}% (target: {target}%)"
+                )
             elif coverage < target:
-                recommendations.append(f"📝 Component '{component}': Close to target, needs {target-coverage:.1f}% more")
-        
+                recommendations.append(
+                    f"📝 Component '{component}': Close to target, needs {target-coverage:.1f}% more"
+                )
+
         # Critical path recommendations
-        critical_below_target = [path for path, cov in metrics.critical_paths.items() if cov < 95.0]
+        critical_below_target = [
+            path for path, cov in metrics.critical_paths.items() if cov < 95.0
+        ]
         if critical_below_target:
-            recommendations.append(f"🔥 Critical paths need attention: {len(critical_below_target)} below 95%")
-        
+            recommendations.append(
+                f"🔥 Critical paths need attention: {len(critical_below_target)} below 95%"
+            )
+
         # Testing strategy recommendations
         if metrics.overall_coverage > 80:
-            recommendations.append("✨ Good foundation! Focus on scenario-based and integration tests.")
-        
+            recommendations.append(
+                "✨ Good foundation! Focus on scenario-based and integration tests."
+            )
+
         if not recommendations:
-            recommendations.append("🎉 Excellent coverage! Maintain quality and consider mutation testing.")
-        
+            recommendations.append(
+                "🎉 Excellent coverage! Maintain quality and consider mutation testing."
+            )
+
         return recommendations
-    
-    def _check_alerts(self, metrics: CoverageMetrics) -> List[str]:
+
+    def _check_alerts(self, metrics: CoverageMetrics) -> list[str]:
         """Check for coverage alerts and store them."""
         alerts = []
-        
+
         # Coverage regression alert
         with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.execute("""
+            cursor = conn.execute(
+                """
                 SELECT overall_coverage FROM coverage_history 
                 ORDER BY timestamp DESC LIMIT 2
-            """)
+            """
+            )
             recent = cursor.fetchall()
-            
+
             if len(recent) >= 2:
                 current = recent[0][0]
                 previous = recent[1][0]
-                
+
                 if current < previous - 2.0:  # 2% regression threshold
-                    alert = f"📉 Coverage regression: {current:.1f}% (was {previous:.1f}%)"
+                    alert = (
+                        f"📉 Coverage regression: {current:.1f}% (was {previous:.1f}%)"
+                    )
                     alerts.append(alert)
                     self._store_alert("regression", None, alert, "warning")
-        
+
         # Critical path alerts
         for path, coverage in metrics.critical_paths.items():
             if coverage < 80:
@@ -389,10 +453,12 @@ class CoverageMonitor:
                 alerts.append(alert)
                 self._store_alert("critical_low", path, alert, "critical")
             elif coverage < 95:
-                alert = f"⚠️ Critical path '{path}' needs {95-coverage:.1f}% more coverage"
+                alert = (
+                    f"⚠️ Critical path '{path}' needs {95-coverage:.1f}% more coverage"
+                )
                 alerts.append(alert)
                 self._store_alert("critical_medium", path, alert, "warning")
-        
+
         # Milestone alerts
         if metrics.target_progress < 50:
             alert = "🎯 Still far from 95% target - focus on basic unit tests"
@@ -402,167 +468,193 @@ class CoverageMonitor:
             alert = "🏆 95% coverage target achieved! Consider stretch goals."
             alerts.append(alert)
             self._store_alert("milestone", "overall", alert, "success")
-        
+
         return alerts
-    
-    def _store_alert(self, alert_type: str, component: Optional[str], message: str, severity: str):
+
+    def _store_alert(
+        self, alert_type: str, component: str | None, message: str, severity: str
+    ):
         """Store alert in database."""
         with sqlite3.connect(self.db_path) as conn:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO coverage_alerts (timestamp, alert_type, component, message, severity)
                 VALUES (?, ?, ?, ?, ?)
-            """, (datetime.datetime.now().isoformat(), alert_type, component, message, severity))
-    
+            """,
+                (
+                    datetime.datetime.now().isoformat(),
+                    alert_type,
+                    component,
+                    message,
+                    severity,
+                ),
+            )
+
     def _get_component_target(self, component: str) -> float:
         """Get coverage target for specific component."""
         critical_components = ["nlp", "command_executor", "security", "backend"]
         if component in critical_components:
             return self.TARGET_CRITICAL
-        elif component in ["learning", "ui"]:
+        if component in ["learning", "ui"]:
             return self.TARGET_CORE
-        else:
-            return self.TARGET_UI
-    
-    def _get_git_commit(self) -> Optional[str]:
+        return self.TARGET_UI
+
+    def _get_git_commit(self) -> str | None:
         """Get current git commit hash."""
         try:
             result = subprocess.run(
-                ["git", "rev-parse", "HEAD"], 
-                capture_output=True, text=True, cwd=self.project_root
+                ["git", "rev-parse", "HEAD"],
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
             )
             return result.stdout.strip() if result.returncode == 0 else None
         except Exception:
             return None
-    
-    def _get_git_branch(self) -> Optional[str]:
+
+    def _get_git_branch(self) -> str | None:
         """Get current git branch name."""
         try:
             result = subprocess.run(
-                ["git", "branch", "--show-current"], 
-                capture_output=True, text=True, cwd=self.project_root
+                ["git", "branch", "--show-current"],
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
             )
             return result.stdout.strip() if result.returncode == 0 else None
         except Exception:
             return None
-    
+
     def print_report(self, report: CoverageReport):
         """Print comprehensive coverage report to console."""
         metrics = report.current_metrics
-        
-        print("\n" + "="*80)
+
+        print("\n" + "=" * 80)
         print("📊 COVERAGE MONITORING REPORT")
-        print("="*80)
-        
+        print("=" * 80)
+
         # Current Status
         print(f"\n🎯 CURRENT STATUS ({metrics.timestamp[:19]})")
         print("-" * 50)
         print(f"Overall Coverage:     {metrics.overall_coverage:6.2f}% (Target: 95.0%)")
-        print(f"Lines Covered:        {metrics.lines_covered:6,} / {metrics.lines_total:,}")
+        print(
+            f"Lines Covered:        {metrics.lines_covered:6,} / {metrics.lines_total:,}"
+        )
         print(f"Target Progress:      {metrics.target_progress:6.2f}%")
-        
+
         # Component Breakdown
-        print(f"\n🧩 COMPONENT BREAKDOWN")
+        print("\n🧩 COMPONENT BREAKDOWN")
         print("-" * 50)
         for component, coverage in metrics.components.items():
             target = self._get_component_target(component)
-            status = "✅" if coverage >= target else "⚠️" if coverage >= target - 10 else "❌"
+            status = (
+                "✅" if coverage >= target else "⚠️" if coverage >= target - 10 else "❌"
+            )
             print(f"{status} {component:15} {coverage:6.2f}% (Target: {target:4.0f}%)")
-        
+
         # Critical Paths
-        print(f"\n🔥 CRITICAL PATHS")
+        print("\n🔥 CRITICAL PATHS")
         print("-" * 50)
         for path, coverage in metrics.critical_paths.items():
             status = "✅" if coverage >= 95 else "⚠️" if coverage >= 80 else "❌"
-            short_path = path.split('/')[-1] if '/' in path else path
+            short_path = path.split("/")[-1] if "/" in path else path
             print(f"{status} {short_path:25} {coverage:6.2f}%")
-        
+
         # Trend Analysis
         trend = report.trend_analysis
-        print(f"\n📈 TREND ANALYSIS")
+        print("\n📈 TREND ANALYSIS")
         print("-" * 50)
         print(f"Trend Direction:      {trend.get('trend', 'unknown').upper()}")
-        if trend.get('rate'):
+        if trend.get("rate"):
             print(f"Rate of Change:       {trend['rate']:+6.2f} percentage points")
-        if trend.get('velocity'):
+        if trend.get("velocity"):
             print(f"Velocity:            {trend['velocity']:+6.2f}%/day")
         print(f"Historical Data:      {trend.get('measurements', 0)} measurements")
-        
+
         # Milestone Progress
         milestones = report.milestone_progress
-        print(f"\n🏆 MILESTONE PROGRESS")
+        print("\n🏆 MILESTONE PROGRESS")
         print("-" * 50)
         print(f"Progress to 95%:      {milestones['overall_to_95']:6.2f}%")
-        print(f"Critical Paths Ready: {milestones['critical_paths_ready']}/{len(metrics.critical_paths)}")
-        print(f"Components at Target: {milestones['components_at_target']}/{len(metrics.components)}")
-        
+        print(
+            f"Critical Paths Ready: {milestones['critical_paths_ready']}/{len(metrics.critical_paths)}"
+        )
+        print(
+            f"Components at Target: {milestones['components_at_target']}/{len(metrics.components)}"
+        )
+
         # Recommendations
         if report.recommendations:
-            print(f"\n💡 RECOMMENDATIONS")
+            print("\n💡 RECOMMENDATIONS")
             print("-" * 50)
             for rec in report.recommendations:
                 print(f"   {rec}")
-        
+
         # Alerts
         if report.alerts:
-            print(f"\n🚨 ALERTS")
+            print("\n🚨 ALERTS")
             print("-" * 50)
             for alert in report.alerts:
                 print(f"   {alert}")
-        
-        print("\n" + "="*80)
-    
+
+        print("\n" + "=" * 80)
+
     def save_report(self, report: CoverageReport):
         """Save report to JSON file."""
-        timestamp = report.current_metrics.timestamp[:19].replace(':', '-')
+        timestamp = report.current_metrics.timestamp[:19].replace(":", "-")
         report_file = self.reports_dir / f"coverage_report_{timestamp}.json"
-        
+
         # Convert to serializable format
         report_data = {
             "current_metrics": asdict(report.current_metrics),
             "trend_analysis": report.trend_analysis,
             "recommendations": report.recommendations,
             "alerts": report.alerts,
-            "milestone_progress": report.milestone_progress
+            "milestone_progress": report.milestone_progress,
         }
-        
-        with open(report_file, 'w') as f:
+
+        with open(report_file, "w") as f:
             json.dump(report_data, f, indent=2)
-        
+
         print(f"📁 Report saved to: {report_file}")
-    
+
     def generate_html_dashboard(self, report: CoverageReport):
         """Generate HTML dashboard for coverage monitoring."""
         dashboard_file = self.reports_dir / "coverage_dashboard.html"
-        
+
         # Get historical data for charts
         with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.execute("""
+            cursor = conn.execute(
+                """
                 SELECT timestamp, overall_coverage, target_progress 
                 FROM coverage_history 
                 ORDER BY timestamp ASC 
                 LIMIT 50
-            """)
+            """
+            )
             history = cursor.fetchall()
-        
+
         # Generate HTML
         html_content = self._generate_dashboard_html(report, history)
-        
-        with open(dashboard_file, 'w') as f:
+
+        with open(dashboard_file, "w") as f:
             f.write(html_content)
-        
+
         print(f"📊 Dashboard saved to: {dashboard_file}")
-    
-    def _generate_dashboard_html(self, report: CoverageReport, history: List[Tuple]) -> str:
+
+    def _generate_dashboard_html(
+        self, report: CoverageReport, history: list[tuple]
+    ) -> str:
         """Generate HTML dashboard content."""
         metrics = report.current_metrics
-        
+
         # Prepare chart data
         chart_data = {
             "timestamps": [h[0][:19] for h in history],
             "coverage": [h[1] for h in history],
-            "target_progress": [h[2] for h in history]
+            "target_progress": [h[2] for h in history],
         }
-        
+
         return f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -724,26 +816,44 @@ class CoverageMonitor:
 </html>
         """
 
+
 def main():
     """Main entry point for coverage monitoring."""
-    parser = argparse.ArgumentParser(description="Automated Coverage Monitoring for Nix for Humanity")
+    parser = argparse.ArgumentParser(
+        description="Automated Coverage Monitoring for Nix for Humanity"
+    )
     parser.add_argument("--project-root", help="Project root directory", default=None)
-    parser.add_argument("--no-run", action="store_true", help="Skip running tests, analyze existing results")
-    parser.add_argument("--dashboard", action="store_true", help="Generate HTML dashboard")
+    parser.add_argument(
+        "--no-run",
+        action="store_true",
+        help="Skip running tests, analyze existing results",
+    )
+    parser.add_argument(
+        "--dashboard", action="store_true", help="Generate HTML dashboard"
+    )
     parser.add_argument("--save-report", action="store_true", help="Save JSON report")
-    parser.add_argument("--alert-threshold", type=float, default=2.0, help="Coverage regression alert threshold")
-    parser.add_argument("--init-only", action="store_true", help="Only initialize directories and database")
-    
+    parser.add_argument(
+        "--alert-threshold",
+        type=float,
+        default=2.0,
+        help="Coverage regression alert threshold",
+    )
+    parser.add_argument(
+        "--init-only",
+        action="store_true",
+        help="Only initialize directories and database",
+    )
+
     args = parser.parse_args()
-    
+
     # Initialize monitor
     monitor = CoverageMonitor(args.project_root)
-    
+
     # If only initializing, just set up directories and exit
     if args.init_only:
         print("✅ Coverage monitoring initialized")
         return 0
-    
+
     # Run coverage analysis
     metrics = monitor.run_coverage_analysis(skip_tests=args.no_run)
     if not metrics:
@@ -751,29 +861,30 @@ def main():
         if args.no_run:
             print("💡 No existing coverage data found. Run without --no-run first.")
         return 1
-    
+
     # Store metrics
     monitor.store_metrics(metrics)
-    
+
     # Generate comprehensive report
     report = monitor.generate_report(metrics)
-    
+
     # Print report to console
     monitor.print_report(report)
-    
+
     # Save report if requested
     if args.save_report:
         monitor.save_report(report)
-    
+
     # Generate dashboard if requested
     if args.dashboard:
         monitor.generate_html_dashboard(report)
-    
+
     # Return appropriate exit code
     if report.alerts and any("🚨" in alert for alert in report.alerts):
         return 1  # Critical alerts present
-    
+
     return 0
+
 
 if __name__ == "__main__":
     exit(main())

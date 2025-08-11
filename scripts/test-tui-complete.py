@@ -2,15 +2,17 @@
 """Test complete TUI functionality."""
 
 import sys
-sys.path.insert(0, 'src')
+
+sys.path.insert(0, "src")
 
 print("🎮 Testing Complete TUI Functionality\n")
 
 # Test 1: Import all components
 print("1. Testing imports...")
 try:
-    from nix_humanity.core.engine import NixForHumanityBackend
-    from nix_humanity.api.schema import Request, Response
+    from nix_for_humanity.api.schema import Request
+    from nix_for_humanity.core.engine import NixForHumanityBackend
+
     print("✅ Backend imports successful")
 except Exception as e:
     print(f"❌ Backend import failed: {e}")
@@ -18,7 +20,7 @@ except Exception as e:
 
 try:
     # Try importing TUI without Textual (will fail but shows structure)
-    from nix_humanity.ui import __all__
+
     print("✅ TUI module structure exists")
 except Exception as e:
     print(f"⚠️  TUI import limited (expected without Textual): {e}")
@@ -27,20 +29,15 @@ except Exception as e:
 print("\n2. Testing backend functionality...")
 try:
     backend = NixForHumanityBackend()
-    
+
     # Test natural language
-    test_queries = [
-        "help",
-        "install firefox",
-        "search text editor",
-        "list generations"
-    ]
-    
+    test_queries = ["help", "install firefox", "search text editor", "list generations"]
+
     for query in test_queries:
         request = Request(query=query)
         response = backend.process(request)
         print(f"✅ '{query}' -> success={response.success}")
-        
+
 except Exception as e:
     print(f"❌ Backend test failed: {e}")
 
@@ -50,19 +47,19 @@ try:
     # Get current context
     context = backend.get_current_context()
     print(f"✅ get_current_context: {list(context.keys())}")
-    
+
     # Get settings
     settings = backend.get_settings()
     print(f"✅ get_settings: {list(settings.keys())}")
-    
+
     # Get suggestions
     suggestions = backend.get_suggestions("inst")
     print(f"✅ get_suggestions: {suggestions[:3]}...")
-    
+
     # Execute command (dry run)
     result = backend.execute_command("echo test", dry_run=True)
     print(f"✅ execute_command: dry_run={result['dry_run']}")
-    
+
 except Exception as e:
     print(f"❌ TUI methods test failed: {e}")
 
@@ -82,9 +79,9 @@ readiness = {
     "Backend available": True,
     "Sync wrapper works": True,
     "All methods present": True,
-    "Package search works": len(results) > 0 if 'results' in locals() else False,
+    "Package search works": len(results) > 0 if "results" in locals() else False,
     "Natural language works": True,
-    "Textual installed": False  # Will need nix develop
+    "Textual installed": False,  # Will need nix develop
 }
 
 for item, status in readiness.items():

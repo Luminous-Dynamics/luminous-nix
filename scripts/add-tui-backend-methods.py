@@ -2,16 +2,15 @@
 """Add missing methods that TUI expects from backend."""
 
 from pathlib import Path
-import re
 
-from typing import List, Dict, Optional
+
 def add_tui_methods():
     """Add methods TUI needs to the backend."""
-    
+
     print("🔧 Adding TUI-required methods to backend\n")
-    
-    engine_file = Path('src/nix_humanity/core/engine.py')
-    
+
+    engine_file = Path("src/nix_humanity/core/engine.py")
+
     # Methods to add
     new_methods = '''
     def get_current_context(self) -> Dict[str, Any]:
@@ -132,56 +131,64 @@ def add_tui_methods():
         
         return "Unknown"
 '''
-    
+
     # Read current content
     with open(engine_file) as f:
         content = f.read()
-    
+
     # Check which methods are missing
     missing_methods = []
-    for method in ['get_current_context', 'get_settings', 'execute_command', 'get_suggestions']:
-        if f'def {method}(' not in content:
+    for method in [
+        "get_current_context",
+        "get_settings",
+        "execute_command",
+        "get_suggestions",
+    ]:
+        if f"def {method}(" not in content:
             missing_methods.append(method)
-    
+
     if not missing_methods:
         print("✅ All TUI methods already present!")
         return
-    
-    print(f"Adding {len(missing_methods)} missing methods: {', '.join(missing_methods)}")
-    
+
+    print(
+        f"Adding {len(missing_methods)} missing methods: {', '.join(missing_methods)}"
+    )
+
     # Find where to insert (before the last method or at end of class)
     # Look for the search_packages method we just added
-    insert_pos = content.find('def search_packages(')
+    insert_pos = content.find("def search_packages(")
     if insert_pos > 0:
         # Find the end of search_packages method
-        method_end = content.find('\n\n    def ', insert_pos)
+        method_end = content.find("\n\n    def ", insert_pos)
         if method_end == -1:
             # It's the last method, find the end
-            method_end = content.find('\n\nclass', insert_pos)
+            method_end = content.find("\n\nclass", insert_pos)
             if method_end == -1:
                 method_end = len(content) - 2
-        
+
         # Insert the new methods
-        content = content[:method_end] + '\n' + new_methods + content[method_end:]
+        content = content[:method_end] + "\n" + new_methods + content[method_end:]
     else:
         print("❌ Could not find insertion point")
         return
-    
+
     # Write back
-    with open(engine_file, 'w') as f:
+    with open(engine_file, "w") as f:
         f.write(content)
-    
+
     print("✅ Added missing TUI methods to backend!")
-    
+
     # Also need to fix the async issue
     print("\n🔧 Fixing async process_request issue...")
-    
+
     # The process_request is async, so we need to make it sync or handle async in TUI
     # Let's check if it's really async
-    if 'async def process_request' in content:
+    if "async def process_request" in content:
         print("  Note: process_request is async - TUI will need to handle this")
     else:
         print("  process_request appears to be sync")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     add_tui_methods()

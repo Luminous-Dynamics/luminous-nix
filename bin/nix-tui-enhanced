@@ -15,7 +15,7 @@ sys.path.insert(0, str(project_root))
 
 # Import and run the enhanced TUI
 try:
-    from nix_humanity.ui.enhanced_tui import main
+    from nix_for_humanity.ui.enhanced_tui import main
     
     print("🌟 Launching Enhanced Nix for Humanity TUI...")
     print("✨ Features: Advanced error handling, recovery options, error history")
