@@ -12,7 +12,7 @@ Tests all security validation functionality including:
 - Display sanitization
 """
 
-# REMOVED MOCK IMPORT: patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import os
 import sys
 import unittest

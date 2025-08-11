@@ -12,7 +12,7 @@ security-first principles.
 import re
 import unittest
 
-# REMOVED MOCK IMPORT: patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 
 
 class TestSecurityBoundaries(unittest.TestCase):

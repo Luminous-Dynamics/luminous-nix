@@ -8,7 +8,7 @@ Tests the performance benchmarking functionality.
 import os
 import shutil
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch, call
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import tempfile
 import unittest

@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 
 from nix_for_humanity.core.intents import Intent, IntentRecognizer, IntentType
-from nix_for_humanity.core.interface import Intent, IntentType
+from nix_for_humanity.core import Intent, IntentType
 
 
 class TestIntentRecognizerEnhanced(unittest.TestCase):

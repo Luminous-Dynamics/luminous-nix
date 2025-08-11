@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Basic TUI tests that actually work with the real implementation."""
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import asyncio
 
 import pytest

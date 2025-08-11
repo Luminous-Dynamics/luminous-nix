@@ -28,7 +28,7 @@ try:
 except ImportError as e:
     print(f"❌ SKG import failed: {e}")
     print("   Falling back to mock...")
-    # REMOVED MOCK IMPORT: MockSymbioticKnowledgeGraph as SymbioticKnowledgeGraph
+    from unittest.mock import Mock, MagicMock, patch, call
     print("✅ Mock SKG imported")
 
 try:
@@ -38,7 +38,7 @@ try:
     print("✅ Theory of Mind Trust Engine imported")
 except ImportError as e:
     print(f"❌ Trust Engine import failed: {e}")
-    # REMOVED MOCK IMPORT: MockTrustEngine as TheoryOfMindTrustEngine
+    from unittest.mock import Mock, MagicMock, patch, call
     print("✅ Mock Trust Engine imported")
 
 try:
@@ -48,7 +48,7 @@ try:
     print("✅ Sacred Metrics Collector imported")
 except ImportError as e:
     print(f"❌ Metrics import failed: {e}")
-    # REMOVED MOCK IMPORT: MockSacredMetricsCollector as SacredMetricsCollector
+    from unittest.mock import Mock, MagicMock, patch, call
     print("✅ Mock Metrics imported")
 
 try:
@@ -60,7 +60,7 @@ try:
     print("✅ Privacy-First Activity Monitor imported")
 except ImportError as e:
     print(f"❌ Activity Monitor import failed: {e}")
-    # REMOVED MOCK IMPORT: MockActivityMonitor as PrivacyFirstActivityMonitor
+    from unittest.mock import Mock, MagicMock, patch, call
     print("✅ Mock Activity Monitor imported")
 
 try:
@@ -70,7 +70,7 @@ try:
     print("✅ Consciousness Guard imported")
 except ImportError as e:
     print(f"❌ Consciousness Guard import failed: {e}")
-    # REMOVED MOCK IMPORT: MockConsciousnessGuard as ConsciousnessGuard
+    from unittest.mock import Mock, MagicMock, patch, call
     print("✅ Mock Consciousness Guard imported")
 
 # Test 2: Initialize components
@@ -88,7 +88,7 @@ try:
     except Exception as e:
         print(f"⚠️  SKG initialization with error: {e}")
         print("   Using mock instead...")
-        # REMOVED MOCK IMPORT: MockSymbioticKnowledgeGraph
+        from unittest.mock import Mock, MagicMock, patch, call
         skg = MockSymbioticKnowledgeGraph(str(test_db_dir / "test_skg.db"))
         print("✅ Mock SKG initialized")
 

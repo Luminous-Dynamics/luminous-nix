@@ -7,7 +7,7 @@ Focus on error conditions, boundary cases, and security scenarios
 import os
 import sqlite3
 
-# REMOVED MOCK IMPORT: patch, MagicMock, Mock
+from unittest.mock import Mock, MagicMock, patch, call
 # Add the src directory to Python path
 import sys
 import tempfile

@@ -21,7 +21,7 @@ import sys
 import threading
 import time
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock, call
+from unittest.mock import Mock, MagicMock, patch, call
 from pathlib import Path
 
 import pytest

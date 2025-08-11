@@ -8,7 +8,7 @@ Tests core backend methods without complex dependencies.
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch, AsyncMock
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 

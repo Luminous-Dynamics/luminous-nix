@@ -8,7 +8,7 @@ Tests the main CLI interface for Nix for Humanity.
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch, call
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 

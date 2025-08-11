@@ -17,9 +17,9 @@ sys.path.insert(0, str(project_root))
 
 from nix_for_humanity.core.engine import NixForHumanityBackend
 from nix_for_humanity.core.intents import Command, ExecutionResult
-from nix_for_humanity.core.interface import Intent, IntentType, Response
+from nix_for_humanity.core import Intent, IntentType, Response
 from nix_for_humanity.core.planning import Plan
-from nix_for_humanity.core.responses import PersonalityStyle
+from nix_for_humanity.core.personality import PersonalityStyle
 from nix_for_humanity.learning.preferences import Interaction
 from tests.test_utils.test_implementations import (
     PERSONA_TEST_DATA,

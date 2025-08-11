@@ -10,7 +10,7 @@ the 10x-1500x performance gains and ensuring no regressions.
 import asyncio
 import os
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import statistics
 import sys
 import time

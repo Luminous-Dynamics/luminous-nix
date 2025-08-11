@@ -11,12 +11,12 @@ import subprocess
 import sys
 import unittest
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.core.executor import SafeExecutor
+from nix_for_humanity.core import SafeExecutor
 from nix_for_humanity.core.intents import Command
 
 

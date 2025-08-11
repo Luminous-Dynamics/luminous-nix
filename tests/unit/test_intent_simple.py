@@ -7,7 +7,7 @@ Tests intent recognition functionality without complex dependencies.
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 

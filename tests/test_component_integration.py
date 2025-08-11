@@ -76,7 +76,7 @@ def test_mock_components_directly():
     print("=" * 50)
 
     try:
-        # REMOVED MOCK IMPORT:
+        from unittest.mock import Mock, MagicMock, patch, call
         # MockSymbioticKnowledgeGraph,
         # MockTrustEngine,
         # MockSacredMetricsCollector,

@@ -13,7 +13,7 @@ This test suite covers:
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, patch, AsyncMock
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 
@@ -24,7 +24,7 @@ sys.path.insert(
 
 
 from nix_for_humanity.core.intents import IntentRecognizer as IntentRecognizer
-from nix_for_humanity.core.intents import IntentType
+from nix_for_humanity.core import IntentType
 
 
 class TestIntentRecognizer(unittest.TestCase):

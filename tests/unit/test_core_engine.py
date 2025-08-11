@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 from nix_for_humanity.core.engine import NixForHumanityBackend
 from nix_for_humanity.core.intents import Command, Intent, IntentType, Response
-from nix_for_humanity.core.interface import Query
+from nix_for_humanity.core import Query
 from nix_for_humanity.core.planning import ExecutionResult, Plan
 
 

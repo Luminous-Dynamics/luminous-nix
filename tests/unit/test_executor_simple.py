@@ -8,7 +8,7 @@ rollback support, and progress reporting.
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 
@@ -23,8 +23,8 @@ sys.modules["nix_humanity.python"] = MagicMock()
 sys.modules["nix_humanity.python.native_nix_backend"] = MagicMock()
 
 # Import after mocking
-from nix_for_humanity.core.executor import SafeExecutor, ValidationResult
-from nix_for_humanity.core.intents import Intent, IntentType
+from nix_for_humanity.core import SafeExecutor, ValidationResult
+from nix_for_humanity.core import Intent, IntentType
 
 
 class TestValidationResult(unittest.TestCase):

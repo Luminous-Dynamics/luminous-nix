@@ -9,7 +9,7 @@ adaptive responses.
 
 import os
 
-# REMOVED MOCK IMPORT: patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 # Import the modules under test
 import sys
 import tempfile

@@ -6,7 +6,7 @@ Avoids complex import issues by using direct module loading
 
 import importlib.util
 
-# REMOVED MOCK IMPORT: Mock, patch, AsyncMock, MagicMock, call
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 from pathlib import Path

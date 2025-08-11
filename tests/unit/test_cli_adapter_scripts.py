@@ -13,7 +13,7 @@ Tests all functionality including:
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock, call
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 

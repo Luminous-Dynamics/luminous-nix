@@ -12,7 +12,7 @@ import pytest
 from textual.containers import ScrollableContainer
 from textual.pilot import Pilot
 
-# REMOVED MOCK IMPORT: Mock, AsyncMock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 from textual.widgets import Button, Input
 
 # Add source to path

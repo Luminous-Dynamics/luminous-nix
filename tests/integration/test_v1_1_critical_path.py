@@ -155,7 +155,7 @@ class TestBackendIntegration(unittest.TestCase):
 
     def test_intent_recognition(self):
         """Basic intent recognition works."""
-        from nix_for_humanity.core.intents import IntentRecognizer, IntentType
+        from nix_for_humanity.core import IntentRecognizer, IntentType
 
         recognizer = IntentRecognizer()
 

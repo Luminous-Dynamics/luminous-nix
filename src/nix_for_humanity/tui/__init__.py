@@ -8,11 +8,11 @@ and educational tooltips.
 Since: v1.0.0
 """
 
-from .app import NixHumanityTUI, run_tui
+from .app import NixForHumanityTUI, run_tui
 from .widgets import CommandInput, HelpPanel, HistoryPanel, ResultsPanel, StatusBar
 
 __all__ = [
-    "NixHumanityTUI",
+    "NixForHumanityTUI",
     "run_tui",
     "CommandInput",
     "ResultsPanel",

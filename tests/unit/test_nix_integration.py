@@ -7,7 +7,7 @@ Tests the bridge between high-level intents and NixOS operations
 import sys
 import unittest
 
-# REMOVED MOCK IMPORT: Mock, patch, AsyncMock, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 from pathlib import Path
 
 # Add backend to path for imports

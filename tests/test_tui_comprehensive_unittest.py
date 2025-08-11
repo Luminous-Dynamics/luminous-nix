@@ -8,7 +8,7 @@ import os
 import sys
 import unittest
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Add project paths
 sys.path.insert(0, "src")

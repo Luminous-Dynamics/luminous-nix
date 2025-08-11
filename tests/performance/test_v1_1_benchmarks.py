@@ -7,7 +7,7 @@ Comprehensive performance testing for all v1.1 features.
 
 import asyncio
 
-# REMOVED MOCK IMPORT: Mock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 import json
 import statistics
 import time

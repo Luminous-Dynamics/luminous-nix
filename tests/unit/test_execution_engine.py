@@ -3,7 +3,7 @@
 Unit tests for the SafeExecutor component
 """
 
-# REMOVED MOCK IMPORT: patch, MagicMock, Mock
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Add the src directory to Python path
 import sys
@@ -12,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.core.executor import SafeExecutor
+from nix_for_humanity.core import SafeExecutor
 from nix_for_humanity.core.intents import Command
 
 

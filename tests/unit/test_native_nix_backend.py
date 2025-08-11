@@ -18,7 +18,7 @@ import asyncio
 import os
 import sys
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock, AsyncMock
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Add backend to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../backend/python"))

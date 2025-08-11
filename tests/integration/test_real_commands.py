@@ -16,8 +16,8 @@ sys.path.insert(0, str(project_root))
 
 from nix_for_humanity.api.schema import Request
 from nix_for_humanity.core.engine import NixForHumanityBackend
-from nix_for_humanity.core.executor import SafeExecutor
-from nix_for_humanity.core.intents import IntentRecognizer, IntentType
+from nix_for_humanity.core import SafeExecutor
+from nix_for_humanity.core import IntentRecognizer, IntentType
 from nix_for_humanity.core.knowledge import KnowledgeBase
 
 

@@ -12,7 +12,7 @@ print("Starting debug test...")
 
 try:
     print("Importing Query and ExecutionMode...")
-    from nix_for_humanity.core.interface import Query
+    from nix_for_humanity.core import Query
 
     print("✓ Imports successful")
 

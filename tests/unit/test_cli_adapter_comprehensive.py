@@ -7,7 +7,7 @@ Following test philosophy: Test behavior at boundaries, implementation at core.
 """
 
 
-# REMOVED MOCK IMPORT: patch, MagicMock, Mock, call, Mock
+from unittest.mock import Mock, MagicMock, patch, call
 import os
 import sys
 import unittest

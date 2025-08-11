@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Core module tests to improve coverage."""
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 
 import pytest
 

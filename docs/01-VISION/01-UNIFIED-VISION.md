@@ -14,11 +14,11 @@
 - **For implementers**: Continue to [Implementation Roadmap](./02-ROADMAP.md) for development phases and milestones
 - **For architects**: Dive into [System Architecture](../02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md) for technical details
 - **For developers**: Start with [Quick Start Guide](../03-DEVELOPMENT/03-QUICK-START.md) to get hands-on
-- **For researchers**: Explore [Symbiotic Intelligence Whitepaper](./00-WHITEPAPER-SYMBIOTIC-INTELLIGENCE/README.md) for deep research
+- **For researchers**: Explore [Symbiotic Intelligence](./04-SYMBIOTIC-INTELLIGENCE.md) for deep research
 
 ---
 
-> **Note**: This document provides a high-level summary of our vision. For the complete research and development roadmap with detailed methodologies and technical foundations, please see our [**Symbiotic Intelligence Whitepaper**](./00-WHITEPAPER-SYMBIOTIC-INTELLIGENCE.md).
+> **Note**: This document provides a high-level summary of our vision. For the complete research and development roadmap with detailed methodologies and technical foundations, please see our [**Symbiotic Intelligence Research**](./04-SYMBIOTIC-INTELLIGENCE.md).
 
 ## Executive Summary
 

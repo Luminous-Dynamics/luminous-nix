@@ -8,7 +8,7 @@ Tests the feedback collection and management functionality.
 import os
 import shutil
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import tempfile
 import unittest

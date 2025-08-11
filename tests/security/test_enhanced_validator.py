@@ -11,7 +11,7 @@ Validates the additional security layers including:
 
 import unittest
 
-# REMOVED MOCK IMPORT: Mock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 from nix_for_humanity.security.enhanced_validator import (
     EnhancedInputValidator,
     SecurityLevel,

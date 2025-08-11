@@ -7,7 +7,7 @@ Tests the demo HTTP server functionality.
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 

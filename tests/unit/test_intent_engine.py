@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 
-from nix_for_humanity.core.intents import IntentRecognizer, IntentType
+from nix_for_humanity.core import IntentRecognizer, IntentType
 
 
 class TestIntentRecognizer(unittest.TestCase):

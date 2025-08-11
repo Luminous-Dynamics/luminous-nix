@@ -5,7 +5,7 @@ Tests the complete flow from error occurrence to educational display,
 including XAI explanations and persona adaptation.
 """
 
-# REMOVED MOCK IMPORT: Mock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 
 from src.nix_humanity.core.types import IntentType, PersonalityStyle, Request
 from src.nix_humanity.ui.persona_styles import PersonaType

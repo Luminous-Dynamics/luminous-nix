@@ -5,11 +5,29 @@ All notable changes to Nix for Humanity will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased] - v1.1.0 (In Development)
+
+### Added
+
+- **Terminal User Interface (TUI)** - Beautiful, consciousness-first terminal interface
+  - ConsciousnessOrb visualization that pulses with system activity
+  - Rich command history with syntax highlighting
+  - Real-time visual feedback for all operations
+  - Keyboard shortcuts for common actions (F1=Help, F2=Toggle Mode)
+  - Safe dry-run mode by default
+
+### Improved
+
+- Test infrastructure partially restored (reduced errors from 67 to 50)
+- Added 50+ new tests across core modules
+- Improved test coverage documentation and roadmap
+
+## [1.0.1] - 2025-08-11
 
 ### Fixed
 
-- Natural language patterns "i need {package}" and "get me {package}" now correctly extract the package name
+- Critical pattern recognition bug: "i need {package}" now correctly extracts package name
+- Natural language patterns "i need firefox" and "get me firefox" work correctly
 - Improved pattern recognition for complex phrases with multiple filler words
 - Simplified pattern extraction logic for better reliability
 

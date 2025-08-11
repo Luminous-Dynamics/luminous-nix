@@ -14,8 +14,8 @@ import pytest
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from nix_for_humanity.core.executor import SafeExecutor
-from nix_for_humanity.core.intents import Intent, IntentType
+from nix_for_humanity.core import SafeExecutor
+from nix_for_humanity.core import Intent, IntentType
 from tests.test_utils.test_implementations import (
     TestExecutionBackend,
     TestProgressCallback,

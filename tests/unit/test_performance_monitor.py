@@ -7,7 +7,7 @@ Validates Phase 4 Living System self-maintaining infrastructure
 import asyncio
 import os
 
-# REMOVED MOCK IMPORT: patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import tempfile
 import time

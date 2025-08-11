@@ -9,7 +9,7 @@ from pathlib import Path
 # Add the backend to the path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from nix_for_humanity.core.intents import IntentRecognizer, IntentType
+from nix_for_humanity.core import IntentRecognizer, IntentType
 
 
 def test_intent_recognition():

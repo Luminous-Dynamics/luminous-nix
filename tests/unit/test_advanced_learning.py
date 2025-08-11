@@ -15,7 +15,7 @@ import sys
 import tempfile
 import unittest
 
-# REMOVED MOCK IMPORT: patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 from datetime import datetime
 from pathlib import Path
 

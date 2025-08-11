@@ -13,11 +13,10 @@ Tests all REST API functionality including:
 """
 
 import os
-
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch, call
 import sys
 import unittest
 from datetime import datetime, timedelta
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Add parent directories to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts"))

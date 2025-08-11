@@ -7,7 +7,7 @@ import os
 import sys
 import unittest
 
-# REMOVED MOCK IMPORT: patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Add the bin directory to Python path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../bin"))

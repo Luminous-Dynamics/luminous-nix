@@ -11,7 +11,7 @@ import tempfile
 import time
 import unittest
 
-# REMOVED MOCK IMPORT: patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Add parent directory to path
 sys.path.insert(
@@ -22,7 +22,7 @@ from nix_for_humanity.core.engine import NixForHumanityBackend as Engine
 from nix_for_humanity.core.executor import ExecutionEngine
 from nix_for_humanity.core.intents import IntentEngine
 from nix_for_humanity.core.knowledge import KnowledgeBase
-from nix_for_humanity.core.personality import PersonalitySystem
+from nix_for_humanity.core.personality import PersonalityManager
 
 
 class PersonaJourney:
@@ -208,7 +208,7 @@ class TestPersonaJourneys(unittest.TestCase):
 
         # Initialize engine
         self.engine = Engine(
-            IntentEngine(), self.knowledge_base, ExecutionEngine(), PersonalitySystem()
+            IntentEngine(), self.knowledge_base, ExecutionEngine(), PersonalityManager()
         )
 
     def tearDown(self):

@@ -4,7 +4,7 @@ Comprehensive unit tests for the Engine
 Tests the unified backend architecture serving all interfaces
 """
 
-# REMOVED MOCK IMPORT: patch, MagicMock, Mock, call
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 from datetime import datetime
@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 from nix_for_humanity.core.engine import NixForHumanityBackend as Engine
 from nix_for_humanity.core.intents import Context
-from nix_for_humanity.core.interface import Intent, Response
+from nix_for_humanity.core import Intent, Response
 
 
 class TestEngine(unittest.TestCase):

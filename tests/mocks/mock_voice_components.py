@@ -4,7 +4,7 @@ Mock components for voice interface testing.
 Provides mocks for audio devices, speech recognition, and TTS.
 """
 
-# REMOVED MOCK IMPORT: Mock, AsyncMock, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 from typing import Any
 
 import numpy as np

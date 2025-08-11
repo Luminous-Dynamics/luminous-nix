@@ -13,7 +13,7 @@ Tests all knowledge engine functionality including:
 import os
 import sqlite3
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch, call
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import tempfile
 import unittest

@@ -326,5 +326,10 @@ def run():
     app.run()
 
 
+def run_tui():
+    """Alias for run() to match expected interface"""
+    run()
+
+
 if __name__ == "__main__":
     run()

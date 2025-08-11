@@ -21,7 +21,7 @@ import pytest
 
 from nix_for_humanity.api import Request
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 # Import v1.0 components
 from nix_for_humanity.core import IntentType, NixForHumanityBackend
 

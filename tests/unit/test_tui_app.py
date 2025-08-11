@@ -15,7 +15,7 @@ Tests all TUI functionality including:
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch, PropertyMock
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 

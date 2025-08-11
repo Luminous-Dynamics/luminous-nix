@@ -5,7 +5,7 @@ Comprehensive test suite for TUI application components
 Converted from pytest to unittest for immediate execution
 """
 
-# REMOVED MOCK IMPORT: Mock, AsyncMock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import os
 import sys
 import unittest

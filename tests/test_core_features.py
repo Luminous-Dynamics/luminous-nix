@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.join(nix_humanity_dir, "scripts", "backend"))
 os.chdir(nix_humanity_dir)
 
 # Import modules directly
-from nix_for_humanity.core.engine import IntentType, UnifiedNixBackend
+from nix_for_humanity.core import IntentType, UnifiedNixBackend
 
 
 def test_configuration_generation():

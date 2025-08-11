@@ -6,7 +6,7 @@ This test suite aims to achieve 100% coverage of the knowledge.py module,
 testing all database operations, knowledge retrieval methods, and edge cases.
 """
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import os
 import shutil
 import sqlite3

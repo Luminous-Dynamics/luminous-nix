@@ -11,7 +11,7 @@ import pytest
 from src.nix_humanity.core.backend import NixForHumanityBackend
 from src.nix_humanity.ui.main_app import NixForHumanityApp
 
-# REMOVED MOCK IMPORT: Mock, patch, AsyncMock
+from unittest.mock import Mock, MagicMock, patch, call
 from textual.widgets import Button, Input
 
 

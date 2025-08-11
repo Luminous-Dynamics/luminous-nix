@@ -86,7 +86,7 @@ def test_individual_components():
     print("\n5️⃣ Testing mock research components...")
     try:
         # Try to import the mock trust metrics
-        # REMOVED MOCK IMPORT: TrustMetrics
+        from unittest.mock import Mock, MagicMock, patch, call
         metrics = TrustMetrics()
         trust_data = metrics.to_dict()
         print("   ✅ Mock trust metrics working:")

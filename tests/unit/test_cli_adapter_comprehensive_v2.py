@@ -8,7 +8,7 @@ Goal: Achieve 95%+ coverage for this critical component
 
 import os
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 from pathlib import Path

@@ -12,7 +12,7 @@ import os
 import sys
 import tempfile
 
-# REMOVED MOCK IMPORT: Mock, patch, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 import unittest
 
 # Add paths for imports
@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../backend/python
 
 try:
     from nix_for_humanity.adapters.cli_adapter import CLIAdapter
-    from nix_for_humanity.core.interface import Query
+    from nix_for_humanity.core import Query
     from nix_for_humanity.core.native_operations import (
         NativeNixBackend,
         NixOperation,

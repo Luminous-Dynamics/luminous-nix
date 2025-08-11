@@ -11,7 +11,7 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root / "backend"))
 
 # Mock dependencies before import
-# REMOVED MOCK IMPORT: Mock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 
 # Mock the native backend
 sys.modules["python"] = type(sys)("python")

@@ -15,7 +15,7 @@ Tests all backend functionality including:
 import asyncio
 import os
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch, AsyncMock
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import unittest
 from pathlib import Path
@@ -29,7 +29,7 @@ sys.path.insert(0, backend_path)
 # Import the module we're testing
 from nix_for_humanity.api.schema import Request, Response, Result
 from nix_for_humanity.core.engine import NixForHumanityBackend, create_backend
-from nix_for_humanity.core.intents import Intent, IntentType
+from nix_for_humanity.core import Intent, IntentType
 
 
 class TestNixForHumanityBackend(unittest.TestCase):

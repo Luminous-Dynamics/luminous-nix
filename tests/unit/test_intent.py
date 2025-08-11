@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from nix_for_humanity.core.intents import Intent
 from nix_for_humanity.core.intents import IntentRecognizer as IntentRecognizer
-from nix_for_humanity.core.intents import IntentType
+from nix_for_humanity.core import IntentType
 
 
 class TestIntentType(unittest.TestCase):

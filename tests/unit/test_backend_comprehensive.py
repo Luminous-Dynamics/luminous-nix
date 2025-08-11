@@ -19,7 +19,7 @@ sys.path.insert(0, str(project_root))
 
 from nix_for_humanity.api.schema import Request, Response, Result
 from nix_for_humanity.core.engine import NixForHumanityBackend, create_backend
-from nix_for_humanity.core.intents import Intent, IntentType
+from nix_for_humanity.core import Intent, IntentType
 from tests.test_utils.test_implementations import (
     TestDatabase,
     TestExecutionBackend,
@@ -567,7 +567,7 @@ class TestNixForHumanityBackend:
 
     def test_create_backend(self):
         """Test backend factory function"""
-        # REMOVED MOCK IMPORT: MagicMock
+        from unittest.mock import Mock, MagicMock, patch, call
         callback = MagicMock()
         backend = create_backend(callback)
 

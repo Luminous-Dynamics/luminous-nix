@@ -7,7 +7,7 @@ Tests solutions, problems, and package cache functionality
 import os
 import sqlite3
 
-# REMOVED MOCK IMPORT: Mock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 # Add the src directory to Python path
 import sys
 import tempfile
@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.core.intents import IntentType
+from nix_for_humanity.core import IntentType
 from nix_for_humanity.core.knowledge import KnowledgeBase
 
 

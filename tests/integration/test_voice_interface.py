@@ -6,7 +6,7 @@ Tests voice recognition, text-to-speech, and voice command processing.
 """
 
 
-# REMOVED MOCK IMPORT: Mock, patch, AsyncMock, MagicMock
+from unittest.mock import Mock, MagicMock, patch, call
 
 import numpy as np
 import pytest

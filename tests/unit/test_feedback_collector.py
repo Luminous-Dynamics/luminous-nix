@@ -15,7 +15,7 @@ import json
 import os
 import sqlite3
 
-# REMOVED MOCK IMPORT: Mock, MagicMock, patch
+from unittest.mock import Mock, MagicMock, patch, call
 import sys
 import tempfile
 import unittest
