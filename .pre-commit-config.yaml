@@ -36,6 +36,14 @@ repos:
   #   hooks:
   #     - id: ruff
   #       args: ['--fix', '--exit-non-zero-on-fix']
+  
+  # Python docstring formatting
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.5.1
+    hooks:
+      - id: docformatter
+        args: ['--in-place', '--wrap-summaries=88', '--wrap-descriptions=88']
+        exclude: '^tests/'
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
@@ -57,6 +65,59 @@ repos:
       - id: shellcheck
         args: ['--severity=error']
         exclude: '^.github/workflows/'
+
+  # Security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ['-ll', '--skip', 'B101,B601']  # Skip assert_used and shell_injection
+        exclude: '^tests/'
+  
+  # Detect secrets
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: package-lock\.json
+
+  # Commit message formatting
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
+        args: ['--msg-filename']
+        stages: [commit-msg]
+
+  # Local hooks that use poetry environment
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy type checking
+        entry: poetry run mypy
+        language: system
+        types: [python]
+        require_serial: true
+        exclude: '^(tests/|scripts/|docs/)'
+        pass_filenames: false
+        args: ['src/']
+      
+      - id: pytest-quick
+        name: pytest quick tests
+        entry: poetry run pytest
+        language: system
+        types: [python]
+        pass_filenames: false
+        args: ['tests/unit/', '--maxfail=1', '-x', '--tb=short']
+        stages: [push]  # Only run on push, not every commit
+      
+      - id: check-poetry-lock
+        name: Check poetry.lock is up to date
+        entry: poetry lock --check
+        language: system
+        pass_filenames: false
+        files: 'pyproject\.toml'
 
 # Configuration for specific tools
 default_language_version:

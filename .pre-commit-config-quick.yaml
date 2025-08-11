@@ -1,0 +1,28 @@
+# Quick pre-commit configuration for fast feedback during development
+# Use: pre-commit run --config .pre-commit-config-quick.yaml --all-files
+
+repos:
+  # Essential file hygiene only
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  # Fast Python formatting (no type checking)
+  - repo: https://github.com/psf/black
+    rev: 24.1.1
+    hooks:
+      - id: black
+        language_version: python3
+        args: ['--line-length=88', '--check']  # Check only, don't modify
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ['--profile', 'black', '--check-only']  # Check only
+
+# This config runs in ~2 seconds vs ~10+ seconds for full config
