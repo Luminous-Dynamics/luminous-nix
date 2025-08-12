@@ -1,6 +1,15 @@
-# Contributing to Nix for Humanity
+# 🤝 Contributing to Nix for Humanity
 
-First off, thank you for considering contributing to Nix for Humanity! It's people like you who help make NixOS accessible to everyone through natural language.
+Thank you for your interest in contributing to Nix for Humanity! We're building technology that makes NixOS accessible to everyone through natural language, and we'd love your help.
+
+## 🌟 Our Philosophy
+
+We follow the **Sacred Trinity** development model:
+- **Human** provides vision and testing
+- **AI** assists with implementation  
+- **Community** guides evolution
+
+This project proves that $200/month in AI tools can achieve what traditionally requires millions in funding.
 
 ## How Can I Contribute?
 

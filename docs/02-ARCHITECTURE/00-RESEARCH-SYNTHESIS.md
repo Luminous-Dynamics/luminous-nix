@@ -123,7 +123,7 @@ This document synthesizes the extensive research foundations underlying Nix for 
 ### 🔮 Research Ready for Integration
 - **RLHF/DPO Learning**: TRL+PEFT framework ready, local privacy designed
 - **Knowledge Graph Construction**: LLM extraction pipeline architected
-- **Federated Learning**: Privacy-preserving aggregation methodology complete
+- **Federated Learning: Privacy-preserving aggregation methodology planned
 - **Constitutional AI**: Ethical boundary framework designed
 
 ## Academic Citations Integration

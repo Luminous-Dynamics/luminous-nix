@@ -1,0 +1,121 @@
+version: '3.8'
+
+services:
+  # Main application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nix-for-humanity
+    environment:
+      - NIX_HUMANITY_PYTHON_BACKEND=true
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:///data/nixos_knowledge.db
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./src:/app/src:ro
+    ports:
+      - "8000:8000"  # Web interface
+      - "7860:7860"  # TUI interface
+    depends_on:
+      - redis
+    command: poetry run python -m nix_for_humanity.web.server
+    restart: unless-stopped
+    networks:
+      - nix-humanity-network
+
+  # Redis cache service
+  redis:
+    image: redis:7-alpine
+    container_name: nix-humanity-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    networks:
+      - nix-humanity-network
+
+  # Development database (PostgreSQL for production-like testing)
+  postgres:
+    image: postgres:15-alpine
+    container_name: nix-humanity-postgres
+    environment:
+      - POSTGRES_USER=nix_humanity
+      - POSTGRES_PASSWORD=sacred_password
+      - POSTGRES_DB=nix_knowledge
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - nix-humanity-network
+    profiles:
+      - production
+
+  # Monitoring with Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: nix-humanity-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: unless-stopped
+    networks:
+      - nix-humanity-network
+    profiles:
+      - monitoring
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: nix-humanity-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=sacred_admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - nix-humanity-network
+    profiles:
+      - monitoring
+
+  # Jaeger for distributed tracing
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: nix-humanity-jaeger
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "6831:6831/udp"  # Thrift compact protocol
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    restart: unless-stopped
+    networks:
+      - nix-humanity-network
+    profiles:
+      - monitoring
+
+networks:
+  nix-humanity-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  postgres-data:
+  prometheus-data:
+  grafana-data:

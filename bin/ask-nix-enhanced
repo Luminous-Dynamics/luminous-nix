@@ -1,0 +1,266 @@
+#!/usr/bin/env python3
+"""
+🕉️ Enhanced CLI for Nix for Humanity with Tree-sitter Integration
+
+This version includes:
+- Multi-language code analysis
+- Shell script migration
+- Safe config modification
+- All original features
+"""
+
+import argparse
+import asyncio
+import json
+import logging
+import os
+import sys
+from pathlib import Path
+
+# Configure logging
+logging.basicConfig(
+    level=logging.WARNING,
+    format="%(message)s",
+)
+
+# Add the src directory to Python path
+sys.path.insert(
+    0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src")
+)
+
+from nix_for_humanity.core.unified_backend import (
+    Context,
+    NixForHumanityBackend,
+    get_backend,
+)
+from nix_for_humanity.cli.tree_sitter_commands import (
+    TreeSitterCommands,
+    add_tree_sitter_parser,
+    handle_tree_sitter_command
+)
+
+# Import learning system
+try:
+    from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
+    LEARNING_AVAILABLE = True
+except ImportError:
+    LEARNING_AVAILABLE = False
+
+
+def setup_backend(dry_run=True):
+    """Setup the backend with all plugins"""
+    backend = get_backend()
+    if dry_run != backend.config.get("dry_run", True):
+        backend.config["dry_run"] = dry_run
+    return backend
+
+
+async def execute_query(query: str, execute: bool = False):
+    """Execute a natural language query"""
+    # Check if this is a Tree-sitter related query
+    tree_keywords = [
+        "analyze project", "analyze code", "scan project",
+        "migrate script", "convert script", "shell to nix",
+        "modify config", "add package", "add service",
+        "generate config", "suggest package"
+    ]
+    
+    query_lower = query.lower()
+    
+    # Check for Tree-sitter operations
+    for keyword in tree_keywords:
+        if keyword in query_lower:
+            return handle_tree_sitter_natural_language(query, execute)
+    
+    # Original query handling
+    backend = setup_backend(dry_run=not execute)
+    await backend.initialize()
+    
+    context = Context(user_id="cli_user")
+    response = await backend.process_request(query, context)
+    
+    # Print response
+    print(response.message)
+    
+    if response.command and not execute:
+        print(f"\n📝 Command: {response.command}")
+        print("💡 Use --execute to run this command")
+    
+    return 0 if response.success else 1
+
+
+def handle_tree_sitter_natural_language(query: str, execute: bool) -> int:
+    """Handle natural language queries for Tree-sitter features"""
+    commands = TreeSitterCommands()
+    query_lower = query.lower()
+    
+    # Analyze project
+    if "analyze" in query_lower and ("project" in query_lower or "code" in query_lower):
+        # Extract path from query
+        parts = query.split()
+        path = "."  # Default to current directory
+        for i, part in enumerate(parts):
+            if part in ["analyze", "scan"] and i + 1 < len(parts):
+                potential_path = " ".join(parts[i + 1:])
+                if Path(potential_path).exists():
+                    path = potential_path
+                    break
+        
+        result = commands.analyze_project(path)
+        if result["success"]:
+            print(result["message"])
+            return 0
+        else:
+            print(f"Error: {result.get('error', 'Analysis failed')}")
+            return 1
+    
+    # Migrate shell script
+    elif "migrate" in query_lower or "convert" in query_lower:
+        # Extract script path
+        parts = query.split()
+        for part in parts:
+            if part.endswith(".sh") and Path(part).exists():
+                result = commands.migrate_script(part)
+                if result["success"]:
+                    print(result["message"])
+                    return 0
+                else:
+                    print(f"Error: {result.get('message', 'Migration failed')}")
+                    return 1
+        
+        print("Please specify a shell script to migrate (e.g., 'migrate setup.sh')")
+        return 1
+    
+    # Add package to config
+    elif "add package" in query_lower or "install" in query_lower:
+        # Extract package name
+        if "add package" in query_lower:
+            package = query_lower.split("add package")[-1].strip()
+        else:
+            package = query_lower.split("install")[-1].strip()
+        
+        if package:
+            result = commands.modify_config("add-package", package, dry_run=not execute)
+            if result["success"]:
+                print(result["message"])
+                if not execute:
+                    print("\n💡 Use --execute to apply this change")
+                return 0
+            else:
+                print(f"Error: {result.get('error', 'Failed to add package')}")
+                return 1
+    
+    # Suggest packages
+    elif "suggest" in query_lower:
+        # Extract description
+        description = query.replace("suggest", "").replace("packages for", "").strip()
+        if description:
+            result = commands.suggest_packages(description)
+            if result["success"]:
+                print(result["message"])
+                if result["suggestions"]:
+                    print("\n💡 Suggested packages:")
+                    for pkg in result["suggestions"]:
+                        print(f"  - {pkg}")
+                return 0
+    
+    print(f"I couldn't understand how to handle: {query}")
+    return 1
+
+
+def main():
+    """Main entry point with enhanced Tree-sitter features"""
+    parser = argparse.ArgumentParser(
+        description="🕉️ Nix for Humanity - Natural Language NixOS Management (Enhanced)",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Original features
+  ask-nix-enhanced "install firefox"
+  ask-nix-enhanced "search for text editor"
+  ask-nix-enhanced "update system"
+  
+  # New Tree-sitter features
+  ask-nix-enhanced tree analyze /path/to/project
+  ask-nix-enhanced tree migrate setup.sh
+  ask-nix-enhanced tree modify add-package firefox
+  ask-nix-enhanced tree suggest "text editor"
+  
+  # Natural language Tree-sitter
+  ask-nix-enhanced "analyze my python project"
+  ask-nix-enhanced "migrate setup.sh to nix"
+  ask-nix-enhanced "suggest packages for web development"
+"""
+    )
+    
+    # Add subparsers for different modes
+    subparsers = parser.add_subparsers(dest='mode', help='Command mode')
+    
+    # Add Tree-sitter subcommands
+    add_tree_sitter_parser(subparsers)
+    
+    # Original arguments for natural language mode
+    parser.add_argument(
+        "query",
+        nargs="*",
+        help="Natural language query or command"
+    )
+    
+    parser.add_argument(
+        "--execute",
+        action="store_true",
+        help="Execute the generated command (default is dry-run)"
+    )
+    
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Output in JSON format"
+    )
+    
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Enable verbose output"
+    )
+    
+    args = parser.parse_args()
+    
+    # Set up logging
+    if args.verbose:
+        logging.getLogger().setLevel(logging.INFO)
+    
+    # Handle Tree-sitter subcommands
+    if args.mode == 'tree':
+        return handle_tree_sitter_command(args)
+    
+    # Handle natural language query
+    if args.query:
+        query = " ".join(args.query)
+        
+        # Check for special commands
+        if query.lower() in ["help", "--help", "-h"]:
+            parser.print_help()
+            return 0
+        
+        # Execute the query
+        try:
+            return asyncio.run(execute_query(query, args.execute))
+        except KeyboardInterrupt:
+            print("\n👋 Goodbye!")
+            return 0
+        except Exception as e:
+            if args.verbose:
+                import traceback
+                traceback.print_exc()
+            else:
+                print(f"Error: {e}")
+            return 1
+    
+    # No query provided
+    parser.print_help()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

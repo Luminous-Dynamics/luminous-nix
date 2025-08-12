@@ -75,7 +75,7 @@ research/
 
 ### Phase 2 (Current - Core Excellence)
 Research → Implementation:
-- **Causal XAI papers** → DoWhy integration ✅
+- **Causal XAI papers → DoWhy integration 🚧
 - **Performance studies** → 10x-1500x speedup ✅
 - **Security frameworks** → Multi-layer validation ✅
 
@@ -120,7 +120,7 @@ Research → Vision:
 ## 🎯 Action Items from Research
 
 ### Immediate (Phase 2)
-1. Implement DoWhy for causal XAI ✅
+1. Implement DoWhy for causal XAI 🚧
 2. Apply Bayesian Knowledge Tracing
 3. Integrate Dynamic Bayesian Networks
 

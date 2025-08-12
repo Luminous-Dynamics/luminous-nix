@@ -33,6 +33,13 @@ from nix_for_humanity.plugins.config_generator import (
     SmartSearchPlugin,
 )
 
+# Import search command handler
+try:
+    from nix_for_humanity.cli.search_command import handle_search_in_query
+    SEARCH_AVAILABLE = True
+except ImportError:
+    SEARCH_AVAILABLE = False
+
 # Import pragmatic learning system
 try:
     from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
@@ -40,6 +47,116 @@ try:
     LEARNING_AVAILABLE = True
 except ImportError:
     LEARNING_AVAILABLE = False
+
+# Import Tree-sitter commands (standalone to avoid Click dependency)
+try:
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "tree_sitter_commands_standalone",
+        os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "src", "nix_for_humanity", "cli", "tree_sitter_commands_standalone.py"
+        )
+    )
+    tree_sitter_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tree_sitter_module)
+    TreeSitterCommands = tree_sitter_module.TreeSitterCommands
+    TREE_SITTER_AVAILABLE = True
+except Exception as e:
+    TREE_SITTER_AVAILABLE = False
+    # Log error for debugging (will only show with --debug)
+    logging.debug(f"Tree-sitter module not available: {e}")
+
+
+async def handle_tree_sitter_query(query: str, execute: bool):
+    """Handle Tree-sitter related queries"""
+    commands = TreeSitterCommands()
+    query_lower = query.lower()
+    
+    # Analyze project
+    if "analyze" in query_lower and ("project" in query_lower or "code" in query_lower):
+        # Extract path from query (default to current directory)
+        import re
+        path_match = re.search(r'["\']([^"\']+)["\']', query)
+        path = path_match.group(1) if path_match else "."
+        
+        result = commands.analyze_project(path)
+        if result["success"]:
+            print(result["message"])
+            return 0
+        else:
+            print(f"Error: {result.get('error', 'Analysis failed')}")
+            return 1
+    
+    # Migrate shell script
+    elif "migrate" in query_lower or "convert" in query_lower:
+        import re
+        from pathlib import Path
+        # Look for .sh file in query
+        script_match = re.search(r'(\S+\.sh)', query)
+        if script_match:
+            script = script_match.group(1)
+            # Check if file exists (handle both relative and absolute paths)
+            if not Path(script).exists():
+                # Try in /tmp if it's a temp file
+                if script.startswith("tmp"):
+                    script = f"/tmp/{script}"
+            
+            if Path(script).exists():
+                result = commands.migrate_script(script)
+                if result["success"]:
+                    print(result["message"])
+                    return 0
+                else:
+                    print(f"Error: {result.get('message', 'Migration failed')}")
+                    return 1
+            else:
+                print(f"Error: Script file '{script}' not found")
+                return 1
+        else:
+            print("Please specify a shell script to migrate (e.g., 'migrate setup.sh')")
+            return 1
+    
+    # Suggest packages
+    elif "suggest" in query_lower or "package for" in query_lower:
+        # Extract description after "for" or "suggest"
+        if "package for" in query_lower:
+            description = query_lower.split("package for")[-1].strip()
+        else:
+            description = query_lower.replace("suggest packages", "").replace("suggest", "").strip()
+        
+        if description:
+            result = commands.suggest_packages(description)
+            if result["success"]:
+                print(result["message"])
+                if result["suggestions"]:
+                    print("\n💡 Suggested packages:")
+                    for pkg in result["suggestions"]:
+                        print(f"  - {pkg}")
+                return 0
+            else:
+                print(f"Error: {result.get('error')}")
+                return 1
+    
+    # Generate config
+    elif "generate" in query_lower and "config" in query_lower:
+        template = "minimal"  # Default
+        if "desktop" in query_lower:
+            template = "desktop"
+        elif "development" in query_lower or "dev" in query_lower:
+            template = "development"
+        
+        result = commands.generate_config(template)
+        if result["success"]:
+            print(result["message"])
+            print("\n" + result["config"][:500] + "...")
+            return 0
+        else:
+            print(f"Error: {result.get('error')}")
+            return 1
+    
+    # If we couldn't handle it, fall back to regular processing
+    return None
 
 
 def setup_backend(dry_run=True):
@@ -64,6 +181,31 @@ async def execute_query(
     if query.lower() in ["help", "help me", "what can you do", "how do i use this"]:
         show_help()
         return 0
+    
+    # Check for search queries (high priority)
+    if SEARCH_AVAILABLE and handle_search_in_query(query):
+        return 0
+    
+    # Check for Tree-sitter related queries
+    if TREE_SITTER_AVAILABLE:
+        tree_keywords = [
+            "analyze project", "analyze code", "scan project", "analyze my",
+            "migrate", "convert script", "shell to nix",
+            "suggest package", "package for",
+            "generate config", "config template"
+        ]
+        
+        query_lower = query.lower()
+        for keyword in tree_keywords:
+            if keyword in query_lower:
+                logging.info(f"Tree-sitter handling query: {query}")
+                result = await handle_tree_sitter_query(query, execute)
+                if result is not None:
+                    return result
+                # If Tree-sitter couldn't handle it, continue with regular processing
+                break
+    else:
+        logging.debug("Tree-sitter not available")
 
     # Initialize learning system if available and enabled
     learning = None

@@ -5,7 +5,7 @@ A revolutionary AI partner that transforms NixOS from command-line complexity
 into natural conversation. Consciousness-first design with local-first privacy.
 """
 
-__version__ = "0.5.2"
+__version__ = "1.3.0"
 __author__ = "Tristan Stoltz"
 __email__ = "tristan.stoltz@gmail.com"
 
