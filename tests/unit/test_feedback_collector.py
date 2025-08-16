@@ -25,8 +25,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts"))
 
 # Import the module we're testing
-from nix_for_humanity.core.feedback import FeedbackCollector
-
+from luminous_nix.core.feedback import FeedbackCollector
 
 class TestFeedbackCollector(unittest.TestCase):
     """Test the FeedbackCollector class."""
@@ -326,7 +325,6 @@ class TestFeedbackCollector(unittest.TestCase):
         metadata = json.loads(result[0])
         self.assertIn("thoughtful_accept", metadata)
         self.assertIn("copy_action", metadata)
-
 
 if __name__ == "__main__":
     unittest.main()

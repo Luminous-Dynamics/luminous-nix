@@ -13,7 +13,7 @@ from textual.containers import Container, Vertical
 from textual.widgets import Button, Footer, Header, Static
 
 # Import our native operations
-from nix_for_humanity.core.native_operations import (
+from luminous_nix.core.native_operations import (
     NativeOperationsManager,
     NativeOperationType,
 )

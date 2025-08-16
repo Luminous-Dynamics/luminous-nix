@@ -16,9 +16,8 @@ sys.path.insert(
     0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from nix_for_humanity.core.engine import NixForHumanityBackend as Engine
-from nix_for_humanity.core import Context, IntentType, Request, Response
-
+from luminous_nix.core.engine import NixForHumanityBackend as Engine
+from luminous_nix.api.schema import Response
 
 class TestSimplePipeline(unittest.TestCase):
     """Test basic pipeline functionality."""
@@ -102,7 +101,6 @@ class TestSimplePipeline(unittest.TestCase):
 
         # Minimal should be shorter
         self.assertLess(len(response1.text), len(response2.text))
-
 
 if __name__ == "__main__":
     unittest.main()

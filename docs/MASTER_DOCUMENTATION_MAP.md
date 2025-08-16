@@ -1,6 +1,6 @@
 # 🗺️ Master Documentation Navigation Map
 
-*Visual overview of the complete Nix for Humanity documentation ecosystem*
+*Visual overview of the complete Luminous Nix documentation ecosystem*
 
 ## 🌊 The Living Documentation Flow
 

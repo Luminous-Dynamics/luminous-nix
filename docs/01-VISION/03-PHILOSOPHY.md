@@ -1,10 +1,10 @@
-# 🧘 The Philosophy of Nix for Humanity
+# 🧘 The Philosophy of Luminous Nix
 
 *Consciousness-first computing as a pathway to human flourishing*
 
 ## Core Philosophical Foundation
 
-Nix for Humanity is built upon a radical premise: **technology should amplify human consciousness, not fragment it**. This simple principle has profound implications for how we design, build, and evolve AI systems.
+Luminous Nix is built upon a radical premise: **technology should amplify human consciousness, not fragment it**. This simple principle has profound implications for how we design, build, and evolve AI systems.
 
 ## The Four Pillars of Consciousness-First Computing
 

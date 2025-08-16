@@ -32,7 +32,7 @@ echo "  F1 - Help"
 echo ""
 
 # Enable Python backend for best performance
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Launch the unified TUI
 python tui/main.py

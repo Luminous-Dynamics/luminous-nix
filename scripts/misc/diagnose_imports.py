@@ -46,27 +46,27 @@ def main():
     imports_to_test = [
         # Core modules
         "nix_for_humanity",
-        "nix_for_humanity.core",
-        "nix_for_humanity.core.types",
-        "nix_for_humanity.core.engine",
-        "nix_for_humanity.core.intent_engine",
-        "nix_for_humanity.core.knowledge_base",
-        "nix_for_humanity.core.execution_engine",
-        "nix_for_humanity.core.learning_system",
-        "nix_for_humanity.core.personality_system",
+        "luminous_nix.core",
+        "luminous_nix.core.types",
+        "luminous_nix.core.engine",
+        "luminous_nix.core.intent_engine",
+        "luminous_nix.core.knowledge_base",
+        "luminous_nix.core.execution_engine",
+        "luminous_nix.core.learning_system",
+        "luminous_nix.core.personality_system",
         # Adapters
-        "nix_for_humanity.adapters",
-        "nix_for_humanity.adapters.cli_adapter",
+        "luminous_nix.adapters",
+        "luminous_nix.adapters.cli_adapter",
         # Interfaces
-        "nix_for_humanity.interfaces",
-        "nix_for_humanity.interfaces.backend_interface",
+        "luminous_nix.interfaces",
+        "luminous_nix.interfaces.backend_interface",
         # Frontend modules that tests are trying to import
         "frontends",
         "frontends.cli",
         "frontends.cli.adapter",
         # TUI
-        "nix_for_humanity.tui",
-        "nix_for_humanity.tui.app",
+        "luminous_nix.tui",
+        "luminous_nix.tui.app",
     ]
 
     success_count = 0

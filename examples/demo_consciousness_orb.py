@@ -18,7 +18,7 @@ from rich.text import Text
 
 # Import our consciousness orb components
 try:
-    from nix_for_humanity.ui.consciousness_orb import (
+    from luminous_nix.ui.consciousness_orb import (
         AIState,
         ConsciousnessOrb,
         EmotionalState,

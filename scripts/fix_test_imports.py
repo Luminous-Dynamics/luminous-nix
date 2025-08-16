@@ -28,19 +28,19 @@ replacements = [
     (r"\bNixForHumanityCore\b", "NixForHumanityBackend"),
     # Import statement replacements
     (
-        r"from nix_for_humanity\.core import NixForHumanityCore",
-        "from nix_for_humanity.core import NixForHumanityBackend",
+        r"from luminous_nix\.core import NixForHumanityCore",
+        "from luminous_nix.core import NixForHumanityBackend",
     ),
     (
-        r"from nix_for_humanity\.core import (.*?)NixForHumanityCore",
-        r"from nix_for_humanity.core import \1NixForHumanityBackend",
+        r"from luminous_nix\.core import (.*?)NixForHumanityCore",
+        r"from luminous_nix.core import \1NixForHumanityBackend",
     ),
     # Fix Query and ExecutionMode imports
     (
-        r"from nix_for_humanity\.core import (.*?), Query, ExecutionMode",
-        r"from nix_for_humanity.core import \1",
+        r"from luminous_nix\.core import (.*?), Query, ExecutionMode",
+        r"from luminous_nix.core import \1",
     ),
-    (r"from nix_for_humanity\.core import Query, ExecutionMode", ""),
+    (r"from luminous_nix\.core import Query, ExecutionMode", ""),
 ]
 
 fixed_count = 0
@@ -61,7 +61,7 @@ for test_file in test_files:
             content = re.sub(pattern, replacement, content)
 
         # Remove empty import lines
-        content = re.sub(r"\nfrom nix_for_humanity\.core import\s*\n", "\n", content)
+        content = re.sub(r"\nfrom luminous_nix\.core import\s*\n", "\n", content)
 
         if content != original_content:
             with open(test_file, "w") as f:

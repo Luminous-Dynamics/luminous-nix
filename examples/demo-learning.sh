@@ -103,7 +103,7 @@ echo -e "${CYAN}━━━ Privacy-First Learning ━━━${NC}"
 echo
 
 echo -e "${YELLOW}🔒 Your data stays local:${NC}"
-echo "  • All learning data in ~/.local/share/nix-humanity/"
+echo "  • All learning data in ~/.local/share/luminous-nix/"
 echo "  • No telemetry or cloud upload"
 echo "  • You can delete anytime with --delete-learning-data"
 echo "  • Export/import your patterns"

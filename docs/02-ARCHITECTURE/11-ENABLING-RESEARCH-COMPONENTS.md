@@ -115,10 +115,10 @@ python -c "import lancedb; print('✅ LanceDB:', lancedb.__version__)"
 
 ```bash
 # In the nix develop environment
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # Enable research components
-export NIX_HUMANITY_RESEARCH_ENABLED=true
+export LUMINOUS_NIX_RESEARCH_ENABLED=true
 
 # Run tests
 python test_component_integration.py
@@ -133,16 +133,16 @@ The research components respect these environment variables:
 
 ```bash
 # Enable/disable research components
-export NIX_HUMANITY_DISABLE_RESEARCH=false  # Default: enabled
+export LUMINOUS_NIX_DISABLE_RESEARCH=false  # Default: enabled
 
 # SKG database location
-export NIX_HUMANITY_SKG_PATH=./data/skg.db
+export LUMINOUS_NIX_SKG_PATH=./data/skg.db
 
 # Activity tracking (opt-in only)
-export NIX_HUMANITY_ACTIVITY_TRACKING=false  # Default: disabled
+export LUMINOUS_NIX_ACTIVITY_TRACKING=false  # Default: disabled
 
 # Privacy mode
-export NIX_HUMANITY_PRIVACY_MODE=aggregate  # Options: strict, aggregate, full
+export LUMINOUS_NIX_PRIVACY_MODE=aggregate  # Options: strict, aggregate, full
 ```
 
 ## Troubleshooting

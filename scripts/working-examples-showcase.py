@@ -33,7 +33,7 @@ class ShowcaseDemo:
         self.start_time = time.time()
 
         # Enable native backend for best performance
-        os.environ["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+        os.environ["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
 
     def print_header(self, text: str, icon: str = "🌟"):
         """Print a styled section header."""

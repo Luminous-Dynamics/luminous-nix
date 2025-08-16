@@ -1,4 +1,4 @@
-# 🔧 Troubleshooting Guide - Nix for Humanity
+# 🔧 Troubleshooting Guide - Luminous Nix
 
 *Solutions to common issues and how to get help*
 
@@ -44,11 +44,11 @@ If something isn't working, run this first:
 **Solution**:
 ```bash
 # From project directory
-cd /path/to/nix-for-humanity
+cd /path/to/luminous-nix
 ./bin/ask-nix  # Use relative path
 
 # Or add to PATH
-export PATH="$PATH:/path/to/nix-for-humanity/bin"
+export PATH="$PATH:/path/to/luminous-nix/bin"
 ```
 
 #### "No module named 'nix_humanity'"
@@ -103,7 +103,7 @@ export NIX_FOR_HUMANITY_OFFLINE=true
 **Solutions**:
 1. **Enable Python backend** (10x faster):
    ```bash
-   export NIX_HUMANITY_PYTHON_BACKEND=true
+   export LUMINOUS_NIX_PYTHON_BACKEND=true
    ./bin/ask-nix
    ```
 
@@ -155,10 +155,10 @@ tail -f ~/.local/share/nix-humanity/backend.log
 **Solution**:
 ```bash
 # Use lightweight mode
-export NIX_HUMANITY_LIGHTWEIGHT=true
+export LUMINOUS_NIX_LIGHTWEIGHT=true
 
 # Disable learning temporarily
-export NIX_HUMANITY_LEARNING=false
+export LUMINOUS_NIX_LEARNING=false
 
 # Clear cache
 rm -rf ~/.cache/nix-humanity/*
@@ -181,7 +181,7 @@ ls -la ~/.local/share/nix-humanity/
 **Solution**:
 ```bash
 # Enable learning
-export NIX_HUMANITY_LEARNING=true
+export LUMINOUS_NIX_LEARNING=true
 
 # Reset learning data
 ./bin/ask-nix --reset-learning
@@ -222,14 +222,14 @@ export NIX_HUMANITY_LEARNING=true
 #### Maya (ADHD): "Too slow!"
 ```bash
 # Enable speed mode
-export NIX_HUMANITY_FAST_MODE=true
-export NIX_HUMANITY_PERSONALITY=minimal
+export LUMINOUS_NIX_FAST_MODE=true
+export LUMINOUS_NIX_PERSONALITY=minimal
 ```
 
 #### Alex (Blind): "Screen reader issues"
 ```bash
 # Enable screen reader mode
-export NIX_HUMANITY_SCREEN_READER=true
+export LUMINOUS_NIX_SCREEN_READER=true
 
 # Test with your screen reader
 ./bin/ask-nix --test-accessibility
@@ -304,8 +304,8 @@ For detailed debugging information:
 
 ```bash
 # Enable debug logging
-export NIX_HUMANITY_DEBUG=true
-export NIX_HUMANITY_LOG_LEVEL=debug
+export LUMINOUS_NIX_DEBUG=true
+export LUMINOUS_NIX_LOG_LEVEL=debug
 
 # Run with verbose output
 ./bin/ask-nix -vvv "your command"
@@ -330,13 +330,13 @@ You: explain [error message]
 ./bin/ask-nix --docs
 
 # Online docs
-open https://github.com/Luminous-Dynamics/nix-for-humanity/docs
+open https://github.com/Luminous-Dynamics/luminous-nix/docs
 ```
 
 ### Community Support
 
 1. **GitHub Issues**:
-   - Search existing: https://github.com/Luminous-Dynamics/nix-for-humanity/issues
+   - Search existing: https://github.com/Luminous-Dynamics/luminous-nix/issues
    - Create new: Include debug output!
 
 2. **Discord** (coming soon):
@@ -344,7 +344,7 @@ open https://github.com/Luminous-Dynamics/nix-for-humanity/docs
    - #dev for development issues
 
 3. **Matrix** (coming soon):
-   - #nix-for-humanity:matrix.org
+   - #luminous-nix:matrix.org
 
 ### Reporting Bugs
 
@@ -389,7 +389,7 @@ rm ~/.config/nix-humanity/config.json
 
 ## Prevention Tips
 
-1. **Keep system updated**: `ask-nix "update nix-for-humanity"`
+1. **Keep system updated**: `ask-nix "update luminous-nix"`
 2. **Regular backups**: `ask-nix --backup`
 3. **Test in safe mode**: `ask-nix --safe-mode "risky command"`
 4. **Read suggestions**: The system often prevents issues

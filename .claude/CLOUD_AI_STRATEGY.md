@@ -1,4 +1,4 @@
-# Cloud AI Strategy - Nix for Humanity
+# Cloud AI Strategy - Luminous Nix
 
 ## Core Principle: Local First, Cloud Optional
 

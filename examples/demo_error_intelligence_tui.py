@@ -10,9 +10,9 @@ from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
 
-from src.nix_for_humanity.ai.xai_engine import ExplanationLevel
-from src.nix_for_humanity.tui.enhanced_app import EnhancedNixForHumanityTUI
-from src.nix_for_humanity.tui.persona_styles import PersonaType
+from src.luminous_nix.ai.xai_engine import ExplanationLevel
+from src.luminous_nix.tui.enhanced_app import EnhancedNixForHumanityTUI
+from src.luminous_nix.tui.persona_styles import PersonaType
 
 console = Console()
 

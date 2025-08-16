@@ -1,6 +1,6 @@
 # .Claude
 
-*This directory contains essential context files for Claude to understand and work effectively on the Nix for Humanity project.*
+*This directory contains essential context files for Claude to understand and work effectively on the Luminous Nix project.*
 
 ## 📚 Contents
 
@@ -35,7 +35,7 @@
 ## Original Documentation
 
 
-This directory contains essential context files for Claude to understand and work effectively on the Nix for Humanity project.
+This directory contains essential context files for Claude to understand and work effectively on the Luminous Nix project.
 
 ## Memory File Structure
 

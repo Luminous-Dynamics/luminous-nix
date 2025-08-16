@@ -13,7 +13,7 @@ parent_dir = backend_dir.parent
 sys.path.insert(0, str(backend_dir))
 sys.path.insert(0, str(parent_dir))
 
-from nix_for_humanity.core.engine import UnifiedNixBackend
+from luminous_nix.core.engine import UnifiedNixBackend
 
 
 def progress_callback(message: str, progress: float):

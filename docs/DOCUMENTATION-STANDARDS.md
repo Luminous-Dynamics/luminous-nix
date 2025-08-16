@@ -103,7 +103,7 @@ Common issues and solutions.
 
 ### Example: Good Title
 ```markdown
-# 🔧 Installing Nix for Humanity
+# 🔧 Installing Luminous Nix
 ```
 - Clear emoji
 - Active verb
@@ -111,7 +111,7 @@ Common issues and solutions.
 
 ### Example: Good Description
 ```markdown
-**Install and configure Nix for Humanity in 5 minutes.** Step-by-step guide for all platforms.
+**Install and configure Luminous Nix in 5 minutes.** Step-by-step guide for all platforms.
 ```
 - Time estimate
 - Clear outcome
@@ -120,11 +120,11 @@ Common issues and solutions.
 ### Example: Good Code Block
 ```bash
 # Install via pip (works on all systems)
-pip install nix-for-humanity
+pip install luminous-nix
 
 # Verify installation
 ask-nix --version
-# Output: nix-for-humanity 1.0.0
+# Output: luminous-nix 1.0.0
 ```
 - Comments explain purpose
 - Shows expected output

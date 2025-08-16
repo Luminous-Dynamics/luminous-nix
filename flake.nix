@@ -399,6 +399,9 @@
 
         # Voice interface module
         voice = import ./modules/voice.nix;
+        
+        # Self-healing system module
+        luminous-healing = import ./nixos/modules/luminous-healing.nix;
       };
 
       # Overlay

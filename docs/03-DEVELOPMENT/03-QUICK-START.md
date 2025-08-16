@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Nix for Humanity
+# 🚀 Quick Start Guide - Luminous Nix
 
 *Get started with natural language NixOS in 5 minutes*
 
@@ -31,8 +31,8 @@
 ### Development Setup (Current Method)
 ```bash
 # Clone repository
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 
 # Enter development environment
 ./dev.sh
@@ -47,7 +47,7 @@ pip install -r requirements.txt
 ### Future Installation (Coming Soon)
 ```bash
 # Once released, you'll be able to:
-nix-env -iA nixpkgs.nix-for-humanity
+nix-env -iA nixpkgs.luminous-nix
 # or add to configuration.nix
 ```
 
@@ -60,13 +60,13 @@ Start the development version:
 ./bin/ask-nix
 
 # Or with the Python backend enabled (recommended)
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 ./bin/ask-nix
 ```
 
 You'll see:
 ```
-Welcome to Nix for Humanity! 👋
+Welcome to Luminous Nix! 👋
 
 I'll help you manage NixOS using natural conversation.
 Just tell me what you want to do in your own words.

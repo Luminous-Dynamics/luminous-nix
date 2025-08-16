@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scr
 # Test direct config generator
 print("=== Testing Config Generator Directly ===")
 try:
-    from nix_for_humanity.core.config_generator import NixConfigGenerator
+    from luminous_nix.core.config_generator import NixConfigGenerator
 
     generator = NixConfigGenerator()
 
@@ -80,7 +80,7 @@ except Exception as e:
 # Test through unified backend
 print("\n\n=== Testing Through Unified Backend ===")
 try:
-    from nix_for_humanity.core.engine import NixForHumanityBackend
+    from luminous_nix.core.engine import NixForHumanityBackend
 
     backend = NixForHumanityBackend()
 

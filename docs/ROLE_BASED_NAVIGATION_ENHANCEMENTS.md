@@ -8,7 +8,7 @@
 📍 **You are here**: Documentation Enhancement → Role-Based Navigation (Adaptive Pathways)
 🔗 **Related**: [Progressive Onboarding Flows](./PROGRESSIVE_ONBOARDING_FLOWS.md) | [Master Documentation Map](./MASTER_DOCUMENTATION_MAP.md) | [Progressive Mastery Indicators](./PROGRESSIVE_MASTERY_INDICATORS.md)
 ⏱️ **Read time**: 14 minutes
-📊 **Mastery Level**: 🌿 Intermediate - designed for professionals evaluating or implementing Nix for Humanity
+📊 **Mastery Level**: 🌿 Intermediate - designed for professionals evaluating or implementing Luminous Nix
 
 🌊 **Natural Next Steps**:
 - **Choose your role below** to access customized navigation pathways

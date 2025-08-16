@@ -1,4 +1,4 @@
-# 🚀 Easy Installation Guide - Nix for Humanity
+# 🚀 Easy Installation Guide - Luminous Nix
 
 ## ✨ One-Line Installation (Coming Soon!)
 
@@ -28,7 +28,7 @@ curl -L https://nix-humanity.org/check | sh
 ```bash
 # Add to your flake.nix
 {
-  inputs.nix-humanity.url = "github:Luminous-Dynamics/nix-for-humanity";
+  inputs.nix-humanity.url = "github:Luminous-Dynamics/luminous-nix";
 
   outputs = { self, nixpkgs, nix-humanity }: {
     nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
@@ -46,7 +46,7 @@ sudo nixos-rebuild switch --flake .#myhost
 ### Method 2: Traditional Channel
 ```bash
 # Add channel
-sudo nix-channel --add https://github.com/Luminous-Dynamics/nix-for-humanity/archive/main.tar.gz nix-humanity
+sudo nix-channel --add https://github.com/Luminous-Dynamics/luminous-nix/archive/main.tar.gz nix-humanity
 sudo nix-channel --update
 
 # Add to configuration.nix
@@ -68,8 +68,8 @@ sudo nixos-rebuild switch
 ### Method 3: Development Install
 ```bash
 # Clone and enter shell
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity.git
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix.git
+cd luminous-nix
 nix develop
 
 # Test it works
@@ -108,7 +108,7 @@ bash: nix: command not found
 
 # ✅ Fix - Install Nix first
 curl -L https://nixos.org/nix/install | sh
-# Then retry Nix for Humanity installation
+# Then retry Luminous Nix installation
 ```
 
 ### Issue: "Slow first startup"
@@ -126,7 +126,7 @@ nix-store --realise $(nix-build --no-out-link)
 ```bash
 $ ask-nix --setup
 
-🌟 Welcome to Nix for Humanity Setup!
+🌟 Welcome to Luminous Nix Setup!
 
 Let's personalize your experience:
 
@@ -184,7 +184,7 @@ ask-nix --shell-integration fish > ~/.config/fish/conf.d/nix-humanity.fish
 ```bash
 $ ask-nix --health
 
-🏥 Nix for Humanity Health Check
+🏥 Luminous Nix Health Check
 
 Core Systems:
 ✅ Backend engine: Operational
@@ -268,8 +268,8 @@ ask-nix --diagnose > diagnostic.log
 ```
 
 ### Community Support
-- 💬 [GitHub Discussions](https://github.com/Luminous-Dynamics/nix-for-humanity/discussions)
-- 🐛 [Issue Tracker](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+- 💬 [GitHub Discussions](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
+- 🐛 [Issue Tracker](https://github.com/Luminous-Dynamics/luminous-nix/issues)
 - 📧 Email: support@nix-humanity.org
 - 💭 Discord: [Join our Sacred Trinity](https://discord.gg/nix-humanity)
 
@@ -279,7 +279,7 @@ Once installed, you'll see:
 ```bash
 $ ask-nix "hello"
 
-👋 Hello! I'm Nix for Humanity, your friendly NixOS assistant.
+👋 Hello! I'm Luminous Nix, your friendly NixOS assistant.
 
 I can help you:
 - Install software naturally: "install a web browser"

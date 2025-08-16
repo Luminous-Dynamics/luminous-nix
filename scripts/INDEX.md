@@ -306,7 +306,7 @@ curl -fsSL https://ollama.ai/install.sh | sh
 
 ## 📄 License
 
-These scripts are part of the Nix for Humanity project and follow the same licensing terms.
+These scripts are part of the Luminous Nix project and follow the same licensing terms.
 
 ## 🙏 Acknowledgments
 

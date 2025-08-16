@@ -89,7 +89,7 @@ def main():
     print("     NEW: IntentType.INFO")
 
     print("\n  3. Import Statement Fixes:")
-    print("     • Unified imports from nix_for_humanity.core.types")
+    print("     • Unified imports from luminous_nix.core.types")
     print("     • Removed duplicate/conflicting import paths")
     print("     • Fixed relative import issues")
 

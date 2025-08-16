@@ -12,7 +12,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.core import NixForHumanityBackend, IntentType
+from luminous_nix.core import NixForHumanityBackend, IntentType
 
 
 def show_banner():

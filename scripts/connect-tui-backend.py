@@ -31,8 +31,8 @@ for name, (module, attr) in components.items():
 if available.get("Backend") and available.get("Request"):
     print("\n2. Testing backend functionality...")
 
-    from nix_for_humanity.api.schema import Request
-    from nix_for_humanity.core.engine import NixForHumanityBackend
+    from luminous_nix.api.schema import Request
+    from luminous_nix.core.engine import NixForHumanityBackend
 
     backend = NixForHumanityBackend()
 
@@ -71,7 +71,7 @@ expected_backend_methods = [
 
 print("\nBackend methods needed by TUI:")
 if available.get("Backend"):
-    from nix_for_humanity.core.engine import NixForHumanityBackend
+    from luminous_nix.core.engine import NixForHumanityBackend
 
     backend = NixForHumanityBackend()
 

@@ -162,8 +162,8 @@ def update_imports():
     python_files = list(project_root.rglob("*.py"))
 
     import_updates = {
-        "from nix_for_humanity.core.intents import": "from nix_for_humanity.core.intents import",
-        "import nix_for_humanity.core.intents": "import nix_for_humanity.core.intentss",
+        "from luminous_nix.core.intents import": "from luminous_nix.core.intents import",
+        "import luminous_nix.core.intents": "import luminous_nix.core.intentss",
         "from .intents import": "from .intents import",
     }
 

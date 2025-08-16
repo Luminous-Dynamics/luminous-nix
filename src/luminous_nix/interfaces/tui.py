@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""
+🌟 Terminal UI with Textual - Beautiful Consciousness-First Interface
+
+Launch the Nix for Humanity TUI with living consciousness orb,
+adaptive complexity, and beautiful animations.
+"""
+
+import sys
+
+
+def main():
+    """Launch the TUI application"""
+    try:
+        # Try the enhanced TUI first (100% complete)
+        try:
+            from luminous_nix.interfaces.tui_components.enhanced_app import EnhancedNixTUI
+            app = EnhancedNixTUI()
+            app.run()
+        except ImportError:
+            # Fall back to basic TUI
+            from luminous_nix.interfaces.tui_components.app import NixForHumanityTUI
+            app = NixForHumanityTUI()
+            app.run()
+
+    except ImportError as e:
+        print("✨ Setting up the consciousness-first TUI...")
+        print(f"Error: Could not import TUI components: {e}")
+        print("\nPlease ensure you're in the Nix development environment:")
+        print("  nix develop")
+        print("\nOr install dependencies manually:")
+        print("  pip install textual rich")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        print("\n✨ Thank you for using Nix for Humanity!")
+        print("🌊 We flow with gratitude.")
+        sys.exit(0)
+    except Exception as e:
+        print(f"Error launching TUI: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

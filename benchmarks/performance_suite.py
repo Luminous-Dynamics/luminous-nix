@@ -194,12 +194,12 @@ class CLIBenchmark(PerformanceBenchmark):
     
     def run_benchmark(self) -> subprocess.CompletedProcess:
         """Run CLI command."""
-        cmd = [sys.executable, "-m", "nix_for_humanity.cli.main", self.command] + self.args
+        cmd = [sys.executable, "-m", "luminous_nix.cli.main", self.command] + self.args
         return subprocess.run(
             cmd,
             capture_output=True,
             text=True,
-            env={**os.environ, "NIX_HUMANITY_PYTHON_BACKEND": "true"},
+            env={**os.environ, "LUMINOUS_NIX_PYTHON_BACKEND": "true"},
         )
 
 
@@ -217,7 +217,7 @@ class PackageSearchBenchmark(PerformanceBenchmark):
     
     def setup(self) -> None:
         """Import required modules."""
-        from nix_for_humanity.core import NixForHumanityBackend
+        from luminous_nix.core import NixForHumanityBackend
         self.backend = NixForHumanityBackend()
     
     def run_benchmark(self) -> List[str]:
@@ -239,7 +239,7 @@ class CommandExecutionBenchmark(PerformanceBenchmark):
     
     def setup(self) -> None:
         """Import required modules."""
-        from nix_for_humanity.core import NixForHumanityBackend
+        from luminous_nix.core import NixForHumanityBackend
         self.backend = NixForHumanityBackend()
     
     def run_benchmark(self) -> str:
@@ -271,7 +271,7 @@ class DatabaseBenchmark(PerformanceBenchmark):
     
     def run_benchmark(self) -> None:
         """Run database queries."""
-        from nix_for_humanity.database.models import NixKnowledge
+        from luminous_nix.database.models import NixKnowledge
         
         session = self.Session()
         try:
@@ -306,7 +306,7 @@ class CacheBenchmark(PerformanceBenchmark):
     
     def setup(self) -> None:
         """Setup cache."""
-        from nix_for_humanity.cache.redis_cache import RedisCache
+        from luminous_nix.cache.redis_cache import RedisCache
         
         self.cache = RedisCache()
         if self.operation == "read":
@@ -379,7 +379,7 @@ def run_performance_suite(verbose: bool = False) -> BenchmarkSuite:
         "platform": sys.platform,
         "cpu_count": psutil.cpu_count(),
         "memory_gb": psutil.virtual_memory().total / 1024 / 1024 / 1024,
-        "nix_backend": os.getenv("NIX_HUMANITY_PYTHON_BACKEND", "false"),
+        "nix_backend": os.getenv("LUMINOUS_NIX_PYTHON_BACKEND", "false"),
     }
     
     suite = BenchmarkSuite(

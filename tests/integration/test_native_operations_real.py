@@ -6,7 +6,6 @@ import os
 if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for this test", allow_module_level=True)
 
-
 """
 Real integration tests for native operations.
 
@@ -15,14 +14,11 @@ These tests actually call the native API (no mocks!) to ensure everything works.
 
 import time
 
-import pytest
-
-from nix_for_humanity.core.native_operations import (
+from luminous_nix.core.native_operations import (
     NativeOperationsManager,
     NativeOperationType,
 )
-from nix_for_humanity.core.nixos_version import check_nixos_version
-
+from luminous_nix.core.nixos_version import check_nixos_version
 
 class TestNativeOperationsReal:
     """Real integration tests for native operations"""
@@ -121,7 +117,6 @@ class TestNativeOperationsReal:
         assert not result.success
         assert result.message
         assert "error" in result.data or result.message
-
 
 if __name__ == "__main__":
     # Run the tests

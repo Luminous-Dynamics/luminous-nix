@@ -490,8 +490,6 @@ Automatically selects the best model for each query
 
 import sys
 import json
-import subprocess
-from pathlib import Path
 
 class ModelSelector:
     def __init__(self):

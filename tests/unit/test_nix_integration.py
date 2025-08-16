@@ -6,7 +6,7 @@ if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for native backend tests", allow_module_level=True)
 
 try:
-    from nix_for_humanity.core.native_operations import NativeOperations
+    from luminous_nix.core.native_operations import NativeOperations
     if not NativeOperations:
         pytest.skip("Native operations not available", allow_module_level=True)
 except ImportError:
@@ -29,8 +29,7 @@ test_dir = Path(__file__).parent
 backend_path = test_dir.parent.parent / "backend"
 sys.path.insert(0, str(backend_path))
 
-from nix_for_humanity.core.nix_integration import NixOSIntegration
-
+from luminous_nix.core.nix_integration import NixOSIntegration
 
 class TestNixOSIntegration(unittest.TestCase):
     """Test suite for NixOSIntegration class"""
@@ -397,7 +396,6 @@ class TestNixOSIntegration(unittest.TestCase):
             version = self.integration._get_nixos_version()
             self.assertEqual(version, "Unknown")  # No VERSION field
 
-
 class TestConvenienceFunctions(unittest.TestCase):
     """Test the convenience functions"""
 
@@ -485,7 +483,6 @@ class TestConvenienceFunctions(unittest.TestCase):
 
         result2 = integration.execute_intent("update_system", {})
         self.assertTrue(result2["success"])
-
 
 if __name__ == "__main__":
     # Run async tests properly

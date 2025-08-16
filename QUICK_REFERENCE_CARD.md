@@ -1,8 +1,8 @@
-# 🎯 Nix for Humanity - Quick Reference Card
+# 🎯 Luminous Nix - Quick Reference Card
 
 ## 🚀 Session Start
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 poetry install --all-extras
 poetry shell  # or prefix commands with 'poetry run'
 ```

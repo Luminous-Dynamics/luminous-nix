@@ -1,10 +1,10 @@
-# 🔒 Security Guide - Nix for Humanity
+# 🔒 Security Guide - Luminous Nix
 
 *Comprehensive security features and configuration*
 
 ## Overview
 
-Nix for Humanity implements defense-in-depth security with multiple layers of protection while maintaining usability for all personas. Our consciousness-first approach ensures security enhances rather than hinders the user experience.
+Luminous Nix implements defense-in-depth security with multiple layers of protection while maintaining usability for all personas. Our consciousness-first approach ensures security enhances rather than hinders the user experience.
 
 ## Security Architecture
 
@@ -271,7 +271,7 @@ threats:
 
 ### For Users
 
-1. **Regular Updates**: Keep Nix for Humanity updated
+1. **Regular Updates**: Keep Luminous Nix updated
 2. **Strong Authentication**: Use secure passwords
 3. **Review Confirmations**: Read before confirming
 4. **Report Suspicious Behavior**: Help improve security
@@ -387,7 +387,7 @@ Our learning system:
 
 ## Compliance
 
-Nix for Humanity is designed with privacy regulations in mind:
+Luminous Nix is designed with privacy regulations in mind:
 
 - **GDPR Compliant**: User control over data
 - **CCPA Ready**: California privacy rights
@@ -396,14 +396,14 @@ Nix for Humanity is designed with privacy regulations in mind:
 
 ## Conclusion
 
-Security in Nix for Humanity is not about restriction—it's about enabling safe, confident use of powerful system tools. Our multi-layered approach ensures that:
+Security in Luminous Nix is not about restriction—it's about enabling safe, confident use of powerful system tools. Our multi-layered approach ensures that:
 
 - Grandma Rose is protected from accidents
 - Maya can work quickly without risk
 - Dr. Sarah has power with accountability
 - Jamie's privacy is absolutely respected
 
-Security is not a feature—it's woven into every interaction, making the system safer for everyone while maintaining the natural, conversational interface that makes Nix for Humanity special.
+Security is not a feature—it's woven into every interaction, making the system safer for everyone while maintaining the natural, conversational interface that makes Luminous Nix special.
 
 ---
 

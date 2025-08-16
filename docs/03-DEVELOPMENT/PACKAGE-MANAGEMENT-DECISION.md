@@ -39,7 +39,7 @@ Looking at your `pyproject.toml`:
 
 ```toml
 [tool.poetry]
-name = "nix-for-humanity"
+name = "luminous-nix"
 version = "1.0.0"
 
 [tool.black]
@@ -56,7 +56,7 @@ disallow_untyped_defs = true
 
 This is **EXACTLY** what a modern Python project should have!
 
-## 🚀 Why This Setup is Perfect for Nix for Humanity
+## 🚀 Why This Setup is Perfect for Luminous Nix
 
 ### 1. **Nix Philosophy Alignment**
 - Poetry's declarative `pyproject.toml` matches Nix's declarative approach

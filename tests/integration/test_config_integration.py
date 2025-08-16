@@ -8,9 +8,8 @@ import tempfile
 
 import pytest
 
-from nix_for_humanity.config import ConfigSchema, get_config_manager
-from nix_for_humanity.config.schema import Personality
-
+from luminous_nix.config import ConfigSchema, get_config_manager
+from luminous_nix.config.schema import Personality
 
 class TestConfigIntegration:
     """Test configuration system integration"""
@@ -90,7 +89,7 @@ class TestConfigIntegration:
             assert success
 
             # Create new manager and load from temp file
-            from nix_for_humanity.config.config_manager import ConfigManager
+            from luminous_nix.config.config_manager import ConfigManager
 
             new_manager = ConfigManager(temp_path)
 
@@ -106,12 +105,12 @@ class TestConfigIntegration:
     def test_environment_overrides(self):
         """Test environment variable overrides"""
         # Set environment variables
-        os.environ["NIX_HUMANITY_PERSONALITY"] = "technical"
-        os.environ["NIX_HUMANITY_FAST_MODE"] = "true"
+        os.environ["LUMINOUS_NIX_PERSONALITY"] = "technical"
+        os.environ["LUMINOUS_NIX_FAST_MODE"] = "true"
 
         try:
             # Force reload of config manager
-            from nix_for_humanity.config import config_manager
+            from luminous_nix.config import config_manager
 
             config_manager._config_manager = None
 
@@ -123,8 +122,8 @@ class TestConfigIntegration:
 
         finally:
             # Clean up
-            del os.environ["NIX_HUMANITY_PERSONALITY"]
-            del os.environ["NIX_HUMANITY_FAST_MODE"]
+            del os.environ["LUMINOUS_NIX_PERSONALITY"]
+            del os.environ["LUMINOUS_NIX_FAST_MODE"]
             config_manager._config_manager = None
 
     def test_config_validation(self):
@@ -151,7 +150,7 @@ class TestConfigIntegration:
         manager = get_config_manager()
 
         # Create a profile that inherits from maya
-        from nix_for_humanity.config.profiles import UserProfile
+        from luminous_nix.config.profiles import UserProfile
 
         custom = UserProfile(
             name="maya-custom",
@@ -174,7 +173,6 @@ class TestConfigIntegration:
 
         # Clean up
         manager.profile_manager.delete_profile("maya-custom")
-
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

@@ -1,6 +1,10 @@
+
+## [Renamed] - 2025-08-12
+### Changed
+- Renamed project from 'Nix for Humanity' to 'Luminous Nix' for better alignment with consciousness-first philosophy
 # Changelog
 
-All notable changes to Nix for Humanity will be documented in this file.
+All notable changes to Luminous Nix will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🌳 Code Intelligence & Discovery Revolution
 
-This release brings powerful code understanding and intelligent package discovery, making Nix for Humanity even more intuitive.
+This release brings powerful code understanding and intelligent package discovery, making Luminous Nix even more intuitive.
 
 ### Added
 
@@ -121,7 +125,7 @@ This release introduces revolutionary voice interaction, making NixOS accessible
 
 ### 🎉 Initial Release
 
-This is the first production release of Nix for Humanity, making NixOS accessible to everyone through natural language.
+This is the first production release of Luminous Nix, making NixOS accessible to everyone through natural language.
 
 ### Added
 

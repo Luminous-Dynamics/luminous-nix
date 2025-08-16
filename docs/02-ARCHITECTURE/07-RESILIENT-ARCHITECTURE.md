@@ -6,7 +6,7 @@
 
 ## Philosophy
 
-Just as we created a resilient voice system with Whisper→Vosk and Piper→espeak, this pattern should extend throughout Nix for Humanity. Each component should have:
+Just as we created a resilient voice system with Whisper→Vosk and Piper→espeak, this pattern should extend throughout Luminous Nix. Each component should have:
 
 1. **Primary Choice** - Best-in-class for optimal experience
 2. **Fallback Options** - Maintain functionality on limited resources
@@ -315,7 +315,7 @@ Honoring user sovereignty with explicit control:
 ask-nix --nlp-tier=basic --ui-tier=plain "install firefox"
 
 # Or configure permanently in settings
-# ~/.config/nix-for-humanity/settings.json
+# ~/.config/luminous-nix/settings.json
 {
   "resilience_overrides": {
     "nlp": "Enhanced Pattern Engine",
@@ -379,4 +379,4 @@ Each tier must be tested with:
 
 *"Meet users where they are, not where we wish they were."*
 
-This resilient architecture ensures that Nix for Humanity truly serves humanity - not just those with powerful machines, but everyone who needs help with NixOS.
+This resilient architecture ensures that Luminous Nix truly serves humanity - not just those with powerful machines, but everyone who needs help with NixOS.

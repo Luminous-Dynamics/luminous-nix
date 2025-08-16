@@ -19,7 +19,6 @@ sys.path.insert(0, project_root)
 scripts_path = os.path.join(project_root, "scripts")
 sys.path.insert(0, scripts_path)
 
-
 # Define the dataclass locally to avoid import issues
 @dataclass
 class SystemCapabilities:
@@ -31,7 +30,6 @@ class SystemCapabilities:
     executor_tier: str
     ui_tier: str
     overall_rating: str  # "Premium", "Standard", "Basic", "Minimal"
-
 
 class TestSystemCapabilities(unittest.TestCase):
     """Test the SystemCapabilities dataclass."""
@@ -84,7 +82,6 @@ class TestSystemCapabilities(unittest.TestCase):
             )
 
             self.assertEqual(caps.overall_rating, rating)
-
 
 class TestResilientExecutor(unittest.TestCase):
     """Test the ResilientExecutor concept."""
@@ -175,7 +172,6 @@ class TestResilientExecutor(unittest.TestCase):
             len(feature_requirements["NixOS Python API"]),
             len(feature_requirements["nix-env"]),
         )
-
 
 if __name__ == "__main__":
     unittest.main()

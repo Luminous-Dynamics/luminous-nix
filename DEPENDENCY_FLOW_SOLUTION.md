@@ -35,7 +35,7 @@ Once configured, the environment activates automatically when you enter the dire
 direnv allow
 
 # Now it's automatic!
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 # Environment loads instantly - no manual commands!
 ```
 
@@ -72,7 +72,7 @@ tail -f /tmp/rebuild.log
 
 ### Option 1: Immediate Relief (2 minutes)
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 nix-shell shell-complete.nix
 # Everything works now!
 ```
@@ -83,12 +83,12 @@ nix-shell shell-complete.nix
 nix-env -iA nixos.direnv
 
 # Allow the environment
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 direnv allow
 
 # Test it
 cd ..
-cd nix-for-humanity  # Environment loads automatically!
+cd luminous-nix  # Environment loads automatically!
 ```
 
 ### Option 3: Permanent Solution (10 minutes)
@@ -131,7 +131,7 @@ pip install openai-whisper  # Wrong approach for NixOS!
 
 ### After (Sacred Flow)
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 # Environment loads automatically via direnv
 python demo.py
 # ✨ Everything just works!
@@ -151,7 +151,7 @@ python demo.py
 ### 1. Always Use the Complete Shell
 ```bash
 # Start your day with:
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 nix-shell shell-complete.nix
 # Or just cd if direnv is setup!
 ```
@@ -203,7 +203,7 @@ poetry run python demo_voice_with_nix.py
 
 1. **Right Now**: Enter the complete shell
    ```bash
-   cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+   cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
    nix-shell shell-complete.nix
    ```
 

@@ -1,4 +1,4 @@
-# Archive Strategy for Nix for Humanity
+# Archive Strategy for Luminous Nix
 
 ## Problem (RESOLVED)
 - Git repository was 1.3GB due to archived files
@@ -34,10 +34,10 @@
 #### Where to Store Archives:
 1. **Separate Archive Repository**
    ```bash
-   # Create nix-for-humanity-archives repo
+   # Create luminous-nix-archives repo
    git init archives
    cd archives
-   git remote add origin https://github.com/user/nix-for-humanity-archives
+   git remote add origin https://github.com/user/luminous-nix-archives
    ```
 
 2. **Cloud Storage** (for large files)
@@ -56,7 +56,7 @@
 #### For Development:
 ```bash
 # Shallow clone (faster)
-git clone --depth 1 https://github.com/Luminous-Dynamics/nix-for-humanity
+git clone --depth 1 https://github.com/Luminous-Dynamics/luminous-nix
 
 # Sparse checkout (only needed files)
 git sparse-checkout init

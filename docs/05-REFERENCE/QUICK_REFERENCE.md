@@ -1,4 +1,4 @@
-# 📚 Nix for Humanity - Quick Reference
+# 📚 Luminous Nix - Quick Reference
 
 *All commands and features at your fingertips*
 

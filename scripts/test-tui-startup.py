@@ -14,25 +14,25 @@ def test_tui_imports():
         print("Testing TUI imports...")
 
         # Core TUI components
-        from nix_for_humanity.ui.main_app import NixForHumanityTUI
+        from luminous_nix.ui.main_app import NixForHumanityTUI
 
         print("✓ Main TUI app imported")
 
-        from nix_for_humanity.ui.consciousness_orb import ConsciousnessOrb
+        from luminous_nix.ui.consciousness_orb import ConsciousnessOrb
 
         print("✓ Consciousness orb imported")
 
-        from nix_for_humanity.ui.adaptive_interface import AdaptiveInterface
+        from luminous_nix.ui.adaptive_interface import AdaptiveInterface
 
         print("✓ Adaptive interface imported")
 
         # Backend connection
-        from nix_for_humanity.core.backend import NixForHumanityBackend
+        from luminous_nix.core.backend import NixForHumanityBackend
 
         print("✓ Backend imported")
 
         # TUI interface
-        from nix_for_humanity.interfaces.tui import main
+        from luminous_nix.interfaces.tui import main
 
         print("✓ TUI interface imported")
 
@@ -50,7 +50,7 @@ def test_tui_imports():
 def test_backend_connection():
     """Test that TUI can connect to backend"""
     try:
-        from nix_for_humanity.core.backend import NixForHumanityBackend
+        from luminous_nix.core.backend import NixForHumanityBackend
 
         print("\nTesting backend connection...")
         backend = NixForHumanityBackend()

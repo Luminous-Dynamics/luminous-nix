@@ -16,13 +16,13 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.interfaces.voice_interface import (
+from luminous_nix.interfaces.voice_interface import (
     VoiceInterface,
     VoiceConfig,
     VoiceState,
     create_voice_interface
 )
-from nix_for_humanity.core import Response
+from luminous_nix.core import Response
 
 
 def print_banner():

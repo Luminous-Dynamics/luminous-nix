@@ -11,9 +11,8 @@ from typing import Any
 
 import pytest
 
-from src.nix_for_humanity.core.interface import Response
+from src.luminous_nix.core.interface import Response
 from tests.fixtures.sacred_test_base import ConsciousnessTestBackend
-
 
 @dataclass
 class TestPersona:
@@ -26,7 +25,6 @@ class TestPersona:
     max_response_time: int  # milliseconds
     typical_commands: list[str]
     special_needs: dict[str, Any]
-
 
 class SacredTestBase:
     """Base class for all consciousness-first tests."""

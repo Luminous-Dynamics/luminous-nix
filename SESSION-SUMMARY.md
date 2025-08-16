@@ -8,7 +8,7 @@
 - **Result**: All natural language patterns now work correctly
 
 ### 2. GitHub Release Created (v0.1.0-alpha)
-- **URL**: https://github.com/Luminous-Dynamics/nix-for-humanity/releases/tag/v0.1.0-alpha
+- **URL**: https://github.com/Luminous-Dynamics/luminous-nix/releases/tag/v0.1.0-alpha
 - **Status**: Published as prerelease
 - **Description**: Honest framing about AI collaboration and solo developer achievement
 
@@ -57,7 +57,7 @@ All patterns tested and working:
 
 ## 🎉 Achievement
 
-Successfully improved the natural language understanding of Nix for Humanity, making it more intuitive for users. The system now correctly handles common speech patterns that people naturally use when requesting software installation.
+Successfully improved the natural language understanding of Luminous Nix, making it more intuitive for users. The system now correctly handles common speech patterns that people naturally use when requesting software installation.
 
 ---
 

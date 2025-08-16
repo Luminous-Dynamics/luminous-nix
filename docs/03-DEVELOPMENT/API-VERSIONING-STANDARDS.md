@@ -1,4 +1,4 @@
-# 🔄 API Versioning Standards - Nix for Humanity
+# 🔄 API Versioning Standards - Luminous Nix
 
 **Status**: ACTIVE
 **Version**: 1.0.0
@@ -7,7 +7,7 @@
 
 ## 📋 Executive Summary
 
-Nix for Humanity follows **Semantic Versioning 2.0.0** with additional guarantees for our 10 personas. Every API change is evaluated for impact on each user type.
+Luminous Nix follows **Semantic Versioning 2.0.0** with additional guarantees for our 10 personas. Every API change is evaluated for impact on each user type.
 
 ## 🎯 Version Number Format
 
@@ -90,7 +90,7 @@ class NixCommand:
 **Version**: Independent, follows own schema version
 
 ```yaml
-# ~/.config/nix-for-humanity/config.yaml
+# ~/.config/luminous-nix/config.yaml
 version: "1.0"  # Config schema version
 settings:
   # Settings are forward-compatible
@@ -232,7 +232,7 @@ __version__ = "1.0.0"  # Must match pyproject.toml
 
 # Auto-check on import
 from importlib.metadata import version
-assert __version__ == version("nix-for-humanity")
+assert __version__ == version("luminous-nix")
 ```
 
 ## 🔧 Version Bumping Process
@@ -363,7 +363,7 @@ def check_api_version():
     """Check if API version is compatible."""
     from importlib.metadata import version
 
-    current = version("nix-for-humanity")
+    current = version("luminous-nix")
     major, minor, patch = current.split(".")
 
     if int(major) < 1:

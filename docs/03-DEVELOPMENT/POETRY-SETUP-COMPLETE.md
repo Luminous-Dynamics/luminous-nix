@@ -44,7 +44,7 @@
 
 ```bash
 # 1. Source development aliases
-source /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/dev-aliases.sh
+source /srv/luminous-dynamics/11-meta-consciousness/luminous-nix/dev-aliases.sh
 
 # 2. Quick commands now available:
 fmt          # Format code

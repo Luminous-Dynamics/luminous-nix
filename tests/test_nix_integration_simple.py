@@ -6,7 +6,6 @@ import os
 if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for this test", allow_module_level=True)
 
-
 """
 Simple test for NixOSIntegration to verify the test framework works
 """

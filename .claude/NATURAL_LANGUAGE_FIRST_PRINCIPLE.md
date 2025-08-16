@@ -38,7 +38,7 @@ sudo apt-get install firefox  # Computer language
 nix-env -iA nixpkgs.firefox  # Computer language
 ```
 
-Nix for Humanity accepts human language:
+Luminous Nix accepts human language:
 ```
 "install firefox"         # Human language
 "get me firefox"         # Human language

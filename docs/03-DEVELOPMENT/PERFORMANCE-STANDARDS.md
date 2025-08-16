@@ -1,4 +1,4 @@
-# ⚡ Performance Standards - Nix for Humanity
+# ⚡ Performance Standards - Luminous Nix
 
 **Status**: ACTIVE
 **Version**: 1.0.0

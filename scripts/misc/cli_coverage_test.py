@@ -74,7 +74,7 @@ def analyze_cli_adapter():
 
     # Test basic functionality
     try:
-        from nix_for_humanity.adapters.cli_adapter import CLIAdapter
+        from luminous_nix.adapters.cli_adapter import CLIAdapter
 
         # Test initialization
         adapter = CLIAdapter()

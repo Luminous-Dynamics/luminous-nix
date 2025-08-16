@@ -1,8 +1,8 @@
-# 🌟 Nix for Humanity TUI - v1.1.0 Feature
+# 🌟 Luminous Nix TUI - v1.1.0 Feature
 
 ## 📊 Status: Ready for Testing!
 
-The Terminal User Interface (TUI) for Nix for Humanity is now implemented and ready for testing. This beautiful interface brings consciousness-first design to your terminal.
+The Terminal User Interface (TUI) for Luminous Nix is now implemented and ready for testing. This beautiful interface brings consciousness-first design to your terminal.
 
 ## ✅ What's Working
 
@@ -33,7 +33,7 @@ The Terminal User Interface (TUI) for Nix for Humanity is now implemented and re
 
 ### Method 1: Using the bin script
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 poetry run python bin/nix-tui
 ```
 
@@ -44,7 +44,7 @@ poetry run python -c "from nix_for_humanity.tui.app import run; run()"
 
 ### Method 3: From anywhere
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./bin/nix-tui  # Make sure it's executable first
 ```
 
@@ -134,7 +134,7 @@ The TUI embodies consciousness-first computing principles:
 The TUI is ready for testing. Run it and experience natural language NixOS management with a beautiful interface:
 
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 poetry run python bin/nix-tui
 ```
 

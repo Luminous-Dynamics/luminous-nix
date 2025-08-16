@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-12T15:20:14.273503",
+  "sprawl_score": 3,
+  "violation_count": 0,
+  "duplicate_categories": 1,
+  "details": {
+    "violations": [],
+    "duplicates": {
+      "backends": 1
+    }
+  }
+}

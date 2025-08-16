@@ -1,4 +1,4 @@
-# 🌟 Real-World Examples for Nix for Humanity
+# 🌟 Real-World Examples for Luminous Nix
 
 > See the power of natural language NixOS management in action!
 
@@ -53,7 +53,7 @@ nix-env -qaP | grep -i firefox
 nix-env -iA nixos.firefox-esr
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "install firefox"
 ```
@@ -79,7 +79,7 @@ EOF
 nix-shell
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "python development environment with numpy pandas and requests"
 ```
@@ -94,7 +94,7 @@ sudo nixos-rebuild switch
 sudo nixos-rebuild switch --rollback
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "update system safely"
 # Automatic safety checks and rollback on failure
@@ -109,7 +109,7 @@ nix search nixpkgs markdown editor
 nix search nixpkgs -q '.*markdown.*' | grep -i editor
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "find markdown editor"
 # Smart filtering and recommendations
@@ -142,7 +142,7 @@ services.postgresql = {
 # Then rebuild
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "web server with nginx and postgresql database"
 # Generates complete configuration
@@ -191,7 +191,7 @@ Run: nix-shell rust-dev-shell.nix
 
 ## 📈 Performance Impact
 
-| Operation | Traditional `nix-env` | Nix for Humanity | Speedup |
+| Operation | Traditional `nix-env` | Luminous Nix | Speedup |
 |-----------|----------------------|------------------|---------|
 | Search packages | 2.5s | 0.15s | **16.7x** |
 | Install package | 1.8s | 0.12s | **15x** |
@@ -203,7 +203,7 @@ Run: nix-shell rust-dev-shell.nix
 
 ### From the Community
 
-> "I've been using NixOS for 3 years and Nix for Humanity made me actually enjoy it for the first time. No more cryptic errors!" - *Sarah, DevOps Engineer*
+> "I've been using NixOS for 3 years and Luminous Nix made me actually enjoy it for the first time. No more cryptic errors!" - *Sarah, DevOps Engineer*
 
 > "Setting up my development environment went from 30 minutes of documentation reading to 30 seconds of natural language." - *Alex, Full-Stack Developer*
 
@@ -211,9 +211,9 @@ Run: nix-shell rust-dev-shell.nix
 
 ## 🚦 Getting Started Now
 
-1. **Install Nix for Humanity** (if not already):
+1. **Install Luminous Nix** (if not already):
    ```bash
-   cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+   cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
    ./install.sh
    ```
 
@@ -272,13 +272,13 @@ Have a great use case? Share it!
 
 1. Fork the repository
 2. Add your example to the appropriate section
-3. Include both traditional and Nix for Humanity approaches
+3. Include both traditional and Luminous Nix approaches
 4. Submit a pull request
 
 ## 📞 Need Help?
 
 - Check [Troubleshooting Guide](./troubleshooting/README.md)
-- Visit [GitHub Discussions](https://github.com/Luminous-Dynamics/nix-for-humanity/discussions)
+- Visit [GitHub Discussions](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
 - Read [Complete Documentation](../docs/README.md)
 
 ---

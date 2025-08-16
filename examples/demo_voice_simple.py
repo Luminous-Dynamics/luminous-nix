@@ -16,8 +16,8 @@ from typing import Dict, List
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.core import NixForHumanityBackend
-from nix_for_humanity.core.types import Query, Response
+from luminous_nix.core import NixForHumanityBackend
+from luminous_nix.core.types import Query, Response
 
 
 class VoiceSimulator:

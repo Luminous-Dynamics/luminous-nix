@@ -1,6 +1,6 @@
 # 📊 Interactive Documentation Dashboard
 
-*Real-time navigation and status tracking for the complete Nix for Humanity documentation ecosystem*
+*Real-time navigation and status tracking for the complete Luminous Nix documentation ecosystem*
 
 ---
 

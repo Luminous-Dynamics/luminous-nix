@@ -1,8 +1,8 @@
-# NLP Architecture - Nix for Humanity
+# NLP Architecture - Luminous Nix
 
 ## Overview
 
-This document details the hybrid Natural Language Processing architecture that powers Nix for Humanity's conversational interface. Our approach combines rule-based patterns, statistical models, and neural networks to achieve high accuracy while maintaining explainability and performance.
+This document details the hybrid Natural Language Processing architecture that powers Luminous Nix's conversational interface. Our approach combines rule-based patterns, statistical models, and neural networks to achieve high accuracy while maintaining explainability and performance.
 
 ## Core Architecture
 
@@ -628,4 +628,4 @@ Test Categories:
 
 ## Conclusion
 
-This hybrid NLP architecture provides Nix for Humanity with robust natural language understanding that scales from simple commands to complex conversations. By combining multiple approaches, we achieve high accuracy while maintaining explainability and performance across diverse hardware configurations.
+This hybrid NLP architecture provides Luminous Nix with robust natural language understanding that scales from simple commands to complex conversations. By combining multiple approaches, we achieve high accuracy while maintaining explainability and performance across diverse hardware configurations.

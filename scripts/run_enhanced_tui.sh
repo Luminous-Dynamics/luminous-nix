@@ -12,5 +12,5 @@ echo ""
 echo "Press Ctrl+P to see progress indicator demo!"
 echo ""
 
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 python tui/main_with_progress.py

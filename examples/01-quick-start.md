@@ -264,7 +264,7 @@ You're now part of a community making NixOS accessible to everyone. Share your e
 ask-nix-config stats
 
 # Share your success!
-# "I just set up my dev environment in 30 seconds with Nix for Humanity!"
+# "I just set up my dev environment in 30 seconds with Luminous Nix!"
 ```
 
 ---

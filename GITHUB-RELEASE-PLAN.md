@@ -1,4 +1,4 @@
-# 📢 GitHub Release Plan - Nix for Humanity v0.1.0-alpha
+# 📢 GitHub Release Plan - Luminous Nix v0.1.0-alpha
 
 ## 🎯 Objective
 
@@ -65,7 +65,7 @@ Use the content from `RELEASE-v0.1.0-alpha.md`
 
 ### 2. Social Media Post Template
 ```
-🎉 Just released Nix for Humanity v0.1.0-alpha!
+🎉 Just released Luminous Nix v0.1.0-alpha!
 
 Transform NixOS from:
 ❌ nix-env -iA nixos.firefox
@@ -82,7 +82,7 @@ Features:
 • Learns your patterns
 • Educational errors
 
-Try it: github.com/Luminous-Dynamics/nix-for-humanity
+Try it: github.com/Luminous-Dynamics/luminous-nix
 
 #NixOS #AI #OpenSource #SoloDev
 ```

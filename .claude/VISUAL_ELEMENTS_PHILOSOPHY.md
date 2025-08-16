@@ -1,8 +1,8 @@
-# Visual Elements Philosophy - Nix for Humanity
+# Visual Elements Philosophy - Luminous Nix
 
 ## The Role of Visual Elements
 
-Visual elements in Nix for Humanity are **supportive companions** to natural language, not the primary interface. They provide feedback, confirmation, and clarity without becoming the focus.
+Visual elements in Luminous Nix are **supportive companions** to natural language, not the primary interface. They provide feedback, confirmation, and clarity without becoming the focus.
 
 ## Core Principles
 

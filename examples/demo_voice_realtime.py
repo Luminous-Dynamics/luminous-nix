@@ -17,8 +17,8 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 import numpy as np
 import sounddevice as sd
 
-from nix_for_humanity.core import NixForHumanityBackend
-from nix_for_humanity.voice.whisper_piper import WhisperPiperInterface, test_voice_setup
+from luminous_nix.core import NixForHumanityBackend
+from luminous_nix.voice.whisper_piper import WhisperPiperInterface, test_voice_setup
 
 # Configure logging
 logging.basicConfig(

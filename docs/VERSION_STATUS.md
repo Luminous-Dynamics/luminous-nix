@@ -1,4 +1,4 @@
-# 📊 Version Status - Nix for Humanity
+# 📊 Version Status - Luminous Nix
 
 ## Current Version: 1.3.0-dev
 

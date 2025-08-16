@@ -20,7 +20,7 @@
 
 ## Executive Summary
 
-Nix for Humanity achieved a quantum leap in performance through native Python API integration with NixOS 25.11's `nixos-rebuild-ng`. This breakthrough eliminates subprocess overhead entirely, delivering unprecedented speed that makes technology truly disappear through excellence.
+Luminous Nix achieved a quantum leap in performance through native Python API integration with NixOS 25.11's `nixos-rebuild-ng`. This breakthrough eliminates subprocess overhead entirely, delivering unprecedented speed that makes technology truly disappear through excellence.
 
 ## 📊 Measured Performance Gains
 

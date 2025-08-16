@@ -9,8 +9,7 @@ from pathlib import Path
 # Add the backend to the path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from nix_for_humanity.core import IntentRecognizer, IntentType
-
+from luminous_nix.core import IntentRecognizer, IntentType
 
 def test_intent_recognition():
     """Test if intent recognition works for new commands"""
@@ -60,7 +59,6 @@ def test_intent_recognition():
     print("\n" + "=" * 60)
     print(f"Results: {passed} passed, {failed} failed")
     print(f"Success rate: {passed/(passed+failed)*100:.1f}%")
-
 
 if __name__ == "__main__":
     test_intent_recognition()

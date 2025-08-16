@@ -25,7 +25,7 @@ if [ ! -f "tui/main_connected.py" ]; then
 fi
 
 # Set environment for native backend
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Launch the TUI
 python3 tui/main_connected.py

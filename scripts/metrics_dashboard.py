@@ -246,7 +246,7 @@ class MetricsDashboard:
                 [
                     "python",
                     "-c",
-                    "from nix_for_humanity import initialize; initialize()",
+                    "from luminous_nix import initialize; initialize()",
                 ],
                 capture_output=True,
                 cwd=self.project_root,
@@ -267,7 +267,7 @@ class MetricsDashboard:
                     """
 import psutil
 import os
-from nix_for_humanity import initialize
+from luminous_nix import initialize
 
 process = psutil.Process(os.getpid())
 app = initialize()

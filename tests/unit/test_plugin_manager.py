@@ -23,7 +23,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts/core")
 # Import the module we're testing
 from core.plugin_manager import PluginManager, get_plugin_manager
 
-
 class TestPluginManager(unittest.TestCase):
     """Test the PluginManager class."""
 
@@ -372,13 +371,11 @@ class TestPluginManager(unittest.TestCase):
         self.manager.get_metrics()
         self.assertTrue(self.manager.plugins_loaded)
 
-
 class TestPluginManagerSingleton(unittest.TestCase):
     """Test the singleton behavior of plugin manager."""
 
     def tearDown(self):
         """Reset singleton after each test."""
-        import core.plugin_manager
 
         core.plugin_manager._plugin_manager = None
 
@@ -410,7 +407,6 @@ class TestPluginManagerSingleton(unittest.TestCase):
         # State should be preserved
         self.assertEqual(manager2.active_personality, "technical")
         self.assertTrue(manager2.plugins_loaded)
-
 
 if __name__ == "__main__":
     unittest.main()

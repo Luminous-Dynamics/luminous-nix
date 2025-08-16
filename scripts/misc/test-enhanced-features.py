@@ -14,7 +14,7 @@ print("Testing enhanced consciousness orb features...")
 
 try:
     # Test imports
-    from nix_for_humanity.ui.enhanced_consciousness_orb import (
+    from luminous_nix.ui.enhanced_consciousness_orb import (
         AIState,
         EmotionalState,
         EnhancedConsciousnessOrb,
@@ -26,7 +26,7 @@ try:
     print("✅ Enhanced consciousness orb imports successful")
 
     # Test enhanced main app
-    from nix_for_humanity.ui.enhanced_main_app import EnhancedNixForHumanityTUI
+    from luminous_nix.ui.enhanced_main_app import EnhancedNixForHumanityTUI
 
     print("✅ Enhanced main app imports successful")
 

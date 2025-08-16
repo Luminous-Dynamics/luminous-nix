@@ -122,7 +122,7 @@ class LearningActivator:
         print("   • Network information")
         print("   • Any identifying data")
         print("\n📍 Data location:")
-        print("   ~/.config/nix-humanity/config.json (settings)")
+        print("   ~/.config/luminous-nix/config.json (settings)")
         print("   ./command_learning.db (learning data)")
         print("\n🗑️  To delete all data: ask-nix --disable-learning --purge")
 

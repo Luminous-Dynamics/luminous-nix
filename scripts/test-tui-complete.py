@@ -10,8 +10,8 @@ print("🎮 Testing Complete TUI Functionality\n")
 # Test 1: Import all components
 print("1. Testing imports...")
 try:
-    from nix_for_humanity.api.schema import Request
-    from nix_for_humanity.core.engine import NixForHumanityBackend
+    from luminous_nix.api.schema import Request
+    from luminous_nix.core.engine import NixForHumanityBackend
 
     print("✅ Backend imports successful")
 except Exception as e:

@@ -1,4 +1,4 @@
-# 💫 Development Philosophy - Nix for Humanity
+# 💫 Development Philosophy - Luminous Nix
 
 ## The Sacred Development Approach
 

@@ -48,6 +48,8 @@ pkgs.mkShell {
     python313Packages.textual      # For TUI interface
     python313Packages.blessed      # Terminal capabilities
     python313Packages.pyperclip    # Clipboard support
+    python313Packages.scipy        # For statistical analysis in self-healing
+    python313Packages.numpy        # Required by scipy
     
     # Voice interface dependencies
     portaudio                      # Audio I/O library

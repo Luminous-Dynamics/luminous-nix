@@ -146,8 +146,8 @@ Everything needed for development:
 
 1. **Clone and setup**:
    ```bash
-   git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-   cd nix-for-humanity
+   git clone https://github.com/Luminous-Dynamics/luminous-nix
+   cd luminous-nix
    python3 -m venv venv
    source venv/bin/activate
    ```

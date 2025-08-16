@@ -20,7 +20,7 @@ def test_backend_import():
         sys.path.insert(0, str(script_dir))
         sys.path.insert(0, str(backend_dir))
 
-        from nix_for_humanity.core.engine import UnifiedNixBackend
+        from luminous_nix.core.engine import UnifiedNixBackend
 
         print("✅ Successfully imported UnifiedNixBackend")
 
@@ -30,7 +30,7 @@ def test_backend_import():
         print(f"✅ Intent extraction works: {intent.type.value}")
         return True
     except Exception as e:
-        print(f"❌ Failed to import nix_for_humanity.core as backend: {e}")
+        print(f"❌ Failed to import luminous_nix.core as backend: {e}")
         return False
 
 
@@ -45,9 +45,9 @@ def test_command(command: str, description: str, use_feature_flag: bool = True):
     # Set or unset the feature flag
     env = os.environ.copy()
     if use_feature_flag:
-        env["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+        env["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
     else:
-        env.pop("NIX_HUMANITY_PYTHON_BACKEND", None)
+        env.pop("LUMINOUS_NIX_PYTHON_BACKEND", None)
 
     # Use full path to ask-nix
     ask_nix_path = Path(__file__).parent / "bin" / "ask-nix"
@@ -144,14 +144,14 @@ def main():
         print("- Feature flag not being detected")
         print("- Import errors in the unified backend")
         print("- Missing dependencies (check if all modules in scripts/ are available)")
-        print("\nDebug with: export DEBUG=1 NIX_HUMANITY_PYTHON_BACKEND=true")
+        print("\nDebug with: export DEBUG=1 LUMINOUS_NIX_PYTHON_BACKEND=true")
     elif python_backend_used < len(tests):
         print("\n⚠️  Python backend is partially working")
         print("Some commands fall back to traditional methods")
     else:
         print("\n✅ Python backend is fully operational!")
         print("\n🎉 Next steps:")
-        print("1. Enable in production: export NIX_HUMANITY_PYTHON_BACKEND=true")
+        print("1. Enable in production: export LUMINOUS_NIX_PYTHON_BACKEND=true")
         print("2. Test with real commands (without --dry-run)")
         print("3. Monitor performance improvements")
         print("4. Make default after user testing (remove feature flag check)")

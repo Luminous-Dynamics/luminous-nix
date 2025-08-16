@@ -10,7 +10,7 @@ from pathlib import Path
 # Add the backend to the path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from nix_for_humanity.core.responses import (
+from luminous_nix.core.responses import (
     ContextWarning,
     EducationalContent,
     PathType,
@@ -143,7 +143,7 @@ def docker_example():
     )
 
     # Create response
-    from nix_for_humanity.core.responses import DryRunSuggestion, Response
+    from luminous_nix.core.responses import DryRunSuggestion, Response
 
     response = Response(
         intent="install_docker",

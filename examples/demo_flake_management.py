@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tempfile
 from pathlib import Path
 
-from nix_for_humanity.core.flake_manager import FlakeManager
+from luminous_nix.core.flake_manager import FlakeManager
 
 
 def demo_flake_creation():

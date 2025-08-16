@@ -70,7 +70,6 @@ PERSONA_TEST_DATA = {
     },
 }
 
-
 @dataclass
 class TestProcess:
     """Simulated process with deterministic behavior."""
@@ -94,7 +93,6 @@ class TestProcess:
         """Simulate process.communicate()"""
         time.sleep(self.execution_time)
         return self.stdout, self.stderr
-
 
 class TestExecutionBackend:
     """Test implementation of command execution backend."""
@@ -158,7 +156,6 @@ class TestExecutionBackend:
             self.current_generation = generation
             return True
         return False
-
 
 class TestNLPEngine:
     """Test implementation of NLP processing."""
@@ -246,7 +243,6 @@ class TestNLPEngine:
                 result = result.replace(typo, correct)
 
         return result
-
 
 class TestDatabase:
     """In-memory SQLite database for testing."""
@@ -396,7 +392,6 @@ class TestDatabase:
         """Close database connection."""
         self.conn.close()
 
-
 class TestLearningEngine:
     """Test implementation of learning system."""
 
@@ -451,7 +446,6 @@ class TestLearningEngine:
             "model_version": self.model_version,
         }
 
-
 class TestProgressCallback:
     """Test implementation of progress callbacks."""
 
@@ -480,7 +474,6 @@ class TestProgressCallback:
     def get_final_progress(self) -> float:
         """Get final progress value."""
         return self.calls[-1]["progress"] if self.calls else 0.0
-
 
 class TestBackendAPI:
     """Test implementation of backend API."""
@@ -558,7 +551,6 @@ class TestBackendAPI:
             "alternatives_considered": [],
         }
 
-
 class TestContextManager:
     """Test implementation of conversation context management."""
 
@@ -610,7 +602,6 @@ class TestContextManager:
         """Clear context for session."""
         if session_id in self.contexts:
             del self.contexts[session_id]
-
 
 class TestKnowledgeBase:
     """Test implementation of NixOS knowledge base."""
@@ -743,9 +734,7 @@ class TestKnowledgeBase:
             }
         return None
 
-
 # Utility functions for creating test objects
-
 
 def create_test_process(returncode: int, stdout: str, stderr: str = "") -> TestProcess:
     """Create a test process with given output."""
@@ -753,29 +742,23 @@ def create_test_process(returncode: int, stdout: str, stderr: str = "") -> TestP
         returncode=returncode, stdout=stdout.encode(), stderr=stderr.encode()
     )
 
-
 def create_successful_process(output: str) -> TestProcess:
     """Create a successful test process."""
     return create_test_process(0, output)
-
 
 def create_failed_process(error: str) -> TestProcess:
     """Create a failed test process."""
     return create_test_process(1, "", error)
 
-
 def create_test_database() -> TestDatabase:
     """Create a test database instance."""
     return TestDatabase()
-
 
 def create_test_nlp_engine() -> TestNLPEngine:
     """Create a test NLP engine instance."""
     return TestNLPEngine()
 
-
 # Test fixtures for different scenarios
-
 
 def test_fixture(func):
     """Decorator for test fixtures."""
@@ -799,7 +782,6 @@ def test_fixture(func):
 
     return wrapper
 
-
 def async_test_fixture(func):
     """Decorator for async test fixtures."""
 
@@ -818,7 +800,6 @@ def async_test_fixture(func):
 
     return wrapper
 
-
 def persona_test(persona_name: str):
     """Decorator for persona-specific tests."""
 
@@ -836,7 +817,6 @@ def persona_test(persona_name: str):
         return wrapper
 
     return decorator
-
 
 def performance_test(max_time: float):
     """Decorator for performance tests."""

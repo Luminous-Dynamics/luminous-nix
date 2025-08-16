@@ -1,6 +1,6 @@
 # Test
 
-*This directory contains all test scripts for the Nix for Humanity project.*
+*This directory contains all test scripts for the Luminous Nix project.*
 
 ## 📚 Contents
 
@@ -15,7 +15,7 @@
 ## Original Documentation
 
 
-This directory contains all test scripts for the Nix for Humanity project.
+This directory contains all test scripts for the Luminous Nix project.
 
 ## Categories
 

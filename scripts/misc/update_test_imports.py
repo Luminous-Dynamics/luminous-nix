@@ -15,13 +15,13 @@ def update_imports(content: str) -> tuple[str, int]:
 
     # Direct backend imports
     patterns = [
-        (r"from backend\.", "from nix_for_humanity."),
-        (r"import nix_for_humanity.core as backend\.", "import nix_for_humanity."),
-        (r"from \.\.backend", "from nix_for_humanity"),
+        (r"from backend\.", "from luminous_nix."),
+        (r"import luminous_nix.core as backend\.", "import luminous_nix."),
+        (r"from \.\.backend", "from luminous_nix"),
         # Specific module mappings
         (
             r"from backend\.core\.backend import",
-            "from nix_for_humanity.core.engine import",
+            "from luminous_nix.core.engine import",
         ),
         (r"backend\.core\.backend\.", "nix_humanity.core.engine."),
         # Mock paths

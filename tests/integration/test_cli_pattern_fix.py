@@ -11,8 +11,7 @@ import pytest
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from nix_for_humanity.knowledge.engine import NixOSKnowledgeEngine
-
+from luminous_nix.knowledge.engine import NixOSKnowledgeEngine
 
 class TestCLIPatternIntegration:
     """Test CLI integration with pattern recognition fixes."""
@@ -95,7 +94,6 @@ class TestCLIPatternIntegration:
         assert result["intent"] == "install"
         assert result["package"] == "git"
 
-
 class TestCLIEndToEnd:
     """End-to-end CLI tests."""
 
@@ -146,7 +144,6 @@ class TestCLIEndToEnd:
         )
         # Version might not be implemented, but shouldn't crash
         assert proc.returncode in [0, 1, 2]
-
 
 if __name__ == "__main__":
     # Run tests directly

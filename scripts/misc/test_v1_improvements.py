@@ -14,13 +14,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 # Test imports
 try:
-    from nix_for_humanity.core.first_run_wizard import FirstRunWizard, SystemInfo
-    from nix_for_humanity.core.graceful_degradation import (
+    from luminous_nix.core.first_run_wizard import FirstRunWizard, SystemInfo
+    from luminous_nix.core.graceful_degradation import (
         DegradationLevel,
         GracefulDegradation,
         handle_degraded_operation,
     )
-    from nix_for_humanity.security.security_audit import (
+    from luminous_nix.security.security_audit import (
         SecurityAuditor,
         ThreatLevel,
         audit_command_execution,

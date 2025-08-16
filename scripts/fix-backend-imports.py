@@ -9,36 +9,36 @@ from pathlib import Path
 # Define import mappings
 IMPORT_MAPPINGS = {
     # Backend core imports
-    r"from backend\.core\.(\w+) import": r"from nix_for_humanity.core.\1 import",
-    r"from backend\.core import": r"from nix_for_humanity.core import",
-    r"from backend\.api\.(\w+) import": r"from nix_for_humanity.api.\1 import",
-    r"from backend\.api import": r"from nix_for_humanity.api import",
-    r"from nix_for_humanity.core import": r"from nix_for_humanity.core import",
+    r"from backend\.core\.(\w+) import": r"from luminous_nix.core.\1 import",
+    r"from backend\.core import": r"from luminous_nix.core import",
+    r"from backend\.api\.(\w+) import": r"from luminous_nix.api.\1 import",
+    r"from backend\.api import": r"from luminous_nix.api import",
+    r"from luminous_nix.core import": r"from luminous_nix.core import",
     # Python native backend
-    r"from nix_for_humanity.core.native_operations import": r"from nix_for_humanity.core.native_operations import",
-    r"from nix_for_humanity.core.native_operations import": r"from nix_for_humanity.core.native_operations import",
-    r"from nix_for_humanity.core.native_operations import": r"from nix_for_humanity.core.native_operations import",
+    r"from luminous_nix.core.native_operations import": r"from luminous_nix.core.native_operations import",
+    r"from luminous_nix.core.native_operations import": r"from luminous_nix.core.native_operations import",
+    r"from luminous_nix.core.native_operations import": r"from luminous_nix.core.native_operations import",
     # Unified backend
-    r"from nix_for_humanity.core.engine import": r"from nix_for_humanity.core.engine import",
-    r"from nix_for_humanity.core.engine import": r"from nix_for_humanity.core.engine import",
+    r"from luminous_nix.core.engine import": r"from luminous_nix.core.engine import",
+    r"from luminous_nix.core.engine import": r"from luminous_nix.core.engine import",
     # Test fixtures
     r"from tests\.fixtures\.consciousness_test_backend import": r"from tests.fixtures.sacred_test_base import",
-    r"from src\.nix_for_humanity\.backend\.core_engine import": r"from nix_for_humanity.core.engine import",
+    r"from src\.nix_for_humanity\.backend\.core_engine import": r"from luminous_nix.core.engine import",
     # Knowledge graph and other components
     r"from backend\.knowledge_graph\.(\w+) import": r"from features.v3.0.intelligence.knowledge_graph.\1 import",
     r"from backend\.trust_modeling\.(\w+) import": r"from features.v3.0.intelligence.trust_modeling.\1 import",
     r"from backend\.perception\.(\w+) import": r"from features.v3.0.intelligence.perception.\1 import",
     r"# REMOVED MOCK IMPORT:": r"# REMOVED MOCK IMPORT:",
-    r"from backend\.config\.(\w+) import": r"from nix_for_humanity.config.\1 import",
+    r"from backend\.config\.(\w+) import": r"from luminous_nix.config.\1 import",
     # Specific backend modules
-    r"from nix_for_humanity\.core\.backend import": r"from nix_for_humanity.core.engine import",
-    r"import nix_for_humanity.core as backend": r"import nix_for_humanity.core as backend",
-    r"from core\.backend import": r"from nix_for_humanity.core.engine import",
-    r"from nix_for_humanity\.nix\.native_backend import": r"from nix_for_humanity.core.native_operations import",
-    r"from backend\.voice import": r"from nix_for_humanity.voice import",
+    r"from luminous_nix\.core\.backend import": r"from luminous_nix.core.engine import",
+    r"import luminous_nix.core as backend": r"import luminous_nix.core as backend",
+    r"from core\.backend import": r"from luminous_nix.core.engine import",
+    r"from luminous_nix\.nix\.native_backend import": r"from luminous_nix.core.native_operations import",
+    r"from backend\.voice import": r"from luminous_nix.voice import",
     # Cached backend
-    r"from src\.nix_for_humanity\.backend\.cached_backend import": r"from nix_for_humanity.core.engine import",
-    r"from src\.nix_for_humanity\.backend\.enhanced_backend import": r"from nix_for_humanity.core.engine import",
+    r"from src\.nix_for_humanity\.backend\.cached_backend import": r"from luminous_nix.core.engine import",
+    r"from src\.nix_for_humanity\.backend\.enhanced_backend import": r"from luminous_nix.core.engine import",
 }
 
 

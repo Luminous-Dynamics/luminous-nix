@@ -1,6 +1,6 @@
 # 📖 05-REFERENCE
 
-*Technical reference materials for Nix for Humanity*
+*Technical reference materials for Luminous Nix*
 
 ---
 
@@ -48,7 +48,7 @@ ask-nix export-data
 
 ### Configuration
 ```yaml
-# ~/.config/nix-for-humanity/config.yaml
+# ~/.config/luminous-nix/config.yaml
 backend: python
 loglevel: info
 localOnly: true
@@ -114,7 +114,7 @@ print(response.command)
 ## Original Documentation
 
 
-*Technical reference materials for Nix for Humanity*
+*Technical reference materials for Luminous Nix*
 
 ---
 
@@ -190,16 +190,16 @@ learning:
 ### Environment Variables
 ```bash
 # Core settings
-NIX_HUMANITY_BACKEND=python
-NIX_HUMANITY_LOG_LEVEL=info
+LUMINOUS_NIX_BACKEND=python
+LUMINOUS_NIX_LOG_LEVEL=info
 
 # Features
-NIX_HUMANITY_VOICE_ENABLED=true
-NIX_HUMANITY_LEARNING_ENABLED=true
+LUMINOUS_NIX_VOICE_ENABLED=true
+LUMINOUS_NIX_LEARNING_ENABLED=true
 
 # Paths
-NIX_HUMANITY_DATA_DIR=~/.local/share/nix-for-humanity
-NIX_HUMANITY_CACHE_DIR=~/.cache/nix-for-humanity
+LUMINOUS_NIX_DATA_DIR=~/.local/share/luminous-nix
+LUMINOUS_NIX_CACHE_DIR=~/.cache/luminous-nix
 ```
 
 ### Common Commands

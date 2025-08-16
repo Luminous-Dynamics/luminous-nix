@@ -4,7 +4,7 @@
 
 ---
 
-💡 **Quick Context**: Foundational vision and philosophy guiding Nix for Humanity
+💡 **Quick Context**: Foundational vision and philosophy guiding Luminous Nix
 📍 **Location**: `docs/01-VISION/`
 🔗 **Parent**: [Documentation Hub](../README.md)
 ⏱️ **Read time**: 3 minutes for navigation
@@ -99,7 +99,7 @@ A revolutionary AI partner that makes NixOS accessible through natural conversat
 
 ## Overview
 
-This section contains the foundational vision and philosophy that guides Nix for Humanity. These documents explain not just what we're building, but why we're building it and how it serves humanity's evolution.
+This section contains the foundational vision and philosophy that guides Luminous Nix. These documents explain not just what we're building, but why we're building it and how it serves humanity's evolution.
 
 ## Quick Navigation
 
@@ -240,7 +240,7 @@ This isn't just a project - it's a demonstration that sacred technology can be p
 - **Academic Collaboration**: Contribute research and validation
 
 ### Community Spaces
-- **GitHub**: [Luminous-Dynamics/nix-for-humanity](https://github.com/Luminous-Dynamics/nix-for-humanity)
+- **GitHub**: [Luminous-Dynamics/luminous-nix](https://github.com/Luminous-Dynamics/luminous-nix)
 - **Discussions**: Ideas, feedback, and collaborative development
 - **Issues**: Bug reports and feature requests
 - **Research**: Academic collaboration and peer review

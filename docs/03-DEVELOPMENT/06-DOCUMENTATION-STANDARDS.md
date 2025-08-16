@@ -1,4 +1,4 @@
-# 📚 Documentation Standards for Nix for Humanity
+# 📚 Documentation Standards for Luminous Nix
 
 > Comprehensive guide for documenting code, APIs, and functionality
 
@@ -214,10 +214,10 @@ Version = Union[str, Literal["latest"]]
 ```python
 # src/nix_for_humanity/api/__init__.py
 """
-Nix for Humanity Public API.
+Luminous Nix Public API.
 
 This module provides the stable, public API for interacting with
-Nix for Humanity. All public functions are available at the module level.
+Luminous Nix. All public functions are available at the module level.
 
 Quick Start:
     >>> from nix_for_humanity import ask_nix
@@ -233,9 +233,9 @@ Main Functions:
 
 Configuration:
     Set environment variables:
-    - NIX_HUMANITY_BACKEND: Backend type ("python" or "subprocess")
-    - NIX_HUMANITY_CACHE_DIR: Cache directory path
-    - NIX_HUMANITY_LOG_LEVEL: Logging level
+    - LUMINOUS_NIX_BACKEND: Backend type ("python" or "subprocess")
+    - LUMINOUS_NIX_CACHE_DIR: Cache directory path
+    - LUMINOUS_NIX_LOG_LEVEL: Logging level
 
 Stability:
     This API follows semantic versioning. Functions marked as

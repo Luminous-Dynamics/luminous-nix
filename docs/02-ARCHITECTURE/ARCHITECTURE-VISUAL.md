@@ -1,6 +1,6 @@
 # 🏗️ System Architecture
 
-Visual overview of how Nix for Humanity works.
+Visual overview of how Luminous Nix works.
 
 ## High-Level Architecture
 
@@ -113,7 +113,7 @@ User Input ──► Intent Recognition ──► Command Building ──► Exe
 
 ### 4. Data Storage
 ```
-~/.local/share/nix-for-humanity/
+~/.local/share/luminous-nix/
 ├── cache.db          # Intent cache
 ├── learning.db       # User patterns
 ├── history.json      # Command history

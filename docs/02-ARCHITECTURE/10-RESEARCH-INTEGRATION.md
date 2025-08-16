@@ -4,7 +4,7 @@
 
 ---
 
-💡 **Quick Context**: How cutting-edge research is integrated into Nix for Humanity
+💡 **Quick Context**: How cutting-edge research is integrated into Luminous Nix
 📍 **You are here**: Architecture → Research Integration
 🔗 **Related**: [System Architecture](./01-SYSTEM-ARCHITECTURE.md) | [Learning System](./09-LEARNING-SYSTEM.md) | [Dynamic User Modeling](./03-DYNAMIC-USER-MODELING.md)
 ⏱️ **Read time**: 10 minutes
@@ -14,7 +14,7 @@
 
 ## Overview
 
-The research integration brings five major components from our symbiotic intelligence research directly into the Nix for Humanity codebase:
+The research integration brings five major components from our symbiotic intelligence research directly into the Luminous Nix codebase:
 
 1. **Symbiotic Knowledge Graph (SKG)** - Four-layer knowledge representation
 2. **Theory of Mind Trust Engine** - CASA-based trust building
@@ -147,7 +147,7 @@ Optional ActivityWatch integration:
 
 ```python
 # Only enabled with explicit consent
-if os.getenv('NIX_HUMANITY_ACTIVITY_TRACKING') == 'true':
+if os.getenv('LUMINOUS_NIX_ACTIVITY_TRACKING') == 'true':
     monitor = ActivityMonitor(skg, privacy_mode='aggregate')
     context = monitor.get_current_context()
     # Returns behavioral patterns without content
@@ -178,16 +178,16 @@ with consciousness_guard.sacred_context("Handle user request"):
 
 ```bash
 # Enable/disable research components
-export NIX_HUMANITY_DISABLE_RESEARCH=false
+export LUMINOUS_NIX_DISABLE_RESEARCH=false
 
 # SKG database location
-export NIX_HUMANITY_SKG_PATH=./data/skg.db
+export LUMINOUS_NIX_SKG_PATH=./data/skg.db
 
 # Activity tracking (opt-in only)
-export NIX_HUMANITY_ACTIVITY_TRACKING=false
+export LUMINOUS_NIX_ACTIVITY_TRACKING=false
 
 # Privacy mode: strict, aggregate, full
-export NIX_HUMANITY_PRIVACY_MODE=aggregate
+export LUMINOUS_NIX_PRIVACY_MODE=aggregate
 ```
 
 ### Research Configuration

@@ -1,10 +1,10 @@
-# 🚀 Advanced Features Guide - Nix for Humanity
+# 🚀 Advanced Features Guide - Luminous Nix
 
-*Master the power features that make Nix for Humanity exceptional*
+*Master the power features that make Luminous Nix exceptional*
 
 ## Overview
 
-This guide covers the advanced features that transform Nix for Humanity from a simple command runner into an intelligent NixOS companion. These features leverage cutting-edge AI and native NixOS integration for unprecedented power and ease of use.
+This guide covers the advanced features that transform Luminous Nix from a simple command runner into an intelligent NixOS companion. These features leverage cutting-edge AI and native NixOS integration for unprecedented power and ease of use.
 
 ## 📋 Table of Contents
 
@@ -295,7 +295,7 @@ ask-nix recovery verify
 Transform cryptic Nix errors into helpful guidance.
 
 ### Automatic Error Translation
-When errors occur, Nix for Humanity automatically:
+When errors occur, Luminous Nix automatically:
 - Translates technical errors to plain English
 - Suggests specific solutions
 - Offers to fix problems automatically
@@ -608,4 +608,4 @@ ask-nix best-practices
 
 ---
 
-*Master these advanced features to unlock the full power of Nix for Humanity. Remember: complexity is always optional - use what serves you best!*
+*Master these advanced features to unlock the full power of Luminous Nix. Remember: complexity is always optional - use what serves you best!*

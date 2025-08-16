@@ -1,4 +1,4 @@
-# 🔄 Feedback System Architecture - Nix for Humanity
+# 🔄 Feedback System Architecture - Luminous Nix
 
 ## 🎯 Overview
 
@@ -164,7 +164,7 @@ System: "On a scale of 1-5, how was that?"
 User: "Four"
 System: "Thanks! Any specific feedback?"
 User: "The error message really helped"
-System: "Noted. Thank you for helping improve Nix for Humanity!"
+System: "Noted. Thank you for helping improve Luminous Nix!"
 ```
 
 ## 🧠 Learning Pipeline

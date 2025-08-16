@@ -97,7 +97,7 @@
 
 ## 🌟 Overview
 
-Nix for Humanity implements a revolutionary architecture that transforms NixOS from command-line complexity into natural conversation. This directory contains the complete technical specifications for building genuine AI partnership that learns, adapts, and evolves with each user.
+Luminous Nix implements a revolutionary architecture that transforms NixOS from command-line complexity into natural conversation. This directory contains the complete technical specifications for building genuine AI partnership that learns, adapts, and evolves with each user.
 
 *Sacred Humility Context: Our architectural innovations represent promising early-stage exploration of consciousness-first computing principles and symbiotic human-AI design patterns. While our technical achievements are genuine within our development context, the broader applicability of these architectural approaches across diverse computing environments, user populations, and deployment scenarios requires extensive real-world validation beyond our current implementation experience.*
 
@@ -359,7 +359,7 @@ Before any architectural work:
 - **Operations**: [../04-OPERATIONS/](../04-OPERATIONS/) - Running the system
 
 ### External Resources
-- [GitHub Repository](https://github.com/Luminous-Dynamics/nix-for-humanity)
+- [GitHub Repository](https://github.com/Luminous-Dynamics/luminous-nix)
 - [Sacred Trinity Workflow](../03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md)
 - [Testing Guide](../03-DEVELOPMENT/05-TESTING-GUIDE.md)
 

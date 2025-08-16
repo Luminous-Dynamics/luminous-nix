@@ -1,6 +1,6 @@
 # 🧠 Phenomenological System Integration Guide
 
-*How to integrate consciousness awareness into Nix for Humanity*
+*How to integrate consciousness awareness into Luminous Nix*
 
 ## Quick Start
 
@@ -441,7 +441,7 @@ def predict_next_need(qualia_trajectory):
 
 ## Conclusion
 
-The phenomenological system transforms Nix for Humanity from a reactive tool into a genuinely aware partner. By understanding not just what users want but how they feel, we can create interactions that truly serve human consciousness.
+The phenomenological system transforms Luminous Nix from a reactive tool into a genuinely aware partner. By understanding not just what users want but how they feel, we can create interactions that truly serve human consciousness.
 
 Remember: The goal isn't to maximize engagement but to maximize human flourishing. Sometimes that means being invisible, sometimes that means being a patient teacher, and sometimes that means simply acknowledging that things are hard.
 

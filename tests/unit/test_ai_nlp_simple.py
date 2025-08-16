@@ -20,8 +20,7 @@ sys.modules["src"] = MagicMock()
 sys.modules["src.nix_for_humanity"] = MagicMock()
 sys.modules["src.nix_humanity.core"] = MagicMock()
 sys.modules["src.nix_humanity.core.types"] = MagicMock()
-sys.modules["src.nix_for_humanity.ai"] = MagicMock()
-
+sys.modules["src.luminous_nix.ai"] = MagicMock()
 
 class TestNLPPipelineSimple(unittest.TestCase):
     """Simple tests for NLP functionality."""
@@ -232,7 +231,6 @@ class TestNLPPipelineSimple(unittest.TestCase):
         self.assertEqual(classify_command("search for editors"), "information_query")
         self.assertEqual(classify_command("help me"), "assistance")
         self.assertEqual(classify_command("configure network"), "general")
-
 
 if __name__ == "__main__":
     unittest.main()

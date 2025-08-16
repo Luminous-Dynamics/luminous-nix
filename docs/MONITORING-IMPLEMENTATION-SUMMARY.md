@@ -82,7 +82,7 @@
 ### Quick Start
 ```bash
 # Install monitoring dependencies
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 poetry add --group dev radon pytest-cov psutil
 
 # Start real-time monitor

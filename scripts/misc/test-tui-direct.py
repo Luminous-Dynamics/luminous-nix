@@ -43,13 +43,13 @@ print("\n🎯 Testing TUI components...")
 
 try:
     # Test imports
-    from nix_for_humanity.ui.adaptive_interface import AdaptiveInterface
-    from nix_for_humanity.ui.consciousness_orb import (
+    from luminous_nix.ui.adaptive_interface import AdaptiveInterface
+    from luminous_nix.ui.consciousness_orb import (
         AIState,
         ConsciousnessOrb,
         EmotionalState,
     )
-    from nix_for_humanity.ui.main_app import NixForHumanityTUI
+    from luminous_nix.ui.main_app import NixForHumanityTUI
 
     print("✅ All TUI components imported successfully!")
 

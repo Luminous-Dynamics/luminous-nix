@@ -12,9 +12,8 @@ import sys
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.core.executor import SafeExecutor, Result
-from nix_for_humanity.core.intents import Intent, IntentType
-
+from luminous_nix.core.executor import SafeExecutor, Result
+from luminous_nix.core.intents import Intent, IntentType
 
 class TestSafeExecutor(unittest.TestCase):
     """Test the SafeExecutor class"""
@@ -265,7 +264,6 @@ class TestSafeExecutor(unittest.TestCase):
             result = self.executor._run_command("echo '🎉 Unicode test'")
             self.assertTrue(result["success"])
             self.assertIn("✓", result["stdout"])
-
 
 if __name__ == "__main__":
     unittest.main()

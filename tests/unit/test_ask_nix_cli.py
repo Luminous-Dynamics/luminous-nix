@@ -18,7 +18,6 @@ sys.path.insert(0, project_root)
 bin_path = os.path.join(project_root, "bin")
 sys.path.insert(0, bin_path)
 
-
 class TestAskNixCLI(unittest.TestCase):
     """Test the ask-nix CLI main entry point."""
 
@@ -150,11 +149,11 @@ class TestAskNixCLI(unittest.TestCase):
 
     def test_environment_variables(self):
         """Test environment variable handling."""
-        # Test NIX_HUMANITY_PYTHON_BACKEND
+        # Test LUMINOUS_NIX_PYTHON_BACKEND
         test_envs = [
-            ("NIX_HUMANITY_PYTHON_BACKEND", "true"),
-            ("NIX_HUMANITY_DEBUG", "true"),
-            ("NIX_HUMANITY_PLUGIN_DIR", "/tmp/plugins"),
+            ("LUMINOUS_NIX_PYTHON_BACKEND", "true"),
+            ("LUMINOUS_NIX_DEBUG", "true"),
+            ("LUMINOUS_NIX_PLUGIN_DIR", "/tmp/plugins"),
         ]
 
         for env_var, value in test_envs:
@@ -311,7 +310,6 @@ class TestAskNixCLI(unittest.TestCase):
         self.assertIn("total_commands", summary_data)
         self.assertIn("success_rate", summary_data)
         self.assertIn("most_used_commands", summary_data)
-
 
 if __name__ == "__main__":
     unittest.main()

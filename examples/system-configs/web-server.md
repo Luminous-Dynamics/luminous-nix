@@ -1,4 +1,4 @@
-# 🌐 Web Server Configuration with Nix for Humanity
+# 🌐 Web Server Configuration with Luminous Nix
 
 > From zero to production web server in minutes, not hours
 
@@ -22,7 +22,7 @@ services.nginx = {
 networking.firewall.allowedTCPPorts = [ 80 443 ];
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "setup nginx web server for example.com"
 ```
@@ -41,7 +41,7 @@ ask-nix "setup nginx web server for example.com"
 # [100+ lines of configuration]
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "wordpress server with ssl and automatic backups"
 ```

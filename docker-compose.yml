@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     container_name: nix-for-humanity
     environment:
-      - NIX_HUMANITY_PYTHON_BACKEND=true
+      - LUMINOUS_NIX_PYTHON_BACKEND=true
       - REDIS_URL=redis://redis:6379/0
       - DATABASE_URL=sqlite:///data/nixos_knowledge.db
       - LOG_LEVEL=INFO

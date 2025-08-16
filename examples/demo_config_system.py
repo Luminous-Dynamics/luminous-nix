@@ -9,7 +9,7 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from nix_for_humanity.config import get_config_manager
+from luminous_nix.config import get_config_manager
 
 
 def main():
@@ -93,10 +93,10 @@ def main():
     # Environment variable overrides
     print("\n🌍 Environment Variable Support:")
     print("  Set these to override configuration:")
-    print("  • NIX_HUMANITY_PERSONALITY=minimal")
-    print("  • NIX_HUMANITY_FAST_MODE=true")
-    print("  • NIX_HUMANITY_VOICE_ENABLED=true")
-    print("  • NIX_HUMANITY_DEBUG=true")
+    print("  • LUMINOUS_NIX_PERSONALITY=minimal")
+    print("  • LUMINOUS_NIX_FAST_MODE=true")
+    print("  • LUMINOUS_NIX_VOICE_ENABLED=true")
+    print("  • LUMINOUS_NIX_DEBUG=true")
 
     # Configuration locations
     print("\n📁 Configuration File Locations:")

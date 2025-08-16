@@ -25,10 +25,10 @@ test_imports = [
     ("nix_humanity.ai", "AI module"),
     ("nix_humanity.ai.nlp", "NLP module"),
     # From imports
-    ("from nix_for_humanity.core import NixForHumanityBackend", "Backend class"),
-    ("from nix_for_humanity.ai import NLPEngine", "NLP Engine"),
-    ("from nix_for_humanity.ai.nlp import NLPPipeline", "NLP Pipeline"),
-    ("from nix_for_humanity.ai.nlp import process", "process function"),
+    ("from luminous_nix.core import NixForHumanityBackend", "Backend class"),
+    ("from luminous_nix.ai import NLPEngine", "NLP Engine"),
+    ("from luminous_nix.ai.nlp import NLPPipeline", "NLP Pipeline"),
+    ("from luminous_nix.ai.nlp import process", "process function"),
     # Security
     ("nix_humanity.security", "Security module"),
     ("nix_humanity.security.validator", "Validator module"),
@@ -75,13 +75,13 @@ print("\n\n🔍 Tracing Import Chain for AI Module:")
 print("=" * 60)
 
 try:
-    print("✅ Step 1: import nix_for_humanity.ai - SUCCESS")
+    print("✅ Step 1: import luminous_nix.ai - SUCCESS")
 
     # Check what's in the module
     print(f"\nAvailable in nix_humanity.ai: {dir(nix_humanity.ai)}")
 
 except Exception:
-    print("❌ Step 1: import nix_for_humanity.ai - FAILED")
+    print("❌ Step 1: import luminous_nix.ai - FAILED")
     traceback.print_exc()
 
 # Check what's actually in the files

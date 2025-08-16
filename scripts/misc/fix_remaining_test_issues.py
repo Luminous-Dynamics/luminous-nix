@@ -47,7 +47,7 @@ def fix_circular_imports():
 
         # Make sure we have the correct imports
         if (
-            "from nix_for_humanity.core.intent_engine import IntentEngine as IntentRecognizer"
+            "from luminous_nix.core.intent_engine import IntentEngine as IntentRecognizer"
             not in content
         ):
             # Add after sys.path.insert line
@@ -57,11 +57,11 @@ def fix_circular_imports():
                     lines.insert(i + 2, "")
                     lines.insert(
                         i + 3,
-                        "from nix_for_humanity.core.types import Intent, IntentType",
+                        "from luminous_nix.core.types import Intent, IntentType",
                     )
                     lines.insert(
                         i + 4,
-                        "from nix_for_humanity.core.intent_engine import IntentEngine as IntentRecognizer",
+                        "from luminous_nix.core.intent_engine import IntentEngine as IntentRecognizer",
                     )
                     break
 
@@ -69,12 +69,12 @@ def fix_circular_imports():
 
         # Remove duplicate imports
         content = re.sub(
-            r"from nix_for_humanity\.core\.intent_engine import IntentEngine as IntentRecognizer\n",
+            r"from luminous_nix\.core\.intent_engine import IntentEngine as IntentRecognizer\n",
             "",
             content,
         )
         content = re.sub(
-            r"from nix_for_humanity\.core\.types import.*IntentRecognizer.*\n",
+            r"from luminous_nix\.core\.types import.*IntentRecognizer.*\n",
             "",
             content,
         )
@@ -82,16 +82,16 @@ def fix_circular_imports():
         # Add the correct import back
         import_section = content[: content.find("\n\nclass")]
         if (
-            "from nix_for_humanity.core.intent_engine import IntentEngine as IntentRecognizer"
+            "from luminous_nix.core.intent_engine import IntentEngine as IntentRecognizer"
             not in import_section
         ):
-            import_section += "\nfrom nix_for_humanity.core.intent_engine import IntentEngine as IntentRecognizer"
+            import_section += "\nfrom luminous_nix.core.intent_engine import IntentEngine as IntentRecognizer"
         if (
-            "from nix_for_humanity.core.types import Intent, IntentType"
+            "from luminous_nix.core.types import Intent, IntentType"
             not in import_section
         ):
             import_section += (
-                "\nfrom nix_for_humanity.core.types import Intent, IntentType"
+                "\nfrom luminous_nix.core.types import Intent, IntentType"
             )
 
         content = import_section + content[content.find("\n\nclass") :]

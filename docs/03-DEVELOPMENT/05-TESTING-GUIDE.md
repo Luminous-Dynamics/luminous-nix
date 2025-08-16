@@ -1,4 +1,4 @@
-# 🧪 Testing Guide - Nix for Humanity
+# 🧪 Testing Guide - Luminous Nix
 
 *Comprehensive guide to testing the symbiotic AI system*
 
@@ -20,7 +20,7 @@
 
 ## Overview
 
-Nix for Humanity follows a rigorous testing strategy to ensure reliability, accessibility, and user trust. We aim for **95% test coverage** across all critical paths.
+Luminous Nix follows a rigorous testing strategy to ensure reliability, accessibility, and user trust. We aim for **95% test coverage** across all critical paths.
 
 **Current Status**: 📊 62% coverage → Target: 95%
 

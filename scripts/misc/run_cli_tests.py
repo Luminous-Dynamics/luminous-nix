@@ -27,9 +27,9 @@ try:
     from tests.utils.async_test_runner import AsyncTestCase
 
     print("🚀 Importing CLI Adapter...")
-    from nix_for_humanity.adapters.cli_adapter import CLIAdapter
-    from nix_for_humanity.core.interface import Intent, IntentType, Query, Response
-    from nix_for_humanity.core.types import Command
+    from luminous_nix.adapters.cli_adapter import CLIAdapter
+    from luminous_nix.core.interface import Intent, IntentType, Query, Response
+    from luminous_nix.core.types import Command
 
     print("✅ All imports successful!")
     print("\n📊 CLI Adapter Analysis:")

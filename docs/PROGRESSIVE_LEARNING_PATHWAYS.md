@@ -11,7 +11,7 @@
 📊 **Mastery Level**: 🌱 Beginner-Friendly - adapts to your current understanding level
 
 🌊 **Natural Next Steps**:
-- **For newcomers**: Begin with [Beginner's Journey](#beginners-journey-discovering-nix-for-humanity) below
+- **For newcomers**: Begin with [Beginner's Journey](#beginners-journey-discovering-luminous-nix) below
 - **For returning users**: Jump to [Pathway Assessment](#pathway-assessment-finding-your-current-level) to find your level
 - **For educators**: Explore [Curriculum Integration](#curriculum-integration-for-educators) section
 - **For contributors**: Review [Pathway Enhancement Guide](#pathway-enhancement-contributing-to-adaptive-learning)
@@ -36,7 +36,7 @@ We don't just provide information—we cultivate wisdom through consciousness-fi
 **Pathway Stages**:
 ```
 Week 1: Wonder & Orientation
-├─ What is Nix for Humanity? (5 min)
+├─ What is Luminous Nix? (5 min)
 ├─ Your First Conversation (10 min hands-on)
 ├─ Understanding Natural Language Computing (8 min)
 └─ Reflection: What questions emerged?

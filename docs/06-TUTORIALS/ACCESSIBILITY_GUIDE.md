@@ -1,10 +1,10 @@
-# ♿ Accessibility Guide - Nix for Humanity
+# ♿ Accessibility Guide - Luminous Nix
 
 *Making NixOS accessible to every human, regardless of ability*
 
 ## Welcome, Alex (and Everyone Who Needs Accessible Computing)
 
-Nix for Humanity was designed from the ground up with accessibility as a foundational principle, not an afterthought. Every feature works with assistive technology, and the entire system is navigable without sight, sound, or fine motor control.
+Luminous Nix was designed from the ground up with accessibility as a foundational principle, not an afterthought. Every feature works with assistive technology, and the entire system is navigable without sight, sound, or fine motor control.
 
 ## 🎯 Core Accessibility Features
 
@@ -209,7 +209,7 @@ ask-nix --focus "help with wifi"
 
 ### Tested With Popular Tools
 
-Nix for Humanity works with:
+Luminous Nix works with:
 - **NVDA** (Windows/Linux)
 - **JAWS** (Windows)
 - **Orca** (Linux)
@@ -233,7 +233,7 @@ We test every feature with:
 
 ```bash
 # 1. Navigate to the project
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # 2. Start with accessible mode
 ./bin/ask-nix --accessible "help"
@@ -251,7 +251,7 @@ Add to your shell configuration (`.bashrc`, `.zshrc`):
 
 ```bash
 # Always use accessible mode
-export NIX_HUMANITY_ACCESSIBLE=true
+export LUMINOUS_NIX_ACCESSIBLE=true
 
 # Aliases for common tasks
 alias nix='ask-nix --accessible'
@@ -260,8 +260,8 @@ alias nix-install='ask-nix --accessible "install"'
 alias nix-search='ask-nix --accessible "search for"'
 
 # Screen reader specific settings
-export NIX_HUMANITY_SCREEN_READER=true
-export NIX_HUMANITY_STRUCTURED_OUTPUT=true
+export LUMINOUS_NIX_SCREEN_READER=true
+export LUMINOUS_NIX_STRUCTURED_OUTPUT=true
 ```
 
 ## 🎯 Accessibility Testing
@@ -402,7 +402,7 @@ ask-nix --accessible "set up screen reader support"
 
 ## 💝 Thank You
 
-Thank you for helping make Nix for Humanity truly accessible to everyone. Your feedback, patience, and participation make this system better for all users.
+Thank you for helping make Luminous Nix truly accessible to everyone. Your feedback, patience, and participation make this system better for all users.
 
 **Remember**: If something doesn't work accessibly, that's our bug, not your limitation. Please report it so we can fix it!
 
@@ -424,9 +424,9 @@ ask-nix --accessible "install [program]"       # Install software
 ask-nix --accessible "search for [thing]"      # Find software
 
 # Environment Setup
-export NIX_HUMANITY_ACCESSIBLE=true            # Always accessible
-export NIX_HUMANITY_SCREEN_READER=true         # Screen reader mode
-export NIX_HUMANITY_STRUCTURED_OUTPUT=true     # Organized output
+export LUMINOUS_NIX_ACCESSIBLE=true            # Always accessible
+export LUMINOUS_NIX_SCREEN_READER=true         # Screen reader mode
+export LUMINOUS_NIX_STRUCTURED_OUTPUT=true     # Organized output
 
 # Support
 ask-nix --accessibility-report                 # Generate bug report

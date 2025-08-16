@@ -37,10 +37,10 @@ whisper --help
 echo "Recording test" | whisper --model base
 
 # Test Piper  
-echo "Hello from Nix for Humanity!" | piper --list-models
+echo "Hello from Luminous Nix!" | piper --list-models
 
 # Run full voice demo
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 poetry run python demo_voice_with_nix.py
 ```
 

@@ -1,4 +1,4 @@
-# ✅ GitHub Release Ready - Nix for Humanity v0.1.0-alpha
+# ✅ GitHub Release Ready - Luminous Nix v0.1.0-alpha
 
 ## 🎉 What We've Accomplished
 

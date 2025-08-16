@@ -6,7 +6,6 @@ Simple security test to verify command injection fixes.
 import shlex
 import subprocess
 
-
 def test_shlex_safety():
     """Test that shlex.split properly handles dangerous input."""
     dangerous_inputs = [
@@ -36,7 +35,6 @@ def test_shlex_safety():
     print("When passed to subprocess.run() as a list, shell metacharacters")
     print("are treated as literal characters, not command separators.")
 
-
 def test_subprocess_safety():
     """Test that list-based subprocess calls are safe."""
     print("\n\nTesting subprocess safety:")
@@ -57,7 +55,6 @@ def test_subprocess_safety():
 
     print("\n✅ List-based subprocess calls prevent command injection!")
 
-
 def check_file_for_shell_true(filepath):
     """Check if a file contains shell=True."""
     try:
@@ -70,7 +67,6 @@ def check_file_for_shell_true(filepath):
             return False, 0
     except Exception as e:
         return None, str(e)
-
 
 def test_codebase_security():
     """Test that critical files don't contain shell=True."""
@@ -100,7 +96,6 @@ def test_codebase_security():
         print("\n🎉 All critical files are secure!")
     else:
         print("\n⚠️  Security issues found - please fix shell=True usage!")
-
 
 if __name__ == "__main__":
     print("🛡️ Nix for Humanity Security Test")

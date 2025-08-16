@@ -1,6 +1,6 @@
 # ⚙️ Configuration Reference
 
-*Complete guide to configuring Nix for Humanity*
+*Complete guide to configuring Luminous Nix*
 
 ---
 
@@ -20,7 +20,7 @@
 
 ## Configuration Overview
 
-Nix for Humanity can be configured through multiple methods:
+Luminous Nix can be configured through multiple methods:
 1. **Environment variables** - Quick runtime settings
 2. **Configuration files** - Persistent user preferences
 3. **Command-line flags** - Per-command overrides
@@ -31,25 +31,25 @@ Nix for Humanity can be configured through multiple methods:
 ### User Configuration
 ```bash
 # Primary config file
-~/.config/nix-for-humanity/config.yaml
+~/.config/luminous-nix/config.yaml
 
 # User data directory
-~/.local/share/nix-for-humanity/
+~/.local/share/luminous-nix/
 
 # Cache directory
-~/.cache/nix-for-humanity/
+~/.cache/luminous-nix/
 
 # Legacy locations (automatically migrated)
-~/.nix-for-humanity/config.yaml
+~/.luminous-nix/config.yaml
 ```
 
 ### System Configuration
 ```bash
 # System-wide settings (requires root)
-/etc/nix-for-humanity/config.yaml
+/etc/luminous-nix/config.yaml
 
 # NixOS module configuration
-/etc/nixos/nix-for-humanity.nix
+/etc/nixos/luminous-nix.nix
 ```
 
 ## Configuration File Format
@@ -57,15 +57,15 @@ Nix for Humanity can be configured through multiple methods:
 ### Basic Configuration (`config.yaml`)
 
 ```yaml
-# Nix for Humanity Configuration File
-# Location: ~/.config/nix-for-humanity/config.yaml
+# Luminous Nix Configuration File
+# Location: ~/.config/luminous-nix/config.yaml
 
 # Core Settings
 core:
   version: "0.8.3"
   backend: "python"                    # python, nodejs, or hybrid
-  data_directory: "~/.local/share/nix-for-humanity"
-  cache_directory: "~/.cache/nix-for-humanity"
+  data_directory: "~/.local/share/luminous-nix"
+  cache_directory: "~/.cache/luminous-nix"
   log_level: "info"                    # debug, info, warn, error
 
 # User Interface Settings
@@ -141,72 +141,72 @@ development:
 ### Core Configuration
 ```bash
 # Backend Selection
-NIX_HUMANITY_BACKEND=python                    # python, nodejs, hybrid
-NIX_HUMANITY_PYTHON_BACKEND=true               # Enable Python backend
+LUMINOUS_NIX_BACKEND=python                    # python, nodejs, hybrid
+LUMINOUS_NIX_PYTHON_BACKEND=true               # Enable Python backend
 
 # Data Directories
-NIX_HUMANITY_DATA_DIR=~/.local/share/nix-for-humanity
-NIX_HUMANITY_CACHE_DIR=~/.cache/nix-for-humanity
-NIX_HUMANITY_CONFIG_DIR=~/.config/nix-for-humanity
+LUMINOUS_NIX_DATA_DIR=~/.local/share/luminous-nix
+LUMINOUS_NIX_CACHE_DIR=~/.cache/luminous-nix
+LUMINOUS_NIX_CONFIG_DIR=~/.config/luminous-nix
 
 # Logging
-NIX_HUMANITY_LOG_LEVEL=info                    # debug, info, warn, error
-NIX_HUMANITY_DEBUG=true                        # Enable debug mode
-NIX_HUMANITY_VERBOSE=true                      # Verbose output
+LUMINOUS_NIX_LOG_LEVEL=info                    # debug, info, warn, error
+LUMINOUS_NIX_DEBUG=true                        # Enable debug mode
+LUMINOUS_NIX_VERBOSE=true                      # Verbose output
 ```
 
 ### Feature Flags
 ```bash
 # Interface Features
-NIX_HUMANITY_VOICE_ENABLED=true                # Enable voice interface
-NIX_HUMANITY_TUI_ENABLED=true                  # Enable TUI
-NIX_HUMANITY_GUI_ENABLED=false                 # Enable GUI (future)
+LUMINOUS_NIX_VOICE_ENABLED=true                # Enable voice interface
+LUMINOUS_NIX_TUI_ENABLED=true                  # Enable TUI
+LUMINOUS_NIX_GUI_ENABLED=false                 # Enable GUI (future)
 
 # Learning Features
-NIX_HUMANITY_LEARNING_ENABLED=true             # Enable learning system
-NIX_HUMANITY_PREFERENCES_ENABLED=true          # Learn user preferences
-NIX_HUMANITY_COMMUNITY_LEARNING=false          # Share anonymous patterns
+LUMINOUS_NIX_LEARNING_ENABLED=true             # Enable learning system
+LUMINOUS_NIX_PREFERENCES_ENABLED=true          # Learn user preferences
+LUMINOUS_NIX_COMMUNITY_LEARNING=false          # Share anonymous patterns
 
 # Safety Features
-NIX_HUMANITY_EXECUTE_COMMANDS=false            # Allow command execution
-NIX_HUMANITY_SAFE_MODE=true                    # Extra safety checks
-NIX_HUMANITY_CONFIRM_ALL=true                  # Confirm every action
+LUMINOUS_NIX_EXECUTE_COMMANDS=false            # Allow command execution
+LUMINOUS_NIX_SAFE_MODE=true                    # Extra safety checks
+LUMINOUS_NIX_CONFIRM_ALL=true                  # Confirm every action
 ```
 
 ### Performance Tuning
 ```bash
 # Speed Optimization
-NIX_HUMANITY_FAST_MODE=true                    # Prioritize speed
-NIX_HUMANITY_LIGHTWEIGHT=true                  # Minimize resource usage
-NIX_HUMANITY_PARALLEL=true                     # Use parallel processing
+LUMINOUS_NIX_FAST_MODE=true                    # Prioritize speed
+LUMINOUS_NIX_LIGHTWEIGHT=true                  # Minimize resource usage
+LUMINOUS_NIX_PARALLEL=true                     # Use parallel processing
 
 # Resource Limits
-NIX_HUMANITY_MEMORY_LIMIT=512                  # Memory limit in MB
-NIX_HUMANITY_TIMEOUT=30                        # Command timeout in seconds
-NIX_HUMANITY_CACHE_SIZE=1000                   # Cache entries limit
+LUMINOUS_NIX_MEMORY_LIMIT=512                  # Memory limit in MB
+LUMINOUS_NIX_TIMEOUT=30                        # Command timeout in seconds
+LUMINOUS_NIX_CACHE_SIZE=1000                   # Cache entries limit
 
 # Network Settings
-NIX_HUMANITY_OFFLINE=true                      # Offline mode
-NIX_HUMANITY_PROXY=http://proxy:8080           # HTTP proxy
-NIX_HUMANITY_NO_NETWORK=true                   # Disable all network
+LUMINOUS_NIX_OFFLINE=true                      # Offline mode
+LUMINOUS_NIX_PROXY=http://proxy:8080           # HTTP proxy
+LUMINOUS_NIX_NO_NETWORK=true                   # Disable all network
 ```
 
 ### Accessibility Settings
 ```bash
 # Screen Reader Support
-NIX_HUMANITY_SCREEN_READER=true                # Screen reader mode
-NIX_HUMANITY_ACCESSIBLE=true                   # Accessibility optimizations
-NIX_HUMANITY_STRUCTURED_OUTPUT=true            # Structured output
+LUMINOUS_NIX_SCREEN_READER=true                # Screen reader mode
+LUMINOUS_NIX_ACCESSIBLE=true                   # Accessibility optimizations
+LUMINOUS_NIX_STRUCTURED_OUTPUT=true            # Structured output
 
 # Visual Accessibility
-NIX_HUMANITY_HIGH_CONTRAST=true                # High contrast colors
-NIX_HUMANITY_LARGE_TEXT=true                   # Large text mode
-NIX_HUMANITY_NO_COLOR=true                     # Disable colors
+LUMINOUS_NIX_HIGH_CONTRAST=true                # High contrast colors
+LUMINOUS_NIX_LARGE_TEXT=true                   # Large text mode
+LUMINOUS_NIX_NO_COLOR=true                     # Disable colors
 
 # Motor Accessibility
-NIX_HUMANITY_REDUCED_MOTION=true               # Minimize animations
-NIX_HUMANITY_KEYBOARD_ONLY=true                # Keyboard navigation only
-NIX_HUMANITY_PATIENT_MODE=true                 # No time limits
+LUMINOUS_NIX_REDUCED_MOTION=true               # Minimize animations
+LUMINOUS_NIX_KEYBOARD_ONLY=true                # Keyboard navigation only
+LUMINOUS_NIX_PATIENT_MODE=true                 # No time limits
 ```
 
 ## User Profiles
@@ -217,10 +217,10 @@ You can create configuration profiles for different personas:
 
 ```bash
 # Create profile directory
-mkdir -p ~/.config/nix-for-humanity/profiles
+mkdir -p ~/.config/luminous-nix/profiles
 
 # Grandma Rose profile
-cat > ~/.config/nix-for-humanity/profiles/grandma-rose.yaml << EOF
+cat > ~/.config/luminous-nix/profiles/grandma-rose.yaml << EOF
 ui:
   default_personality: "encouraging"
   simple_language: true
@@ -237,7 +237,7 @@ performance:
 EOF
 
 # Maya (ADHD) profile
-cat > ~/.config/nix-for-humanity/profiles/maya.yaml << EOF
+cat > ~/.config/luminous-nix/profiles/maya.yaml << EOF
 ui:
   default_personality: "minimal"
   response_format: "plain"
@@ -253,7 +253,7 @@ nlp:
 EOF
 
 # Alex (blind developer) profile
-cat > ~/.config/nix-for-humanity/profiles/alex.yaml << EOF
+cat > ~/.config/luminous-nix/profiles/alex.yaml << EOF
 ui:
   default_personality: "accessible"
   response_format: "structured"
@@ -279,7 +279,7 @@ ask-nix --profile maya "update system"
 ask-nix --profile alex "search for text editors"
 
 # Set default profile
-echo "default_profile: maya" >> ~/.config/nix-for-humanity/config.yaml
+echo "default_profile: maya" >> ~/.config/luminous-nix/config.yaml
 
 # List available profiles
 ask-nix --list-profiles
@@ -292,7 +292,7 @@ ask-nix --list-profiles
 Create custom personality definitions:
 
 ```yaml
-# ~/.config/nix-for-humanity/personalities/custom.yaml
+# ~/.config/luminous-nix/personalities/custom.yaml
 custom_teacher:
   name: "Patient Teacher"
   description: "Educational responses with examples"
@@ -325,12 +325,12 @@ nlp:
     rule_based:
       enabled: true
       weight: 0.4
-      patterns_file: "~/.config/nix-for-humanity/patterns/custom.yaml"
+      patterns_file: "~/.config/luminous-nix/patterns/custom.yaml"
 
     statistical:
       enabled: true
       weight: 0.3
-      model_path: "~/.local/share/nix-for-humanity/models/statistical.model"
+      model_path: "~/.local/share/luminous-nix/models/statistical.model"
 
     neural:
       enabled: true
@@ -356,7 +356,7 @@ Configure the plugin system:
 ```yaml
 plugins:
   enabled: true
-  directory: "~/.config/nix-for-humanity/plugins"
+  directory: "~/.config/luminous-nix/plugins"
   auto_update: false
 
   # Core plugins
@@ -449,7 +449,7 @@ privacy:
   encrypt_logs: true
   encrypt_cache: true
   encrypt_learning_data: true
-  encryption_key_file: "~/.config/nix-for-humanity/keys/main.key"
+  encryption_key_file: "~/.config/luminous-nix/keys/main.key"
 ```
 
 ### Access Control
@@ -507,15 +507,15 @@ eval "$(ask-nix --completion bash)"  # or zsh, fish
 editors:
   vscode:
     enabled: true
-    extension_path: "~/.vscode/extensions/nix-for-humanity"
+    extension_path: "~/.vscode/extensions/luminous-nix"
 
   vim:
     enabled: true
-    plugin_path: "~/.vim/pack/nix-for-humanity"
+    plugin_path: "~/.vim/pack/luminous-nix"
 
   emacs:
     enabled: true
-    package_path: "~/.emacs.d/packages/nix-for-humanity"
+    package_path: "~/.emacs.d/packages/luminous-nix"
 ```
 
 ## Troubleshooting Configuration
@@ -530,8 +530,8 @@ ask-nix --create-default-config
 ask-nix --validate-config --fix
 
 # Permissions issues
-sudo chown -R $USER ~/.config/nix-for-humanity/
-chmod 600 ~/.config/nix-for-humanity/config.yaml
+sudo chown -R $USER ~/.config/luminous-nix/
+chmod 600 ~/.config/luminous-nix/config.yaml
 
 # Reset corrupt configuration
 ask-nix --reset-config --backup-first
@@ -542,7 +542,7 @@ ask-nix --reset-config --backup-first
 ```yaml
 debug:
   enabled: true
-  log_file: "/tmp/nix-for-humanity-debug.log"
+  log_file: "/tmp/luminous-nix-debug.log"
   log_level: "trace"
   include_stack_traces: true
   profile_performance: true

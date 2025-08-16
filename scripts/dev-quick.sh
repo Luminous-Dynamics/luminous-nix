@@ -55,7 +55,7 @@ case $choice in
     4)
         echo -e "\n${GREEN}Starting in mock mode - no dependencies needed!${NC}"
         export NIX_VOICE_MOCK=true
-        export NIX_HUMANITY_MOCK=true
+        export LUMINOUS_NIX_MOCK=true
         echo ""
         echo "Mock mode activated! You can now run:"
         echo "  ./bin/ask-nix 'help'"

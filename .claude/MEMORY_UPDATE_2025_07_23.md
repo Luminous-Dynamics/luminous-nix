@@ -24,7 +24,7 @@
 - **Emphasis**: Luminous-Dynamics is open to new team members
 
 ### 4. Documentation Consistency
-- **Fixed**: All references to "NixOS GUI" → "Nix for Humanity"
+- **Fixed**: All references to "NixOS GUI" → "Luminous Nix"
 - **Updated**: ARCHITECTURE.md to reflect natural language architecture
 - **Aligned**: All docs now consistent with natural language first principle
 

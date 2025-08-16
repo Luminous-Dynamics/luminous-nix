@@ -104,7 +104,6 @@ def generate_asciinema_script(demo_name, demo_config):
 
 import time
 import sys
-import os
 
 def type_text(text, speed=0.1):
     for char in text:

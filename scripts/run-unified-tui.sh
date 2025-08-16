@@ -29,8 +29,8 @@ fi
 export PYTHONPATH="$(pwd):$PYTHONPATH"
 
 # Enable new backend features
-export NIX_HUMANITY_PYTHON_BACKEND=true
-export NIX_HUMANITY_UNIFIED_TUI=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
+export LUMINOUS_NIX_UNIFIED_TUI=true
 
 echo "🚀 Launching unified TUI with all features..."
 echo ""

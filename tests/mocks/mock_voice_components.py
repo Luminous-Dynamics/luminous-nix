@@ -9,7 +9,6 @@ from typing import Any
 
 import numpy as np
 
-
 class MockAudioDevice:
     """Mock audio input/output device."""
 
@@ -35,7 +34,6 @@ class MockAudioDevice:
         t = np.linspace(0, duration, samples)
         audio = np.sin(2 * np.pi * 440 * t) * 0.5
         return audio.astype(np.float32)
-
 
 class MockWhisperModel:
     """Mock Whisper speech recognition model."""
@@ -65,7 +63,6 @@ class MockWhisperModel:
             "duration": duration,
         }
 
-
 class MockPiperTTS:
     """Mock Piper text-to-speech engine."""
 
@@ -83,7 +80,6 @@ class MockPiperTTS:
         # Generate a simple audio pattern
         audio = np.random.randn(samples) * 0.1
         return audio.astype(np.float32)
-
 
 class MockWakeWordDetector:
     """Mock wake word detector."""
@@ -103,7 +99,6 @@ class MockWakeWordDetector:
             self.detection_count += 1
             return self.detection_count % 3 == 1  # Detect every 3rd time
         return False
-
 
 class MockVoiceActivityDetector:
     """Mock voice activity detection."""
@@ -126,7 +121,6 @@ class MockVoiceActivityDetector:
             return [(0.0, duration)]
         return []
 
-
 def create_mock_voice_components():
     """Create a complete set of mock voice components."""
     return {
@@ -136,7 +130,6 @@ def create_mock_voice_components():
         "wake_word_detector": MockWakeWordDetector(),
         "vad": MockVoiceActivityDetector(),
     }
-
 
 def mock_sounddevice():
     """Create mock for sounddevice module."""

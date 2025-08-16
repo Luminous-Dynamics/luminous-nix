@@ -16,8 +16,7 @@ import pytest
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from nix_for_humanity.security.validator import InputValidator
-
+from luminous_nix.security.validator import InputValidator
 
 class TestInputValidator:
     """Test input validation security"""
@@ -134,7 +133,6 @@ class TestInputValidator:
         result = validator.validate_input(long_package, "package")
         assert not result["valid"]
         assert "too long" in result["reason"].lower()
-
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

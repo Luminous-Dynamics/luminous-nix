@@ -1,4 +1,4 @@
-# 🐍 Python Packaging & Style Standards for Nix for Humanity
+# 🐍 Python Packaging & Style Standards for Luminous Nix
 
 **Decision Date**: 2025-08-11
 **Status**: RECOMMENDED
@@ -8,7 +8,7 @@
 
 ### Why NOT pip?
 
-For a NixOS-integrated project like Nix for Humanity, **pip is the WRONG choice**. Here's why:
+For a NixOS-integrated project like Luminous Nix, **pip is the WRONG choice**. Here's why:
 
 1. **No Lock Files**: pip doesn't provide reproducible builds
 2. **No Version Resolution**: Manual conflict resolution is error-prone
@@ -229,7 +229,7 @@ poetry run pytest            # Run tests
 poetry run pre-commit run --all-files
 ```
 
-## 📊 Why This Matters for Nix for Humanity
+## 📊 Why This Matters for Luminous Nix
 
 1. **Reproducibility**: Critical for NixOS philosophy
 2. **Accessibility**: Consistent code is easier to understand

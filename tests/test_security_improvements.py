@@ -10,12 +10,11 @@ from pathlib import Path
 backend_path = Path(__file__).parent
 sys.path.insert(0, str(backend_path))
 
-from nix_for_humanity.api.schema import Request
-from nix_for_humanity.core.engine import NixForHumanityBackend
-from nix_for_humanity.security.command_validator import CommandValidator
-from nix_for_humanity.security.input_validator import InputValidator
-from nix_for_humanity.security.permission_checker import PermissionChecker
-
+from luminous_nix.api.schema import Request
+from luminous_nix.core.engine import NixForHumanityBackend
+from luminous_nix.security.command_validator import CommandValidator
+from luminous_nix.security.input_validator import InputValidator
+from luminous_nix.security.permission_checker import PermissionChecker
 
 def test_security_improvements():
     """Test the security improvements"""
@@ -79,7 +78,7 @@ def test_security_improvements():
 
     # Test malicious input
     print("  Testing malicious input rejection...")
-    from nix_for_humanity.api.schema import Context
+    from luminous_nix.api.schema import Context
 
     malicious_request = Request(query="install firefox; rm -rf /", context=Context())
 
@@ -102,7 +101,6 @@ def test_security_improvements():
         )
 
     print("\n✨ Security test complete!")
-
 
 if __name__ == "__main__":
     test_security_improvements()

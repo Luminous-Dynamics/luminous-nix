@@ -13,12 +13,12 @@ def fix_executor_test():
     # Replace all backend.core.executor patches with the right module
     content = re.sub(
         r"@patch\('backend\.core\.executor\.",
-        "@patch('nix_for_humanity.core.execution_engine.",
+        "@patch('luminous_nix.core.execution_engine.",
         content,
     )
     content = re.sub(
         r"with patch\(\'backend\.core\.executor\.",
-        "with patch('nix_for_humanity.core.execution_engine.",
+        "with patch('luminous_nix.core.execution_engine.",
         content,
     )
 
@@ -60,7 +60,7 @@ def fix_executor_comprehensive_test():
         # Similar fixes
         content = re.sub(
             r"from backend\.core\.executor import",
-            "from nix_for_humanity.core.execution_engine import",
+            "from luminous_nix.core.execution_engine import",
             content,
         )
         content = content.replace("SafeExecutor", "ExecutionEngine")

@@ -117,7 +117,7 @@ Each search result includes:
 ## 🧭 Guided Discovery Paths
 
 ### For New Contributors
-**"I want to contribute to Nix for Humanity"**
+**"I want to contribute to Luminous Nix"**
 
 **Discovery Path**:
 1. **Philosophy Foundation** (5 min): [Consciousness-First Computing](./docs/philosophy/CONSCIOUSNESS_FIRST_COMPUTING.md)

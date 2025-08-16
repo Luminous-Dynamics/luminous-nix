@@ -2,7 +2,7 @@
 
 ## Overview
 
-Nix for Humanity provides a comprehensive configuration system that allows users to customize every aspect of their experience. The system supports:
+Luminous Nix provides a comprehensive configuration system that allows users to customize every aspect of their experience. The system supports:
 
 - **Multiple configuration sources** (system, user, project, environment)
 - **Configuration profiles** (persona-specific settings)
@@ -41,7 +41,7 @@ ask-nix settings add-shortcut dev-setup "install git" "install vim" "install doc
 
 ### Configuration File
 
-Create `~/.config/nix-for-humanity/config.yaml`:
+Create `~/.config/luminous-nix/config.yaml`:
 
 ```yaml
 # Basic configuration
@@ -79,8 +79,8 @@ aliases:
 core:
   version: "0.8.3"              # Config version
   backend: "python"             # Backend: python, nodejs, hybrid
-  data_directory: "~/.local/share/nix-for-humanity"
-  cache_directory: "~/.cache/nix-for-humanity"
+  data_directory: "~/.local/share/luminous-nix"
+  cache_directory: "~/.cache/luminous-nix"
   log_level: "info"             # debug, info, warn, error
 ```
 
@@ -149,11 +149,11 @@ privacy:
 
 Configuration files are loaded in this order (later overrides earlier):
 
-1. **System**: `/etc/nix-for-humanity/config.yaml`
-2. **User**: `~/.config/nix-for-humanity/config.yaml`
-3. **Legacy**: `~/.nix-for-humanity/config.yaml` (auto-migrated)
+1. **System**: `/etc/luminous-nix/config.yaml`
+2. **User**: `~/.config/luminous-nix/config.yaml`
+3. **Legacy**: `~/.luminous-nix/config.yaml` (auto-migrated)
 4. **Project**: `./.nix-humanity/config.yaml`
-5. **Environment**: `NIX_HUMANITY_*` variables
+5. **Environment**: `LUMINOUS_NIX_*` variables
 
 ## Environment Variables
 
@@ -161,31 +161,31 @@ Override any setting with environment variables:
 
 ```bash
 # Core settings
-export NIX_HUMANITY_BACKEND=python
-export NIX_HUMANITY_LOG_LEVEL=debug
+export LUMINOUS_NIX_BACKEND=python
+export LUMINOUS_NIX_LOG_LEVEL=debug
 
 # UI settings
-export NIX_HUMANITY_PERSONALITY=minimal
-export NIX_HUMANITY_NO_COLOR=true
+export LUMINOUS_NIX_PERSONALITY=minimal
+export LUMINOUS_NIX_NO_COLOR=true
 
 # Performance
-export NIX_HUMANITY_FAST_MODE=true
-export NIX_HUMANITY_TIMEOUT=60
+export LUMINOUS_NIX_FAST_MODE=true
+export LUMINOUS_NIX_TIMEOUT=60
 
 # Features
-export NIX_HUMANITY_VOICE_ENABLED=true
-export NIX_HUMANITY_LEARNING_ENABLED=true
+export LUMINOUS_NIX_VOICE_ENABLED=true
+export LUMINOUS_NIX_LEARNING_ENABLED=true
 
 # Accessibility
-export NIX_HUMANITY_SCREEN_READER=true
-export NIX_HUMANITY_HIGH_CONTRAST=true
+export LUMINOUS_NIX_SCREEN_READER=true
+export LUMINOUS_NIX_HIGH_CONTRAST=true
 ```
 
 ## User Profiles
 
 ### Built-in Profiles
 
-Nix for Humanity includes 10 pre-configured profiles for different user personas:
+Luminous Nix includes 10 pre-configured profiles for different user personas:
 
 1. **grandma-rose** - Voice-first, patient, encouraging (age 75)
 2. **maya** - Lightning-fast, minimal interface (16, ADHD)
@@ -221,7 +221,7 @@ ask-nix settings save-profile my-profile --description "My custom settings"
 ask-nix settings wizard --profile base-profile
 ```
 
-Or create manually in `~/.config/nix-for-humanity/profiles/my-profile.json`:
+Or create manually in `~/.config/luminous-nix/profiles/my-profile.json`:
 
 ```json
 {
@@ -388,7 +388,7 @@ errors = config.validate()
 # Save
 from nix_humanity.config.loader import ConfigLoader
 loader = ConfigLoader()
-loader.save_config(config, "~/.config/nix-for-humanity/config.yaml")
+loader.save_config(config, "~/.config/luminous-nix/config.yaml")
 ```
 
 ## Best Practices
@@ -422,24 +422,24 @@ ask-nix settings reset --backup-first
 ask-nix settings profiles
 
 # Check profile directory
-ls ~/.config/nix-for-humanity/profiles/
+ls ~/.config/luminous-nix/profiles/
 ```
 
 ### Environment variables not working
 
 ```bash
 # Check current environment
-env | grep NIX_HUMANITY
+env | grep LUMINOUS_NIX
 
 # Test with explicit override
-NIX_HUMANITY_DEBUG=true ask-nix settings show
+LUMINOUS_NIX_DEBUG=true ask-nix settings show
 ```
 
 ## Migration from Older Versions
 
 The configuration system automatically migrates settings from older locations:
 
-- `~/.nix-for-humanity/config.yaml` → `~/.config/nix-for-humanity/config.yaml`
+- `~/.luminous-nix/config.yaml` → `~/.config/luminous-nix/config.yaml`
 - Old format settings are converted to new schema
 - Backups are created as `.migrated` files
 

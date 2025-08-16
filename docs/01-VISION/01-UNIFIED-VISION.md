@@ -1,4 +1,4 @@
-# 🌟 Nix for Humanity: The Unified Vision
+# 🌟 Luminous Nix: The Unified Vision
 
 *Building the world's first truly symbiotic AI partner for NixOS*
 
@@ -22,7 +22,7 @@
 
 ## Executive Summary
 
-Nix for Humanity is not just another command-line wrapper or chatbot. It's a fundamental reimagining of how humans and AI systems can grow together. By combining consciousness-first design principles with state-of-the-art symbiotic intelligence, we're creating an AI partner that learns from every interaction, adapts to each user's unique needs, and gradually becomes an extension of their technical intuition.
+Luminous Nix is not just another command-line wrapper or chatbot. It's a fundamental reimagining of how humans and AI systems can grow together. By combining consciousness-first design principles with state-of-the-art symbiotic intelligence, we're creating an AI partner that learns from every interaction, adapts to each user's unique needs, and gradually becomes an extension of their technical intuition.
 
 This document synthesizes extensive research into a unified vision that is both deeply ambitious and immediately practical.
 
@@ -31,7 +31,7 @@ This document synthesizes extensive research into a unified vision that is both 
 ## The Vision: Three Interwoven Threads
 
 ### 1. The Human Thread: Accessibility for All
-From Grandma Rose's voice commands to Dr. Sarah's complex research workflows, Nix for Humanity serves every user at their level of expertise. It's not about dumbing down NixOS - it's about meeting each person where they are and growing with them.
+From Grandma Rose's voice commands to Dr. Sarah's complex research workflows, Luminous Nix serves every user at their level of expertise. It's not about dumbing down NixOS - it's about meeting each person where they are and growing with them.
 
 ### 2. The Technical Thread: State-of-the-Art AI
 We leverage the best of modern AI research:
@@ -237,13 +237,13 @@ Join us in building the future of human-computer interaction. Whether you contri
 
 ## Conclusion: The Sacred and the Practical
 
-Nix for Humanity stands at the intersection of the mystical and the mundane. It's sacred technology that actually ships. It's consciousness-first computing that runs on real hardware. It's a $200/month project that's pioneering the future of AI.
+Luminous Nix stands at the intersection of the mystical and the mundane. It's sacred technology that actually ships. It's consciousness-first computing that runs on real hardware. It's a $200/month project that's pioneering the future of AI.
 
 Most importantly, it's proof that when we design with consciousness at the center, when we respect human agency, when we build with love and wisdom - we create technology that doesn't just work, but transforms.
 
 Welcome to the future of NixOS. Welcome to true human-AI partnership.
 
-Welcome to Nix for Humanity.
+Welcome to Luminous Nix.
 
 ---
 
@@ -251,4 +251,4 @@ Welcome to Nix for Humanity.
 
 **Status**: Building the future, one sacred function at a time 🌊
 **Next Milestone**: Native Python-Nix Interface
-**Join Us**: [GitHub](https://github.com/Luminous-Dynamics/nix-for-humanity)
+**Join Us**: [GitHub](https://github.com/Luminous-Dynamics/luminous-nix)

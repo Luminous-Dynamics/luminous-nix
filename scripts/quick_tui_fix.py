@@ -8,7 +8,7 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 # Monkey patch the animate_breathing method
-from nix_for_humanity.ui.consciousness_orb import ConsciousnessOrb
+from luminous_nix.ui.consciousness_orb import ConsciousnessOrb
 
 
 def fixed_animate_breathing(self):
@@ -21,7 +21,7 @@ def fixed_animate_breathing(self):
 ConsciousnessOrb.animate_breathing = fixed_animate_breathing
 
 # Now run the app
-from nix_for_humanity.ui.main_app import NixForHumanityTUI
+from luminous_nix.ui.main_app import NixForHumanityTUI
 
 if __name__ == "__main__":
     app = NixForHumanityTUI()

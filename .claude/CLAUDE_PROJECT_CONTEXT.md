@@ -1,8 +1,8 @@
-# 🌟 Nix for Humanity - Complete Project Context
+# 🌟 Luminous Nix - Complete Project Context
 
 ## Core Identity
 
-**Project Name**: Nix for Humanity
+**Project Name**: Luminous Nix
 **Organization**: Luminous-Dynamics (Founded by Tristan Stoltz)
 **Tagline**: "Natural language interface for NixOS - Making Linux accessible to everyone"
 **Philosophy**: Consciousness-First Computing without the philosophy talk

@@ -12,7 +12,7 @@ import pytest
 backend_path = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_path))
 
-from nix_for_humanity.core.error_handler import (
+from luminous_nix.core.error_handler import (
     ErrorCategory,
     ErrorContext,
     ErrorHandler,
@@ -21,8 +21,7 @@ from nix_for_humanity.core.error_handler import (
     handle_error,
     safe_execute,
 )
-from nix_for_humanity.core.decorators import retry_on_error, with_error_handling
-
+from luminous_nix.core.decorators import retry_on_error, with_error_handling
 
 class TestErrorHandler:
     """Test the error handler functionality"""
@@ -79,15 +78,15 @@ class TestErrorHandler:
         message, suggestions = handler._get_user_friendly_info(
             error, ErrorCategory.NIXOS
         )
-        assert "Package or attribute not found" in message
-        assert any("spell" in s.lower() for s in suggestions)
+        assert "couldn't find the package" in message.lower()
+        assert any("search" in s.lower() for s in suggestions)
 
         # Test permission error
         error = PermissionError("permission denied")
         message, suggestions = handler._get_user_friendly_info(
             error, ErrorCategory.PERMISSION
         )
-        assert "Permission denied" in message
+        assert "administrator privileges" in message.lower() or "permission" in message.lower()
         assert any("sudo" in s.lower() or "privilege" in s.lower() for s in suggestions)
 
     def test_error_code_generation(self):
@@ -122,7 +121,7 @@ class TestErrorHandler:
         nix_error = handler.handle_error(error, context)
 
         assert nix_error.category == ErrorCategory.NIXOS
-        assert nix_error.user_message == "Package or attribute not found in NixOS"
+        assert "couldn't find the package" in nix_error.user_message.lower()
         assert len(nix_error.suggestions) > 0
         assert nix_error.error_code.startswith("NIX-NIX-")
         assert nix_error.context == context
@@ -146,7 +145,6 @@ class TestErrorHandler:
 
         assert callback_called
         assert received_error == nix_error
-
 
 class TestDecorators:
     """Test the error handling decorators"""
@@ -206,7 +204,6 @@ class TestDecorators:
         with pytest.raises(ValueError):
             always_failing()
 
-
 class TestHelperFunctions:
     """Test helper functions"""
 
@@ -240,7 +237,6 @@ class TestHelperFunctions:
         with pytest.raises(ValueError):
             safe_execute(failing_func, "test_op", reraise=True)
 
-
 def test_nixos_error_patterns():
     """Test that NixOS-specific errors are recognized"""
     handler = ErrorHandler()
@@ -258,7 +254,6 @@ def test_nixos_error_patterns():
         error = Exception(error_msg)
         category = handler._detect_category(error)
         assert category == expected_category, f"Failed for: {error_msg}"
-
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

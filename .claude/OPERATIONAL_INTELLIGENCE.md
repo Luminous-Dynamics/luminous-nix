@@ -2,7 +2,7 @@
 
 ## Overview
 
-Nix for Humanity isn't just a command translator - it's an intelligent system that learns and adapts to each user's unique patterns, preferences, and workflows. This document defines the core intelligence features that make our system truly context-aware.
+Luminous Nix isn't just a command translator - it's an intelligent system that learns and adapts to each user's unique patterns, preferences, and workflows. This document defines the core intelligence features that make our system truly context-aware.
 
 ## The Four Dimensions of Intelligence
 

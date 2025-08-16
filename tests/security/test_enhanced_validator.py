@@ -12,7 +12,7 @@ Validates the additional security layers including:
 import unittest
 
 from unittest.mock import Mock, MagicMock, patch, call
-from nix_for_humanity.security.enhanced_validator import (
+from luminous_nix.security.enhanced_validator import (
     EnhancedInputValidator,
     SecurityLevel,
     ThreatType,
@@ -20,7 +20,6 @@ from nix_for_humanity.security.enhanced_validator import (
     ValidationError,
     create_enhanced_validator,
 )
-
 
 class TestEnhancedInputValidator(unittest.TestCase):
     """Test enhanced input validation features."""
@@ -400,13 +399,12 @@ class TestEnhancedInputValidator(unittest.TestCase):
         # Should have results from all threads
         self.assertEqual(len(results), 50)
 
-
 class TestValidationIntegration(unittest.TestCase):
     """Test integration with the overall system."""
 
     def test_backwards_compatibility(self):
         """Test that enhanced validator is backwards compatible."""
-        from nix_for_humanity.security.input_validator import InputValidator
+        from luminous_nix.security.input_validator import InputValidator
 
         # Should be able to use as regular InputValidator
         validator = EnhancedInputValidator()
@@ -424,7 +422,6 @@ class TestValidationIntegration(unittest.TestCase):
         self.assertEqual(validator.security_level, SecurityLevel.STRICT)
         self.assertTrue(validator.enable_rate_limiting)
         self.assertTrue(validator.enable_behavioral_analysis)
-
 
 if __name__ == "__main__":
     unittest.main()

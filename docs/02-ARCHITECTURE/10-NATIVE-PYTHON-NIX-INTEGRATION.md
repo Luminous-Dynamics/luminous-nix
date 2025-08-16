@@ -19,7 +19,7 @@
 
 ## Overview
 
-The Native Python-Nix Integration represents the crown jewel of Nix for Humanity's performance architecture. By directly integrating with NixOS 25.11's `nixos-rebuild-ng` Python API, we eliminate subprocess overhead entirely, achieving revolutionary performance gains.
+The Native Python-Nix Integration represents the crown jewel of Luminous Nix's performance architecture. By directly integrating with NixOS 25.11's `nixos-rebuild-ng` Python API, we eliminate subprocess overhead entirely, achieving revolutionary performance gains.
 
 ## The Problem We Solved
 
@@ -301,7 +301,7 @@ export NIXOS_REBUILD_MODULE_PATH=/path/to/site-packages
 ### Permission Issues
 ```bash
 # For testing only
-export NIX_HUMANITY_ALLOW_UNPRIVILEGED=true
+export LUMINOUS_NIX_ALLOW_UNPRIVILEGED=true
 ```
 
 ### Cache Problems

@@ -16,64 +16,64 @@ def fix_imports_in_file(file_path):
     replacements = [
         # Core imports
         (
-            r"from nix_for_humanity\.core\.intent_engine import",
-            "from nix_for_humanity.core.intents import",
+            r"from luminous_nix\.core\.intent_engine import",
+            "from luminous_nix.core.intents import",
         ),
         (
-            r"from nix_for_humanity\.core\.types import",
-            "from nix_for_humanity.core.intents import",
+            r"from luminous_nix\.core\.types import",
+            "from luminous_nix.core.intents import",
         ),
         (
-            r"from nix_for_humanity\.core\.knowledge_base import",
-            "from nix_for_humanity.core.knowledge import",
+            r"from luminous_nix\.core\.knowledge_base import",
+            "from luminous_nix.core.knowledge import",
         ),
         (
-            r"from nix_for_humanity\.core\.execution_engine import",
-            "from nix_for_humanity.core.executor import",
+            r"from luminous_nix\.core\.execution_engine import",
+            "from luminous_nix.core.executor import",
         ),
         (
-            r"from nix_for_humanity\.core\.personality_system import",
-            "from nix_for_humanity.core.responses import",
+            r"from luminous_nix\.core\.personality_system import",
+            "from luminous_nix.core.responses import",
         ),
         (
-            r"from nix_for_humanity\.core\.learning_system import",
-            "from nix_for_humanity.learning.preferences import",
+            r"from luminous_nix\.core\.learning_system import",
+            "from luminous_nix.learning.preferences import",
         ),
         (
-            r"from nix_for_humanity\.core\.nix_integration import",
-            "from nix_for_humanity.core.nix_integration import",
+            r"from luminous_nix\.core\.nix_integration import",
+            "from luminous_nix.core.nix_integration import",
         ),
         (
-            r"from nix_for_humanity\.core\.engine import",
-            "from nix_for_humanity.core.engine import",
+            r"from luminous_nix\.core\.engine import",
+            "from luminous_nix.core.engine import",
         ),
-        (r"from nix_for_humanity\.core import", "from nix_for_humanity.core import"),
+        (r"from luminous_nix\.core import", "from luminous_nix.core import"),
         # Security imports
         (
-            r"from nix_for_humanity\.security\.input_validator import",
-            "from nix_for_humanity.security.input_validator import",
+            r"from luminous_nix\.security\.input_validator import",
+            "from luminous_nix.security.input_validator import",
         ),
         (
-            r"from nix_for_humanity\.security\.enhanced_validator import",
-            "from nix_for_humanity.security.input_validator import",
+            r"from luminous_nix\.security\.enhanced_validator import",
+            "from luminous_nix.security.input_validator import",
         ),
         (
-            r"from nix_for_humanity\.security import",
-            "from nix_for_humanity.security import",
+            r"from luminous_nix\.security import",
+            "from luminous_nix.security import",
         ),
         # XAI imports
         (
-            r"from nix_for_humanity\.xai\.causal_xai_engine import",
-            "from nix_for_humanity.nix_humanity.xai.engine import",
+            r"from luminous_nix\.xai\.causal_xai_engine import",
+            "from luminous_nix.nix_humanity.xai.engine import",
         ),
         (
-            r"from nix_for_humanity\.xai import",
-            "from nix_for_humanity.nix_humanity.xai import",
+            r"from luminous_nix\.xai import",
+            "from luminous_nix.nix_humanity.xai import",
         ),
         # API imports
         (
-            r"from nix_for_humanity\.interfaces import",
-            "from nix_for_humanity.api.schema import",
+            r"from luminous_nix\.interfaces import",
+            "from luminous_nix.api.schema import",
         ),
         # Update class names
         (r"IntentEngine", "IntentRecognizer"),

@@ -1,6 +1,6 @@
 # Demo
 
-*This directory contains demonstration scripts for showcasing Nix for Humanity features.*
+*This directory contains demonstration scripts for showcasing Luminous Nix features.*
 
 ## 📚 Contents
 
@@ -14,7 +14,7 @@
 ## Original Documentation
 
 
-This directory contains demonstration scripts for showcasing Nix for Humanity features.
+This directory contains demonstration scripts for showcasing Luminous Nix features.
 
 ## Available Demos
 

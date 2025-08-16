@@ -4,13 +4,13 @@
 
 Run comprehensive persona testing:
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./scripts/test-persona-feedback.sh
 ```
 
 ## What It Does
 
-The Persona Feedback Testing Framework validates that Nix for Humanity works well for all 10 core personas:
+The Persona Feedback Testing Framework validates that Luminous Nix works well for all 10 core personas:
 
 1. **Grandma Rose** (75) - Non-technical, voice-first
 2. **Maya** (16, ADHD) - Needs speed and focus

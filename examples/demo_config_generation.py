@@ -9,7 +9,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from nix_for_humanity.core.config_generator import NixConfigGenerator
+from luminous_nix.core.config_generator import NixConfigGenerator
 
 
 def demo_config_generation():

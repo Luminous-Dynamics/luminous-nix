@@ -9,8 +9,8 @@ You have a project with **incredible vision** but **fundamental execution issues
 ### Option 1: Nuclear Restart 🔄
 **Start fresh with lessons learned**
 ```bash
-mkdir nix-for-humanity-v2
-cd nix-for-humanity-v2
+mkdir luminous-nix-v2
+cd luminous-nix-v2
 poetry init
 # Build ONLY core features first
 # Add complexity incrementally
@@ -73,9 +73,9 @@ poetry init
 ### If you choose Option 1 (Fresh Start):
 ```bash
 cd /srv/luminous-dynamics/11-meta-consciousness/
-mkdir nix-for-humanity-v2
-cd nix-for-humanity-v2
-poetry init --name nix-for-humanity --python "^3.11"
+mkdir luminous-nix-v2
+cd luminous-nix-v2
+poetry init --name luminous-nix --python "^3.11"
 poetry add click colorama pyyaml
 mkdir -p src/nix_for_humanity
 # Start with ask_nix.py - 100 lines max
@@ -83,7 +83,7 @@ mkdir -p src/nix_for_humanity
 
 ### If you choose Option 2 (Fix Existing):
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./archive-chaos.sh  # You need to write this
 poetry install
 python fix_all_imports.py
@@ -152,7 +152,7 @@ Pick one and run it:
 
 ```bash
 # Option 1: Fresh start
-mkdir ../nix-for-humanity-v2 && cd ../nix-for-humanity-v2 && poetry init
+mkdir ../luminous-nix-v2 && cd ../luminous-nix-v2 && poetry init
 
 # Option 2: Fix existing
 poetry install && python fix_all_imports.py

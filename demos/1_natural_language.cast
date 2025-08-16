@@ -1,0 +1,2 @@
+{"version": 2, "width": 80, "height": 24, "timestamp": 1755047532, "env": {"SHELL": "/run/current-system/sw/bin/zsh", "TERM": "xterm-kitty"}}
+[0.020105, "o", "sh: line 1: ./1_natural_language.sh: cannot execute: required file not found\r\n"]

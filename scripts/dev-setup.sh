@@ -80,7 +80,7 @@ if [ ! -f "$PROJECT_ROOT/.env" ]; then
 # Local development settings
 DEBUG=1
 LOG_LEVEL=DEBUG
-NIX_HUMANITY_PYTHON_BACKEND=true
+LUMINOUS_NIX_PYTHON_BACKEND=true
 EOF
     echo -e "${GREEN}✅ Created .env file${NC}"
     echo ""

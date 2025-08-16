@@ -43,7 +43,7 @@ A simple wrapper that handles everything:
 #!/usr/bin/env bash
 set -e
 
-echo "🌟 Launching Nix for Humanity TUI..."
+echo "🌟 Launching Luminous Nix TUI..."
 echo "All dependencies are handled by Nix - no pip install needed!"
 
 cd ${projectDir}

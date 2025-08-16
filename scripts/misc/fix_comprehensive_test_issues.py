@@ -68,7 +68,6 @@ class CacheManager:
                 content = '''"""Configuration management for Nix for Humanity"""
 
 import json
-from pathlib import Path
 
 class ConfigManager:
     """Manages user configuration and preferences"""
@@ -114,7 +113,6 @@ class ConfigManager:
             elif "learning_system" in module_path:
                 content = '''"""Learning system for Nix for Humanity"""
 
-from typing import Dict, List, Optional
 from .types import Intent, IntentType
 
 class LearningSystem:

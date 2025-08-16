@@ -17,9 +17,8 @@ sys.path.insert(
     0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from nix_for_humanity.core.engine import NixForHumanityBackend as Engine
-from nix_for_humanity.core import Context, IntentType, Request, Response
-
+from luminous_nix.core.engine import NixForHumanityBackend as Engine
+from luminous_nix.api.schema import Response
 
 class TestCLICorePipeline(unittest.TestCase):
     """Test the complete pipeline from CLI input to execution."""
@@ -254,7 +253,6 @@ class TestCLICorePipeline(unittest.TestCase):
                 self.assertNotIn(";", command_str)
                 self.assertNotIn("`", command_str)
                 self.assertNotIn("$", command_str)
-
 
 if __name__ == "__main__":
     unittest.main()

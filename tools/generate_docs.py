@@ -519,7 +519,7 @@ Key Features:
     - Feature 2: Description
 
 Usage Example:
-    >>> from nix_for_humanity import {module_name}
+    >>> from luminous_nix import {module_name}
     >>> # Add example here
 
 Since: v1.0.0

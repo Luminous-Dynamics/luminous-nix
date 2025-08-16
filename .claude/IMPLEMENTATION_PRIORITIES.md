@@ -1,4 +1,4 @@
-# Implementation Priorities - Nix for Humanity
+# Implementation Priorities - Luminous Nix
 
 ## Core Principle: Natural Language Understanding First
 

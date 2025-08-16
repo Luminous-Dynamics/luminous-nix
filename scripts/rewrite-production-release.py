@@ -153,7 +153,7 @@ Nix for Humanity v1.0.0 represents a major milestone in making NixOS accessible 
 ## 🔄 Breaking Changes
 
 ### API Changes
-- Python backend now default (set `NIX_HUMANITY_PYTHON_BACKEND=true`)
+- Python backend now default (set `LUMINOUS_NIX_PYTHON_BACKEND=true`)
 - New configuration format (automatic migration provided)
 - Voice interface API restructured for better performance
 
@@ -212,7 +212,7 @@ nix develop
 
 ```bash
 # Enable native performance
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Natural language commands
 ask-nix "install firefox"
@@ -569,7 +569,7 @@ ask-nix "list installed packages"
 - Run `ask-nix voice diagnose`
 
 **Slow responses**
-- Enable Python backend: `export NIX_HUMANITY_PYTHON_BACKEND=true`
+- Enable Python backend: `export LUMINOUS_NIX_PYTHON_BACKEND=true`
 - Check system resources: `ask-nix performance check`
 
 ### Getting Help
@@ -629,7 +629,7 @@ Nix for Humanity v1.0.0 introduces significant improvements while maintaining ba
 **Action required**:
 ```bash
 # Add to your shell configuration
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 ```
 
 Or in NixOS configuration:
@@ -670,13 +670,13 @@ services.nixForHumanity.pythonBackend = true;
 
 **Old API**:
 ```python
-from nix_for_humanity.voice import VoiceInterface
+from luminous_nix.voice import VoiceInterface
 voice = VoiceInterface()
 ```
 
 **New API**:
 ```python
-from nix_for_humanity.interfaces.voice import VoiceEngine
+from luminous_nix.interfaces.voice import VoiceEngine
 voice = VoiceEngine(persona="maya")
 ```
 
@@ -800,7 +800,7 @@ sudo nixos-rebuild switch
 **Solution**: Aliases are preserved but may need reactivation: `ask-nix settings reload`
 
 ### Issue: "Slower performance than expected"
-**Solution**: Ensure Python backend is enabled: `export NIX_HUMANITY_PYTHON_BACKEND=true`
+**Solution**: Ensure Python backend is enabled: `export LUMINOUS_NIX_PYTHON_BACKEND=true`
 
 ## What's Deprecated
 
@@ -1000,10 +1000,8 @@ This release proves our development model: $200/month achieving what traditional
 
         # Create package script with {{ }} escaped for format strings
         package_script = """#!/usr/bin/env python3
-import os
 import tarfile
 import hashlib
-from pathlib import Path
 
 version = "{version}"
 project_root = Path(__file__).parent.parent.parent

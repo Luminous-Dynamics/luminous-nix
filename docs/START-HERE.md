@@ -1,4 +1,4 @@
-# 🚀 Start Here - Nix for Humanity
+# 🚀 Start Here - Luminous Nix
 
 **Make NixOS simple through natural language.** Type what you want, we handle the complexity.
 
@@ -14,7 +14,7 @@
 ### 👤 I want to USE it
 ```bash
 # Install
-pip install nix-for-humanity
+pip install luminous-nix
 
 # Try it
 ask-nix "install firefox"
@@ -26,8 +26,8 @@ ask-nix "find markdown editor"
 ### 🛠️ I want to CONTRIBUTE
 ```bash
 # Setup
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 pip install -e .
 
 # Test
@@ -38,7 +38,7 @@ pytest tests/
 ### 🚀 I want to DEPLOY it
 ```bash
 # NixOS module
-services.nix-for-humanity.enable = true;
+services.luminous-nix.enable = true;
 ```
 **Next**: [Installation](./04-OPERATIONS/EASY-INSTALLATION-GUIDE.md) → [Configuration](./05-REFERENCE/CONFIGURATION.md)
 
@@ -50,7 +50,7 @@ services.nix-for-humanity.enable = true;
 ## Questions?
 - **It's broken**: [Troubleshooting](./TROUBLESHOOTING.md)
 - **How does it work?**: [Architecture](./02-ARCHITECTURE/01-SYSTEM-ARCHITECTURE.md)
-- **Report issues**: [GitHub Issues](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+- **Report issues**: [GitHub Issues](https://github.com/Luminous-Dynamics/luminous-nix/issues)
 
 ---
 *That's it. Pick your path and go.*

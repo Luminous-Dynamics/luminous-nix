@@ -1,4 +1,4 @@
-# 🔀 Git Standards - Nix for Humanity
+# 🔀 Git Standards - Luminous Nix
 
 *Consistent version control for consciousness-first development*
 

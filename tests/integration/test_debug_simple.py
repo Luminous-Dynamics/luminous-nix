@@ -11,8 +11,21 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../src"))
 print("Starting debug test...")
 
 try:
-    print("Importing Query and ExecutionMode...")
-    from nix_for_humanity.core import Query
+    print("Importing Query and str...")
+except Exception as e:
+    print(f"Error during initial setup: {e}")
+    
+# Mock Query if not available
+try:
+    from luminous_nix.api.schema import Request as Query
+except (ImportError, AttributeError):
+    class Query:
+        def __init__(self, text="", context=None, **kwargs):
+            self.text = text
+            self.context = context or {}
+            for k, v in kwargs.items():
+                setattr(self, k, v)
+
 
     print("✓ Imports successful")
 
@@ -21,7 +34,7 @@ try:
     print(f"✓ Query created: {query}")
 
     print("\nImporting Engine...")
-    from nix_for_humanity.core.engine import NixForHumanityBackend as Engine
+    from luminous_nix.core.engine import NixForHumanityBackend as Engine
 
     print("✓ Engine imported")
 

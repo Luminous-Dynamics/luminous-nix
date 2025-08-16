@@ -1,8 +1,8 @@
-# 🔌 Service Ports Registry - Nix for Humanity
+# 🔌 Service Ports Registry - Luminous Nix
 
 ## Port Allocations
 
-### Nix for Humanity Services
+### Luminous Nix Services
 
 | Port | Service | Description | Status |
 |------|---------|-------------|--------|
@@ -53,13 +53,13 @@
 # /etc/nixos/configuration.nix
 networking.firewall = {
   allowedTCPPorts = [
-    3456  # Nix for Humanity API
-    3457  # Nix for Humanity WebSocket
+    3456  # Luminous Nix API
+    3457  # Luminous Nix WebSocket
   ];
 };
 
 # Service configuration
-services.nix-for-humanity = {
+services.luminous-nix = {
   enable = true;
   api.port = 3456;
   websocket.port = 3457;
@@ -124,10 +124,10 @@ done
 # Use the sacred port registry tool
 cd /srv/luminous-dynamics/00-sacred-foundation/tools
 node sacred-port-registry.js register \
-  --name "nix-for-humanity" \
+  --name "luminous-nix" \
   --port 3456 \
   --description "Natural language interface for NixOS" \
-  --path "11-meta-consciousness/nix-for-humanity"
+  --path "11-meta-consciousness/luminous-nix"
 ```
 
 ### Check Port Availability
@@ -162,7 +162,7 @@ const registerService = async () => {
   await fetch('http://localhost:7777/api/services', {
     method: 'POST',
     body: JSON.stringify({
-      name: 'nix-for-humanity',
+      name: 'luminous-nix',
       ports: {
         api: 3456,
         websocket: 3457
@@ -176,7 +176,7 @@ const registerService = async () => {
 ## Monitoring
 
 ```bash
-# Monitor all Nix for Humanity ports
+# Monitor all Luminous Nix ports
 watch -n 1 'lsof -i :3456-3459'
 
 # Check service health

@@ -212,11 +212,11 @@ impl Sandbox {
 **Primary**: Nix Flakes (✅ IMPLEMENTED)
 ```nix
 {
-  description = "Nix for Humanity - Natural Language Interface for NixOS";
+  description = "Luminous Nix - Natural Language Interface for NixOS";
 
   # Users can install with:
-  # nix run github:Luminous-Dynamics/nix-for-humanity
-  # nix profile install github:Luminous-Dynamics/nix-for-humanity
+  # nix run github:Luminous-Dynamics/luminous-nix
+  # nix profile install github:Luminous-Dynamics/luminous-nix
 
   # Full flake with:
   # - Development shell with all Tauri dependencies

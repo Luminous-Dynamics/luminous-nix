@@ -33,7 +33,6 @@ ErrorCategory = educational_error_handler.ErrorCategory
 CommandError = educational_error_handler.CommandError
 EducationalErrorHandler = educational_error_handler.EducationalErrorHandler
 
-
 class TestErrorCategory(unittest.TestCase):
     """Test the ErrorCategory enum."""
 
@@ -50,7 +49,6 @@ class TestErrorCategory(unittest.TestCase):
         self.assertEqual(ErrorCategory.DEPENDENCY.value, "dependency")
         self.assertEqual(ErrorCategory.CONFIGURATION.value, "configuration")
         self.assertEqual(ErrorCategory.UNKNOWN.value, "unknown")
-
 
 class TestCommandError(unittest.TestCase):
     """Test the CommandError exception class."""
@@ -93,7 +91,6 @@ class TestCommandError(unittest.TestCase):
         error = CommandError(user_message="Test error", suggestions=["Test suggestion"])
 
         self.assertEqual(str(error), "Test error")
-
 
 class TestEducationalErrorHandler(unittest.TestCase):
     """Test the EducationalErrorHandler class."""
@@ -142,7 +139,6 @@ class TestEducationalErrorHandler(unittest.TestCase):
         self.assertIsNotNone(package_pattern)
 
         # Test pattern matching
-        import re
 
         test_errors = [
             "attribute 'firefox' is missing",
@@ -218,7 +214,6 @@ class TestEducationalErrorHandler(unittest.TestCase):
                         matched = True
                         break
             self.assertTrue(matched, f"No disk space pattern matched: {error}")
-
 
 if __name__ == "__main__":
     unittest.main()

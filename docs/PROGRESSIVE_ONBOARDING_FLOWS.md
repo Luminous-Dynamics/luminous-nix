@@ -90,7 +90,7 @@ ask-nix "show me alternatives"
 ### 🎯 Value Proposition Capture
 ```markdown
 **By minute 5, you'll know:**
-✅ Nix for Humanity makes NixOS accessible through conversation
+✅ Luminous Nix makes NixOS accessible through conversation
 ✅ It learns and adapts to your preferences
 ✅ Everything stays private and local
 ✅ Revolutionary performance through native Python integration
@@ -152,15 +152,15 @@ ask-nix "show me alternatives"
 **Get Running Fast:**
 ```bash
 # Clone and run (3 minutes)
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 ./dev.sh
 
 # First success (2 minutes)
 ./bin/ask-nix "install firefox"
 
 # Enable power mode (1 minute)
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Try advanced features (4 minutes)
 ./bin/ask-nix "why did you choose firefox?"
@@ -246,7 +246,7 @@ ask-nix --performance-stats
 ### 🎯 Mastery Validation & Next Steps (15 minutes)
 ```markdown
 **Hands-On Mastery Check:**
-□ Successfully installed and configured Nix for Humanity
+□ Successfully installed and configured Luminous Nix
 □ Experienced natural language → NixOS translation
 □ Witnessed AI learning and adaptation
 □ Tested performance improvements
@@ -598,9 +598,9 @@ ask-nix --performance-stats
 #### Core Development Setup (15 minutes)
 ```bash
 # Repository setup
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
-git remote add upstream https://github.com/Luminous-Dynamics/nix-for-humanity.git
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
+git remote add upstream https://github.com/Luminous-Dynamics/luminous-nix.git
 
 # Development environment
 ./dev.sh  # Enters Nix development shell
@@ -615,8 +615,8 @@ python3 -m pytest tests/ -v
 #### Advanced Development Tools (15 minutes)
 ```bash
 # Enable Python backend for development
-export NIX_HUMANITY_PYTHON_BACKEND=true
-export NIX_HUMANITY_DEBUG=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
+export LUMINOUS_NIX_DEBUG=true
 
 # Test suite execution
 ./dev.sh test              # Quick tests

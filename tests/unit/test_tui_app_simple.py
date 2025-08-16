@@ -15,7 +15,6 @@ import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../src"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../backend"))
 
-
 class TestTUIApp(unittest.TestCase):
     """Test the TUI application with proper mocking."""
 
@@ -63,14 +62,14 @@ class TestTUIApp(unittest.TestCase):
         self.ai_mock = MagicMock()
         self.xai_mock = MagicMock()
         sys.modules["nix_for_humanity"] = MagicMock()
-        sys.modules["nix_for_humanity.ai"] = self.ai_mock
-        sys.modules["nix_for_humanity.ai.xai_engine"] = self.ai_mock.xai_engine
-        sys.modules["nix_for_humanity.xai"] = self.xai_mock
-        sys.modules["nix_for_humanity.xai.causal_engine"] = self.xai_mock.causal_engine
-        sys.modules["nix_for_humanity.xai.confidence_calculator"] = (
+        sys.modules["luminous_nix.ai"] = self.ai_mock
+        sys.modules["luminous_nix.ai.xai_engine"] = self.ai_mock.xai_engine
+        sys.modules["luminous_nix.xai"] = self.xai_mock
+        sys.modules["luminous_nix.xai.causal_engine"] = self.xai_mock.causal_engine
+        sys.modules["luminous_nix.xai.confidence_calculator"] = (
             self.xai_mock.confidence_calculator
         )
-        sys.modules["nix_for_humanity.xai.explanation_formatter"] = (
+        sys.modules["luminous_nix.xai.explanation_formatter"] = (
             self.xai_mock.explanation_formatter
         )
         sys.modules["nix_humanity.ui"] = MagicMock()
@@ -115,7 +114,7 @@ class TestTUIApp(unittest.TestCase):
         """Test that TUI app module can be imported with mocks."""
         try:
             # Import the app module
-            from nix_for_humanity.tui import app
+            from luminous_nix.tui import app
 
             # If we get here, imports worked
             self.assertTrue(True)
@@ -296,7 +295,7 @@ class TestTUIApp(unittest.TestCase):
         self.assertIsNotNone(plan.command)
         self.assertTrue(plan.requires_confirmation)
 
-        # Plan without command
+        # dict without command
         info_plan = MockPlan("Here's the system info...", "system_info")
         self.assertIsNone(info_plan.command)
         self.assertFalse(info_plan.requires_confirmation)
@@ -327,7 +326,6 @@ class TestTUIApp(unittest.TestCase):
         # Set explanation
         xai_state.current_explanation = {"reason": "Intent recognized as install"}
         self.assertIsNotNone(xai_state.current_explanation)
-
 
 if __name__ == "__main__":
     unittest.main()

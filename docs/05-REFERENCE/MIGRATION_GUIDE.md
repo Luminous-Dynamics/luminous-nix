@@ -1,10 +1,10 @@
-# 🔄 Migration Guide - From Traditional NixOS to Nix for Humanity
+# 🔄 Migration Guide - From Traditional NixOS to Luminous Nix
 
 *Smooth transition to natural language NixOS management*
 
 ## Overview
 
-This guide helps experienced NixOS users transition to Nix for Humanity while maintaining their existing workflows. You don't have to abandon your current methods - Nix for Humanity complements and enhances traditional NixOS usage.
+This guide helps experienced NixOS users transition to Luminous Nix while maintaining their existing workflows. You don't have to abandon your current methods - Luminous Nix complements and enhances traditional NixOS usage.
 
 ## 🎯 Quick Start for NixOS Users
 
@@ -14,9 +14,9 @@ This guide helps experienced NixOS users transition to Nix for Humanity while ma
 # In your configuration.nix
 { config, pkgs, ... }:
 {
-  # Add Nix for Humanity
+  # Add Luminous Nix
   environment.systemPackages = with pkgs; [
-    nix-for-humanity
+    luminous-nix
   ];
 
   # Optional: Enable voice interface
@@ -49,7 +49,7 @@ nix-env -q  # Still works!
 
 ### Package Management
 
-| Traditional Command | Nix for Humanity | Notes |
+| Traditional Command | Luminous Nix | Notes |
 |-------------------|------------------|-------|
 | `nix-env -iA nixpkgs.firefox` | `ask-nix install firefox` | Auto-handles nixpkgs prefix |
 | `nix-env -e firefox` | `ask-nix remove firefox` | Clearer intent |
@@ -59,7 +59,7 @@ nix-env -q  # Still works!
 
 ### System Management
 
-| Traditional Command | Nix for Humanity | Notes |
+| Traditional Command | Luminous Nix | Notes |
 |-------------------|------------------|-------|
 | `sudo nixos-rebuild switch` | `ask-nix rebuild` | Handles sudo automatically |
 | `sudo nixos-rebuild test` | `ask-nix rebuild --test` | Safe testing |
@@ -68,7 +68,7 @@ nix-env -q  # Still works!
 
 ### Generation Management
 
-| Traditional Command | Nix for Humanity | Notes |
+| Traditional Command | Luminous Nix | Notes |
 |-------------------|------------------|-------|
 | `nix-env --list-generations` | `ask-nix generation list` | 500x faster! |
 | `nix-env --switch-generation 42` | `ask-nix generation switch 42` | More intuitive |
@@ -86,7 +86,7 @@ sudo nano /etc/nixos/configuration.nix
 sudo nixos-rebuild switch
 ```
 
-Add Nix for Humanity assistance:
+Add Luminous Nix assistance:
 ```bash
 # Get AI help with configuration
 ask-nix config help "add nginx with SSL"
@@ -117,7 +117,7 @@ Your existing shell.nix files still work:
 nix-shell  # Works as always
 ```
 
-### Enhanced with Nix for Humanity
+### Enhanced with Luminous Nix
 
 ```bash
 # Generate shell.nix from description
@@ -152,7 +152,7 @@ Your home.nix continues working:
 home-manager switch  # Still works
 ```
 
-Add Nix for Humanity features:
+Add Luminous Nix features:
 ```bash
 # Get configuration help
 ask-nix home suggest "terminal tools"
@@ -178,16 +178,16 @@ ask-nix home setup
 
 ### Phase 1: Exploration (Week 1)
 - Keep using traditional commands
-- Try Nix for Humanity for searches
+- Try Luminous Nix for searches
 - Use `ask-nix explain [command]` to learn
 
 ### Phase 2: Hybrid Usage (Week 2-4)
-- Use Nix for Humanity for common tasks
+- Use Luminous Nix for common tasks
 - Traditional commands for complex operations
 - Compare outputs to build confidence
 
 ### Phase 3: Primary Usage (Month 2+)
-- Nix for Humanity for daily tasks
+- Luminous Nix for daily tasks
 - Traditional for specific needs
 - Help others migrate
 
@@ -286,7 +286,7 @@ ask-nix "optimize my configuration"
 ### Common Concerns
 
 **"Will this break my system?"**
-- No, Nix for Humanity is additive
+- No, Luminous Nix is additive
 - All traditional commands still work
 - Your configurations remain unchanged
 - Easy to uninstall if needed
@@ -319,18 +319,18 @@ ask-nix suggest "better way to..."
 ## 📈 Migration Success Stories
 
 ### Developer Team Migration
-> "We introduced Nix for Humanity alongside our existing setup. New team members use the natural language interface while experienced users stick to traditional commands. Everyone's happy, and onboarding time dropped from days to hours."
+> "We introduced Luminous Nix alongside our existing setup. New team members use the natural language interface while experienced users stick to traditional commands. Everyone's happy, and onboarding time dropped from days to hours."
 
 ### System Administrator Experience
 > "I still use traditional commands for complex tasks but love the discovery features. Finding packages by description and getting AI help with errors saves me hours each week."
 
 ### Home User Transition
-> "I was intimidated by NixOS until Nix for Humanity. Now I manage my system confidently, and I'm gradually learning the traditional commands as I go."
+> "I was intimidated by NixOS until Luminous Nix. Now I manage my system confidently, and I'm gradually learning the traditional commands as I go."
 
 ## 🎯 30-Day Migration Plan
 
 ### Week 1: Discovery
-- [ ] Install Nix for Humanity
+- [ ] Install Luminous Nix
 - [ ] Try package searches
 - [ ] Use for simple installs
 - [ ] Explore help system
@@ -360,8 +360,8 @@ ask-nix suggest "better way to..."
 3. **Experiment**: Use for one task daily
 4. **Share**: Help others discover it
 
-Remember: Nix for Humanity enhances NixOS - it doesn't replace it. Use what works for you, when it works for you.
+Remember: Luminous Nix enhances NixOS - it doesn't replace it. Use what works for you, when it works for you.
 
 ---
 
-*"The best tool is the one that helps you work better. Nix for Humanity is here to complement, not compete."*
+*"The best tool is the one that helps you work better. Luminous Nix is here to complement, not compete."*

@@ -1,4 +1,4 @@
-# 📖 API Reference - Nix for Humanity
+# 📖 API Reference - Luminous Nix
 
 > Complete API documentation for developers and integrators
 
@@ -302,17 +302,17 @@ class MyPlugin(Plugin):
 
 ### Configuration
 
-- `NIX_HUMANITY_BACKEND`: Backend type (`"python"` or `"subprocess"`)
-- `NIX_HUMANITY_CACHE_DIR`: Cache directory path
-- `NIX_HUMANITY_CONFIG_DIR`: Configuration directory
-- `NIX_HUMANITY_LOG_LEVEL`: Logging level (`DEBUG`, `INFO`, `WARNING`)
-- `NIX_HUMANITY_DRY_RUN`: Default dry-run mode (`true`/`false`)
-- `NIX_HUMANITY_PYTHON_BACKEND`: Enable native Python API (`true`/`false`)
+- `LUMINOUS_NIX_BACKEND`: Backend type (`"python"` or `"subprocess"`)
+- `LUMINOUS_NIX_CACHE_DIR`: Cache directory path
+- `LUMINOUS_NIX_CONFIG_DIR`: Configuration directory
+- `LUMINOUS_NIX_LOG_LEVEL`: Logging level (`DEBUG`, `INFO`, `WARNING`)
+- `LUMINOUS_NIX_DRY_RUN`: Default dry-run mode (`true`/`false`)
+- `LUMINOUS_NIX_PYTHON_BACKEND`: Enable native Python API (`true`/`false`)
 
 ### Example:
 ```bash
-export NIX_HUMANITY_PYTHON_BACKEND=true
-export NIX_HUMANITY_LOG_LEVEL=DEBUG
+export LUMINOUS_NIX_PYTHON_BACKEND=true
+export LUMINOUS_NIX_LOG_LEVEL=DEBUG
 ask-nix "install firefox"
 ```
 
@@ -411,7 +411,7 @@ except QueryError as e:
 
 ### Command Mapping
 
-| Traditional | Nix for Humanity |
+| Traditional | Luminous Nix |
 |-------------|------------------|
 | `nix-env -iA nixos.firefox` | `ask_nix("install firefox")` |
 | `nix-env -qaP \| grep editor` | `search_packages("editor")` |

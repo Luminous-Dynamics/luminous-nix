@@ -1,4 +1,4 @@
-# 🤝 Community Contribution Guide - Nix for Humanity
+# 🤝 Community Contribution Guide - Luminous Nix
 
 ## 🌟 Welcome Contributors!
 
@@ -36,8 +36,8 @@ graph TD
 ### 2. Set Up Development Environment
 ```bash
 # Clone the repository
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity.git
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix.git
+cd luminous-nix
 
 # Enter development shell (all tools included!)
 nix develop
@@ -365,8 +365,8 @@ By contributing, you commit to:
 
 ```bash
 # Your journey begins with:
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity.git
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix.git
+cd luminous-nix
 nix develop
 
 # Find an issue that resonates

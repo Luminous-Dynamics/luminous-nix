@@ -51,4 +51,4 @@ Related to #
 <!-- How does this align with our Human + AI + Local LLM model? -->
 
 ---
-<!-- Thank you for your feature request! We value your input in making Nix for Humanity better. -->
+<!-- Thank you for your feature request! We value your input in making Luminous Nix better. -->

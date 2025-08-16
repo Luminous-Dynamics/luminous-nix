@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Persona Feedback Testing Framework is a comprehensive testing system that validates Nix for Humanity against all 10 core personas. Unlike traditional testing that focuses on technical correctness, this framework measures how well the system serves real human needs across diverse user groups.
+The Persona Feedback Testing Framework is a comprehensive testing system that validates Luminous Nix against all 10 core personas. Unlike traditional testing that focuses on technical correctness, this framework measures how well the system serves real human needs across diverse user groups.
 
 ## The Testing Script
 
@@ -41,7 +41,7 @@ The framework generates:
 
 ### Basic Usage
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 python3 scripts/persona-feedback-test.py
 ```
 
@@ -53,7 +53,7 @@ python3 scripts/persona-feedback-test.py
 
 ### Example Output
 ```
-🎭 Nix for Humanity - Comprehensive Persona Testing
+🎭 Luminous Nix - Comprehensive Persona Testing
 ============================================================
 Session ID: 20250129_143022
 Testing with: ./bin/ask-nix
@@ -247,7 +247,7 @@ Before releasing new features:
 
 ## Conclusion
 
-The Persona Feedback Testing Framework ensures that Nix for Humanity truly serves humanity - not just the technically adept, but everyone who needs help with their computer. By testing against diverse, realistic personas, we build a system that is genuinely accessible, helpful, and humane.
+The Persona Feedback Testing Framework ensures that Luminous Nix truly serves humanity - not just the technically adept, but everyone who needs help with their computer. By testing against diverse, realistic personas, we build a system that is genuinely accessible, helpful, and humane.
 
 Remember: **Every failed test is an opportunity to better serve a real human being.**
 

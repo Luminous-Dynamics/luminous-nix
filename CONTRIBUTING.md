@@ -1,8 +1,10 @@
-# 🤝 Contributing to Nix for Humanity
+# 🤝 Contributing to Luminous Nix
 
-Thank you for your interest in contributing to Nix for Humanity! We're building technology that makes NixOS accessible to everyone through natural language, and we'd love your help.
+Thank you for your interest in contributing to Luminous Nix! We're building technology that makes NixOS accessible to everyone through natural language, and we'd love your help.
 
 ## 🌟 Our Philosophy
+
+**First, read [THE LUMINOUS WAY](docs/philosophy/THE_LUMINOUS_WAY.md)** - our constitutional declaration that explains why and how we build.
 
 We follow the **Sacred Trinity** development model:
 - **Human** provides vision and testing
@@ -27,14 +29,14 @@ INSTALL_PATTERNS = [
 ```
 
 ### 🐛 Report Bugs
-Found something that doesn't work? [Create an issue](https://github.com/Luminous-Dynamics/nix-for-humanity/issues/new?template=bug_report.md) with:
+Found something that doesn't work? [Create an issue](https://github.com/Luminous-Dynamics/luminous-nix/issues/new?template=bug_report.md) with:
 - The command you tried
 - What you expected
 - What actually happened
 - Your NixOS version
 
 ### 💡 Suggest Enhancements
-Have ideas for improvements? [Create an enhancement request](https://github.com/Luminous-Dynamics/nix-for-humanity/issues/new?template=enhancement.md).
+Have ideas for improvements? [Create an enhancement request](https://github.com/Luminous-Dynamics/luminous-nix/issues/new?template=enhancement.md).
 
 ### 📖 Improve Documentation
 Documentation can always be better! Fix typos, clarify explanations, or add examples.
@@ -49,8 +51,8 @@ poetry run pytest tests/test_your_feature.py
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 ```
 
 2. **Enter development environment**
@@ -119,7 +121,7 @@ If you used AI tools (Claude, GPT, Copilot, etc.) to help with your contribution
 ## Questions?
 
 Feel free to:
-- Open a [discussion](https://github.com/Luminous-Dynamics/nix-for-humanity/discussions)
+- Open a [discussion](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
 - Ask in an issue
 - Email: tristan.stoltz@gmail.com
 

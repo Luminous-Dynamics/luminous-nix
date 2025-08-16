@@ -12,9 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.core import SafeExecutor
-from nix_for_humanity.core.intents import Command
-
+from luminous_nix.core import SafeExecutor
+from luminous_nix.api.schema import Context
 
 class TestSafeExecutor(unittest.TestCase):
     """Test the SafeExecutor component"""
@@ -190,7 +189,6 @@ class TestSafeExecutor(unittest.TestCase):
             mock_run.return_value = MagicMock(returncode=1)
             exists = self.engine._command_exists("nonexistent_command_xyz")
             self.assertFalse(exists)
-
 
 if __name__ == "__main__":
     unittest.main()

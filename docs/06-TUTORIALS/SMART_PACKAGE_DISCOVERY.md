@@ -1,4 +1,4 @@
-# 🔍 Smart Package Discovery - Nix for Humanity
+# 🔍 Smart Package Discovery - Luminous Nix
 
 *Finding the right package has never been easier*
 

@@ -1,10 +1,10 @@
-# 🎨 Nix for Humanity - Beautiful TUI Guide
+# 🎨 Luminous Nix - Beautiful TUI Guide
 
 *A consciousness-first terminal interface that makes NixOS feel like magic*
 
 ## Overview
 
-The Nix for Humanity TUI (Terminal User Interface) is a beautiful, accessible, and intuitive way to interact with NixOS. Built with Textual, it provides an app-like experience in your terminal while maintaining the power and flexibility of natural language interaction.
+The Luminous Nix TUI (Terminal User Interface) is a beautiful, accessible, and intuitive way to interact with NixOS. Built with Textual, it provides an app-like experience in your terminal while maintaining the power and flexibility of natural language interaction.
 
 ## Features
 
@@ -49,7 +49,7 @@ nix-shell -p python311Packages.textual
 ### Running the TUI
 ```bash
 # From project directory
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # Launch the TUI
 ./bin/nix-tui
@@ -63,7 +63,7 @@ python3 src/tui/enhanced_app.py
 ### Layout
 ```
 ┌─────────────────────────────────────────────────────┐
-│  🌟 Nix for Humanity              [Status: Ready]   │
+│  🌟 Luminous Nix              [Status: Ready]   │
 ├─────────────────────────────┬───────────────────────┤
 │                             │  🎭 Response Style    │
 │   Conversation Area         │  ○ Minimal            │
@@ -181,7 +181,7 @@ Before executing commands, see exactly what will happen:
 ## Advanced Features
 
 ### Native API Integration
-When `NIX_HUMANITY_PYTHON_BACKEND=true` is set:
+When `LUMINOUS_NIX_PYTHON_BACKEND=true` is set:
 - 🚀 icon appears on responses
 - Operations are 10x faster
 - Real-time progress updates
@@ -237,7 +237,7 @@ python3 -c "import textual; print('OK')"
 ### Performance Issues
 ```bash
 # Enable native API
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Check terminal emulator
 # Recommended: Alacritty, Kitty, WezTerm
@@ -260,10 +260,10 @@ export NIX_HUMANITY_PYTHON_BACKEND=true
 ### Optimal Setup
 ```bash
 # In your shell configuration
-alias nix-tui='NIX_HUMANITY_PYTHON_BACKEND=true /path/to/nix-tui'
+alias nix-tui='LUMINOUS_NIX_PYTHON_BACKEND=true /path/to/nix-tui'
 
 # For best performance
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 export TEXTUAL_CACHE_HOME=$HOME/.cache/textual
 ```
 
@@ -294,8 +294,8 @@ export TEXTUAL_CACHE_HOME=$HOME/.cache/textual
 ### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 
 # Install dev dependencies
 pip install textual[dev] pytest
@@ -323,7 +323,7 @@ The TUI embodies consciousness-first design:
 
 ## Conclusion
 
-The Nix for Humanity TUI transforms NixOS management from command-line complexity to conversational simplicity. It's proof that terminal interfaces can be beautiful, that powerful can be accessible, and that consciousness-first design creates better user experiences.
+The Luminous Nix TUI transforms NixOS management from command-line complexity to conversational simplicity. It's proof that terminal interfaces can be beautiful, that powerful can be accessible, and that consciousness-first design creates better user experiences.
 
 Try it today and experience the future of human-computer interaction!
 

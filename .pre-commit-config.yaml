@@ -21,6 +21,33 @@ repos:
       - id: mixed-line-ending
         args: ['--fix=lf']
 
+  # SPRAWL PREVENTION HOOKS - CRITICAL!
+  - repo: local
+    hooks:
+      # Prevent code sprawl patterns
+      - id: prevent-sprawl
+        name: Prevent Code Sprawl
+        entry: python scripts/detect-sprawl.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        fail_fast: true
+        description: "Detects and prevents code duplication patterns"
+
+      # Block enhanced/unified/consolidated anti-patterns
+      - id: no-sprawl-names
+        name: No Sprawl File Names
+        entry: bash -c 'if find src -name "*_enhanced*" -o -name "*_unified*" -o -name "*_consolidated*" -o -name "*_v[0-9]*" | grep -q .; then echo "❌ Sprawl pattern files detected! Use original files."; exit 1; fi'
+        language: system
+        pass_filenames: false
+        
+      # Ensure single backend
+      - id: single-backend
+        name: Single Backend Check
+        entry: bash -c 'COUNT=$(find src/nix_for_humanity/core -name "*backend*.py" 2>/dev/null | wc -l); if [ $COUNT -gt 1 ]; then echo "❌ Multiple backends ($COUNT found)"; exit 1; fi'
+        language: system
+        pass_filenames: false
+
   # Python hooks
   - repo: https://github.com/psf/black
     rev: 24.1.1
@@ -110,7 +137,7 @@ repos:
         types: [python]
         pass_filenames: false
         args: ['tests/unit/', '--maxfail=1', '-x', '--tb=short']
-        stages: [push]  # Only run on push, not every commit
+        stages: [pre-push]  # Only run on push, not every commit
       
       - id: check-poetry-lock
         name: Check poetry.lock is up to date

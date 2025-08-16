@@ -38,7 +38,7 @@ def main():
 
     try:
         # Import and run the TUI
-        from nix_for_humanity.ui.main_app import NixForHumanityTUI
+        from luminous_nix.ui.main_app import NixForHumanityTUI
 
         # Create a mock engine for demo
         class MockEngine:

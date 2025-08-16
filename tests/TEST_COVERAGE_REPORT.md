@@ -1,4 +1,4 @@
-# Nix for Humanity Test Coverage Report
+# Luminous Nix Test Coverage Report
 
 ## Current Testing Status
 

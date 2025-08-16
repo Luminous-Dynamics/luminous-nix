@@ -1,4 +1,4 @@
-# 🚀 Interactive Onboarding Flow - Nix for Humanity
+# 🚀 Interactive Onboarding Flow - Luminous Nix
 
 ## 🎯 Progressive Onboarding Journey
 
@@ -26,7 +26,7 @@ def first_run_experience():
     """Progressive disclosure at its finest."""
 
     print("""
-    🌟 Welcome to Nix for Humanity!
+    🌟 Welcome to Luminous Nix!
 
     I'll help you use NixOS with natural language.
     No need to memorize commands - just tell me what you need!

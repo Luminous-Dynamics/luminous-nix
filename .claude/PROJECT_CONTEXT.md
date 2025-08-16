@@ -1,12 +1,12 @@
-# 🌟 Nix for Humanity - Claude's Context
+# 🌟 Luminous Nix - Claude's Context
 
 ## Vision
 **NLP for accessibility, GUI to learn** - Making NixOS accessible through natural conversation while teaching users progressively through an adaptive interface.
 
 ## Project Identity
-- **Name**: Nix for Humanity
-- **Location**: `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/`
-- **GitHub**: https://github.com/Luminous-Dynamics/nix-for-humanity (proposed)
+- **Name**: Luminous Nix
+- **Location**: `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/`
+- **GitHub**: https://github.com/Luminous-Dynamics/luminous-nix (proposed)
 - **Philosophy**: Consciousness-First Computing applied to system management
 
 ## Architecture Summary
@@ -26,14 +26,14 @@
 
 ## Directory Structure
 ```
-nix-for-humanity/
+luminous-nix/
 ├── implementations/
 │   ├── nlp-core/           # Natural language processing engine
 │   ├── gui-learning/       # Educational GUI components
 │   └── backend-services/   # Shared services
 ├── memory/                 # Claude's context files
 ├── docs/
-│   ├── nix-for-humanity/   # Vision and design docs
+│   ├── luminous-nix/   # Vision and design docs
 │   └── architecture/       # Technical decisions
 ├── testing/                # Security and user testing
 └── legacy-mvp-v2/         # Previous GUI implementation

@@ -12,11 +12,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 # Enable enhanced responses
-os.environ["NIX_HUMANITY_ENHANCED_RESPONSES"] = "true"
-os.environ["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+os.environ["LUMINOUS_NIX_ENHANCED_RESPONSES"] = "true"
+os.environ["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
 
-from nix_for_humanity.api.schema import Context, Request
-from nix_for_humanity.core.engine import create_backend
+from luminous_nix.api.schema import Context, Request
+from luminous_nix.core.engine import create_backend
 
 
 def demo_enhanced_cli():

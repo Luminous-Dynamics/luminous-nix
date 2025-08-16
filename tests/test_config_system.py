@@ -11,15 +11,14 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from nix_for_humanity.config import (
+from luminous_nix.config import (
     ConfigLoader,
     ConfigManager,
     ConfigSchema,
     ProfileManager,
     UserProfile,
 )
-from nix_for_humanity.core.types import PersonalityStyle
-
+from luminous_nix.core.personality import PersonalityStyle
 
 def test_schema():
     """Test configuration schema"""
@@ -51,7 +50,6 @@ def test_schema():
 
     print("  ✅ Schema tests passed!")
 
-
 def test_loader():
     """Test configuration loader"""
     print("🧪 Testing Configuration Loader...")
@@ -78,7 +76,6 @@ def test_loader():
         print("  ✅ Loader tests passed!")
     finally:
         os.unlink(temp_path)
-
 
 def test_profiles():
     """Test profile management"""
@@ -127,7 +124,6 @@ def test_profiles():
         assert new_config.performance.fast_mode is True
 
         print("  ✅ Profile tests passed!")
-
 
 def test_config_manager():
     """Test main configuration manager"""
@@ -183,15 +179,14 @@ def test_config_manager():
         if os.path.exists(temp_path):
             os.unlink(temp_path)
 
-
 def test_environment_overrides():
     """Test environment variable overrides"""
     print("🧪 Testing Environment Variable Overrides...")
 
     # Set some environment variables
-    os.environ["NIX_HUMANITY_PERSONALITY"] = "technical"
-    os.environ["NIX_HUMANITY_FAST_MODE"] = "true"
-    os.environ["NIX_HUMANITY_TIMEOUT"] = "60"
+    os.environ["LUMINOUS_NIX_PERSONALITY"] = "technical"
+    os.environ["LUMINOUS_NIX_FAST_MODE"] = "true"
+    os.environ["LUMINOUS_NIX_TIMEOUT"] = "60"
 
     try:
         loader = ConfigLoader()
@@ -204,10 +199,9 @@ def test_environment_overrides():
 
     finally:
         # Clean up env vars
-        del os.environ["NIX_HUMANITY_PERSONALITY"]
-        del os.environ["NIX_HUMANITY_FAST_MODE"]
-        del os.environ["NIX_HUMANITY_TIMEOUT"]
-
+        del os.environ["LUMINOUS_NIX_PERSONALITY"]
+        del os.environ["LUMINOUS_NIX_FAST_MODE"]
+        del os.environ["LUMINOUS_NIX_TIMEOUT"]
 
 def main():
     """Run all tests"""
@@ -231,7 +225,6 @@ def main():
 
         traceback.print_exc()
         sys.exit(1)
-
 
 if __name__ == "__main__":
     main()

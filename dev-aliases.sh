@@ -3,8 +3,8 @@
 # Source this file to get convenient development shortcuts
 
 # Navigate to project root
-export NIX_HUMANITY_ROOT="/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity"
-alias nhroot='cd $NIX_HUMANITY_ROOT'
+export LUMINOUS_NIX_ROOT="/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity"
+alias nhroot='cd $LUMINOUS_NIX_ROOT'
 
 # Poetry shortcuts
 alias pi='poetry install'

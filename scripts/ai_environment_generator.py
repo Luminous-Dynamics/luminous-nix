@@ -273,7 +273,6 @@ print(classification_report(y_test, y_pred, target_names=iris.target_names))
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
 
 # Check CUDA availability
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

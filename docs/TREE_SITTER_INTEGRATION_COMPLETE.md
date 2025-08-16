@@ -130,7 +130,7 @@ ask-nix "convert my docker setup to nix"
 
 ## ✨ Conclusion
 
-Tree-sitter integration provides powerful code understanding capabilities to Nix for Humanity. Users can now:
+Tree-sitter integration provides powerful code understanding capabilities to Luminous Nix. Users can now:
 - Analyze any project and get Nix configs
 - Migrate existing shell scripts
 - Discover packages through natural language

@@ -19,12 +19,11 @@ import time
 
 import pytest
 
-from nix_for_humanity.api import Request
+from luminous_nix.api import Request
 
 from unittest.mock import Mock, MagicMock, patch, call
 # Import v1.0 components
-from nix_for_humanity.core import IntentType, NixForHumanityBackend
-
+from luminous_nix.core import IntentType, NixForHumanityBackend
 
 class TestV1CoreFeatures:
     """Test all 10 core v1.0 features"""
@@ -342,7 +341,6 @@ class TestV1CoreFeatures:
         loaded_pref = backend.get_preference("response_style")
         assert loaded_pref == expert_pref
 
-
 class TestV1Integration:
     """Integration tests for all features working together"""
 
@@ -391,7 +389,6 @@ class TestV1Integration:
         )
         assert response.needs_confirmation
 
-
 class TestV1Performance:
     """Performance benchmarks for v1.0"""
 
@@ -427,7 +424,6 @@ class TestV1Performance:
             assert max_time < 0.5, f"{name} max time {max_time:.3f}s > 0.5s"
 
             print(f"✅ {name}: avg={avg_time:.3f}s, max={max_time:.3f}s")
-
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

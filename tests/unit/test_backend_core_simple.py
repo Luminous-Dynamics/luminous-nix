@@ -6,15 +6,12 @@ import os
 if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for this test", allow_module_level=True)
 
-
 """
 import subprocess
 Simplified tests for NixForHumanityBackend core functionality
 
 Tests core backend methods without complex dependencies.
 """
-
-import os
 
 from unittest.mock import Mock, MagicMock, patch, call
 import sys
@@ -25,7 +22,6 @@ project_root = os.path.join(os.path.dirname(__file__), "../..")
 sys.path.insert(0, project_root)
 backend_path = os.path.join(project_root, "nix_humanity")
 sys.path.insert(0, backend_path)
-
 
 class TestNixForHumanityBackendSimple(unittest.TestCase):
     """Test the NixForHumanityBackend class core functionality."""
@@ -47,7 +43,7 @@ class TestNixForHumanityBackendSimple(unittest.TestCase):
             sys.modules[module_name] = mock_module
 
         # Now import the backend
-        from nix_for_humanity.core.engine import NixForHumanityBackend
+        from luminous_nix.core.engine import NixForHumanityBackend
 
         self.NixForHumanityBackend = NixForHumanityBackend
 
@@ -142,7 +138,7 @@ class TestNixForHumanityBackendSimple(unittest.TestCase):
         mock_request.text = "update system"
 
         # Set environment
-        with patch.dict(os.environ, {"NIX_HUMANITY_PYTHON_BACKEND": "true"}):
+        with patch.dict(os.environ, {"LUMINOUS_NIX_PYTHON_BACKEND": "true"}):
             result = self.backend._should_use_native_api(mock_request)
 
         self.assertTrue(result)
@@ -191,7 +187,6 @@ class TestNixForHumanityBackendSimple(unittest.TestCase):
         response = self.backend._build_response_text(mock_intent, None, "minimal")
 
         self.assertIn("I'm not sure how to help", response)
-
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,6 +1,6 @@
 # 🧠 Learning System Architecture
 
-*How Nix for Humanity learns and evolves with each user*
+*How Luminous Nix learns and evolves with each user*
 
 ---
 
@@ -20,7 +20,7 @@
 
 ## Overview
 
-The Nix for Humanity learning system provides practical, privacy-respecting personalization by tracking observable user behaviors and patterns. Rather than attempting complex cognitive modeling, we focus on what actually helps users save time and reduce frustration. All learning happens locally with complete transparency.
+The Luminous Nix learning system provides practical, privacy-respecting personalization by tracking observable user behaviors and patterns. Rather than attempting complex cognitive modeling, we focus on what actually helps users save time and reduce frustration. All learning happens locally with complete transparency.
 
 ### Core Philosophy
 - **Observable over Inferrable** - Track what we can see, not guess mental states

@@ -13,7 +13,6 @@ from unittest.mock import Mock, MagicMock, patch, call
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../bin"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../scripts"))
 
-
 class TestCommandInjectionPrevention(unittest.TestCase):
     """Test that command injection vulnerabilities are prevented."""
 
@@ -83,7 +82,6 @@ class TestCommandInjectionPrevention(unittest.TestCase):
     @patch("subprocess.run")
     def test_execute_with_progress_prevents_injection(self, mock_run):
         """Test that execute_with_progress prevents command injection."""
-        import importlib.util
 
         # Load ask-nix module
         spec = importlib.util.spec_from_file_location(
@@ -129,7 +127,6 @@ class TestCommandInjectionPrevention(unittest.TestCase):
     @patch("subprocess.run")
     def test_home_manager_check_safe(self, mock_run):
         """Test that home-manager version check is safe."""
-        import importlib.util
 
         # Load ask-nix module
         spec = importlib.util.spec_from_file_location(
@@ -156,7 +153,6 @@ class TestCommandInjectionPrevention(unittest.TestCase):
     def test_demo_script_safe(self):
         """Test that demo script is safe from injection."""
         # Import the demo module
-        import importlib.util
 
         spec = importlib.util.spec_from_file_location(
             "demo_learning_mode",
@@ -186,7 +182,6 @@ class TestCommandInjectionPrevention(unittest.TestCase):
     def test_monitor_coverage_safe(self):
         """Test that monitor-coverage.py is safe from injection."""
         # Import the module
-        import importlib.util
 
         spec = importlib.util.spec_from_file_location(
             "monitor_coverage",
@@ -237,7 +232,6 @@ class TestCommandInjectionPrevention(unittest.TestCase):
                         content,
                         f"shell=True found in {file_path} - security vulnerability!",
                     )
-
 
 if __name__ == "__main__":
     unittest.main()

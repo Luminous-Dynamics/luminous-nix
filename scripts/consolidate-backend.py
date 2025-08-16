@@ -262,9 +262,7 @@ Automated backend consolidation script.
 This performs the actual file moves and merges.
 """
 
-import os
 import shutil
-from pathlib import Path
 
 def consolidate_executors():
     """Merge executor implementations."""
@@ -275,8 +273,6 @@ from typing import Optional, Dict, Any, Protocol
 from dataclasses import dataclass
 from abc import abstractmethod
 
-from ..native.api import NativeAPI
-from ..native.fallback import SubprocessFallback
 from .errors import ExecutionError, ValidationError
 from .intents import Intent, Command
 

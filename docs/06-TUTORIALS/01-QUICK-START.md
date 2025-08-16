@@ -1,10 +1,10 @@
-# 🚀 Getting Started with Nix for Humanity
+# 🚀 Getting Started with Luminous Nix
 
 *Natural language NixOS for everyone - get started in 5 minutes!*
 
 ## Welcome! 👋
 
-Nix for Humanity lets you manage NixOS by talking naturally instead of memorizing commands. Just say what you want to do, and it guides you through it.
+Luminous Nix lets you manage NixOS by talking naturally instead of memorizing commands. Just say what you want to do, and it guides you through it.
 
 **Perfect for**: Beginners, experts, anyone who prefers conversation over command memorization.
 
@@ -12,7 +12,7 @@ Nix for Humanity lets you manage NixOS by talking naturally instead of memorizin
 
 ### 1. Navigate to the Project
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ```
 
 ### 2. Try Your First Command
@@ -181,7 +181,7 @@ ask-nix "restore yesterday"          # Full system restore
 ### "Command not found: ask-nix"
 ```bash
 # Make sure you're in the right directory
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # Use the full path
 ./bin/ask-nix "help"
@@ -199,7 +199,7 @@ Be more specific:
 ### Slow responses?
 ```bash
 # Enable the faster Python backend
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 ./bin/ask-nix "install firefox"
 ```
 
@@ -231,7 +231,7 @@ ask-nix "what can you do?"
 
 ## 🌊 Philosophy
 
-Nix for Humanity embodies **consciousness-first computing**:
+Luminous Nix embodies **consciousness-first computing**:
 - **Respects your attention** - No interruptions or manipulation
 - **Adapts to you** - System changes to fit your needs, not vice versa
 - **Progressive disclosure** - Complexity reveals as you grow

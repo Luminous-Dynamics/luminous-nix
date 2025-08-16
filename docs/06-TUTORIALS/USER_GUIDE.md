@@ -28,8 +28,8 @@ Whether you're Grandma Rose who's new to computers, Maya who needs fast response
 
 ### 1. Open Terminal
 ```bash
-# Navigate to Nix for Humanity
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+# Navigate to Luminous Nix
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # Try your first command
 ./bin/ask-nix "help"
@@ -536,7 +536,7 @@ We're committed to serving everyone. If you have accessibility needs we haven't 
 
 ## 🙏 Thank You
 
-Thank you for being part of the Nix for Humanity community! Your feedback, suggestions, and patience help make this system better for everyone.
+Thank you for being part of the Luminous Nix community! Your feedback, suggestions, and patience help make this system better for everyone.
 
 Remember: **There's no wrong way to use this system.** It's designed to adapt to YOU, not the other way around.
 

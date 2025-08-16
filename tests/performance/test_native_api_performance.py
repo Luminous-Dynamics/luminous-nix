@@ -6,7 +6,6 @@ import os
 if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for this test", allow_module_level=True)
 
-
 """
 Performance regression tests for Native Python-Nix Interface
 
@@ -16,7 +15,6 @@ the 10x-1500x performance gains and ensuring no regressions.
 """
 
 import asyncio
-import os
 
 from unittest.mock import Mock, MagicMock, patch, call
 import statistics
@@ -28,7 +26,7 @@ import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../backend/python"))
 
 try:
-    from nix_for_humanity.core.native_operations import (
+    from luminous_nix.core.native_operations import (
         NativeNixBackend,
         NixOperation,
         NixResult,
@@ -49,7 +47,6 @@ except ImportError as e:
 
     class NixResult:
         pass
-
 
 class TestNativeAPIPerformance(unittest.TestCase):
     """Test performance requirements for Native Python-Nix Interface"""
@@ -192,7 +189,6 @@ class TestNativeAPIPerformance(unittest.TestCase):
             self.skipTest("Backend execute method not available")
 
         import gc
-        import os
 
         import psutil
 
@@ -400,7 +396,6 @@ class TestNativeAPIPerformance(unittest.TestCase):
 
         asyncio.run(regression_test())
 
-
 def run_performance_tests():
     """Run all performance regression tests"""
     print("🚀 Running Native API Performance Regression Tests...")
@@ -424,7 +419,6 @@ def run_performance_tests():
             print(f"Error: {traceback}")
 
     return result.wasSuccessful()
-
 
 if __name__ == "__main__":
     success = run_performance_tests()

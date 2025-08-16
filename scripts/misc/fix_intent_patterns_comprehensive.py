@@ -241,18 +241,18 @@ class IntentPatternFixer:
 
         for line in lines:
             # Fix import statements
-            if "from nix_for_humanity.core.intents import" in line and "Intent" in line:
+            if "from luminous_nix.core.intents import" in line and "Intent" in line:
                 # Replace with the standard import
                 new_line = line.replace(
-                    "from nix_for_humanity.core.intents import",
-                    "from nix_for_humanity.core.types import",
+                    "from luminous_nix.core.intents import",
+                    "from luminous_nix.core.types import",
                 )
                 new_lines.append(new_line)
-            elif "from src.nix_for_humanity.core.types import" in line:
+            elif "from src.luminous_nix.core.types import" in line:
                 # Simplify the import path
                 new_line = line.replace(
-                    "from src.nix_for_humanity.core.types import",
-                    "from nix_for_humanity.core.types import",
+                    "from src.luminous_nix.core.types import",
+                    "from luminous_nix.core.types import",
                 )
                 new_lines.append(new_line)
             else:

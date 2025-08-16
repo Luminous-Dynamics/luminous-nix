@@ -154,7 +154,7 @@ __all__ = [
 
     print("\n✅ Circular import fixes complete!")
     print("\nNext steps:")
-    print("1. Test imports: python3 -c 'import nix_for_humanity'")
+    print("1. Test imports: python3 -c 'import luminous_nix'")
     print("2. Run natural language tests")
 
 

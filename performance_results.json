@@ -1,0 +1,105 @@
+{
+  "operations": [
+    {
+      "name": "Help Command",
+      "command": "help",
+      "avg_ms": 0.710655003786087,
+      "min_ms": 0.710655003786087,
+      "max_ms": 0.710655003786087,
+      "expected_ms": 50,
+      "passed": true
+    },
+    {
+      "name": "Package Search (Cached)",
+      "command": "search text editor",
+      "avg_ms": 0.9180380147881806,
+      "min_ms": 0.9180380147881806,
+      "max_ms": 0.9180380147881806,
+      "expected_ms": 100,
+      "passed": true
+    },
+    {
+      "name": "Package Search (New)",
+      "command": "search obscure-package-xyz",
+      "avg_ms": 0.6059629959054291,
+      "min_ms": 0.6059629959054291,
+      "max_ms": 0.6059629959054291,
+      "expected_ms": 500,
+      "passed": true
+    },
+    {
+      "name": "Package Info",
+      "command": "info about firefox",
+      "avg_ms": 0.6312129553407431,
+      "min_ms": 0.6312129553407431,
+      "max_ms": 0.6312129553407431,
+      "expected_ms": 100,
+      "passed": true
+    },
+    {
+      "name": "List Generations",
+      "command": "list generations",
+      "avg_ms": 0.592798984143883,
+      "min_ms": 0.592798984143883,
+      "max_ms": 0.592798984143883,
+      "expected_ms": 200,
+      "passed": true
+    },
+    {
+      "name": "Current Generation",
+      "command": "current generation",
+      "avg_ms": 0.6209689890965819,
+      "min_ms": 0.6209689890965819,
+      "max_ms": 0.6209689890965819,
+      "expected_ms": 50,
+      "passed": true
+    },
+    {
+      "name": "System Info",
+      "command": "system info",
+      "avg_ms": 0.6252650055103004,
+      "min_ms": 0.6252650055103004,
+      "max_ms": 0.6252650055103004,
+      "expected_ms": 100,
+      "passed": true
+    },
+    {
+      "name": "Dry-run Install",
+      "command": "install htop --dry-run",
+      "avg_ms": 0.5907060112804174,
+      "min_ms": 0.5907060112804174,
+      "max_ms": 0.5907060112804174,
+      "expected_ms": 100,
+      "passed": true
+    },
+    {
+      "name": "Settings List",
+      "command": "settings list",
+      "avg_ms": 0.5054870271123946,
+      "min_ms": 0.5054870271123946,
+      "max_ms": 0.5054870271123946,
+      "expected_ms": 50,
+      "passed": true
+    },
+    {
+      "name": "Alias Resolution",
+      "command": "ff",
+      "avg_ms": 0.5025200080126524,
+      "min_ms": 0.5025200080126524,
+      "max_ms": 0.5025200080126524,
+      "expected_ms": 50,
+      "passed": true
+    }
+  ],
+  "summary": {
+    "startup_time_ms": 52.88912099786103,
+    "avg_response_ms": 0.630361499497667,
+    "max_response_ms": 0.9180380147881806,
+    "min_response_ms": 0.5025200080126524,
+    "operations_tested": 10,
+    "operations_passed": 10,
+    "memory_current_mb": 25,
+    "memory_peak_mb": 45
+  },
+  "bottlenecks": []
+}

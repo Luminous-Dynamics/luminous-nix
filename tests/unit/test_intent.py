@@ -12,11 +12,9 @@ from pathlib import Path
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-
-from nix_for_humanity.core.intents import Intent
-from nix_for_humanity.core.intents import IntentRecognizer as IntentRecognizer
-from nix_for_humanity.core import IntentType
-
+from luminous_nix.core.intents import Intent
+from luminous_nix.core.intents import IntentRecognizer as IntentRecognizer
+from luminous_nix.core import IntentType
 
 class TestIntentType(unittest.TestCase):
     """Test IntentType enum"""
@@ -43,7 +41,6 @@ class TestIntentType(unittest.TestCase):
         self.assertEqual(IntentType.UPDATE_SYSTEM.value, "update_system")
         self.assertEqual(IntentType.UNKNOWN.value, "unknown")
 
-
 class TestIntent(unittest.TestCase):
     """Test Intent dataclass"""
 
@@ -60,7 +57,6 @@ class TestIntent(unittest.TestCase):
         self.assertEqual(intent.entities.get("package"), "firefox")
         self.assertEqual(intent.confidence, 0.95)
         self.assertEqual(intent.raw_text, "install firefox")
-
 
 class TestIntentRecognizer(unittest.TestCase):
     """Test IntentRecognizer functionality"""

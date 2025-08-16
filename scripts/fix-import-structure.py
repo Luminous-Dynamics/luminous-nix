@@ -227,7 +227,7 @@ MetricsDict = Dict[str, Union[str, int, float]]
 
     print("\n✅ Import structure fixes complete!")
     print("\nNext steps:")
-    print("1. Test imports: python3 -c 'import nix_for_humanity.ai'")
+    print("1. Test imports: python3 -c 'import luminous_nix.ai'")
     print("2. Run the natural language tests")
 
 

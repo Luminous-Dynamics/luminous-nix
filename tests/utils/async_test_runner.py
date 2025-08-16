@@ -9,7 +9,6 @@ import sys
 import unittest
 from unittest import TestCase
 
-
 class AsyncTestCase(TestCase):
     """Base class for async test cases."""
 
@@ -53,7 +52,6 @@ class AsyncTestCase(TestCase):
 
         return attr
 
-
 class AsyncTestRunner(unittest.TextTestRunner):
     """Test runner that supports async test cases."""
 
@@ -79,7 +77,6 @@ class AsyncTestRunner(unittest.TextTestRunner):
 
         return result
 
-
 def main():
     """Run tests with async support."""
     # Discover and run tests
@@ -92,7 +89,6 @@ def main():
 
     # Exit with appropriate code
     sys.exit(0 if result.wasSuccessful() else 1)
-
 
 if __name__ == "__main__":
     main()

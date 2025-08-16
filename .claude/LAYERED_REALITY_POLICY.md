@@ -2,7 +2,7 @@
 
 ## Core Development Principle
 
-**Nix for Humanity uses a layered approach:** Pure functions for logic, real execution for actions.
+**Luminous Nix uses a layered approach:** Pure functions for logic, real execution for actions.
 
 ## The Philosophy
 

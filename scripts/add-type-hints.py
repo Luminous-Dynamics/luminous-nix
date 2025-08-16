@@ -253,7 +253,6 @@ def main():
 """Add basic type hints to improve coverage."""
 
 import re
-from pathlib import Path
 
 def add_basic_type_hints(filepath: Path) -> None:
     """Add basic type hints to a Python file."""

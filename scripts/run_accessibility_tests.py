@@ -115,7 +115,7 @@ def validate_tui_accessibility():
     print("\n🖥️  Validating TUI Accessibility...")
 
     # Check if all widgets have aria labels
-    from src.nix_for_humanity.tui.accessible_widgets import (
+    from src.luminous_nix.tui.accessible_widgets import (
         AccessibleButton,
         AccessibleInput,
         AccessibleList,

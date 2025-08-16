@@ -392,7 +392,7 @@ Success Indicators:
 - AI-powered content summarization for different skill levels
 - Automatic cross-reference discovery
 - Real-time collaborative annotations
-- Integration with the main Nix for Humanity learning system
+- Integration with the main Luminous Nix learning system
 
 ### Phase 4: Living Architecture (12 months)
 - Self-organizing documentation structure based on usage patterns
@@ -424,7 +424,7 @@ Success Indicators:
 
 ## 🌊 Sacred Principles in Documentation Architecture
 
-This visual architecture embodies the consciousness-first principles that guide the entire Nix for Humanity project:
+This visual architecture embodies the consciousness-first principles that guide the entire Luminous Nix project:
 
 ### 1. **Intentionality & Agency**
 - Users choose their own learning paths based on declared intent

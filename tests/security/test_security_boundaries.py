@@ -14,7 +14,6 @@ import unittest
 
 from unittest.mock import Mock, MagicMock, patch, call
 
-
 class TestSecurityBoundaries(unittest.TestCase):
     """Test all security boundaries and protections."""
 
@@ -227,7 +226,7 @@ class TestSecurityBoundaries(unittest.TestCase):
         file_access_tests = [
             # Allowed access
             ("/tmp/nix-humanity-test", True),
-            ("~/.local/share/nix-humanity/", True),
+            ("~/.local/share/luminous-nix/", True),
             # Forbidden access
             ("/etc/passwd", False),
             ("/var/log/auth.log", False),
@@ -546,7 +545,6 @@ class TestSecurityBoundaries(unittest.TestCase):
 
         return {"log_entry": log_entry}
 
-
 class TestNetworkSecurity(unittest.TestCase):
     """Test network-related security boundaries."""
 
@@ -610,7 +608,6 @@ class TestNetworkSecurity(unittest.TestCase):
 
         return {"blocked": False, "reason": "No exfiltration detected"}
 
-
 class TestCryptographicSecurity(unittest.TestCase):
     """Test cryptographic security measures."""
 
@@ -660,7 +657,6 @@ class TestCryptographicSecurity(unittest.TestCase):
     def _hash_password(self, password):
         """Hash password securely."""
         import hashlib
-        import secrets
 
         salt = secrets.token_hex(16)
         return hashlib.pbkdf2_hmac(
@@ -681,11 +677,9 @@ class TestCryptographicSecurity(unittest.TestCase):
 
     def _decrypt_sensitive_data(self, encrypted_data):
         """Decrypt sensitive data (mock implementation)."""
-        import base64
 
         # Mock decryption - real implementation would use proper crypto
         return base64.b64decode(encrypted_data.encode()).decode()
-
 
 def run_security_tests():
     """Run all security tests and generate report."""
@@ -727,7 +721,6 @@ def run_security_tests():
         return 0
     print("❌ Some security tests failed!")
     return 1
-
 
 if __name__ == "__main__":
     exit_code = run_security_tests()

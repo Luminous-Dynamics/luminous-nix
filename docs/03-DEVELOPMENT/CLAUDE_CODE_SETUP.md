@@ -1,11 +1,11 @@
-# 🤖 Nix for Humanity Setup in Claude Code
+# 🤖 Luminous Nix Setup in Claude Code
 
 ## 🚀 Quick Start (NEW!)
 
 We've created a simple setup script to handle Claude Code's timeout issues:
 
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./quick-nix-setup.sh
 ```
 
@@ -33,14 +33,14 @@ nix-shell shell-voice-minimal.nix
 #### 2. Mock Mode (No Downloads)
 ```bash
 export NIX_VOICE_MOCK=true
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 ./bin/nix-voice
 ```
 
 #### 3. Pre-download Outside Claude Code
 Run this in a regular terminal (not Claude Code):
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 nix develop  # Let it download everything
 # or
 ./scripts/prefetch-dependencies.sh

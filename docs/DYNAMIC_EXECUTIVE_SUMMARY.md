@@ -1,6 +1,6 @@
 # 🌊 Dynamic Executive Summary Portal
 
-*Real-time pulse of the Nix for Humanity project - Updated continuously as we evolve*
+*Real-time pulse of the Luminous Nix project - Updated continuously as we evolve*
 
 ---
 

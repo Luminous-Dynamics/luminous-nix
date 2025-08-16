@@ -1,4 +1,4 @@
-# 🗺️ Nix for Humanity: Implementation Roadmap V2
+# 🗺️ Luminous Nix: Implementation Roadmap V2
 
 *From vision to reality: A pragmatic path to symbiotic AI*
 
@@ -377,4 +377,4 @@ Let's build it together. 🌊
 
 **Current Phase**: 1 - The Trustworthy Engine
 **Next Milestone**: Native Python-Nix Interface
-**Join the Journey**: [GitHub](https://github.com/Luminous-Dynamics/nix-for-humanity)
+**Join the Journey**: [GitHub](https://github.com/Luminous-Dynamics/luminous-nix)

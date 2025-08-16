@@ -4,7 +4,7 @@
 
 ### 1. **GitHub Release Created**
 
-- **URL**: <https://github.com/Luminous-Dynamics/nix-for-humanity/releases/tag/v0.1.0-alpha>
+- **URL**: <https://github.com/Luminous-Dynamics/luminous-nix/releases/tag/v0.1.0-alpha>
 - **Version**: v0.1.0-alpha (prerelease)
 - **Title**: "Natural Language NixOS Built by Solo Dev with AI"
 - **Description**: Comprehensive release notes with honest framing
@@ -50,12 +50,12 @@ All misleading claims about "$200/month vs $35,000/month" have been replaced wit
 3. **Twitter/X Announcement**
 
    ```
-   🎉 Just released Nix for Humanity v0.1.0-alpha!
+   🎉 Just released Luminous Nix v0.1.0-alpha!
 
    Transform NixOS from cryptic commands to natural conversation.
    Built by solo dev in 2 weeks using AI collaboration.
 
-   Try it: github.com/Luminous-Dynamics/nix-for-humanity
+   Try it: github.com/Luminous-Dynamics/luminous-nix
 
    #NixOS #AI #OpenSource
    ```
@@ -88,6 +88,6 @@ This release proves that:
 
 **The release is live!** 🚀
 
-Visit: <https://github.com/Luminous-Dynamics/nix-for-humanity/releases/tag/v0.1.0-alpha>
+Visit: <https://github.com/Luminous-Dynamics/luminous-nix/releases/tag/v0.1.0-alpha>
 
 The honest framing makes this achievement even more impressive - a solo developer built something genuinely useful in just 2 weeks using AI collaboration. This is the future of software development!

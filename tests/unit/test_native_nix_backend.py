@@ -6,7 +6,7 @@ if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for native backend tests", allow_module_level=True)
 
 try:
-    from nix_for_humanity.core.native_operations import NativeOperations
+    from luminous_nix.core.native_operations import NativeOperations
     if not NativeOperations:
         pytest.skip("Native operations not available", allow_module_level=True)
 except ImportError:
@@ -29,21 +29,19 @@ unprecedented performance.
 """
 
 import asyncio
-import os
 import sys
 
 from unittest.mock import Mock, MagicMock, patch, call
 
 # Add backend to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../backend/python"))
-from nix_for_humanity.core.native_operations import (
+from luminous_nix.core.native_operations import (
     NativeNixBackend,
     NixOperation,
     NixResult,
     OperationType,
     ProgressCallback,
 )
-
 
 class TestNativeNixBackend(unittest.TestCase):
     """Test the native Python-Nix backend that achieved the performance breakthrough"""
@@ -127,7 +125,6 @@ class TestNativeNixBackend(unittest.TestCase):
             # Test no flakes
             mock_exists.return_value = False
             self.assertTrue(backend._check_flakes() is False)
-
 
 class TestNativeApiOperations(unittest.TestCase):
     """Test operations when native API is available"""
@@ -290,7 +287,6 @@ class TestNativeApiOperations(unittest.TestCase):
         self.assertIn("Test configuration activated", result.message)
         self.assertEqual(result.data["test_path"], "/nix/store/test-path")
 
-
 class TestErrorHandling(unittest.TestCase):
     """Test error handling and edge cases"""
 
@@ -370,7 +366,6 @@ class TestErrorHandling(unittest.TestCase):
                 self.assertTrue(result.success is False)
                 self.assertIn("check configuration syntax", result.message)
 
-
 class TestFallbackMode(unittest.TestCase):
     """Test fallback behavior when native API is unavailable"""
 
@@ -387,7 +382,6 @@ class TestFallbackMode(unittest.TestCase):
         self.assertTrue(result.success is False)
         self.assertIn("Native API not available", result.message)
         self.assertIn("fallback not implemented", result.message)
-
 
 class TestPerformanceFeatures(unittest.TestCase):
     """Test performance-related features"""
@@ -432,7 +426,6 @@ class TestPerformanceFeatures(unittest.TestCase):
         messages = [call[0] for call in progress_calls]
         self.assertTrue(any("Starting" in msg for msg in messages))
         self.assertTrue(any("complete" in msg.lower() for msg in messages))
-
 
 class TestAsyncIntegration(unittest.TestCase):
     """Test async/await integration with nixos-rebuild-ng"""
@@ -480,7 +473,6 @@ class TestAsyncIntegration(unittest.TestCase):
             self.assertEqual(len(results), 3)
             self.assertTrue(all(result.success for result in results))
 
-
 class TestDataIntegrity(unittest.TestCase):
     """Test data integrity and type safety"""
 
@@ -522,7 +514,6 @@ class TestDataIntegrity(unittest.TestCase):
         # Test edge values
         callback.update("Start", 0.0)
         callback.update("Complete", 1.0)
-
 
 if __name__ == "__main__":
     unittest.main()

@@ -14,7 +14,6 @@ import pytest
 # Path to the CLI script
 CLI_PATH = Path(__file__).parent.parent / "bin" / "ask-nix"
 
-
 class TestCLI:
     """Test CLI functionality"""
 
@@ -91,7 +90,6 @@ class TestCLI:
         # Should either reject or sanitize
         assert "error" in result.stdout.lower() or "[DRY RUN]" in result.stdout
 
-
 class TestCLIIntegration:
     """Integration tests for CLI"""
 
@@ -109,11 +107,9 @@ class TestCLIIntegration:
         """Test that required modules can be imported"""
         test_code = (
             """
-import sys
-from pathlib import Path
 sys.path.insert(0, str(Path('%s').parent.parent / 'src'))
 try:
-    from nix_for_humanity.core.unified_backend import NixForHumanityBackend
+    from luminous_nix.core.backend import NixForHumanityBackend
     print("SUCCESS")
 except ImportError as e:
     print(f"FAILED: {e}")
@@ -125,7 +121,6 @@ except ImportError as e:
             [sys.executable, "-c", test_code], capture_output=True, text=True
         )
         assert "SUCCESS" in result.stdout
-
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

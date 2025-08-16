@@ -27,7 +27,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 # Import our E2E test modules
 from test_persona_journeys import PERSONAS, TestPersonaJourneys
 
-
 class E2ETestRunner:
     """Comprehensive E2E test runner and reporter"""
 
@@ -416,7 +415,6 @@ class E2ETestRunner:
 
         return "\n".join(lines)
 
-
 def main():
     """Main function for running E2E tests"""
     parser = argparse.ArgumentParser(description="Run Nix for Humanity E2E tests")
@@ -447,7 +445,6 @@ def main():
         success = runner.run_all_tests(verbose=not args.quiet)
 
     sys.exit(0 if success else 1)
-
 
 if __name__ == "__main__":
     main()

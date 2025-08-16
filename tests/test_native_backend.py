@@ -6,14 +6,12 @@ import os
 if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for this test", allow_module_level=True)
 
-
 """
 Test the Native Python-Nix Backend Integration
 This verifies that our direct nixos-rebuild-ng API integration works correctly
 """
 
 import asyncio
-import os
 import sys
 from pathlib import Path
 
@@ -23,8 +21,7 @@ sys.path.insert(0, str(backend_path))
 
 from api.schema import Request
 
-from nix_for_humanity.core.engine import create_backend
-
+from luminous_nix.core.engine import create_backend
 
 def progress_callback(message: str, progress: float):
     """Display progress updates"""
@@ -35,13 +32,12 @@ def progress_callback(message: str, progress: float):
     if progress >= 1.0:
         print()  # New line when complete
 
-
 async def test_native_backend():
     """Test the native backend integration"""
     print("🧪 Testing Native Python-Nix Backend Integration\n")
 
     # Enable native backend
-    os.environ["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+    os.environ["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
 
     # Create backend with progress callback
     backend = create_backend(progress_callback)
@@ -61,7 +57,7 @@ async def test_native_backend():
 
     response = await backend.process_request(request)
     print(f"Success: {response.success}")
-    print(f"Plan: {response.plan}")
+    print(f"dict: {response.plan}")
     print(f"Explanation: {response.explanation}")
 
     # Check if native API was used
@@ -85,11 +81,11 @@ async def test_native_backend():
 
     response = await backend.process_request(request)
     print(f"Success: {response.success}")
-    print(f"Plan: {response.plan}")
+    print(f"dict: {response.plan}")
 
     # Test 5: Check native API availability
     print("\n\n🔍 Checking Native API Status:")
-    from nix_for_humanity.core.nix_integration import NixOSIntegration
+    from luminous_nix.core.nix_integration import NixOSIntegration
 
     integration = NixOSIntegration()
     status = integration.get_status()
@@ -109,12 +105,11 @@ async def test_native_backend():
 
     print("\n\n✨ All tests complete!")
 
-
 async def test_error_handling():
     """Test error handling in native backend"""
     print("\n\n🔥 Testing Error Handling:\n")
 
-    os.environ["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+    os.environ["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
     backend = create_backend()
 
     # Test with invalid query
@@ -124,7 +119,6 @@ async def test_error_handling():
     print(f"Handled invalid query: {response.success}")
     print(f"Error explanation: {response.explanation}")
 
-
 async def main():
     """Run all tests"""
     try:
@@ -132,7 +126,7 @@ async def main():
         print("🔍 Checking for nixos-rebuild-ng API...\n")
 
         try:
-            from nix_for_humanity.core.native_operations import NativeOperations
+            from luminous_nix.core.native_operations import NativeOperations
 
             print(f"Native API Available: {NativeOperations}")
 
@@ -152,7 +146,6 @@ async def main():
         import traceback
 
         traceback.print_exc()
-
 
 if __name__ == "__main__":
     asyncio.run(main())

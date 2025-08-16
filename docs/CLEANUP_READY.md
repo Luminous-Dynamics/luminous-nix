@@ -2,7 +2,7 @@
 
 ## 🎯 Documentation Cleanup Overview
 
-We've analyzed the Nix for Humanity documentation and found:
+We've analyzed the Luminous Nix documentation and found:
 - **599 total markdown files** in the docs/ directory
 - **180 files in archives** (30% of total)
 - **201 research files** (33% of total)
@@ -60,7 +60,7 @@ README consolidation script that:
 
 ```bash
 # 1. Run main consolidation
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 python scripts/consolidate-documentation.py
 
 # 2. Synthesize research

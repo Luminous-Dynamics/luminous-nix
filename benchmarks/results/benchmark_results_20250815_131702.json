@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-08-15T13:17:02.473615",
+  "results": [
+    {
+      "name": "Detection",
+      "version": "V2",
+      "operation": "detect_issues",
+      "duration_ms": 78.49236199399456,
+      "memory_kb": 890.171875,
+      "iterations": 1000
+    },
+    {
+      "name": "Resolution",
+      "version": "V2",
+      "operation": "get_action",
+      "duration_ms": 0.8187079802155495,
+      "memory_kb": 0.03125,
+      "iterations": 1000
+    },
+    {
+      "name": "End-to-End",
+      "version": "V2",
+      "operation": "detect_and_heal",
+      "duration_ms": 67.31047900393605,
+      "memory_kb": 725.4677734375,
+      "iterations": 100
+    }
+  ],
+  "summary": {
+    "v2_metrics": {
+      "Detection": {
+        "duration_ms": 78.49236199399456,
+        "memory_kb": 890.171875,
+        "ops_per_second": 12740.093107103974,
+        "avg_ms_per_op": 0.07849236199399456
+      },
+      "Resolution": {
+        "duration_ms": 0.8187079802155495,
+        "memory_kb": 0.03125,
+        "ops_per_second": 1221436.7322237657,
+        "avg_ms_per_op": 0.0008187079802155495
+      },
+      "End-to-End": {
+        "duration_ms": 67.31047900393605,
+        "memory_kb": 725.4677734375,
+        "ops_per_second": 1485.6527762066942,
+        "avg_ms_per_op": 0.6731047900393605
+      }
+    },
+    "v1_metrics": {},
+    "improvements": {},
+    "highlights": [
+      "\u26a1 2100 operations in 147ms",
+      "\ud83d\udcca 14323 ops/second throughput"
+    ]
+  }
+}

@@ -11,8 +11,7 @@ import sys
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
-from nix_for_humanity.core.intents import Intent, IntentType, IntentRecognizer
-
+from luminous_nix.core.intents import Intent, IntentType, IntentRecognizer
 
 class TestIntentRecognizer(unittest.TestCase):
     """Test the IntentRecognizer class"""
@@ -322,7 +321,6 @@ class TestIntentRecognizer(unittest.TestCase):
         for query in queries:
             intent = self.recognizer.recognize(query)
             self.assertEqual(intent.raw_text, query)
-
 
 if __name__ == "__main__":
     unittest.main()

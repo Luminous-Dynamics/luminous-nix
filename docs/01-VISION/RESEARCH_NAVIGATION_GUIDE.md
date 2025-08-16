@@ -1,4 +1,4 @@
-# 🧭 Research Navigation Guide - Nix for Humanity
+# 🧭 Research Navigation Guide - Luminous Nix
 
 *Your compass through 77+ documents of symbiotic intelligence research*
 

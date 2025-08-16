@@ -9,7 +9,7 @@ print("🧪 Testing TUI Connection to Backend\n")
 
 # Test 1: Can we import the backend?
 try:
-    from nix_for_humanity.core.engine import NixForHumanityBackend
+    from luminous_nix.core.engine import NixForHumanityBackend
 
     backend = NixForHumanityBackend()
     print("✅ Backend imported and initialized successfully")
@@ -20,7 +20,7 @@ except Exception as e:
 # Test 2: Can backend process requests?
 if backend:
     try:
-        from nix_for_humanity.api.schema import Request
+        from luminous_nix.api.schema import Request
 
         test_queries = [
             "install firefox",
@@ -65,7 +65,7 @@ except ImportError:
 
 # Check if TUI module structure exists
 try:
-    from nix_for_humanity.ui import __all__ as ui_exports
+    from luminous_nix.ui import __all__ as ui_exports
 
     print(f"✅ UI module exports: {len(ui_exports)} components")
 except Exception as e:

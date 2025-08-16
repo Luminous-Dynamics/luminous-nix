@@ -45,7 +45,7 @@ portaudio
 ### 5. Proper Installation Flow
 ```bash
 # For development
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 nix develop  # EVERYTHING is provided!
 
 # For users (NixOS)

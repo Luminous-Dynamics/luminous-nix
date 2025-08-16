@@ -1,13 +1,13 @@
-# Contributing to Nix for Humanity
+# Contributing to Luminous Nix
 
-Thank you for your interest in making NixOS accessible to everyone! Nix for Humanity v1.0.0 is now released with reliable CLI functionality.
+Thank you for your interest in making NixOS accessible to everyone! Luminous Nix v1.0.0 is now released with reliable CLI functionality.
 
 ## 🚀 Quick Start
 
 ```bash
 # 1. Fork and clone
-git clone https://github.com/YOUR_USERNAME/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/YOUR_USERNAME/luminous-nix
+cd luminous-nix
 
 # 2. Enter development environment
 nix develop

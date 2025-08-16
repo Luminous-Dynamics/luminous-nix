@@ -94,27 +94,27 @@ ask-nix "search for text editors"
 
 ```bash
 # Backend Configuration
-NIX_HUMANITY_BACKEND=python              # Use Python backend (faster)
-NIX_HUMANITY_PYTHON_BACKEND=true         # Alternative way to enable Python backend
+LUMINOUS_NIX_BACKEND=python              # Use Python backend (faster)
+LUMINOUS_NIX_PYTHON_BACKEND=true         # Alternative way to enable Python backend
 
 # Logging
-NIX_HUMANITY_LOG_LEVEL=debug             # Set logging level (debug, info, warn, error)
-NIX_HUMANITY_DEBUG=true                  # Enable debug mode
+LUMINOUS_NIX_LOG_LEVEL=debug             # Set logging level (debug, info, warn, error)
+LUMINOUS_NIX_DEBUG=true                  # Enable debug mode
 
 # Features
-NIX_HUMANITY_VOICE_ENABLED=true          # Enable voice features (when available)
-NIX_HUMANITY_LEARNING_ENABLED=true       # Enable learning system
-NIX_HUMANITY_EXECUTE_COMMANDS=true       # Allow command execution
+LUMINOUS_NIX_VOICE_ENABLED=true          # Enable voice features (when available)
+LUMINOUS_NIX_LEARNING_ENABLED=true       # Enable learning system
+LUMINOUS_NIX_EXECUTE_COMMANDS=true       # Allow command execution
 
 # Paths
-NIX_HUMANITY_DATA_DIR=~/.local/share/nix-for-humanity    # Data directory
-NIX_HUMANITY_CACHE_DIR=~/.cache/nix-for-humanity         # Cache directory
-NIX_HUMANITY_CONFIG_DIR=~/.config/nix-for-humanity       # Config directory
+LUMINOUS_NIX_DATA_DIR=~/.local/share/luminous-nix    # Data directory
+LUMINOUS_NIX_CACHE_DIR=~/.cache/luminous-nix         # Cache directory
+LUMINOUS_NIX_CONFIG_DIR=~/.config/luminous-nix       # Config directory
 
 # Performance
-NIX_HUMANITY_FAST_MODE=true              # Enable fast mode
-NIX_HUMANITY_LIGHTWEIGHT=true            # Use minimal resources
-NIX_HUMANITY_OFFLINE=true                # Offline mode for development
+LUMINOUS_NIX_FAST_MODE=true              # Enable fast mode
+LUMINOUS_NIX_LIGHTWEIGHT=true            # Use minimal resources
+LUMINOUS_NIX_OFFLINE=true                # Offline mode for development
 ```
 
 ## Specialized Commands
@@ -316,7 +316,7 @@ ask-nix "install git nodejs python docker, configure development environment"
 
 ### Configuration File
 
-Create `~/.config/nix-for-humanity/config.yaml`:
+Create `~/.config/luminous-nix/config.yaml`:
 
 ```yaml
 # Default personality
@@ -436,7 +436,7 @@ search() {
 4. **Use corrections**: "no, I meant vim not emacs"
 
 ### Performance Tips
-1. **Use Python backend**: `export NIX_HUMANITY_PYTHON_BACKEND=true`
+1. **Use Python backend**: `export LUMINOUS_NIX_PYTHON_BACKEND=true`
 2. **Enable caching**: Keep cache directory for faster responses
 3. **Use minimal mode**: For repeated operations
 4. **Batch operations**: "install A B C" vs separate commands

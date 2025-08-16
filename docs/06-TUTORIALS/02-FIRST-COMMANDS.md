@@ -1,19 +1,19 @@
-# 🗣️ Nix for Humanity - User Guide
+# 🗣️ Luminous Nix - User Guide
 
-Welcome! This guide will help you use Nix for Humanity to manage your NixOS system through natural conversation. Just say what you want - no commands to memorize!
+Welcome! This guide will help you use Luminous Nix to manage your NixOS system through natural conversation. Just say what you want - no commands to memorize!
 
-## 🌟 What is Nix for Humanity?
+## 🌟 What is Luminous Nix?
 
-Nix for Humanity transforms NixOS from a command-line system into a conversational partner. Instead of typing complex commands, you simply talk to your computer naturally - through voice or text.
+Luminous Nix transforms NixOS from a command-line system into a conversational partner. Instead of typing complex commands, you simply talk to your computer naturally - through voice or text.
 
 ## 🚀 Getting Started
 
 ### First Time Setup
 
-When you first start Nix for Humanity:
+When you first start Luminous Nix:
 
 ```
-System: "Hi! I'm Nix for Humanity. I'll help you manage your computer using natural conversation. What would you like to do?"
+System: "Hi! I'm Luminous Nix. I'll help you manage your computer using natural conversation. What would you like to do?"
 
 You: "Hi! Can you help me install a web browser?"
 
@@ -33,7 +33,7 @@ System: "Installing Firefox web browser... Done! You'll find it in your applicat
 
 2. **Text Mode**
    ```bash
-   nix-for-humanity
+   luminous-nix
    ```
    Or click the icon in your applications menu
 
@@ -535,13 +535,13 @@ System: "I'll guide you through package management! In NixOS, packages are manag
 ```
 
 ### Community Support
-- **GitHub**: [Luminous-Dynamics/nix-for-humanity](https://github.com/Luminous-Dynamics/nix-for-humanity)
-- **Matrix**: #nix-for-humanity:matrix.org
-- **Forum**: discourse.nixos.org/c/nix-for-humanity
+- **GitHub**: [Luminous-Dynamics/luminous-nix](https://github.com/Luminous-Dynamics/luminous-nix)
+- **Matrix**: #luminous-nix:matrix.org
+- **Forum**: discourse.nixos.org/c/luminous-nix
 
 ## 🌟 Remember
 
-Nix for Humanity is your partner, not your boss. It's here to:
+Luminous Nix is your partner, not your boss. It's here to:
 - Make NixOS accessible to everyone
 - Learn and adapt to YOUR needs
 - Keep you in control at all times

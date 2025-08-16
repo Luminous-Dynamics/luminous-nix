@@ -38,8 +38,8 @@ print("  - Final testing in full environment")
 
 # Test the connection one more time
 try:
-    from nix_for_humanity.api.schema import Request
-    from nix_for_humanity.core.engine import NixForHumanityBackend
+    from luminous_nix.api.schema import Request
+    from luminous_nix.core.engine import NixForHumanityBackend
 
     backend = NixForHumanityBackend()
     request = Request(query="test connection")

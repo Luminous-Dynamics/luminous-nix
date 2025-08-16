@@ -1,6 +1,6 @@
 # 🔧 Troubleshooting Guide
 
-Quick fixes for common problems. If your issue isn't here, [file a bug report](https://github.com/Luminous-Dynamics/nix-for-humanity/issues).
+Quick fixes for common problems. If your issue isn't here, [file a bug report](https://github.com/Luminous-Dynamics/luminous-nix/issues).
 
 ## Common Issues
 
@@ -13,7 +13,7 @@ Quick fixes for common problems. If your issue isn't here, [file a bug report](h
 export PATH="$HOME/.local/bin:$PATH"
 
 # If using development version
-cd /path/to/nix-for-humanity
+cd /path/to/luminous-nix
 ./bin/ask-nix "your command"
 ```
 
@@ -35,7 +35,7 @@ sudo usermod -a -G nix-users $USER
 **Solution**:
 ```bash
 # Reinstall
-pip uninstall nix-for-humanity
+pip uninstall luminous-nix
 pip install -e .
 
 # Check Python path
@@ -48,7 +48,7 @@ python -c "import sys; print(sys.path)"
 **Solution**:
 ```bash
 # Enable native backend
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Verify it's working
 ask-nix --diagnose
@@ -86,7 +86,7 @@ ask-nix "sudo apt install firefox" # ❌ Don't include other package managers
 pkill -f ask-nix
 
 # Remove lock file
-rm ~/.local/share/nix-for-humanity/cache.db-journal
+rm ~/.local/share/luminous-nix/cache.db-journal
 
 # Reset database
 ask-nix --reset-cache
@@ -98,7 +98,7 @@ ask-nix --reset-cache
 **Solution**:
 ```bash
 # Install TUI extras
-pip install nix-for-humanity[tui]
+pip install luminous-nix[tui]
 
 # Or manually
 pip install textual rich
@@ -116,7 +116,7 @@ ask-nix --metrics
 **Clear caches**:
 ```bash
 ask-nix --clear-cache
-rm -rf ~/.cache/nix-for-humanity/
+rm -rf ~/.cache/luminous-nix/
 ```
 
 ### Slow package searches
@@ -134,7 +134,7 @@ ask-nix "find markdown editor"
 
 ### Settings not taking effect
 
-**Location**: `~/.config/nix-for-humanity/config.yaml`
+**Location**: `~/.config/luminous-nix/config.yaml`
 
 **Verify config**:
 ```bash
@@ -143,7 +143,7 @@ ask-nix --show-config
 
 **Reset to defaults**:
 ```bash
-rm ~/.config/nix-for-humanity/config.yaml
+rm ~/.config/luminous-nix/config.yaml
 ask-nix --init-config
 ```
 
@@ -152,7 +152,7 @@ ask-nix --init-config
 **Get detailed output**:
 ```bash
 # Enable debug logging
-export NIX_HUMANITY_DEBUG=true
+export LUMINOUS_NIX_DEBUG=true
 ask-nix "your command"
 
 # Full diagnostic
@@ -181,21 +181,21 @@ tail -f nohup.out
 **Nuclear option - reset everything**:
 ```bash
 # Stop all processes
-pkill -f nix-for-humanity
+pkill -f luminous-nix
 
 # Remove all data
-rm -rf ~/.local/share/nix-for-humanity
-rm -rf ~/.config/nix-for-humanity
-rm -rf ~/.cache/nix-for-humanity
+rm -rf ~/.local/share/luminous-nix
+rm -rf ~/.config/luminous-nix
+rm -rf ~/.cache/luminous-nix
 
 # Reinstall
-pip uninstall nix-for-humanity -y
-pip install nix-for-humanity
+pip uninstall luminous-nix -y
+pip install luminous-nix
 ```
 
 ## Still Stuck?
 
-1. Check [GitHub Issues](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+1. Check [GitHub Issues](https://github.com/Luminous-Dynamics/luminous-nix/issues)
 2. Run diagnostics: `ask-nix --diagnose`
 3. File a bug with the diagnostic output
 

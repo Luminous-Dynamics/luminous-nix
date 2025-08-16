@@ -1,8 +1,8 @@
-# Cloud AI Considerations - Nix for Humanity
+# Cloud AI Considerations - Luminous Nix
 
 ## Core Philosophy Remains Unchanged
 
-**Nix for Humanity is and will always be local-first.** Cloud AI is purely optional enhancement, never a requirement.
+**Luminous Nix is and will always be local-first.** Cloud AI is purely optional enhancement, never a requirement.
 
 ## Why Consider Cloud AI?
 

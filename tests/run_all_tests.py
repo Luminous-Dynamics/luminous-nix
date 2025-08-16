@@ -25,28 +25,23 @@ BLUE = "\033[94m"
 BOLD = "\033[1m"
 RESET = "\033[0m"
 
-
 def print_header(text):
     """Print a formatted header"""
     print(f"\n{BOLD}{BLUE}{'=' * 60}{RESET}")
     print(f"{BOLD}{BLUE}{text.center(60)}{RESET}")
     print(f"{BOLD}{BLUE}{'=' * 60}{RESET}\n")
 
-
 def print_success(text):
     """Print success message"""
     print(f"{GREEN}✅ {text}{RESET}")
-
 
 def print_error(text):
     """Print error message"""
     print(f"{RED}❌ {text}{RESET}")
 
-
 def print_info(text):
     """Print info message"""
     print(f"{YELLOW}ℹ️  {text}{RESET}")
-
 
 def run_unit_tests(verbose=False, failfast=False):
     """Run unit tests"""
@@ -79,7 +74,6 @@ def run_unit_tests(verbose=False, failfast=False):
         print_error("Some unit tests failed!")
 
     return result.returncode
-
 
 def run_integration_tests(verbose=False):
     """Run integration tests"""
@@ -116,7 +110,6 @@ def run_integration_tests(verbose=False):
 
     return result.returncode
 
-
 def run_e2e_tests(verbose=False):
     """Run end-to-end tests"""
     print_header("Running End-to-End Tests")
@@ -151,7 +144,6 @@ def run_e2e_tests(verbose=False):
         print_error("Some E2E tests failed!")
 
     return result.returncode
-
 
 def run_coverage(html=False, xml=False, min_coverage=95):
     """Run tests with coverage"""
@@ -237,7 +229,6 @@ def run_coverage(html=False, xml=False, min_coverage=95):
 
     return 0 if total_coverage >= min_coverage else 1
 
-
 def run_linters(fix=False):
     """Run code quality checks"""
     print_header("Running Code Quality Checks")
@@ -304,7 +295,6 @@ def run_linters(fix=False):
 
     return exit_code
 
-
 def run_benchmarks():
     """Run performance benchmarks"""
     print_header("Running Performance Benchmarks")
@@ -325,7 +315,6 @@ def run_benchmarks():
         print_error("Some benchmarks failed!")
 
     return result.returncode
-
 
 def main():
     """Main test runner"""
@@ -427,7 +416,6 @@ def main():
         print_error(f"Some tests failed! (Time: {elapsed_time:.2f}s)")
 
     return exit_code
-
 
 if __name__ == "__main__":
     sys.exit(main())

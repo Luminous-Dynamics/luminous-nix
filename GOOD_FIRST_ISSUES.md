@@ -1,6 +1,6 @@
 # 🌟 Good First Issues for Contributors
 
-Welcome contributors! These issues are perfect for getting started with the Nix for Humanity codebase.
+Welcome contributors! These issues are perfect for getting started with the Luminous Nix codebase.
 
 ## 🏷️ How to Contribute
 
@@ -211,4 +211,4 @@ When creating these issues on GitHub, use these labels:
 - **GitHub Discussions**: Ask questions
 - **Issue comments**: Ask for clarification
 
-Welcome to the Nix for Humanity community! 🎉
+Welcome to the Luminous Nix community! 🎉

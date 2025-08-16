@@ -14,7 +14,7 @@
 
 ## Overview
 
-Nix for Humanity uses a dual Python version strategy to maximize compatibility and performance:
+Luminous Nix uses a dual Python version strategy to maximize compatibility and performance:
 
 - **Python 3.13**: Main application, CLI, TUI, web services (latest features, best performance)
 - **Python 3.11**: Research components requiring DoWhy and other scientific packages
@@ -87,7 +87,7 @@ python3.11 -m pip install dowhy  # Only works with 3.11
 #### Environment Variables
 ```bash
 # Force research Python for all operations
-export NIX_HUMANITY_PYTHON_RESEARCH=true
+export LUMINOUS_NIX_PYTHON_RESEARCH=true
 python app.py  # Will use Python 3.11
 
 # Check which Python is active
@@ -192,7 +192,7 @@ dowhy = {version = "^0.11.0", optional = true, python = ">=3.8,<3.12"}
 
 ### 2. Import Research Components Conditionally
 ```python
-if os.getenv("NIX_HUMANITY_DISABLE_RESEARCH") != "true":
+if os.getenv("LUMINOUS_NIX_DISABLE_RESEARCH") != "true":
     try:
         from backend.knowledge_graph.skg import SymbioticKnowledgeGraph
         SKG_AVAILABLE = True

@@ -1,4 +1,4 @@
-# 🔬 Nix for Humanity Research Documentation
+# 🔬 Luminous Nix Research Documentation
 
 *Comprehensive research foundation for building truly symbiotic AI*
 

@@ -71,7 +71,7 @@ class PerformanceBenchmark:
         # Test operations to benchmark
         self.OPERATIONS = {
             "startup": {
-                "command": ["python", "-c", "import nix_for_humanity; print('Ready')"],
+                "command": ["python", "-c", "import luminous_nix; print('Ready')"],
                 "description": "Cold startup time",
                 "target": "startup_target",
             },
@@ -79,7 +79,7 @@ class PerformanceBenchmark:
                 "command": [
                     "python",
                     "-c",
-                    "from nix_for_humanity.nlp import NLPEngine; "
+                    "from luminous_nix.nlp import NLPEngine; "
                     "nlp = NLPEngine(); "
                     "result = nlp.parse('install firefox'); "
                     "print(f'Intent: {result.intent}')",
@@ -91,7 +91,7 @@ class PerformanceBenchmark:
                 "command": [
                     "python",
                     "-c",
-                    "from nix_for_humanity.executor import CommandExecutor; "
+                    "from luminous_nix.executor import CommandExecutor; "
                     "exec = CommandExecutor(); "
                     "result = exec.search_packages('firefox'); "
                     "print(f'Found: {len(result)} packages')",
@@ -103,7 +103,7 @@ class PerformanceBenchmark:
                 "command": [
                     "python",
                     "-c",
-                    "from nix_for_humanity.backend.native_api import NativeNixAPI; "
+                    "from luminous_nix.backend.native_api import NativeNixAPI; "
                     "api = NativeNixAPI(); "
                     "gens = api.list_generations(); "
                     "print(f'Generations: {len(gens)}')",
@@ -115,7 +115,7 @@ class PerformanceBenchmark:
                 "command": [
                     "python",
                     "-c",
-                    "from nix_for_humanity.cli import CLIAdapter; "
+                    "from luminous_nix.cli import CLIAdapter; "
                     "cli = CLIAdapter(); "
                     "help_text = cli.get_help('install'); "
                     "print('Help ready')",

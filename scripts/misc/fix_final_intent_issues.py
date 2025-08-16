@@ -59,22 +59,22 @@ class FinalIntentFixer:
         for line in lines:
             # Fix imports that might be incorrect
             if (
-                "from nix_for_humanity.core.intents import" in line
+                "from luminous_nix.core.intents import" in line
                 and "IntentRecognizer" in line
             ):
-                # This import should be from nix_for_humanity.core.types
+                # This import should be from luminous_nix.core.types
                 line = line.replace(
-                    "from nix_for_humanity.core.intents import IntentRecognizer",
-                    "from nix_for_humanity.core.intents import IntentRecognizer",
+                    "from luminous_nix.core.intents import IntentRecognizer",
+                    "from luminous_nix.core.intents import IntentRecognizer",
                 )
                 # But the Intent and IntentType should come from core.types
                 if "Intent," in line and "IntentType" in line:
                     # Split the import
                     new_lines.append(
-                        "from nix_for_humanity.core.intents import IntentRecognizer"
+                        "from luminous_nix.core.intents import IntentRecognizer"
                     )
                     new_lines.append(
-                        "from nix_for_humanity.core.types import Intent, IntentType"
+                        "from luminous_nix.core.types import Intent, IntentType"
                     )
                     continue
 

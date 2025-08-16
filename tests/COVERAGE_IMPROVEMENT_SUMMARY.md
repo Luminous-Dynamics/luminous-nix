@@ -94,25 +94,25 @@ Additional modules still at 0%:
 9. Run full coverage report to verify progress
 
 ## Test Files Created
-1. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_input_validator.py` - 29 tests ✅
-2. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_cli_adapter_scripts.py` - 24 tests ✅
-3. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_tui_app_simple.py` - 10 tests ✅
-4. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_headless_engine_scripts.py` - 20 tests (3 failing)
-5. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_headless_engine_simple.py` - 8 tests ✅
-6. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_jsonrpc_server.py` - 20 tests ✅
-7. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_plugin_manager.py` - 19 tests ✅
-8. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_nix_api_server_simple.py` - 11 tests ✅
-9. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_nix_knowledge_engine.py` - 17 tests ✅
-10. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_feedback_collector.py` - 15 tests ✅
-11. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_backend_core_simple.py` - 10 tests ✅
-12. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_intent_simple.py` - 16 tests ✅
-13. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_executor_simple.py` - 10 tests ✅
-14. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_ai_nlp_simple.py` - 8 tests ✅
-15. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_learning_feedback.py` - 10 tests ✅
-16. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_learning_preferences.py` - 11 tests ✅
-17. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_ask_nix_cli.py` - 12 tests ✅
-18. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_performance_benchmark.py` - 11 tests ✅
-19. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_serve_demo_simple.py` - 7 tests ✅
-20. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_monitor_coverage.py` - 10 tests ✅
-21. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_educational_error_handler.py` - 10 tests ✅
-22. `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/tests/unit/test_resilient_core_simple.py` - 7 tests ✅
+1. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_input_validator.py` - 29 tests ✅
+2. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_cli_adapter_scripts.py` - 24 tests ✅
+3. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_tui_app_simple.py` - 10 tests ✅
+4. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_headless_engine_scripts.py` - 20 tests (3 failing)
+5. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_headless_engine_simple.py` - 8 tests ✅
+6. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_jsonrpc_server.py` - 20 tests ✅
+7. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_plugin_manager.py` - 19 tests ✅
+8. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_nix_api_server_simple.py` - 11 tests ✅
+9. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_nix_knowledge_engine.py` - 17 tests ✅
+10. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_feedback_collector.py` - 15 tests ✅
+11. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_backend_core_simple.py` - 10 tests ✅
+12. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_intent_simple.py` - 16 tests ✅
+13. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_executor_simple.py` - 10 tests ✅
+14. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_ai_nlp_simple.py` - 8 tests ✅
+15. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_learning_feedback.py` - 10 tests ✅
+16. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_learning_preferences.py` - 11 tests ✅
+17. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_ask_nix_cli.py` - 12 tests ✅
+18. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_performance_benchmark.py` - 11 tests ✅
+19. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_serve_demo_simple.py` - 7 tests ✅
+20. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_monitor_coverage.py` - 10 tests ✅
+21. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_educational_error_handler.py` - 10 tests ✅
+22. `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/tests/unit/test_resilient_core_simple.py` - 7 tests ✅

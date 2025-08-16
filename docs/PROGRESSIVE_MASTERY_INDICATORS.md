@@ -1,6 +1,6 @@
 # 🌱 Progressive Mastery Indicators
 
-*A living guide to growing with Nix for Humanity*
+*A living guide to growing with Luminous Nix*
 
 ---
 
@@ -13,7 +13,7 @@
 🌊 **Natural Next Steps**:
 - **For beginners**: Start with [Quick Start Guide](./03-DEVELOPMENT/03-QUICK-START.md) to begin your journey
 - **For advancing users**: Use your current level to navigate to appropriate documentation
-- **For educators**: Reference mastery progression when teaching Nix for Humanity
+- **For educators**: Reference mastery progression when teaching Luminous Nix
 - **For contributors**: Understand user progression when designing features or documentation
 
 ---
@@ -155,7 +155,7 @@ Learning is not linear—it's an organic unfolding. These indicators serve not a
    - 🌳 I understand the learning mechanisms and contribute thoughtfully
    - 🌲 I help design how the system should learn and evolve
 
-4. **Community Engagement**: How do you participate in the Nix for Humanity community?
+4. **Community Engagement**: How do you participate in the Luminous Nix community?
    - 🌱 I'm learning and asking questions
    - 🌿 I share experiences and help newcomers
    - 🌳 I contribute feedback and suggestions

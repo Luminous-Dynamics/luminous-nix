@@ -154,7 +154,7 @@ Since Claude Code has execution timeouts, using binary caches is essential:
 
 ```conf
 # ~/.config/nix/nix.conf
-# Optimized for Nix for Humanity development
+# Optimized for Luminous Nix development
 
 # Fast, reliable caches
 substituters = https://cache.nixos.org https://nix-community.cachix.org

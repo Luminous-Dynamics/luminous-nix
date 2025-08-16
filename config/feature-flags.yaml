@@ -88,5 +88,5 @@ development:
   sacred_trinity_mode: true
 
 # Feature Flag Override System
-# Set environment variable NIX_HUMANITY_FEATURES to override
-# Example: NIX_HUMANITY_FEATURES="v2_0.learning_system=true,v1_5.tui_interface=true"
+# Set environment variable LUMINOUS_NIX_FEATURES to override
+# Example: LUMINOUS_NIX_FEATURES="v2_0.learning_system=true,v1_5.tui_interface=true"

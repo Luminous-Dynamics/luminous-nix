@@ -1,4 +1,4 @@
-# 🎯 Development Standards - Nix for Humanity
+# 🎯 Development Standards - Luminous Nix
 
 *The definitive guide to stop recreating the wheel*
 

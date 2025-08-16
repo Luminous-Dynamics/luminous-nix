@@ -21,8 +21,8 @@ from typing import Any
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from nix_for_humanity.core.unified_backend import Context, NixForHumanityBackend
-from nix_for_humanity.nix.python_api import get_nix_api
+from luminous_nix.core.unified_backend import Context, NixForHumanityBackend
+from luminous_nix.nix.python_api import get_nix_api
 
 
 @dataclass
@@ -273,7 +273,7 @@ class PerformanceBenchmark:
 
         def native_cache():
             """Native in-memory cache"""
-            from nix_for_humanity.core.cache import SimpleCache
+            from luminous_nix.core.cache import SimpleCache
 
             cache = SimpleCache()
 
@@ -310,7 +310,7 @@ class PerformanceBenchmark:
 
         async def native_parallel():
             """Native async parallel execution"""
-            from nix_for_humanity.core.async_executor import AsyncCommandExecutor
+            from luminous_nix.core.async_executor import AsyncCommandExecutor
 
             executor = AsyncCommandExecutor()
 

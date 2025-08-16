@@ -33,7 +33,6 @@ sys.modules["flask_socketio"] = MagicMock()
 from api import nix_api_server
 from api.nix_api_server import APIError, cleanup_old_sessions
 
-
 class TestAPIError(unittest.TestCase):
     """Test the APIError class."""
 
@@ -49,7 +48,6 @@ class TestAPIError(unittest.TestCase):
         error = APIError("Bad request")
         self.assertEqual(error.message, "Bad request")
         self.assertEqual(error.status_code, 400)
-
 
 class TestAPIServer(unittest.TestCase):
     """Test the API server endpoints."""
@@ -334,7 +332,6 @@ class TestAPIServer(unittest.TestCase):
         # Should return 500 error response
         self.assertIsNotNone(response)
 
-
 class TestWebSocketSupport(unittest.TestCase):
     """Test WebSocket functionality if available."""
 
@@ -343,7 +340,6 @@ class TestWebSocketSupport(unittest.TestCase):
         # WebSocket support should be False in test environment
         # since flask_socketio is mocked
         self.assertIsNotNone(nix_api_server.WEBSOCKET_ENABLED)
-
 
 if __name__ == "__main__":
     unittest.main()

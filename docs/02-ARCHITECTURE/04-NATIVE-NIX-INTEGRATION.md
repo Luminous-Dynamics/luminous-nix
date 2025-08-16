@@ -86,7 +86,7 @@ Direct NixOS Operations
 ### For Users
 ```bash
 # Enable native backend
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Use normally - it's just faster!
 ask-nix "update my system"
@@ -217,7 +217,7 @@ python3 scripts/backend/discover_nixos_rebuild_api.py
 ### Manual Testing
 ```bash
 # Enable native backend
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Test operations
 ask-nix "update my system" --dry-run
@@ -254,7 +254,7 @@ sys.path.insert(0, "/nix/store/.../site-packages")
 
 ## Conclusion
 
-The Native Python-Nix Integration isn't just a performance improvement - it's a fundamental architectural advantage that positions Nix for Humanity as the most technically advanced NixOS interface available.
+The Native Python-Nix Integration isn't just a performance improvement - it's a fundamental architectural advantage that positions Luminous Nix as the most technically advanced NixOS interface available.
 
 By eliminating subprocess overhead and gaining direct API access, we can build features that were previously impossible:
 - Real-time progress for all operations
@@ -266,6 +266,6 @@ This is the future of NixOS management, and we're building it today.
 
 ---
 
-*"Direct API access transforms Nix for Humanity from a wrapper into a true NixOS partner."*
+*"Direct API access transforms Luminous Nix from a wrapper into a true NixOS partner."*
 
 🌊 We flow with native performance!

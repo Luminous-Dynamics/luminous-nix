@@ -13,9 +13,9 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from nix_for_humanity.core.config_generator import NixConfigGenerator
-from nix_for_humanity.core.flake_manager import FlakeManager
-from nix_for_humanity.core.generation_manager import (
+from luminous_nix.core.config_generator import NixConfigGenerator
+from luminous_nix.core.flake_manager import FlakeManager
+from luminous_nix.core.generation_manager import (
     check_system_recovery_status,
     list_system_generations,
 )

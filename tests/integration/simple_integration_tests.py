@@ -11,12 +11,11 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from nix_for_humanity.api.schema import Request
-from nix_for_humanity.core.engine import NixForHumanityBackend
-from nix_for_humanity.core import SafeExecutor
-from nix_for_humanity.core import IntentRecognizer, IntentType
-from nix_for_humanity.core.knowledge import KnowledgeBase
-
+from luminous_nix.api.schema import Request
+from luminous_nix.core.engine import NixForHumanityBackend
+from luminous_nix.core import SafeExecutor
+from luminous_nix.core import IntentRecognizer, IntentType
+from luminous_nix.core.knowledge import KnowledgeBase
 
 class SimpleIntegrationTests:
     """Simple integration tests without pytest"""
@@ -220,7 +219,6 @@ class SimpleIntegrationTests:
             print(f"🎯 Success Rate: {self.passed/total*100:.1f}%")
 
         return self.failed == 0
-
 
 if __name__ == "__main__":
     tests = SimpleIntegrationTests()

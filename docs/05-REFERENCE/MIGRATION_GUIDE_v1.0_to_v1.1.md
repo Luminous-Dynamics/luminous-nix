@@ -32,7 +32,7 @@ Upgrading from v1.0 to v1.1 is seamless! All your existing CLI commands continue
 
 ```bash
 # Update flake input
-nix flake update github:Luminous-Dynamics/nix-for-humanity
+nix flake update github:Luminous-Dynamics/luminous-nix
 
 # Rebuild system
 sudo nixos-rebuild switch
@@ -42,7 +42,7 @@ sudo nixos-rebuild switch
 
 ```bash
 # Pull latest changes
-cd nix-for-humanity
+cd luminous-nix
 git fetch origin
 git checkout v1.1.0
 
@@ -167,7 +167,7 @@ Your config and data remain compatible.
 
 ## 🙏 Thank You
 
-Thank you for being an early adopter of Nix for Humanity! Your journey from v1.0 to v1.1 helps us make NixOS accessible to everyone.
+Thank you for being an early adopter of Luminous Nix! Your journey from v1.0 to v1.1 helps us make NixOS accessible to everyone.
 
 ---
 

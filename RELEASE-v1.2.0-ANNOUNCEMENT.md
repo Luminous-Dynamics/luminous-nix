@@ -1,8 +1,8 @@
-# 🎉 Nix for Humanity v1.2.0 - Voice Revolution
+# 🎉 Luminous Nix v1.2.0 - Voice Revolution
 
 **Making NixOS accessible through natural speech**
 
-We're thrilled to announce the release of Nix for Humanity v1.2.0, introducing revolutionary voice interaction that makes NixOS truly accessible to everyone through natural conversation.
+We're thrilled to announce the release of Luminous Nix v1.2.0, introducing revolutionary voice interaction that makes NixOS truly accessible to everyone through natural conversation.
 
 ## 🎤 What's New: Voice Interface
 
@@ -62,12 +62,12 @@ This release transforms NixOS accessibility for all 10 personas:
 
 ### 1. Update to v1.2.0
 ```bash
-# If you have Nix for Humanity installed
-poetry update nix-for-humanity
+# If you have Luminous Nix installed
+poetry update luminous-nix
 
 # Or fresh install
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 poetry install --extras voice
 ```
 
@@ -135,9 +135,9 @@ This revolutionary release was made possible through:
 
 ## 💬 Community
 
-- **Report Issues**: [GitHub Issues](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Luminous-Dynamics/nix-for-humanity/discussions)
-- **Documentation**: [Full Docs](https://github.com/Luminous-Dynamics/nix-for-humanity/tree/main/docs)
+- **Report Issues**: [GitHub Issues](https://github.com/Luminous-Dynamics/luminous-nix/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
+- **Documentation**: [Full Docs](https://github.com/Luminous-Dynamics/luminous-nix/tree/main/docs)
 
 ## 🌟 Our Mission
 
@@ -151,12 +151,12 @@ See [CHANGELOG.md](CHANGELOG.md) for complete details.
 
 ---
 
-**Download Now**: [GitHub Release](https://github.com/Luminous-Dynamics/nix-for-humanity/releases/tag/v1.2.0)
+**Download Now**: [GitHub Release](https://github.com/Luminous-Dynamics/luminous-nix/releases/tag/v1.2.0)
 
 **Try It**: Just say "Hey Nix, help me get started"
 
 ---
 
-*Nix for Humanity v1.2.0 - Technology that literally speaks your language*
+*Luminous Nix v1.2.0 - Technology that literally speaks your language*
 
 🎤 🚀 🎉

@@ -130,7 +130,7 @@ class NixPackageValidator {
 
 ### 1. Initialize Development Environment
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 nix develop
 
 # This automatically:

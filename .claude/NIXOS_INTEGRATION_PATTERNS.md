@@ -92,9 +92,9 @@ nix-store --optimise    # Deduplicate store
 For privileged operations, use polkit rules:
 
 ```javascript
-// /etc/polkit-1/rules.d/10-nix-for-humanity.rules
+// /etc/polkit-1/rules.d/10-luminous-nix.rules
 polkit.addRule(function(action, subject) {
-  if (action.id == "org.nixos.nix-for-humanity.rebuild" &&
+  if (action.id == "org.nixos.luminous-nix.rebuild" &&
       subject.isInGroup("wheel")) {
     return polkit.Result.AUTH_SELF;
   }

@@ -10,21 +10,21 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Test that all modules can be imported
 try:
-    from nix_for_humanity.core.config_generator import NixConfigGenerator
+    from luminous_nix.core.config_generator import NixConfigGenerator
 
     print("✅ Configuration Generator module loaded")
 except ImportError as e:
     print(f"❌ Configuration Generator import failed: {e}")
 
 try:
-    from nix_for_humanity.core.flake_manager import FlakeManager
+    from luminous_nix.core.flake_manager import FlakeManager
 
     print("✅ Flake Manager module loaded")
 except ImportError as e:
     print(f"❌ Flake Manager import failed: {e}")
 
 try:
-    from nix_for_humanity.core.generation_manager import GenerationManager
+    from luminous_nix.core.generation_manager import GenerationManager
 
     print("✅ Generation Manager module loaded")
 except ImportError as e:

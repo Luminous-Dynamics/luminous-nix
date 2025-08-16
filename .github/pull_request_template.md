@@ -1,53 +1,69 @@
-## 📋 Description
-<!-- Brief description of changes -->
+# 📋 Simplicity-First Pull Request
 
-## 🎯 Type of Change
-- [ ] 🐛 Bug fix (non-breaking change that fixes an issue)
-- [ ] ✨ New feature (non-breaking change that adds functionality)
-- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] 📚 Documentation update
-- [ ] 🎨 Style/UI update
-- [ ] ♻️ Code refactor
-- [ ] ⚡ Performance improvement
-- [ ] ✅ Test update
-- [ ] 🔧 Configuration change
+## Summary
+[One paragraph explaining what and why - suitable for Grandma Rose]
 
-## 🧪 Testing
-- [ ] Unit tests pass locally
-- [ ] Integration tests pass
+## The Litmus Test (REQUIRED)
+
+**ALL boxes must be checked before merge:**
+
+- [ ] **Explainability Test**: I can explain this change in under 60 seconds
+- [ ] **Composition Test**: This code does ONE thing well  
+- [ ] **Grandma Rose Test**: The benefit is clear without jargon
+- [ ] **Deletion Test**: Removal impact would be clear and contained
+- [ ] **Magic vs Tutorial Test**: Outcome feels magical, code reads like tutorial
+- [ ] **Teachability Test**: This helps users eventually not need it
+
+## Embarrassingly Simple Check
+
+**Is this the simplest possible implementation?**
+- [ ] Yes, I started embarrassingly simple
+- [ ] I cannot remove any more lines
+- [ ] I questioned every dependency
+
+## Complexity Budget
+
+**Lines added**: [number]  
+**Lines removed**: [number]  
+**Net change**: [+/- number]  
+**Dependencies added**: [list or "none"]  
+**Dependencies removed**: [list or "none"]
+
+**If net positive complexity, what did we delete to offset it?**
+```
+[Describe simplification]
+```
+
+## User Simplification Factor
+
+**Does this simplify the user's experience by 10x the added complexity?**
+- [ ] Yes, because: [explanation]
+- [ ] N/A - This reduces complexity
+
+## Testing
+
+- [ ] All existing tests pass
+- [ ] New tests added (if applicable)
 - [ ] Manual testing completed
-- [ ] Tested with all relevant personas (if UI change)
 
-## 📸 Screenshots (if applicable)
-<!-- Add screenshots for UI changes -->
+## Teachability Metrics
 
-## ✅ Checklist
-- [ ] My code follows the project's style guidelines
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published
+**Feature introduces scaffold/help?**
+- [ ] Yes - Added tracking for Autonomous Success Rate
+- [ ] No - Feature is self-evident
 
-## 🔗 Related Issues
-<!-- Link related issues below -->
-Fixes #
-Related to #
+## Related Issues
 
-## 🤝 Sacred Trinity Review
-- [ ] Human review completed
-- [ ] AI assistance acknowledged (if used)
-- [ ] Local LLM validation passed (if applicable)
-
-## 📝 Additional Notes
-<!-- Any additional information that reviewers should know -->
+Closes #[issue number]
 
 ---
-<!--
-Commit format reminder:
-type(scope): subject
 
-Example: feat(nlp): add fuzzy matching for package names
--->
+### 🤖 Automated Checks
+<!-- These will be filled by CI -->
+- Complexity Score: [pending]
+- Current Budget Usage: [pending]  
+- Simplicity Score Impact: [pending]
+
+---
+
+**Remember**: "The strategic thinking proves you COULD build complexity. The simple code proves you CHOSE not to."

@@ -16,7 +16,7 @@ from pathlib import Path
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.core.backend import NixForHumanityBackend
+from luminous_nix.core.backend import NixForHumanityBackend
 
 
 class VoiceInterfaceDemo:
@@ -44,7 +44,7 @@ class VoiceInterfaceDemo:
         print(f"💭 Processing: '{command}'")
         
         # Process through backend
-        from nix_for_humanity.core.intents import Intent, IntentType
+        from luminous_nix.core.intents import Intent, IntentType
         
         # Create appropriate intent based on command
         if "install" in command:

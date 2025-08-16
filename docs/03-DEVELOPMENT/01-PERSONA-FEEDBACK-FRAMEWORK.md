@@ -1,6 +1,6 @@
 # 🎯 Persona Feedback Gathering Framework
 
-*A comprehensive guide for gathering user feedback from all 10 core personas for Nix for Humanity*
+*A comprehensive guide for gathering user feedback from all 10 core personas for Luminous Nix*
 
 ## Overview
 

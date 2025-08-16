@@ -30,7 +30,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 from test_breakthrough_metrics import TestBreakthroughMetrics
 from test_native_api_performance import TestNativeAPIPerformance
 
-
 class PerformanceTestRunner:
     """Comprehensive performance test runner and reporter"""
 
@@ -200,9 +199,6 @@ class PerformanceTestRunner:
     def _run_resource_tests(self, verbose: bool) -> tuple[bool, dict]:
         """Run resource efficiency tests"""
         try:
-            import os
-
-            import psutil
 
             process = psutil.Process(os.getpid())
 
@@ -387,7 +383,6 @@ class PerformanceTestRunner:
         except Exception as e:
             print(f"Warning: Could not update performance history: {e}")
 
-
 def main():
     """Main function for running performance tests"""
     parser = argparse.ArgumentParser(
@@ -419,7 +414,6 @@ def main():
         success = runner.run_all_tests(verbose=not args.quiet)
 
     sys.exit(0 if success else 1)
-
 
 if __name__ == "__main__":
     main()

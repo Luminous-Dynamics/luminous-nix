@@ -1,4 +1,4 @@
-# Future-Proof Architecture for Nix for Humanity
+# Future-Proof Architecture for Luminous Nix
 
 ## 🎯 Core Design Principles
 
@@ -410,4 +410,4 @@ graph TD
 
 ---
 
-*This architecture ensures Nix for Humanity can evolve from a simple CLI to a comprehensive AI-powered NixOS assistant without breaking existing functionality.*
+*This architecture ensures Luminous Nix can evolve from a simple CLI to a comprehensive AI-powered NixOS assistant without breaking existing functionality.*

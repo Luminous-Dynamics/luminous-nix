@@ -2,14 +2,14 @@
 
 ## Overview
 
-We've created comprehensive real-world examples and demonstrations that showcase the practical value of Nix for Humanity, making NixOS accessible to everyone from beginners to power users.
+We've created comprehensive real-world examples and demonstrations that showcase the practical value of Luminous Nix, making NixOS accessible to everyone from beginners to power users.
 
 ## ✅ What Was Created
 
 ### 📚 Main Documentation Hub
 **[examples/README.md](./examples/README.md)**
 - Complete navigation for all examples
-- Quick comparison: Traditional vs Nix for Humanity
+- Quick comparison: Traditional vs Luminous Nix
 - Common use cases with immediate value
 - Performance metrics showing 10-1500x improvements
 - Success stories and testimonials
@@ -61,7 +61,7 @@ We've created comprehensive real-world examples and demonstrations that showcase
 ## 📊 Impact Demonstration
 
 ### Command Simplification
-| Task | Traditional NixOS | Nix for Humanity | Reduction |
+| Task | Traditional NixOS | Luminous Nix | Reduction |
 |------|------------------|------------------|-----------|
 | Install package | `nix-env -iA nixos.firefox` | `ask-nix "install firefox"` | 66% fewer characters |
 | Search packages | `nix-env -qaP \| grep -i editor` | `ask-nix "find editor"` | 75% simpler |
@@ -230,7 +230,7 @@ We've successfully created:
 - ✅ **Performance comparisons** proving our claims
 - ✅ **Multiple user journeys** from beginner to expert
 
-The examples clearly demonstrate that Nix for Humanity:
+The examples clearly demonstrate that Luminous Nix:
 - **Reduces complexity** by 90-99%
 - **Saves time** by 10-100x
 - **Prevents errors** through natural language
@@ -239,4 +239,4 @@ The examples clearly demonstrate that Nix for Humanity:
 
 ---
 
-*These examples prove that NixOS complexity is not inherent - it's just been lacking the right interface. Nix for Humanity provides that interface, making one of the most powerful operating systems accessible to all.*
+*These examples prove that NixOS complexity is not inherent - it's just been lacking the right interface. Luminous Nix provides that interface, making one of the most powerful operating systems accessible to all.*

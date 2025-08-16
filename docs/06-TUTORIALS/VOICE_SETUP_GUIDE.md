@@ -1,10 +1,10 @@
-# 🎤 Voice Interface Setup Guide - Nix for Humanity
+# 🎤 Voice Interface Setup Guide - Luminous Nix
 
 *Enable natural voice interaction with NixOS using Whisper and Piper*
 
 ## Overview
 
-The Nix for Humanity voice interface provides:
+The Luminous Nix voice interface provides:
 - **Wake word detection**: "Hey Nix" to activate
 - **Speech-to-text**: Whisper for accurate transcription
 - **Text-to-speech**: Piper for natural voice responses
@@ -42,7 +42,7 @@ Add to your NixOS configuration:
   imports = [
     # Import the voice module
     (fetchGit {
-      url = "https://github.com/Luminous-Dynamics/nix-for-humanity";
+      url = "https://github.com/Luminous-Dynamics/luminous-nix";
       ref = "main";
     } + "/modules/voice.nix")
   ];
@@ -81,8 +81,8 @@ The service will automatically:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 
 # Enter the Nix shell with all voice dependencies
 nix develop
@@ -139,7 +139,7 @@ For user-specific installation:
 {
   imports = [
     (fetchGit {
-      url = "https://github.com/Luminous-Dynamics/nix-for-humanity";
+      url = "https://github.com/Luminous-Dynamics/luminous-nix";
       ref = "main";
     } + "/modules/home-manager/voice.nix")
   ];
@@ -262,7 +262,7 @@ https://github.com/rhasspy/piper/releases
 
 1. **Standalone mode**:
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./bin/nix-voice
 ```
 
@@ -551,8 +551,8 @@ shortcuts:
 - [Whisper Documentation](https://github.com/openai/whisper)
 - [Piper TTS Guide](https://github.com/rhasspy/piper)
 - [Audio Troubleshooting](https://wiki.nixos.org/wiki/Audio)
-- [Nix for Humanity Discussions](https://github.com/Luminous-Dynamics/nix-for-humanity/discussions)
+- [Luminous Nix Discussions](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
 
 ---
 
-*Voice control makes NixOS accessible to everyone. Speak naturally, and let Nix for Humanity handle the complexity.*
+*Voice control makes NixOS accessible to everyone. Speak naturally, and let Luminous Nix handle the complexity.*

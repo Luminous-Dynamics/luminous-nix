@@ -29,7 +29,7 @@
 ### Commands to Execute:
 ```bash
 # 1. Check current status
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 git status
 
 # 2. Stage all documentation updates
@@ -49,7 +49,7 @@ git commit -m "docs: Transform documentation for public launch
 - Document 50+ working commands
 - Add badges and professional formatting
 
-This positions Nix for Humanity as a serious project ready for
+This positions Luminous Nix as a serious project ready for
 contributors while being transparent about pre-alpha status."
 
 # 4. Push to GitHub

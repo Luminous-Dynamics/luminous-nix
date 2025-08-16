@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This document analyzes the current error handling in the Nix for Humanity TUI and provides recommendations for integrating the Enhanced Error Intelligence module with the existing XAI system.
+This document analyzes the current error handling in the Luminous Nix TUI and provides recommendations for integrating the Enhanced Error Intelligence module with the existing XAI system.
 
 ## Current State Analysis
 

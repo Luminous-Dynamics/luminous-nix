@@ -1,10 +1,10 @@
-# System Architecture - Nix for Humanity
+# System Architecture - Luminous Nix
 
 *One brain, many faces: The technical blueprint for symbiotic human-AI partnership*
 
 ## Overview
 
-Nix for Humanity v1.0 implements a headless architecture where one intelligent Python backend powers natural language NixOS interaction. The CLI interface is production-ready, with TUI and voice interfaces planned for v1.1.
+Luminous Nix v1.0 implements a headless architecture where one intelligent Python backend powers natural language NixOS interaction. The CLI interface is production-ready, with TUI and voice interfaces planned for v1.1.
 
 ```
 ┌─────────────────────────────────┐          ┌─────────────────────────────────┐

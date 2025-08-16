@@ -40,7 +40,7 @@ $ ./bin/ask-nix "update system"
 ### Get Help
 ```bash
 $ ./bin/ask-nix "help"
-🕉️ Nix for Humanity - Natural Language NixOS Interface
+🕉️ Luminous Nix - Natural Language NixOS Interface
 
 USAGE:
     ask-nix [OPTIONS] <QUERY>

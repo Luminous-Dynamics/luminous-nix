@@ -12,8 +12,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 # Import v1.0 components
 try:
-    from nix_for_humanity.api import Request, Response, Result
-    from nix_for_humanity.core import (
+    from luminous_nix.api import Request, Response, Result
+    from luminous_nix.core import (
         Intent,
         IntentRecognizer,
         IntentType,
@@ -26,7 +26,6 @@ try:
 except ImportError as e:
     print(f"❌ Import error: {e}")
     sys.exit(1)
-
 
 def test_basic_functionality():
     """Test basic v1.0 functionality"""
@@ -68,7 +67,6 @@ def test_basic_functionality():
         except Exception as e:
             print(f"❌ Error: {e}")
 
-
 def test_import_cleanup():
     """Test that v2.0+ imports are properly removed/disabled"""
     print("\n🧪 Testing import cleanup...")
@@ -105,7 +103,6 @@ def test_import_cleanup():
     except Exception as e:
         print(f"❌ Error checking imports: {e}")
 
-
 def test_performance():
     """Test performance of core operations"""
     print("\n🧪 Testing performance...")
@@ -136,7 +133,6 @@ def test_performance():
     else:
         print("❌ Performance needs optimization")
 
-
 def main():
     """Run all tests"""
     print("🚀 Nix for Humanity v1.0 Basic Test Suite")
@@ -153,7 +149,6 @@ def main():
     print("2. Optimize performance for operations > 0.5s")
     print("3. Polish error messages")
     print("4. Run full test suite with pytest when available")
-
 
 if __name__ == "__main__":
     main()

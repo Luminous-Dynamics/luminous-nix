@@ -50,7 +50,7 @@ Standards System
 
 ### Session Start (2 minutes)
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # Quick sacred review
 ./scripts/sacred-review.sh quick
@@ -255,7 +255,7 @@ This standards system represents the power of Human-AI collaboration:
 
 ```bash
 # Your next action (takes 30 seconds)
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./scripts/sacred-review.sh quick
 
 # See your standards dashboard (takes 2 minutes)

@@ -52,7 +52,7 @@ echo "NixOS Version: $(nixos-version 2>/dev/null || echo 'Not on NixOS')"
 echo ""
 
 echo "🔧 Setting up test environment..."
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 export TESTING=true
 echo ""
 

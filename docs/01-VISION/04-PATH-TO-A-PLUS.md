@@ -257,7 +257,7 @@ We have a solid B+ foundation with excellent modular architecture but **zero wor
 
 ```bash
 # 1. Create integration layer
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 mkdir -p packages/integration
 
 # 2. Run tests to see what's broken

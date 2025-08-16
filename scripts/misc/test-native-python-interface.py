@@ -12,7 +12,7 @@ from pathlib import Path
 backend_path = Path(__file__).parent / "backend"
 sys.path.insert(0, str(backend_path))
 
-from nix_for_humanity.core.native_operations import (
+from luminous_nix.core.native_operations import (
     NATIVE_API_AVAILABLE,
     NativeNixBackend,
     NixOperation,

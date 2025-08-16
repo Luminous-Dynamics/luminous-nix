@@ -24,18 +24,18 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 # Environment setup
-os.environ['NIX_HUMANITY_TEST_MODE'] = '1'
+os.environ['LUMINOUS_NIX_TEST_MODE'] = '1'
 
 @pytest.fixture(scope="session")
 def test_mode():
     """Enable test mode for safe operations."""
-    original = os.environ.get('NIX_HUMANITY_TEST_MODE')
-    os.environ['NIX_HUMANITY_TEST_MODE'] = '1'
+    original = os.environ.get('LUMINOUS_NIX_TEST_MODE')
+    os.environ['LUMINOUS_NIX_TEST_MODE'] = '1'
     yield
     if original:
-        os.environ['NIX_HUMANITY_TEST_MODE'] = original
+        os.environ['LUMINOUS_NIX_TEST_MODE'] = original
     else:
-        del os.environ['NIX_HUMANITY_TEST_MODE']
+        del os.environ['LUMINOUS_NIX_TEST_MODE']
 
 @pytest.fixture
 def real_nix_available():
@@ -443,7 +443,7 @@ set -euo pipefail
 echo "🧪 Running Nix for Humanity tests..."
 
 # Set test environment
-export NIX_HUMANITY_TEST_MODE=1
+export LUMINOUS_NIX_TEST_MODE=1
 export PYTHONPATH="${PWD}/src:${PYTHONPATH:-}"
 
 # Run different test suites

@@ -20,8 +20,8 @@ print("  ✅ Now provides proper nixos-rebuild test guidance")
 print("\n🧪 Testing Results:")
 
 # Run the actual test
-from nix_for_humanity.api.schema import Request
-from nix_for_humanity.core.engine import NixForHumanityBackend
+from luminous_nix.api.schema import Request
+from luminous_nix.core.engine import NixForHumanityBackend
 
 backend = NixForHumanityBackend()
 

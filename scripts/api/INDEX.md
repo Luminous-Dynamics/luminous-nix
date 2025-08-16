@@ -33,7 +33,7 @@ nix-shell -p python3 python3Packages.flask python3Packages.flask-cors
 
 ```bash
 # From project root
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 python scripts/api/nix_api_server.py
 
 # Or with custom settings
@@ -167,13 +167,13 @@ with NixForHumanityClient() as client:
 
 ```bash
 # Copy service file
-sudo cp scripts/api/nix-for-humanity-api.service /etc/systemd/system/
+sudo cp scripts/api/luminous-nix-api.service /etc/systemd/system/
 
 # Create API user
 sudo useradd -r -s /bin/false nix-api
 
 # Start service
-sudo systemctl enable --now nix-for-humanity-api
+sudo systemctl enable --now luminous-nix-api
 ```
 
 ### Using Docker
@@ -191,12 +191,12 @@ docker run -p 5000:5000 nix-api
 ```nix
 # In your configuration.nix
 systemd.services.nix-api = {
-  description = "Nix for Humanity API";
+  description = "Luminous Nix API";
   wantedBy = [ "multi-user.target" ];
   after = [ "network.target" ];
 
   serviceConfig = {
-    ExecStart = "${pkgs.python3}/bin/python /srv/nix-for-humanity/scripts/api/nix_api_server.py";
+    ExecStart = "${pkgs.python3}/bin/python /srv/luminous-nix/scripts/api/nix_api_server.py";
     Restart = "always";
     User = "nix-api";
     Group = "nix-api";
@@ -258,10 +258,10 @@ watch -n 5 'curl -s http://localhost:5000/api/v1/stats | jq .'
 
 ```bash
 # View logs
-journalctl -u nix-for-humanity-api -f
+journalctl -u luminous-nix-api -f
 
 # Export logs
-journalctl -u nix-for-humanity-api --since today > api.log
+journalctl -u luminous-nix-api --since today > api.log
 ```
 
 ## Troubleshooting
@@ -276,7 +276,7 @@ journalctl -u nix-for-humanity-api --since today > api.log
 
 2. **Module not found**
    ```bash
-   export PYTHONPATH=/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/scripts
+   export PYTHONPATH=/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/scripts
    ```
 
 3. **Permission denied**
@@ -319,7 +319,7 @@ All endpoints are prefixed with `/api/v1/`. Future versions will use `/api/v2/` 
 
 ## Support
 
-- GitHub Issues: [Report bugs](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+- GitHub Issues: [Report bugs](https://github.com/Luminous-Dynamics/luminous-nix/issues)
 - Documentation: [Integration Guide](../../docs/ACTIVE/development/HEADLESS_INTEGRATION_GUIDE.md)
 - Examples: See `examples/` directory
 

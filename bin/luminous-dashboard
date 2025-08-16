@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+"""
+Launch the Luminous Nix self-healing dashboard.
+"""
+
+import sys
+import os
+
+# Add project to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+from luminous_nix.self_healing.dashboard import main
+import asyncio
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n✨ Dashboard closed gracefully")

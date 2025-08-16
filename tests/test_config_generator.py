@@ -13,9 +13,9 @@ import pytest
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from nix_for_humanity.core.unified_backend import Context, Intent, IntentType
-from nix_for_humanity.plugins.config_generator import ConfigGeneratorPlugin
-
+from luminous_nix.api.schema import Context
+from luminous_nix.core.intents import Intent, IntentType
+from luminous_nix.plugins.config_generator import ConfigGeneratorPlugin
 
 class TestConfigGeneratorPlugin:
     """Test configuration generation"""
@@ -138,16 +138,14 @@ class TestConfigGeneratorPlugin:
         assert "services.nginx.enable = true" in result.output
         assert result.metadata["type"] == "nix_config"
 
-
 class TestSmartSearchPlugin:
     """Test smart search functionality"""
 
     def test_smart_search_import(self):
         """Test that SmartSearchPlugin can be imported"""
-        from nix_for_humanity.plugins.config_generator import SmartSearchPlugin
+        from luminous_nix.plugins.config_generator import SmartSearchPlugin
 
         assert SmartSearchPlugin is not None
-
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

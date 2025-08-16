@@ -134,7 +134,7 @@ def find_failing_tests():
 import sys
 sys.path.insert(0, 'src')
 
-from nix_for_humanity.ai.nlp import NLPEngine
+from luminous_nix.ai.nlp import NLPEngine
 
 # Test patterns that might be failing
 test_cases = [

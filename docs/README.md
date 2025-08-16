@@ -1,4 +1,4 @@
-# Nix for Humanity Documentation
+# Luminous Nix Documentation
 
 **Natural language for NixOS.** Say what you want, we handle the complexity.
 
@@ -38,8 +38,8 @@ Choose your path: **User** | **Developer** | **Deployer**
 
 **Sacred Trinity Model**: Human + AI + Local LLM = $200/month achieving $4.2M quality
 
-- GitHub: [Luminous-Dynamics/nix-for-humanity](https://github.com/Luminous-Dynamics/nix-for-humanity)
-- Issues: [Report bugs](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+- GitHub: [Luminous-Dynamics/luminous-nix](https://github.com/Luminous-Dynamics/luminous-nix)
+- Issues: [Report bugs](https://github.com/Luminous-Dynamics/luminous-nix/issues)
 - License: MIT
 **Implementation**: [Learning System Architecture](./02-ARCHITECTURE/09-LEARNING-SYSTEM.md) - Four-dimensional AI evolution
 
@@ -192,7 +192,7 @@ Previous documentation versions and decisions
 nix develop
 
 # Enable native performance
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Natural language commands
 ./bin/ask-nix "install firefox"
@@ -241,9 +241,9 @@ Total cost: $200/month vs $4.2M traditional!
 
 ## 🔗 Important Links
 
-- [GitHub Repository](https://github.com/Luminous-Dynamics/nix-for-humanity)
-- [Issue Tracker](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
-- [Discussions](https://github.com/Luminous-Dynamics/nix-for-humanity/discussions)
+- [GitHub Repository](https://github.com/Luminous-Dynamics/luminous-nix)
+- [Issue Tracker](https://github.com/Luminous-Dynamics/luminous-nix/issues)
+- [Discussions](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
 
 ## 📝 License
 

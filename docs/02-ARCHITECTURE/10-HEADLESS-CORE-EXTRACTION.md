@@ -192,7 +192,7 @@ def test_install_intent():
 Run the test script to see the core in action:
 
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 python3 test_core.py
 ```
 

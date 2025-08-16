@@ -19,16 +19,14 @@ try:
 except ImportError:
     pytest = None
 
-
 import unittest
-
 
 class TestPragmaticLearning(unittest.TestCase):
     """Test the pragmatic learning system."""
 
     def test_learns_aliases_from_corrections(self):
         """User types wrong command, then correct one - system learns."""
-        from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
+        from luminous_nix.learning.pragmatic_learning import PragmaticLearningSystem
 
         learning = PragmaticLearningSystem("test_alias")
         learning.ALIAS_THRESHOLD = 2  # Faster learning for tests
@@ -49,7 +47,6 @@ class TestPragmaticLearning(unittest.TestCase):
 
     def test_learns_command_sequences(self):
         """System learns common command patterns."""
-        from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
 
         learning = PragmaticLearningSystem("test_seq")
         learning.SEQUENCE_THRESHOLD = 2
@@ -70,7 +67,6 @@ class TestPragmaticLearning(unittest.TestCase):
 
     def test_learning_persistence(self):
         """Learning data persists across sessions."""
-        from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
 
         # Session 1: Learn something
         learning1 = PragmaticLearningSystem("test_persist")
@@ -86,7 +82,6 @@ class TestPragmaticLearning(unittest.TestCase):
 
     def test_verbosity_adaptation(self):
         """System adapts verbosity based on experience."""
-        from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
 
         learning = PragmaticLearningSystem("test_verbosity")
 
@@ -103,13 +98,12 @@ class TestPragmaticLearning(unittest.TestCase):
         # Cleanup
         learning.delete_all_data()
 
-
 class TestNativeAPI(unittest.TestCase):
     """Test the native Python-Nix API performance."""
 
     def test_search_performance(self):
         """Package search should be under 100ms."""
-        from nix_for_humanity.backend.native_nix_api import NativeNixAPI
+        from luminous_nix.backend.native_nix_api import NativeNixAPI
 
         api = NativeNixAPI()
 
@@ -123,7 +117,6 @@ class TestNativeAPI(unittest.TestCase):
 
     def test_mock_data_structure(self):
         """Native API returns correct data structure."""
-        from nix_for_humanity.backend.native_nix_api import NativeNixAPI
 
         api = NativeNixAPI()
         results = api.search_packages("test")
@@ -136,13 +129,12 @@ class TestNativeAPI(unittest.TestCase):
             assert "version" in result
             assert "description" in result
 
-
 class TestBackendIntegration(unittest.TestCase):
     """Test the unified backend."""
 
     def test_backend_initialization(self):
         """Backend initializes with safe defaults."""
-        from nix_for_humanity.core.unified_backend import NixForHumanityBackend
+        from luminous_nix.core.backend import NixForHumanityBackend
 
         backend = NixForHumanityBackend()
 
@@ -155,7 +147,7 @@ class TestBackendIntegration(unittest.TestCase):
 
     def test_intent_recognition(self):
         """Basic intent recognition works."""
-        from nix_for_humanity.core import IntentRecognizer, IntentType
+        from luminous_nix.core import IntentRecognizer, IntentType
 
         recognizer = IntentRecognizer()
 
@@ -173,13 +165,11 @@ class TestBackendIntegration(unittest.TestCase):
                 intent.type == expected_type
             ), f"'{query}' → {intent.type}, expected {expected_type}"
 
-
 class TestKairosImprovements(unittest.TestCase):
     """Test timing and flow improvements."""
 
     def test_adaptive_learning_thresholds(self):
         """Learning thresholds adapt to user experience."""
-        from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
 
         learning = PragmaticLearningSystem("test_kairos")
 
@@ -201,7 +191,6 @@ class TestKairosImprovements(unittest.TestCase):
 
     def test_no_interruption_during_flow(self):
         """System respects user flow state."""
-        from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
 
         learning = PragmaticLearningSystem("test_flow")
 
@@ -217,7 +206,6 @@ class TestKairosImprovements(unittest.TestCase):
 
         # Cleanup
         learning.delete_all_data()
-
 
 # Run with pytest
 if __name__ == "__main__":

@@ -16,13 +16,13 @@
 
 # ❓ Frequently Asked Questions
 
-*Common questions about Nix for Humanity*
+*Common questions about Luminous Nix*
 
 ## General Questions
 
-### What is Nix for Humanity?
+### What is Luminous Nix?
 
-Nix for Humanity is a natural language interface for NixOS that lets you manage your system through conversation instead of memorizing commands. You can say things like "install firefox" or "my wifi isn't working" and get helpful, personalized responses.
+Luminous Nix is a natural language interface for NixOS that lets you manage your system through conversation instead of memorizing commands. You can say things like "install firefox" or "my wifi isn't working" and get helpful, personalized responses.
 
 ### How is this different from a traditional GUI?
 
@@ -38,12 +38,12 @@ Absolutely. Everything runs locally on your machine. No data is sent to external
 
 ## Getting Started
 
-### How do I install Nix for Humanity?
+### How do I install Luminous Nix?
 
 Currently, you need to clone the repository and run it from source:
 
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./bin/ask-nix "help"
 ```
 
@@ -74,7 +74,7 @@ ask-nix --show-command "install firefox"
 
 Make sure you're in the project directory and use the full path:
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./bin/ask-nix "help"
 ```
 
@@ -99,7 +99,7 @@ System: My mistake! Installing Vim instead. I'll remember that.
 
 Try the native Python backend for 10x performance:
 ```bash
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 ```
 
 ### Getting permission errors

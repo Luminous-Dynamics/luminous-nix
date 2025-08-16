@@ -1,4 +1,4 @@
-# 🎬 Nix for Humanity - Video Demo Scripts
+# 🎬 Luminous Nix - Video Demo Scripts
 
 ## 📹 Demo 1: Natural Language Magic (2 min)
 
@@ -9,7 +9,7 @@
 
 **[0:00 - 0:10] Introduction**
 ```
-Welcome to Nix for Humanity - making NixOS accessible through natural conversation!
+Welcome to Luminous Nix - making NixOS accessible through natural conversation!
 Let me show you how easy it is to use NixOS without memorizing commands.
 ```
 
@@ -87,7 +87,7 @@ $ ask-nix "install my usual tools"
 
 **[1:30 - 2:00] Closing**
 ```
-That's Nix for Humanity - turning NixOS from intimidating to intuitive!
+That's Luminous Nix - turning NixOS from intimidating to intuitive!
 
 Key features shown:
 ✨ Natural language understanding
@@ -95,7 +95,7 @@ Key features shown:
 🔧 Smart configuration generation
 🧠 Learning from your patterns
 
-Get started: github.com/luminous-dynamics/nix-for-humanity
+Get started: github.com/luminous-dynamics/luminous-nix
 ```
 
 ---
@@ -152,7 +152,7 @@ $ nix-tui
 **[0:00 - 0:15] Setup**
 ```
 Left: Traditional NixOS commands
-Right: Nix for Humanity
+Right: Luminous Nix
 ```
 
 **[0:15 - 0:45] Speed Test**
@@ -164,7 +164,7 @@ $ time nix-env -qa firefox
 $ time nix-env -iA nixpkgs.firefox
 # ... 5.7 seconds ...
 
-# RIGHT SIDE (Nix for Humanity)
+# RIGHT SIDE (Luminous Nix)
 $ time ask-nix "search firefox"
 # ... 0.3 seconds ...
 
@@ -247,7 +247,7 @@ Create an interactive dashboard showing:
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nix for Humanity - Live Metrics</title>
+    <title>Luminous Nix - Live Metrics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -324,4 +324,4 @@ After recording:
 
 ---
 
-*These demos showcase the revolutionary ease of use that Nix for Humanity brings to NixOS.*
+*These demos showcase the revolutionary ease of use that Luminous Nix brings to NixOS.*

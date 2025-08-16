@@ -1,6 +1,6 @@
 # 📚 06-TUTORIALS
 
-*Step-by-step guides for using and extending Nix for Humanity*
+*Step-by-step guides for using and extending Luminous Nix*
 
 ---
 
@@ -102,7 +102,7 @@ ask-nix --voice  # Start voice interface
 ## Original Documentation
 
 
-*Step-by-step guides for using and extending Nix for Humanity*
+*Step-by-step guides for using and extending Luminous Nix*
 
 ## Overview
 
@@ -123,7 +123,7 @@ This section contains hands-on tutorials that walk you through specific tasks an
 
 ### 📖 Reference Documents
 - **[Quick Reference](../QUICK_REFERENCE.md)** - All commands at a glance
-- **[Feature Comparison](../FEATURE_COMPARISON.md)** - Nix for Humanity vs Traditional
+- **[Feature Comparison](../FEATURE_COMPARISON.md)** - Luminous Nix vs Traditional
 - **[Migration Guide](../MIGRATION_GUIDE.md)** - For existing NixOS users
 
 ## Detailed Tutorials

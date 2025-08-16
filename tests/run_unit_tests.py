@@ -13,12 +13,11 @@ src_path = project_root / "src"
 
 # Insert at beginning to prioritize our paths
 sys.path.insert(0, str(project_root))  # For frontends.* imports
-sys.path.insert(0, str(src_path))  # For nix_for_humanity.* imports
+sys.path.insert(0, str(src_path))  # For luminous_nix.* imports
 
 print("Added to Python path:")
 print(f"  Project root: {project_root}")
 print(f"  Source path: {src_path}")
-
 
 def run_all_tests():
     """Discover and run all unit tests"""
@@ -45,7 +44,6 @@ def run_all_tests():
     # Return exit code based on success
     return 0 if result.wasSuccessful() else 1
 
-
 def run_specific_test(test_module):
     """Run a specific test module"""
 
@@ -62,7 +60,6 @@ def run_specific_test(test_module):
     except ImportError as e:
         print(f"Error: Could not import test module '{test_module}': {e}")
         return 1
-
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

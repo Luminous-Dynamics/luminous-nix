@@ -90,10 +90,10 @@ EOF
         echo "No downloads needed - using mock implementations"
         echo ""
         export NIX_VOICE_MOCK=true
-        export NIX_HUMANITY_PYTHON_BACKEND=true
+        export LUMINOUS_NIX_PYTHON_BACKEND=true
         echo "Environment variables set:"
         echo "  NIX_VOICE_MOCK=true"
-        echo "  NIX_HUMANITY_PYTHON_BACKEND=true"
+        echo "  LUMINOUS_NIX_PYTHON_BACKEND=true"
         echo ""
         echo "Now run: ./bin/nix-voice"
         ;;

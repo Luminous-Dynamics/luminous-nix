@@ -45,7 +45,7 @@ def test_backend_connection():
         sys.path.insert(0, "src")
 
         # Try importing backend
-        from nix_for_humanity.core.backend import NixForHumanityBackend
+        from luminous_nix.core.backend import NixForHumanityBackend
 
         print("  ✅ Backend imports successfully")
 

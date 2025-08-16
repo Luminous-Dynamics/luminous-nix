@@ -1,10 +1,10 @@
 # 🛠️ 03-DEVELOPMENT
 
-*Building Nix for Humanity with consciousness and code*
+*Building Luminous Nix with consciousness and code*
 
 ---
 
-💡 **Quick Context**: Everything you need to contribute to Nix for Humanity
+💡 **Quick Context**: Everything you need to contribute to Luminous Nix
 📍 **Location**: `docs/03-DEVELOPMENT/`
 🔗 **Parent**: [Documentation Hub](../README.md)
 ⏱️ **Read time**: 3 minutes for navigation
@@ -16,8 +16,8 @@
 
 ```bash
 # Clone and setup
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 nix develop  # Or: pip install -e .
 
 # Run tests
@@ -77,7 +77,7 @@ Human (Vision) + Claude Code Max (Architecture) + Local LLM (Expertise)
 ## 📂 Project Structure
 
 ```
-nix-for-humanity/
+luminous-nix/
 ├── src/                  # Source code
 │   ├── nix_for_humanity/ # Core package
 │   └── tests/            # Test suite
@@ -175,8 +175,8 @@ mypy src/
 ## 🤝 Getting Help
 
 ### Resources
-- [GitHub Discussions](https://github.com/Luminous-Dynamics/nix-for-humanity/discussions)
-- [Issue Tracker](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+- [GitHub Discussions](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
+- [Issue Tracker](https://github.com/Luminous-Dynamics/luminous-nix/issues)
 - Documentation (you're here!)
 - Code comments
 
@@ -191,11 +191,11 @@ mypy src/
 ## Original Documentation
 
 
-*Building Nix for Humanity with consciousness and code*
+*Building Luminous Nix with consciousness and code*
 
 ## Overview
 
-This section contains everything you need to contribute to Nix for Humanity. We follow a unique Sacred Trinity development model that combines human intuition, AI assistance, and local expertise.
+This section contains everything you need to contribute to Luminous Nix. We follow a unique Sacred Trinity development model that combines human intuition, AI assistance, and local expertise.
 
 ## Development Documents
 
@@ -217,15 +217,15 @@ This section contains everything you need to contribute to Nix for Humanity. We 
 
 ```bash
 # Clone the repository
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 
 # Install dependencies
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 
 # Enable native performance
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Run tests
 pytest tests/
@@ -292,7 +292,7 @@ Before writing any code:
 ## Project Structure
 
 ```
-nix-for-humanity/
+luminous-nix/
 ├── backend/               # Unified backend engine
 │   ├── core/             # Core functionality
 │   ├── python/           # Native integrations
@@ -418,7 +418,7 @@ mypy src/
 
 ## The Joy of Contributing
 
-Contributing to Nix for Humanity means:
+Contributing to Luminous Nix means:
 - Making NixOS accessible to millions
 - Proving sacred tech can be practical
 - Learning from a unique dev model

@@ -12,20 +12,20 @@ from pathlib import Path
 def update_imports(content: str) -> str:
     """Update import statements to use nix_humanity package."""
     # Update backend imports
-    content = re.sub(r"from backend\.", "from nix_for_humanity.", content)
+    content = re.sub(r"from backend\.", "from luminous_nix.", content)
     content = re.sub(
-        r"import nix_for_humanity.core as backend\.",
-        "import nix_for_humanity.",
+        r"import luminous_nix.core as backend\.",
+        "import luminous_nix.",
         content,
     )
-    content = re.sub(r"from \.\.backend", "from nix_for_humanity", content)
+    content = re.sub(r"from \.\.backend", "from luminous_nix", content)
 
     # Update relative imports
-    content = re.sub(r"from \.\.core", "from nix_for_humanity.core", content)
-    content = re.sub(r"from \.\.learning", "from nix_for_humanity.learning", content)
-    content = re.sub(r"from \.\.security", "from nix_for_humanity.security", content)
-    content = re.sub(r"from \.\.api", "from nix_for_humanity.api", content)
-    content = re.sub(r"from \.\.ai", "from nix_for_humanity.ai", content)
+    content = re.sub(r"from \.\.core", "from luminous_nix.core", content)
+    content = re.sub(r"from \.\.learning", "from luminous_nix.learning", content)
+    content = re.sub(r"from \.\.security", "from luminous_nix.security", content)
+    content = re.sub(r"from \.\.api", "from luminous_nix.api", content)
+    content = re.sub(r"from \.\.ai", "from luminous_nix.ai", content)
 
     return content
 
@@ -162,7 +162,7 @@ def update_entry_points():
                     content = f'''#!/usr/bin/env python3
 """Entry point for {script_name} command."""
 
-from nix_for_humanity.interfaces.{"cli" if script_name == "ask-nix" else "tui"} import main
+from luminous_nix.interfaces.{"cli" if script_name == "ask-nix" else "tui"} import main
 
 if __name__ == '__main__':
     main()

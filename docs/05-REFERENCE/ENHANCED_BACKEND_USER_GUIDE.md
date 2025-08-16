@@ -4,7 +4,7 @@
 
 ---
 
-💡 **Quick Context**: How to use the revolutionary performance improvements in Nix for Humanity
+💡 **Quick Context**: How to use the revolutionary performance improvements in Luminous Nix
 📍 **You are here**: Reference → Enhanced Backend User Guide
 🔗 **Related**: [Performance Guide](../04-OPERATIONS/PERFORMANCE.md) | [Configuration Reference](./CONFIGURATION.md)
 ⏱️ **Read time**: 5 minutes
@@ -30,10 +30,10 @@ If you need to control it manually:
 
 ```bash
 # Enable enhanced backend (default)
-export NIX_HUMANITY_ENHANCED=true
+export LUMINOUS_NIX_ENHANCED=true
 
 # Disable if needed
-export NIX_HUMANITY_ENHANCED=false
+export LUMINOUS_NIX_ENHANCED=false
 ```
 
 ## What's Different?
@@ -136,13 +136,13 @@ ask-nix "cleanup old generations"  # Smart cleanup with safety checks
 
 1. **Check if enhanced backend is active:**
 ```bash
-echo $NIX_HUMANITY_ENHANCED
+echo $LUMINOUS_NIX_ENHANCED
 # Should show: true
 ```
 
 2. **Ensure Python backend is enabled:**
 ```bash
-echo $NIX_HUMANITY_PYTHON_BACKEND
+echo $LUMINOUS_NIX_PYTHON_BACKEND
 # Should show: true
 ```
 
@@ -190,7 +190,7 @@ ask-nix "clear cache"
 #### Custom Cache TTL
 ```bash
 # Set cache to 10 minutes (default: 5)
-export NIX_HUMANITY_CACHE_TTL=600
+export LUMINOUS_NIX_CACHE_TTL=600
 ```
 
 #### Performance Metrics
@@ -215,7 +215,7 @@ A: Yes! It includes comprehensive security validation and has been thoroughly te
 A: Best with NixOS 24.11 or later. Falls back gracefully on older versions.
 
 **Q: Can I disable it?**
-A: Yes, set `NIX_HUMANITY_ENHANCED=false`, but why would you want to? 😊
+A: Yes, set `LUMINOUS_NIX_ENHANCED=false`, but why would you want to? 😊
 
 **Q: Does it use more memory?**
 A: Minimal increase (~10MB) for caching, well worth the speed boost.
@@ -225,7 +225,7 @@ A: Still works normally! The enhancement is transparent.
 
 ## Summary
 
-The enhanced backend makes Nix for Humanity incredibly fast while maintaining safety and simplicity. You get:
+The enhanced backend makes Luminous Nix incredibly fast while maintaining safety and simplicity. You get:
 
 - ⚡ **Instant operations** for common tasks
 - 📊 **Real-time progress** for longer operations

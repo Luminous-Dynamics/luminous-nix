@@ -14,7 +14,7 @@ import uvicorn
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.api.v1 import app
+from luminous_nix.api.v1 import app
 
 if __name__ == "__main__":
     print(

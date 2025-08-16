@@ -1,14 +1,14 @@
-# 🔄 Feature Comparison - Nix for Humanity vs Traditional NixOS
+# 🔄 Feature Comparison - Luminous Nix vs Traditional NixOS
 
 *See how natural language transforms the NixOS experience*
 
 ## Overview
 
-This guide compares traditional NixOS command-line usage with Nix for Humanity's natural language approach, highlighting the dramatic improvements in usability, speed, and accessibility.
+This guide compares traditional NixOS command-line usage with Luminous Nix's natural language approach, highlighting the dramatic improvements in usability, speed, and accessibility.
 
 ## 📊 Quick Comparison Table
 
-| Task | Traditional NixOS | Nix for Humanity | Improvement |
+| Task | Traditional NixOS | Luminous Nix | Improvement |
 |------|------------------|------------------|-------------|
 | Install Package | `nix-env -iA nixos.firefox` | `ask-nix "install firefox"` | 70% fewer characters |
 | Search Package | `nix search nixpkgs firefox` | `ask-nix "web browser"` | Natural language |
@@ -32,7 +32,7 @@ nix-env -qaP | grep -i browser
 # "photo editor" returns nothing
 ```
 
-#### Nix for Humanity Way
+#### Luminous Nix Way
 ```bash
 # Natural descriptions work
 ask-nix discover "photo editor"
@@ -71,7 +71,7 @@ sudo nixos-rebuild switch
 # Not straightforward!
 ```
 
-#### Nix for Humanity Way
+#### Luminous Nix Way
 ```bash
 # Install
 ask-nix install firefox
@@ -111,7 +111,7 @@ services.nginx = {
 sudo nixos-rebuild switch
 ```
 
-#### Nix for Humanity Way
+#### Luminous Nix Way
 ```bash
 # Generate config
 ask-nix config generate "web server with nginx"
@@ -146,7 +146,7 @@ error: infinite recursion encountered
 # Good luck debugging!
 ```
 
-#### Nix for Humanity Way
+#### Luminous Nix Way
 ```bash
 Error: Package collision detected
 → Explanation: Two versions of Firefox conflict
@@ -184,7 +184,7 @@ nix-env --rollback
 nix-collect-garbage -d
 ```
 
-#### Nix for Humanity Way
+#### Luminous Nix Way
 ```bash
 # List (instant!)
 ask-nix generation list
@@ -224,7 +224,7 @@ pkgs.mkShell {
 nix-shell
 ```
 
-#### Nix for Humanity Way
+#### Luminous Nix Way
 ```bash
 # Natural language
 ask-nix dev "python with data science tools"
@@ -262,7 +262,7 @@ ask-nix dev enter
 home-manager switch
 ```
 
-#### Nix for Humanity Way
+#### Luminous Nix Way
 ```bash
 # Natural setup
 ask-nix home init "dev setup with git and vim"
@@ -286,7 +286,7 @@ ask-nix home apply
 
 ### Speed Comparison
 
-| Operation | Traditional | Nix for Humanity | Improvement |
+| Operation | Traditional | Luminous Nix | Improvement |
 |-----------|------------|------------------|-------------|
 | List generations | 2-5 seconds | <0.01 seconds | **500x faster** |
 | Package info | 0.5-1 second | <0.05 seconds | **10x faster** |
@@ -308,7 +308,7 @@ ask-nix home apply
 - English-only errors
 - Assumes technical knowledge
 
-### Nix for Humanity Solutions
+### Luminous Nix Solutions
 - Natural language understanding
 - Full voice interface
 - Screen reader optimization
@@ -326,7 +326,7 @@ Month 3: Comfortable with flakes
 Year 1: Master the ecosystem
 ```
 
-### Nix for Humanity Path
+### Luminous Nix Path
 ```
 Minute 1: Install first package
 Hour 1: Manage configurations
@@ -348,7 +348,7 @@ error: ... firefox.unwrapped ...
 # Confusion and frustration
 ```
 
-**Nix for Humanity**:
+**Luminous Nix**:
 ```bash
 $ ask-nix "install a web browser"
 Found 4 browsers: firefox, chromium, brave, qutebrowser
@@ -367,7 +367,7 @@ error: evaluation failed
 # Hope you remember the syntax
 ```
 
-**Nix for Humanity**:
+**Luminous Nix**:
 ```bash
 $ ask-nix update
 ⚠️ Configuration error detected
@@ -388,7 +388,7 @@ $ ask-nix update
 # Time spent: 30-60 minutes
 ```
 
-**Nix for Humanity**:
+**Luminous Nix**:
 ```bash
 $ ask-nix dev "rust web development"
 ✓ Created development environment with:
@@ -423,7 +423,7 @@ $ ask-nix dev enter
 
 ## 🎯 Summary
 
-Nix for Humanity transforms NixOS from a powerful but complex system into an accessible, intelligent assistant that anyone can use. Whether you're Grandma Rose trying to install a browser or Dr. Sarah configuring a complex development environment, the natural language interface adapts to your needs while maintaining all the power of traditional NixOS.
+Luminous Nix transforms NixOS from a powerful but complex system into an accessible, intelligent assistant that anyone can use. Whether you're Grandma Rose trying to install a browser or Dr. Sarah configuring a complex development environment, the natural language interface adapts to your needs while maintaining all the power of traditional NixOS.
 
 **The future of NixOS is conversational, and it's here today.**
 

@@ -1,10 +1,10 @@
-# 🌐 Nix for Humanity JavaScript SDK
+# 🌐 Luminous Nix JavaScript SDK
 
-*JavaScript/TypeScript client library for the Nix for Humanity API*
+*JavaScript/TypeScript client library for the Luminous Nix API*
 
 ---
 
-💡 **Quick Context**: Official JavaScript SDK for integrating Nix for Humanity into web and Node.js applications
+💡 **Quick Context**: Official JavaScript SDK for integrating Luminous Nix into web and Node.js applications
 📍 **You are here**: Reference → JavaScript SDK
 🔗 **Related**: [API Reference](./02-API-REFERENCE.md) | [Python SDK](./03-PYTHON-SDK.md) | [Examples](../06-TUTORIALS/API_EXAMPLES.md)
 ⏱️ **Read time**: 10 minutes
@@ -16,24 +16,24 @@
 
 ### npm
 ```bash
-npm install nix-for-humanity
+npm install luminous-nix
 ```
 
 ### yarn
 ```bash
-yarn add nix-for-humanity
+yarn add luminous-nix
 ```
 
 ### CDN (Browser)
 ```html
-<script src="https://unpkg.com/nix-for-humanity@latest/dist/nix-humanity.min.js"></script>
+<script src="https://unpkg.com/luminous-nix@latest/dist/nix-humanity.min.js"></script>
 ```
 
 ## Quick Start
 
 ### Node.js / ES Modules
 ```javascript
-import { NixClient } from 'nix-for-humanity';
+import { NixClient } from 'luminous-nix';
 
 // Create client
 const client = new NixClient({
@@ -52,7 +52,7 @@ if (response.commands.length > 0) {
 
 ### CommonJS
 ```javascript
-const { NixClient } = require('nix-for-humanity');
+const { NixClient } = require('luminous-nix');
 
 const client = new NixClient({
   baseUrl: 'http://localhost:5000'
@@ -94,7 +94,7 @@ import {
   ExecutionMode,
   SearchResult,
   NixError
-} from 'nix-for-humanity';
+} from 'luminous-nix';
 
 const client = new NixClient({
   baseUrl: 'http://localhost:5000',
@@ -138,9 +138,9 @@ const client = new NixClient({
 ### Environment Variables
 ```javascript
 // Automatically uses these if set
-process.env.NIX_HUMANITY_API_URL = 'http://localhost:5000';
-process.env.NIX_HUMANITY_API_KEY = 'your-api-key';
-process.env.NIX_HUMANITY_TIMEOUT = '30000';
+process.env.LUMINOUS_NIX_API_URL = 'http://localhost:5000';
+process.env.LUMINOUS_NIX_API_KEY = 'your-api-key';
+process.env.LUMINOUS_NIX_TIMEOUT = '30000';
 ```
 
 ## Core Methods
@@ -296,13 +296,13 @@ client.on('rateLimit', (data) => {
 ### WebSocket Real-time Connection
 
 ```javascript
-import { NixWebSocketClient } from 'nix-for-humanity';
+import { NixWebSocketClient } from 'luminous-nix';
 
 const wsClient = new NixWebSocketClient('ws://localhost:5000');
 
 // Set up event handlers
 wsClient.on('connect', () => {
-  console.log('Connected to Nix for Humanity');
+  console.log('Connected to Luminous Nix');
 });
 
 wsClient.on('response', (data) => {
@@ -354,7 +354,7 @@ client.interceptors.response.use(
 
 ### React Hook
 ```typescript
-import { useNixQuery } from 'nix-for-humanity/react';
+import { useNixQuery } from 'luminous-nix/react';
 
 function PackageInstaller() {
   const { query, loading, error, response } = useNixQuery();
@@ -385,7 +385,7 @@ function PackageInstaller() {
 
 ### React Context Provider
 ```typescript
-import { NixProvider, useNix } from 'nix-for-humanity/react';
+import { NixProvider, useNix } from 'luminous-nix/react';
 
 // Wrap your app
 function App() {
@@ -414,7 +414,7 @@ function MyComponent() {
 ```typescript
 // Vue 3 Composition API
 import { ref } from 'vue';
-import { NixClient } from 'nix-for-humanity';
+import { NixClient } from 'luminous-nix';
 
 export function useNixClient() {
   const client = new NixClient();
@@ -451,8 +451,8 @@ export function useNixClient() {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nix for Humanity Web Client</title>
-  <script src="https://unpkg.com/nix-for-humanity@latest/dist/nix-humanity.min.js"></script>
+  <title>Luminous Nix Web Client</title>
+  <script src="https://unpkg.com/luminous-nix@latest/dist/nix-humanity.min.js"></script>
   <style>
     .container { max-width: 800px; margin: 0 auto; padding: 20px; }
     .query-input { width: 100%; padding: 10px; font-size: 16px; }
@@ -462,7 +462,7 @@ export function useNixClient() {
 </head>
 <body>
   <div class="container">
-    <h1>Nix for Humanity</h1>
+    <h1>Luminous Nix</h1>
 
     <input
       type="text"
@@ -519,7 +519,7 @@ export function useNixClient() {
 ```javascript
 #!/usr/bin/env node
 
-import { NixClient, Personality } from 'nix-for-humanity';
+import { NixClient, Personality } from 'luminous-nix';
 import readline from 'readline';
 import chalk from 'chalk';
 
@@ -533,7 +533,7 @@ const client = new NixClient({
   personality: Personality.Friendly
 });
 
-console.log(chalk.blue('Nix for Humanity Interactive Shell'));
+console.log(chalk.blue('Luminous Nix Interactive Shell'));
 console.log(chalk.gray('Type "exit" to quit\n'));
 
 rl.prompt();
@@ -583,7 +583,7 @@ rl.on('close', () => {
 
 ### Jest Example
 ```javascript
-import { NixClient } from 'nix-for-humanity';
+import { NixClient } from 'luminous-nix';
 import { jest } from '@jest/globals';
 
 describe('NixClient', () => {

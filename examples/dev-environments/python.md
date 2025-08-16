@@ -1,4 +1,4 @@
-# 🐍 Python Development with Nix for Humanity
+# 🐍 Python Development with Luminous Nix
 
 > From zero to productive Python environment in seconds
 
@@ -11,7 +11,7 @@
 nix-shell -p python311 python311Packages.pip
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "python development environment"
 ```
@@ -39,7 +39,7 @@ pkgs.mkShell {
 }
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "python data science environment with jupyter"
 ```
@@ -64,7 +64,7 @@ pkgs.mkShell {
 }
 ```
 
-**Nix for Humanity:**
+**Luminous Nix:**
 ```bash
 ask-nix "python web development with fastapi postgresql and redis"
 ```
@@ -305,7 +305,7 @@ ask-nix "jupyter notebook server with common data science packages"
 
 ## Performance Comparison
 
-| Task | Traditional Setup Time | Nix for Humanity | Speedup |
+| Task | Traditional Setup Time | Luminous Nix | Speedup |
 |------|----------------------|------------------|---------|
 | Basic Python env | 30s (searching + installing) | 2s | 15x |
 | Data Science stack | 5min (finding packages) | 3s | 100x |

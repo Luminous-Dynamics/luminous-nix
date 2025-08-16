@@ -1,10 +1,10 @@
-# CLAUDE.md - Nix for Humanity Context
+# CLAUDE.md - Luminous Nix Context
 
 ## Project Identity (Updated: 2025-07-25)
 
-**Name**: Nix for Humanity
+**Name**: Luminous Nix
 **Vision**: Context-aware natural language interface for NixOS that learns how YOU work
-**Location**: `/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity/`
+**Location**: `/srv/luminous-dynamics/11-meta-consciousness/luminous-nix/`
 
 ## 🎯 Enhanced Vision & Documentation (Updated: 2025-07-25)
 We've completed a major documentation cleanup and enhancement:
@@ -112,7 +112,7 @@ These visuals **support** natural language - they don't replace it.
 
 ## Directory Structure
 ```
-nix-for-humanity/
+luminous-nix/
 ├── src-tauri/           # Rust backend (Tauri)
 │   ├── src/             # Rust source code
 │   └── Cargo.toml       # Rust dependencies
@@ -173,7 +173,7 @@ nix-for-humanity/
 ## Quick Commands
 ```bash
 # Enter project
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # Install dependencies
 npm install

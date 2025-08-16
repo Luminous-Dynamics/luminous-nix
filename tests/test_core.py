@@ -9,8 +9,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.core import NixForHumanityBackend
-
+from luminous_nix.core import NixForHumanityBackend
 
 def test_core():
     """Test the core engine with various queries"""
@@ -56,7 +55,6 @@ def test_core():
     # Test shows basic functionality
     print("\n\n✅ Basic core functionality test complete")
     print("=" * 60)
-
 
 if __name__ == "__main__":
     test_core()

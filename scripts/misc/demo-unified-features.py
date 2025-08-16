@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from rich.console import Console
 
-from nix_for_humanity.ui.unified_enhanced_tui import UnifiedEnhancedTUI
+from luminous_nix.ui.unified_enhanced_tui import UnifiedEnhancedTUI
 
 console = Console()
 
@@ -45,8 +45,8 @@ async def demo_sequence():
     app = UnifiedEnhancedTUI()
 
     # Set up demo mode
-    os.environ["NIX_HUMANITY_DEMO_MODE"] = "true"
-    os.environ["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+    os.environ["LUMINOUS_NIX_DEMO_MODE"] = "true"
+    os.environ["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
 
     console.print("\n[green]✨ TUI Started![/green]")
     console.print("\n[bold]Demo Commands to Try:[/bold]")

@@ -4,7 +4,7 @@
 
 ### "Command not found"
 ```
-Thanks for trying Nix for Humanity! It looks like the binary isn't in your PATH. Try:
+Thanks for trying Luminous Nix! It looks like the binary isn't in your PATH. Try:
 
 1. Run directly: `./bin/ask-nix "help"`
 2. Or add to PATH: `export PATH=$PATH:$(pwd)/bin`
@@ -35,7 +35,7 @@ Want to be notified? Watch this repo for releases!
 
 ### "Can it do X?"
 ```
-Thanks for the suggestion! Nix for Humanity is designed to learn and grow. Could you:
+Thanks for the suggestion! Luminous Nix is designed to learn and grow. Could you:
 
 1. Give an example of what you'd like to say?
 2. What should happen when you say it?

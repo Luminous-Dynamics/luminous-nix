@@ -1,10 +1,10 @@
 # 🚀 04-OPERATIONS
 
-*Deploying, monitoring, and maintaining Nix for Humanity in production*
+*Deploying, monitoring, and maintaining Luminous Nix in production*
 
 ---
 
-💡 **Quick Context**: Everything needed to run Nix for Humanity in production
+💡 **Quick Context**: Everything needed to run Luminous Nix in production
 📍 **Location**: `docs/04-OPERATIONS/`
 🔗 **Parent**: [Documentation Hub](../README.md)
 ⏱️ **Read time**: 4 minutes for navigation
@@ -42,21 +42,21 @@
 ### Local Installation
 ```bash
 # Using pip
-pip install nix-for-humanity
+pip install luminous-nix
 
 # Using nix
-nix run github:Luminous-Dynamics/nix-for-humanity
+nix run github:Luminous-Dynamics/luminous-nix
 
 # Development mode
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 pip install -e .
 ```
 
 ### NixOS Module
 ```nix
 # In configuration.nix
-services.nix-for-humanity = {
+services.luminous-nix = {
   enable = true;
   backend = "python";
   settings = {
@@ -183,11 +183,11 @@ services.nix-for-humanity = {
 ## Original Documentation
 
 
-*Getting Nix for Humanity into production*
+*Getting Luminous Nix into production*
 
 ## Overview
 
-This section contains operational documentation for deploying, monitoring, and maintaining Nix for Humanity in production environments.
+This section contains operational documentation for deploying, monitoring, and maintaining Luminous Nix in production environments.
 
 ## Documents
 
@@ -224,9 +224,9 @@ python3 -m src.main --production
 ### NixOS Deployment
 ```nix
 # In configuration.nix
-services.nix-for-humanity = {
+services.luminous-nix = {
   enable = true;
-  package = pkgs.nix-for-humanity;
+  package = pkgs.luminous-nix;
   settings = {
     backend = "python";
     loglevel = "info";
@@ -237,14 +237,14 @@ services.nix-for-humanity = {
 ### Docker Deployment
 ```bash
 # Build image
-docker build -t nix-for-humanity .
+docker build -t luminous-nix .
 
 # Run container
 docker run -d \
-  --name nix-for-humanity \
+  --name luminous-nix \
   -v /nix:/nix:ro \
-  -v ~/.local/share/nix-for-humanity:/data \
-  nix-for-humanity
+  -v ~/.local/share/luminous-nix:/data \
+  luminous-nix
 ```
 
 ## Monitoring

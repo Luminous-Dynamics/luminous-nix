@@ -52,11 +52,11 @@ def main():
     # Step 4: Verify installations
     print("\n4️⃣ Verifying installations...")
     test_imports = [
-        ("Core", "from nix_for_humanity.core.nlp_engine import NLPEngine"),
-        ("CLI", "from nix_for_humanity.interfaces.cli import main"),
+        ("Core", "from luminous_nix.core.nlp_engine import NLPEngine"),
+        ("CLI", "from luminous_nix.interfaces.cli import main"),
         (
             "TUI",
-            "import textual; from nix_for_humanity.ui.main_app import NixForHumanityApp",
+            "import textual; from luminous_nix.ui.main_app import NixForHumanityApp",
         ),
         ("Voice", "import whisper, sounddevice, piper"),
     ]
@@ -137,10 +137,10 @@ poetry run pre-commit install 2>/dev/null || true
 # Run initial tests
 echo "🧪 Running quick tests..."
 poetry run python -c "
-from nix_for_humanity.core.nlp_engine import NLPEngine
+from luminous_nix.core.nlp_engine import NLPEngine
 print('✅ Core imports working!')
 try:
-    from nix_for_humanity.ui.main_app import NixForHumanityApp
+    from luminous_nix.ui.main_app import NixForHumanityApp
     print('✅ TUI imports working!')
 except ImportError:
     print('⚠️  TUI not available')

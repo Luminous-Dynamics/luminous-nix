@@ -17,7 +17,7 @@ from rich.layout import Layout
 from rich.panel import Panel
 from rich.text import Text
 
-from nix_for_humanity.ui.enhanced_consciousness_orb import (
+from luminous_nix.ui.enhanced_consciousness_orb import (
     AIState,
     EmotionalState,
     EnhancedConsciousnessOrb,

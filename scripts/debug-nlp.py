@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, "src")
 
-from nix_for_humanity.ai.nlp import NLPPipeline
+from luminous_nix.ai.nlp import NLPPipeline
 
 # Create pipeline
 nlp = NLPPipeline()

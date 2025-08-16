@@ -66,14 +66,14 @@ def fix_test_imports():
 
         # Fix imports
         content = re.sub(
-            r"from nix_for_humanity\.core\.types import.*IntentRecognizer.*",
-            "from nix_for_humanity.core.intent_engine import IntentEngine as IntentRecognizer",
+            r"from luminous_nix\.core\.types import.*IntentRecognizer.*",
+            "from luminous_nix.core.intent_engine import IntentEngine as IntentRecognizer",
             content,
         )
 
         content = re.sub(
-            r"from nix_for_humanity\.core\.types import.*Intent, IntentType",
-            "from nix_for_humanity.core.types import Intent, IntentType",
+            r"from luminous_nix\.core\.types import.*Intent, IntentType",
+            "from luminous_nix.core.types import Intent, IntentType",
             content,
         )
 

@@ -1,4 +1,4 @@
-# 🚀 CI/CD Guide - Nix for Humanity
+# 🚀 CI/CD Guide - Luminous Nix
 
 **Status**: ACTIVE
 **Last Updated**: 2025-08-11
@@ -117,9 +117,9 @@ git push origin main --tags
 Add these to your README:
 
 ```markdown
-![Standards](https://github.com/Luminous-Dynamics/nix-for-humanity/workflows/Standards%20Compliance%20Check/badge.svg)
-![Performance](https://github.com/Luminous-Dynamics/nix-for-humanity/workflows/Performance%20Testing/badge.svg)
-![Release](https://github.com/Luminous-Dynamics/nix-for-humanity/workflows/Release/badge.svg)
+![Standards](https://github.com/Luminous-Dynamics/luminous-nix/workflows/Standards%20Compliance%20Check/badge.svg)
+![Performance](https://github.com/Luminous-Dynamics/luminous-nix/workflows/Performance%20Testing/badge.svg)
+![Release](https://github.com/Luminous-Dynamics/luminous-nix/workflows/Release/badge.svg)
 ```
 
 ## 🔧 GitHub Secrets Required

@@ -33,9 +33,6 @@ def run_single_test():
     try:
         # Create temporary test script
         test_script = f'''
-import sys
-import os
-from pathlib import Path
 sys.path.insert(0, "{src_path}")
 sys.path.insert(0, "{frontends_path}")
 sys.path.insert(0, "{backend_path}")
@@ -89,7 +86,7 @@ def test_adapter():
     sys.argv = original_argv
 
     # Test 4: Response formatting
-    from nix_for_humanity.core import Response
+    from luminous_nix.core import Response
     test_response = Response(
         success=True,
         text="Test response",
@@ -177,7 +174,7 @@ def check_remaining_issues():
         print("📦 Testing core imports...")
 
         try:
-            from nix_for_humanity.core.interface import (
+            from luminous_nix.core.interface import (
                 Intent,
                 IntentType,
                 Query,
@@ -189,7 +186,7 @@ def check_remaining_issues():
             print(f"❌ Core interface import issue: {e}")
 
         try:
-            from nix_for_humanity.core.types import Command
+            from luminous_nix.core.types import Command
 
             print("✅ Core types imports working")
         except ImportError as e:

@@ -23,7 +23,7 @@ This review process honors our unique Human-AI collaboration while ensuring cont
 #### Session Start Protocol
 ```bash
 # Quick health check at session start
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 
 # 1. Check current standards status
 ./scripts/monitor_standards.sh  # Quick glance, then Ctrl+C
@@ -276,7 +276,7 @@ Remember: We're achieving $4.2M team quality at $200/month. Our standards and re
 
 ```bash
 # Right now - establish baseline
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 python scripts/generate_weekly_report.py
 echo "Baseline established: $(date)" >> .claude/session-notes.md
 

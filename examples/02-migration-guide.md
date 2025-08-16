@@ -1,14 +1,14 @@
-# 🔄 Migration Guide: From Traditional NixOS to Nix for Humanity
+# 🔄 Migration Guide: From Traditional NixOS to Luminous Nix
 
 > Seamlessly transition from command-line complexity to natural language simplicity
 
 ## Overview
 
-This guide helps experienced NixOS users transition to Nix for Humanity while maintaining all their power and flexibility.
+This guide helps experienced NixOS users transition to Luminous Nix while maintaining all their power and flexibility.
 
 ## Command Translation Table
 
-| Traditional Command | Nix for Humanity | Notes |
+| Traditional Command | Luminous Nix | Notes |
 |-------------------|------------------|-------|
 | `nix-env -iA nixos.firefox` | `ask-nix "install firefox"` | Auto-detects package attribute |
 | `nix-env -e firefox` | `ask-nix "remove firefox"` | Handles dependencies |
@@ -27,7 +27,7 @@ This guide helps experienced NixOS users transition to Nix for Humanity while ma
 
 ```bash
 # Clone and install
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 ./install.sh
 
 # Verify installation
@@ -288,7 +288,7 @@ Actually **10-1500x faster** due to:
 
 ## Migration Checklist
 
-- [ ] Install Nix for Humanity
+- [ ] Install Luminous Nix
 - [ ] Set up personal aliases
 - [ ] Configure preferences
 - [ ] Try basic package operations
@@ -317,7 +317,7 @@ ask-nix "examples of postgresql configuration"
 ### Community
 - GitHub Discussions
 - Matrix Chat
-- IRC: #nix-for-humanity
+- IRC: #luminous-nix
 
 ## Success Metrics
 

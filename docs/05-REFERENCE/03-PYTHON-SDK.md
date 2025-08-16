@@ -1,10 +1,10 @@
-# 🐍 Nix for Humanity Python SDK
+# 🐍 Luminous Nix Python SDK
 
-*Python client library for the Nix for Humanity API*
+*Python client library for the Luminous Nix API*
 
 ---
 
-💡 **Quick Context**: Official Python SDK for integrating Nix for Humanity into Python applications
+💡 **Quick Context**: Official Python SDK for integrating Luminous Nix into Python applications
 📍 **You are here**: Reference → Python SDK
 🔗 **Related**: [API Reference](./02-API-REFERENCE.md) | [JavaScript SDK](./04-JAVASCRIPT-SDK.md) | [Examples](../06-TUTORIALS/API_EXAMPLES.md)
 ⏱️ **Read time**: 10 minutes
@@ -15,13 +15,13 @@
 ## Installation
 
 ```bash
-pip install nix-for-humanity
+pip install luminous-nix
 ```
 
 Or install from source:
 ```bash
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 pip install -e .
 ```
 
@@ -61,9 +61,9 @@ client = NixClient(
 ### Environment Variables
 ```python
 # The client will automatically use these if set
-export NIX_HUMANITY_API_URL=http://localhost:5000
-export NIX_HUMANITY_API_KEY=your-api-key
-export NIX_HUMANITY_TIMEOUT=30
+export LUMINOUS_NIX_API_URL=http://localhost:5000
+export LUMINOUS_NIX_API_KEY=your-api-key
+export LUMINOUS_NIX_TIMEOUT=30
 ```
 
 ## Core Methods
@@ -274,7 +274,7 @@ import readline  # For command history
 def main():
     client = NixClient(personality=Personality.FRIENDLY)
 
-    print("Nix for Humanity Interactive Shell")
+    print("Luminous Nix Interactive Shell")
     print("Type 'exit' to quit\n")
 
     while True:
@@ -331,7 +331,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def install_packages(packages):
-    """Install multiple packages using Nix for Humanity"""
+    """Install multiple packages using Luminous Nix"""
     client = NixClient(
         personality=Personality.MINIMAL,
         execution_mode=ExecutionMode.SAFE

@@ -1,4 +1,4 @@
-# Project Status - Nix for Humanity
+# Project Status - Luminous Nix
 
 ## Current State: Alpha Development Phase
 

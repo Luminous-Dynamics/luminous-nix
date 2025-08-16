@@ -17,11 +17,11 @@ print("🧪 Testing new backend architecture...\n")
 # Test 1: Import backend module
 print("1️⃣ Testing backend imports...")
 try:
-    from nix_for_humanity.core import NixForHumanityBackend, Request
+    from luminous_nix.core import NixForHumanityBackend, Request
 
     print("✅ Successfully imported backend module")
 except Exception as e:
-    print(f"❌ Failed to import nix_for_humanity.core as backend: {e}")
+    print(f"❌ Failed to import luminous_nix.core as backend: {e}")
     sys.exit(1)
 
 # Test 2: Create backend instance
@@ -79,7 +79,7 @@ for query in test_queries:
 
 # Test 5: Test Python backend feature flag
 print("\n5️⃣ Testing feature flag integration...")
-os.environ["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+os.environ["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
 os.environ["DEBUG"] = "1"
 
 # Import ask-nix module
@@ -92,7 +92,7 @@ try:
 
     # Pass environment variables to subprocess
     env = os.environ.copy()
-    env["NIX_HUMANITY_PYTHON_BACKEND"] = "true"
+    env["LUMINOUS_NIX_PYTHON_BACKEND"] = "true"
     env["DEBUG"] = "1"
 
     # Also ensure PYTHONPATH includes the backend
@@ -121,7 +121,7 @@ try:
         )
         # Additional check: when backend is disabled, we should see different behavior
         env_no_backend = env.copy()
-        env_no_backend["NIX_HUMANITY_PYTHON_BACKEND"] = "false"
+        env_no_backend["LUMINOUS_NIX_PYTHON_BACKEND"] = "false"
         result_no_backend = subprocess.run(
             [
                 sys.executable,
@@ -171,7 +171,7 @@ except Exception as e:
 
 print("\n✨ Backend architecture test complete!")
 print("\nTo use the new backend:")
-print("1. Set environment variable: export NIX_HUMANITY_PYTHON_BACKEND=true")
+print("1. Set environment variable: export LUMINOUS_NIX_PYTHON_BACKEND=true")
 print("2. Run: ask-nix 'install firefox'")
 print("\nThe new backend provides:")
 print("- Unified architecture serving all frontends")

@@ -14,15 +14,15 @@ BASE_DIR = Path("/srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity")
 # Mapping of incorrect imports to correct imports
 IMPORT_FIXES = {
     # AriaLivePriority fixes
-    r"from nix_for_humanity\.tui\.components import.*AriaLivePriority": "from nix_for_humanity.accessibility.screen_reader import AriaLivePriority",
-    r"from nix_for_humanity\.types import.*AriaLivePriority": "from nix_for_humanity.accessibility.screen_reader import AriaLivePriority",
+    r"from luminous_nix\.tui\.components import.*AriaLivePriority": "from luminous_nix.accessibility.screen_reader import AriaLivePriority",
+    r"from luminous_nix\.types import.*AriaLivePriority": "from luminous_nix.accessibility.screen_reader import AriaLivePriority",
     # Plan fixes
-    r"from nix_for_humanity\.types import.*Plan": "from nix_for_humanity.core.planning import Plan",
+    r"from luminous_nix\.types import.*Plan": "from luminous_nix.core.planning import Plan",
     # Mixed imports that need splitting
-    r"from nix_for_humanity\.types import (.*)Plan(.*)": lambda match: _split_plan_import(
+    r"from luminous_nix\.types import (.*)Plan(.*)": lambda match: _split_plan_import(
         match
     ),
-    r"from nix_for_humanity\.tui\.components import (.*)AriaLivePriority(.*)": lambda match: _split_aria_import(
+    r"from luminous_nix\.tui\.components import (.*)AriaLivePriority(.*)": lambda match: _split_aria_import(
         match
     ),
 }
@@ -42,8 +42,8 @@ def _split_plan_import(match):
 
     if other_imports:
         # Keep other imports from types, add Plan import separately
-        return "from nix_for_humanity.core.planning import Plan"
-    return "from nix_for_humanity.core.planning import Plan"
+        return "from luminous_nix.core.planning import Plan"
+    return "from luminous_nix.core.planning import Plan"
 
 
 def _split_aria_import(match):
@@ -61,9 +61,9 @@ def _split_aria_import(match):
     if other_imports:
         # Keep other imports from tui.components, add AriaLivePriority import separately
         return (
-            "from nix_for_humanity.accessibility.screen_reader import AriaLivePriority"
+            "from luminous_nix.accessibility.screen_reader import AriaLivePriority"
         )
-    return "from nix_for_humanity.accessibility.screen_reader import AriaLivePriority"
+    return "from luminous_nix.accessibility.screen_reader import AriaLivePriority"
 
 
 def fix_imports_in_file(filepath):
@@ -111,9 +111,9 @@ def find_files_with_import_issues():
 
     # Search patterns to find files with issues
     search_patterns = [
-        r"from nix_for_humanity\.tui\.components import.*AriaLivePriority",
-        r"from nix_for_humanity\.types import.*AriaLivePriority",
-        r"from nix_for_humanity\.types import.*Plan",
+        r"from luminous_nix\.tui\.components import.*AriaLivePriority",
+        r"from luminous_nix\.types import.*AriaLivePriority",
+        r"from luminous_nix\.types import.*Plan",
     ]
 
     # Find all Python files

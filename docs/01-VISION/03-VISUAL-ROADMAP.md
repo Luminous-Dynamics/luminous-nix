@@ -1,4 +1,4 @@
-# 🗺️ Nix for Humanity - Visual Development Roadmap
+# 🗺️ Luminous Nix - Visual Development Roadmap
 
 ## 🌟 Vision: Natural Language NixOS for Everyone
 
@@ -100,7 +100,7 @@
 
 ```
 Traditional Approach:     $4,200,000 (18 months, 15 people)
-Nix for Humanity:            $2,400 (3 months, Sacred Trinity)
+Luminous Nix:            $2,400 (3 months, Sacred Trinity)
                          ─────────────
 Savings:                  $4,197,600 (99.94% reduction)
 ```

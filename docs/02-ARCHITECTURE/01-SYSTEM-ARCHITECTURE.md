@@ -1,4 +1,4 @@
-# 🏗️ Nix for Humanity - System Architecture
+# 🏗️ Luminous Nix - System Architecture
 
 *The authoritative technical architecture for symbiotic human-AI partnership*
 
@@ -44,7 +44,7 @@
 
 ## Vision & Philosophy
 
-Nix for Humanity transforms NixOS from command-line complexity into natural conversation. Built on consciousness-first principles, our architecture proves that sacred technology can be deeply practical. We're creating genuine human-AI partnership through revolutionary symbiotic intelligence that learns, adapts, and evolves with each user.
+Luminous Nix transforms NixOS from command-line complexity into natural conversation. Built on consciousness-first principles, our architecture proves that sacred technology can be deeply practical. We're creating genuine human-AI partnership through revolutionary symbiotic intelligence that learns, adapts, and evolves with each user.
 
 **The Goal**: Make NixOS accessible to everyone through conversation while preserving its power for experts.
 
@@ -62,7 +62,7 @@ Nix for Humanity transforms NixOS from command-line complexity into natural conv
 
 ## System Overview: Revolutionary Symbiotic Intelligence
 
-Nix for Humanity implements a groundbreaking headless architecture: one intelligent backend serving multiple adaptive frontends. This enables the same AI intelligence to power CLI tools for developers, voice interfaces for accessibility, and GUI applications for visual learners.
+Luminous Nix implements a groundbreaking headless architecture: one intelligent backend serving multiple adaptive frontends. This enables the same AI intelligence to power CLI tools for developers, voice interfaces for accessibility, and GUI applications for visual learners.
 
 ### Revolutionary Breakthroughs Achieved
 - **Native Python-Nix Integration**: 10x-1500x performance gains via direct API access
@@ -317,7 +317,7 @@ Human-Optimized Response Times:
 
 ### Local Installation
 ```
-/opt/nix-for-humanity/
+/opt/luminous-nix/
 ├── bin/              # Executables
 ├── lib/              # Core libraries
 ├── models/           # NLP models

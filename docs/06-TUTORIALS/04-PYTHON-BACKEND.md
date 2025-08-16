@@ -17,21 +17,21 @@ The Python backend integration allows `ask-nix` to use direct Python API calls t
 
 ```bash
 # Enable Python backend
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 
 # Or for a single command
-NIX_HUMANITY_PYTHON_BACKEND=true ask-nix "install firefox"
+LUMINOUS_NIX_PYTHON_BACKEND=true ask-nix "install firefox"
 ```
 
 ### 2. Test the Integration
 
 ```bash
 # Run the test script
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 python3 test-python-backend.py
 
 # Or test manually
-NIX_HUMANITY_PYTHON_BACKEND=true ask-nix --dry-run "update my system"
+LUMINOUS_NIX_PYTHON_BACKEND=true ask-nix --dry-run "update my system"
 ```
 
 ### 3. Make it Permanent
@@ -40,7 +40,7 @@ Add to your shell configuration:
 
 ```bash
 # ~/.bashrc or ~/.zshrc
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 ```
 
 ## How It Works
@@ -50,7 +50,7 @@ export NIX_HUMANITY_PYTHON_BACKEND=true
 ```
 ask-nix command
     ↓
-Feature flag check (NIX_HUMANITY_PYTHON_BACKEND)
+Feature flag check (LUMINOUS_NIX_PYTHON_BACKEND)
     ↓
 If enabled: try_python_backend()
     ├─→ Import unified_nix_backend
@@ -109,7 +109,7 @@ Look for this message in the output:
 
 ```bash
 export DEBUG=1
-export NIX_HUMANITY_PYTHON_BACKEND=true
+export LUMINOUS_NIX_PYTHON_BACKEND=true
 ask-nix "install firefox"
 ```
 
@@ -125,7 +125,7 @@ ask-nix "install firefox"
 
 3. **Feature flag not detected**:
    - Ensure environment variable is exported
-   - Check spelling: `NIX_HUMANITY_PYTHON_BACKEND`
+   - Check spelling: `LUMINOUS_NIX_PYTHON_BACKEND`
 
 ## Performance Comparison
 
@@ -166,7 +166,7 @@ Progress: Real-time streaming
 
 1. **Test it now**:
    ```bash
-   export NIX_HUMANITY_PYTHON_BACKEND=true
+   export LUMINOUS_NIX_PYTHON_BACKEND=true
    ask-nix "search python"
    ```
 
@@ -182,4 +182,4 @@ Progress: Real-time streaming
 
 ---
 
-*The Python backend is the future of Nix for Humanity - faster, smarter, and more reliable!*
+*The Python backend is the future of Luminous Nix - faster, smarter, and more reliable!*

@@ -1,4 +1,4 @@
-# 🎉 Nix for Humanity v1.0.1 Released!
+# 🎉 Luminous Nix v1.0.1 Released!
 
 ## Critical Bug Fix for Natural Language Processing
 
@@ -42,9 +42,9 @@ poetry run pytest tests/unit/test_pattern_fix.py -v
 ```
 
 ### Links
-- 📦 [GitHub Release](https://github.com/Luminous-Dynamics/nix-for-humanity/releases/tag/v1.0.1)
-- 📖 [Full Release Notes](https://github.com/Luminous-Dynamics/nix-for-humanity/blob/v1.0.1/RELEASE-v1.0.1.md)
-- 🐛 [Report Issues](https://github.com/Luminous-Dynamics/nix-for-humanity/issues)
+- 📦 [GitHub Release](https://github.com/Luminous-Dynamics/luminous-nix/releases/tag/v1.0.1)
+- 📖 [Full Release Notes](https://github.com/Luminous-Dynamics/luminous-nix/blob/v1.0.1/RELEASE-v1.0.1.md)
+- 🐛 [Report Issues](https://github.com/Luminous-Dynamics/luminous-nix/issues)
 
 ### What's Next (v1.1.0)
 - Terminal UI (TUI) interface

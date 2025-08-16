@@ -4,7 +4,7 @@
 
 ## Overview
 
-The voice interface enables hands-free interaction with Nix for Humanity, perfect for accessibility needs, multitasking, or simply preferring to speak rather than type.
+The voice interface enables hands-free interaction with Luminous Nix, perfect for accessibility needs, multitasking, or simply preferring to speak rather than type.
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ Press Ctrl+V to toggle voice mode
 ask-nix --voice
 
 # Set as default
-export NIX_HUMANITY_VOICE=enabled
+export LUMINOUS_NIX_VOICE=enabled
 ```
 
 ### First-Time Setup

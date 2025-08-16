@@ -12,7 +12,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from nix_for_humanity.core import NixForHumanityBackend
+from luminous_nix.core import NixForHumanityBackend
 
 
 def test_tts():
@@ -59,7 +59,7 @@ def test_tui_integration():
     print("-" * 40)
     
     try:
-        from nix_for_humanity.tui.voice_widget import (
+        from luminous_nix.tui.voice_widget import (
             VoiceInterfaceWidget,
             VoiceState,
             WaveformDisplay

@@ -21,7 +21,7 @@ nix search nixpkgs "visual studio"
 # Finally finds: vscode -> vscodium or vscode-fhs
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "find visual studio code or similar"
 # Automatically suggests:
@@ -45,7 +45,7 @@ ls -la /nix/var/nix/profiles/per-user/
 sudo chown -R $USER /nix/var/nix/profiles/per-user/$USER
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "fix permission denied error for nix profiles"
 # Automatically diagnoses and suggests safe fix
@@ -66,7 +66,7 @@ nix-env -e package1
 nix-env --set-flag priority 0 package1
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "resolve collision between package1 and package2"
 # Offers options:
@@ -93,7 +93,7 @@ nix-collect-garbage -d
 nix-env --delete-generations old
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "clean up disk space safely"
 # Automatically:
@@ -119,7 +119,7 @@ nix-env -iA nixos.package_oldversion
 # Check issues on GitHub
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "why did package build fail"
 # Automatically:
@@ -143,7 +143,7 @@ nix-channel --add https://nixos.org/channels/nixos-24.11 nixos
 nix-channel --update
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "fix missing nixpkgs channel"
 # Automatically sets up correct channel for your system
@@ -163,7 +163,7 @@ error: syntax error, unexpected ')', expecting ';'
 # nixos-rebuild dry-build for testing
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "check configuration syntax"
 # Points to exact line and character
@@ -187,7 +187,7 @@ journalctl -xe -u nginx
 # Restart service
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "debug nginx service failure"
 # Automatically:
@@ -211,7 +211,7 @@ error: Package 'python3.11-tensorflow' requires 'python3.11-numpy-1.24.0' but 'p
 # Override specifications
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "resolve tensorflow numpy dependency conflict"
 # Offers solutions:
@@ -236,7 +236,7 @@ nix-build --option connect-timeout 300
 nix-build --option substituters https://mirror.nixos.org
 ```
 
-**Nix for Humanity solution:**
+**Luminous Nix solution:**
 ```bash
 ask-nix "fix download timeout"
 # Automatically:
@@ -327,7 +327,7 @@ while evaluating...
 [500 lines of stack trace]
 ```
 
-**Nix for Humanity explanation:**
+**Luminous Nix explanation:**
 ```bash
 ask-nix "explain this error: [paste error]"
 
@@ -429,4 +429,4 @@ ask-nix "best practices for NixOS"
 
 ---
 
-*Remember: Every error message is now an opportunity to learn, not a source of frustration. Nix for Humanity transforms cryptic errors into clear, actionable solutions.*
+*Remember: Every error message is now an opportunity to learn, not a source of frustration. Luminous Nix transforms cryptic errors into clear, actionable solutions.*

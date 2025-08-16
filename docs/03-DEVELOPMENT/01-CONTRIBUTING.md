@@ -1,4 +1,4 @@
-# 🤝 Contributing to Nix for Humanity
+# 🤝 Contributing to Luminous Nix
 
 *Join us in making NixOS accessible to everyone through natural conversation*
 
@@ -26,8 +26,8 @@ We're building something revolutionary - a genuine AI partner that makes NixOS a
 
 1. **Fork & Clone**
    ```bash
-   git clone https://github.com/YOUR-USERNAME/nix-for-humanity
-   cd nix-for-humanity
+   git clone https://github.com/YOUR-USERNAME/luminous-nix
+   cd luminous-nix
    ```
 
 2. **Set Up Development Environment**
@@ -99,7 +99,7 @@ See: [Testing Guide](./05-TESTING-GUIDE.md)
 - Create video tutorials
 
 ### 🐛 Bug Fixes
-Check [GitHub Issues](https://github.com/Luminous-Dynamics/nix-for-humanity/issues) labeled:
+Check [GitHub Issues](https://github.com/Luminous-Dynamics/luminous-nix/issues) labeled:
 - `good-first-issue` - Perfect for newcomers
 - `help-wanted` - Community input needed
 - `bug` - Something's broken

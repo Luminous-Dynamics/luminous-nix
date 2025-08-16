@@ -13,7 +13,6 @@ PROJECT_ROOT = Path(__file__).parent.parent
 SRC_DIR = PROJECT_ROOT / "src"
 TESTS_DIR = PROJECT_ROOT / "tests"
 
-
 def run_coverage():
     """Run tests with coverage"""
 
@@ -61,7 +60,6 @@ def run_coverage():
         print("\n❌ Some tests failed!")
 
     return result.returncode
-
 
 if __name__ == "__main__":
     sys.exit(run_coverage())

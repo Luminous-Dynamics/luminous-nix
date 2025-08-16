@@ -3,7 +3,7 @@
 ## Completed Improvements (2025-07-23)
 
 ### 1. ✅ Global Naming Update
-- **Changed**: All references from "NixOS GUI" to "Nix for Humanity"
+- **Changed**: All references from "NixOS GUI" to "Luminous Nix"
 - **Files Updated**: 50+ documentation files
 - **Method**: Global find/replace across all .md files
 - **Status**: Complete
@@ -33,7 +33,7 @@ Created comprehensive visual documentation:
 
 ### 3. ✅ Legacy Documentation Archived
 - **Action**: Moved old GUI-focused docs to archive
-- **Source**: `docs/nix-for-humanity/`
+- **Source**: `docs/luminous-nix/`
 - **Destination**: `archive/legacy-gui-docs/`
 - **Reason**: These docs referenced the old GUI-first approach
 
@@ -70,7 +70,7 @@ Created comprehensive visual documentation:
 ```
 docs/
 ├── API.md (comprehensive)
-├── nix-for-humanity/
+├── luminous-nix/
 │   ├── API.md (duplicate)
 │   └── [30+ legacy GUI docs]
 └── implementations/web-based/docs/

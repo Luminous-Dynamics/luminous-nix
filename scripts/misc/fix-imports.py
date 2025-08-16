@@ -20,18 +20,18 @@ def fix_imports_in_file(filepath):
     # Fix 1: Update old import paths
     replacements = [
         # Old path -> New path
-        (r"from core\.intent import", "from nix_for_humanity.core.intent import"),
-        (r"from core\.", "from nix_for_humanity.core."),
-        (r"import core\.", "import nix_for_humanity.core."),
+        (r"from core\.intent import", "from luminous_nix.core.intent import"),
+        (r"from core\.", "from luminous_nix.core."),
+        (r"import core\.", "import luminous_nix.core."),
         # Fix AriaLivePriority import
         (
-            r"from nix_for_humanity\.accessibility import AriaLivePriority",
-            "from nix_for_humanity.accessibility.types import AriaLivePriority",
+            r"from luminous_nix\.accessibility import AriaLivePriority",
+            "from luminous_nix.accessibility.types import AriaLivePriority",
         ),
         # Fix Plan import
         (
-            r"from nix_for_humanity\.core\.interface import.*Plan",
-            "from nix_for_humanity.core.interface import ExecutionPlan as Plan",
+            r"from luminous_nix\.core\.interface import.*Plan",
+            "from luminous_nix.core.interface import ExecutionPlan as Plan",
         ),
     ]
 

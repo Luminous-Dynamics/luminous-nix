@@ -13,7 +13,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # Import your models
-from src.nix_for_humanity.database.models import Base
+from src.luminous_nix.database.models import Base
 
 # this is the Alembic Config object
 config = context.config

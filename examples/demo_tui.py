@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 def main():
     """Run the TUI demo"""
     try:
-        from nix_for_humanity.tui.app import NixForHumanityTUI
+        from luminous_nix.tui.app import NixForHumanityTUI
         
         print("🌟 Nix for Humanity TUI Demo")
         print("=" * 50)

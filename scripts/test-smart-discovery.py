@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, "src")
 
-from nix_for_humanity.core.engine import NixForHumanityBackend
+from luminous_nix.core.engine import NixForHumanityBackend
 
 # Test queries from the test file
 test_queries = [

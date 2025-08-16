@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, "src")
 
-from nix_for_humanity.core.package_discovery import PackageDiscovery
+from luminous_nix.core.package_discovery import PackageDiscovery
 
 discovery = PackageDiscovery()
 

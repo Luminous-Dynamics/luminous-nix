@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, "src")
 
-from nix_for_humanity.ai.nlp import process
+from luminous_nix.ai.nlp import process
 
 # Test patterns that might be failing
 test_cases = [

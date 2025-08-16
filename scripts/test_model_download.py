@@ -15,7 +15,7 @@ from pathlib import Path
 # Add the project root to the path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.nix_for_humanity.voice.model_manager import ModelManager, ModelSize
+from src.luminous_nix.voice.model_manager import ModelManager, ModelSize
 
 
 class Colors:

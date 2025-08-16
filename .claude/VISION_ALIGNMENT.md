@@ -1,8 +1,8 @@
-# Vision Alignment - Nix for Humanity
+# Vision Alignment - Luminous Nix
 
 ## Core Vision: Context-Aware Natural Language Interface
 
-**Nix for Humanity** is a **context-aware natural language interface** for NixOS that learns how YOU work.
+**Luminous Nix** is a **context-aware natural language interface** for NixOS that learns how YOU work.
 
 ### What This IS:
 1. **Natural Language Understanding** - Use your own words, not commands

@@ -96,4 +96,4 @@ All Combinations Valid:
 
 ---
 
-*The shift from "voice-first" to "text-foundation with optional enhancements" makes Nix for Humanity truly accessible to every human being.*
+*The shift from "voice-first" to "text-foundation with optional enhancements" makes Luminous Nix truly accessible to every human being.*

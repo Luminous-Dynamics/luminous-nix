@@ -1,8 +1,7 @@
 """Test the pattern recognition fix for natural language."""
 
 import pytest
-from nix_for_humanity.knowledge.engine import NixOSKnowledgeEngine
-
+from luminous_nix.knowledge.engine import NixOSKnowledgeEngine
 
 class TestPatternFix:
     """Test the fix for pattern recognition issues."""

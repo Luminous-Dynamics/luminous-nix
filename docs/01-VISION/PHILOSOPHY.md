@@ -1,10 +1,10 @@
-# Philosophy - Nix for Humanity
+# Philosophy - Luminous Nix
 
 *The soul of the project: Why we build the way we build*
 
 ## Core Vision
 
-Technology should amplify human consciousness, not fragment it. Nix for Humanity isn't just about making NixOS easier - it's about fundamentally reimagining how humans and computers work together.
+Technology should amplify human consciousness, not fragment it. Luminous Nix isn't just about making NixOS easier - it's about fundamentally reimagining how humans and computers work together.
 
 ## The Sacred Trinity Development Model
 
@@ -115,7 +115,7 @@ The system never demands attention. It waits for the right moment to offer help.
 
 ### The Ultimate Success
 
-When users report: *"I forgot I was using Nix for Humanity. Things just work now."*
+When users report: *"I forgot I was using Luminous Nix. Things just work now."*
 
 ## Ethical Commitments
 

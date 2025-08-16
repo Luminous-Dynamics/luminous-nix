@@ -1,4 +1,4 @@
-# 🏗️ Nix for Humanity - Visual Architecture Guide
+# 🏗️ Luminous Nix - Visual Architecture Guide
 
 ## 🌟 System Overview
 

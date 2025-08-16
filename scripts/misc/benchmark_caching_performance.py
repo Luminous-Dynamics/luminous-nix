@@ -15,8 +15,8 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.table import Table
 
-from nix_for_humanity.core.backend import CachedBackend, EnhancedBackend
-from src.nix_for_humanity.core.types import PersonalityStyle, Request
+from luminous_nix.core.backend import CachedBackend, EnhancedBackend
+from src.luminous_nix.core.types import PersonalityStyle, Request
 
 console = Console()
 
@@ -172,7 +172,7 @@ class BenchmarkRunner:
         console.print("Testing explanation generation with caching...")
 
         # Test intent for XAI
-        from src.nix_for_humanity.core.types import Intent, IntentType
+        from src.luminous_nix.core.types import Intent, IntentType
 
         test_intents = [
             Intent(type=IntentType.INSTALL, raw_input="install firefox"),

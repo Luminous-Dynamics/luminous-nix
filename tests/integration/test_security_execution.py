@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+Security-focused integration tests for command execution.
+Ensures all user inputs are properly sanitized and validated.
+"""
 import pytest
 import os
 
@@ -6,26 +10,20 @@ import os
 if not os.path.exists("/nix/store"):
     pytest.skip("NixOS required for this test", allow_module_level=True)
 
-
-"""
-import subprocess
-Security-focused integration tests for command execution.
-Ensures all user inputs are properly sanitized and validated.
-"""
-
-import os
 import sys
 import unittest
+import subprocess
 
 from unittest.mock import Mock, MagicMock, patch, call
 
-sys.path.insert(
-    0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add src to path
+src_path = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "src"
 )
+sys.path.insert(0, src_path)
 
-from nix_for_humanity.core.executor import ExecutionEngine
-from nix_for_humanity.core.intents import IntentEngine
-
+from luminous_nix.core.executor import SafeExecutor as ExecutionEngine
+from luminous_nix.core.intents import IntentRecognizer as IntentEngine
 
 class TestSecurityExecution(unittest.TestCase):
     """Test security measures in command execution."""
@@ -277,7 +275,6 @@ class TestSecurityExecution(unittest.TestCase):
         self.assertIn("/etc", blocked)
         self.assertIn("/root", blocked)
         self.assertIn("/home", blocked)
-
 
 if __name__ == "__main__":
     unittest.main()

@@ -124,10 +124,10 @@ suggest 'nix-collect-garbage' after you rebuild."
 ## 🎬 The New Narrative
 
 ### Old Story (Too Complex)
-"Nix for Humanity uses revolutionary four-dimensional learning with Bayesian Knowledge Tracing and Dynamic Bayesian Networks to create a 'Persona of One' digital twin that models your cognitive and affective states..."
+"Luminous Nix uses revolutionary four-dimensional learning with Bayesian Knowledge Tracing and Dynamic Bayesian Networks to create a 'Persona of One' digital twin that models your cognitive and affective states..."
 
 ### New Story (Clear Value)
-"Nix for Humanity learns your vocabulary and patterns to save you time. It remembers your preferred commands, suggests fixes for common errors, and adapts to when you use it most."
+"Luminous Nix learns your vocabulary and patterns to save you time. It remembers your preferred commands, suggests fixes for common errors, and adapts to when you use it most."
 
 ## ✅ Action Items
 

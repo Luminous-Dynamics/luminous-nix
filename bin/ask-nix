@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🕉️ Main CLI for Nix for Humanity
+🕉️ Main CLI for Luminous Nix
 
 This is the official CLI that uses the unified backend.
 All the power, properly organized.
@@ -23,26 +23,28 @@ sys.path.insert(
     0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src")
 )
 
-from nix_for_humanity.core.unified_backend import (
-    Context,
+from luminous_nix.core.backend import (
     NixForHumanityBackend,
     get_backend,
 )
-from nix_for_humanity.plugins.config_generator import (
-    ConfigGeneratorPlugin,
-    SmartSearchPlugin,
-)
+from luminous_nix.api.schema import Context, Request, Response
+from luminous_nix.service_simple import LuminousNixService, ServiceOptions
+# Note: Plugins are not yet integrated into the backend
+# from nix_for_humanity.plugins.config_generator import (
+#     ConfigGeneratorPlugin,
+#     SmartSearchPlugin,
+# )
 
 # Import search command handler
 try:
-    from nix_for_humanity.cli.search_command import handle_search_in_query
+    from luminous_nix.cli.search_command import handle_search_in_query
     SEARCH_AVAILABLE = True
 except ImportError:
     SEARCH_AVAILABLE = False
 
 # Import pragmatic learning system
 try:
-    from nix_for_humanity.learning.pragmatic_learning import PragmaticLearningSystem
+    from luminous_nix.learning.pragmatic_learning import PragmaticLearningSystem
 
     LEARNING_AVAILABLE = True
 except ImportError:
@@ -55,7 +57,7 @@ try:
         "tree_sitter_commands_standalone",
         os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "src", "nix_for_humanity", "cli", "tree_sitter_commands_standalone.py"
+            "src", "luminous_nix", "cli", "tree_sitter_commands_standalone.py"
         )
     )
     tree_sitter_module = importlib.util.module_from_spec(spec)
@@ -159,22 +161,67 @@ async def handle_tree_sitter_query(query: str, execute: bool):
     return None
 
 
+class BackendAdapter:
+    """Adapter to make the backend work with the CLI's async expectations"""
+    
+    def __init__(self, backend):
+        self.backend = backend
+        self.dry_run = True
+    
+    async def initialize(self):
+        """Initialize the backend (no-op for now)"""
+        pass
+    
+    async def execute(self, query: str, context: Context) -> Response:
+        """Execute a query through the backend"""
+        # Create a request object
+        request = Request(
+            query=query,
+            context={"dry_run": self.dry_run, "execute": not self.dry_run}
+        )
+        
+        # Process synchronously (backend.process is sync)
+        response = self.backend.process(request)
+        
+        # Ensure response has expected attributes
+        if not hasattr(response, 'output'):
+            response.output = getattr(response, 'text', '')
+        if not hasattr(response, 'error'):
+            response.error = None
+        if not hasattr(response, 'suggestions'):
+            response.suggestions = []
+        if not hasattr(response, 'success'):
+            response.success = response.error is None
+        
+        return response
+    
+    async def cleanup(self):
+        """Cleanup (no-op for now)"""
+        pass
+
+
 def setup_backend(dry_run=True):
-    """Setup the backend with all plugins"""
-    # Let backend use config manager, but override dry_run if needed
+    """Setup the backend with adapter"""
+    # Use the new service layer instead of direct backend
+    options = ServiceOptions(
+        execute=not dry_run,
+        interface="cli",
+        verbose=os.getenv("DEBUG") == "1"
+    )
+    service = LuminousNixService(options)
+    
+    # For backward compatibility, wrap in adapter
+    # (will remove this once we fully migrate)
     backend = get_backend()
-    if dry_run != backend.config.get("dry_run", True):
-        backend.config["dry_run"] = dry_run
-
-    # Register plugins
-    backend.register_plugin(ConfigGeneratorPlugin())
-    backend.register_plugin(SmartSearchPlugin())
-
-    return backend
+    adapter = BackendAdapter(backend)
+    adapter.dry_run = dry_run
+    adapter._service = service  # Store service for potential future use
+    
+    return adapter
 
 
 async def execute_query(
-    query: str, execute: bool = False, enable_learning: bool = True
+    query: str, execute: bool = False, enable_learning: bool = True, output_format: str = "text"
 ):
     """Execute a natural language query with optional learning"""
     # Handle help queries specially
@@ -228,7 +275,7 @@ async def execute_query(
     spinner = None
     if is_long and sys.stdout.isatty():
         try:
-            from nix_for_humanity.ui.progress import Spinner
+            from luminous_nix.ui.progress import Spinner
 
             spinner = Spinner("Processing your request")
             spinner.start()
@@ -239,10 +286,29 @@ async def execute_query(
         backend = setup_backend(dry_run=not execute)
         await backend.initialize()
 
-        context = Context(user_id="cli_user")
+        context = Context()  # Context doesn't take user_id
         result = await backend.execute(query, context)
+        
+        # Handle JSON output format
+        if output_format in ["json", "brief"]:
+            import json
+            output_data = {
+                "query": query,
+                "success": result.success,
+                "output": result.output,
+                "error": result.error,
+                "executed": execute,
+            }
+            if output_format == "json":
+                print(json.dumps(output_data, indent=2))
+            else:  # brief
+                if result.success:
+                    print(result.output.strip())
+                else:
+                    print(f"Error: {result.error}")
+            return 0 if result.success else 1
 
-        # Track learning if enabled
+        # Track learning if enabled (only for text output)
         if learning:
             try:
                 learning.observe_command(query, result.success, result.error)
@@ -289,14 +355,14 @@ async def execute_query(
 
 async def interactive_mode():
     """Interactive REPL mode"""
-    print("🕉️ Nix for Humanity - Interactive Mode")
+    print("🕉️ Luminous Nix - Interactive Mode")
     print("Enter natural language commands. Type 'exit' to leave.")
     print("Prefix with '!' to execute for real (not dry-run).")
     print()
 
     backend = setup_backend(dry_run=True)
     await backend.initialize()
-    context = Context(user_id="cli_user")
+    context = Context()  # Context doesn't take user_id
 
     while True:
         try:
@@ -311,9 +377,9 @@ async def interactive_mode():
             # Check for execution prefix
             if query.startswith("!"):
                 query = query[1:].strip()
-                backend.config["dry_run"] = False
+                backend.dry_run = False
             else:
-                backend.config["dry_run"] = True
+                backend.dry_run = True
 
             result = await backend.execute(query, context)
 
@@ -334,7 +400,7 @@ async def interactive_mode():
 def show_help():
     """Show comprehensive help information"""
     help_text = """
-🕉️ Nix for Humanity - Natural Language NixOS Interface
+🕉️ Luminous Nix - Natural Language NixOS Interface
 
 USAGE:
     ask-nix [OPTIONS] <QUERY>
@@ -379,6 +445,12 @@ For more information, visit: https://github.com/Luminous-Dynamics/nix-for-humani
 
 def main():
     """Main entry point"""
+    # Check for alias subcommand first
+    if len(sys.argv) > 1 and sys.argv[1] == "alias":
+        from luminous_nix.cli.alias_command import handle_alias_command
+        handle_alias_command(sys.argv[2:])
+        return 0
+    
     parser = argparse.ArgumentParser(
         description="Natural language interface to NixOS",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -419,11 +491,22 @@ def main():
         action="store_true",
         help="Delete all learned data and reset",
     )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Output in JSON format for programmatic use",
+    )
+    parser.add_argument(
+        "--format",
+        choices=["text", "json", "brief"],
+        default="text",
+        help="Output format (default: text)",
+    )
 
     args = parser.parse_args()
 
     # Configure logging using our logging config system
-    from nix_for_humanity.core.logging_config import setup_logging
+    from luminous_nix.core.logging_config import setup_logging
 
     if args.debug:
         setup_logging(debug=True)
@@ -437,7 +520,7 @@ def main():
     if args.log_file:
         import logging.handlers
 
-        from nix_for_humanity.core.logging_config import get_logging_config
+        from luminous_nix.core.logging_config import get_logging_config
 
         file_handler = logging.handlers.RotatingFileHandler(
             args.log_file, maxBytes=10 * 1024 * 1024, backupCount=3  # 10MB
@@ -474,7 +557,8 @@ def main():
     elif args.query:
         query = " ".join(args.query)
         enable_learning = not args.no_learning
-        return asyncio.run(execute_query(query, args.execute, enable_learning))
+        output_format = "json" if args.json else args.format
+        return asyncio.run(execute_query(query, args.execute, enable_learning, output_format))
     else:
         parser.print_help()
         return 0

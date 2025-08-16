@@ -187,10 +187,10 @@ def migrate_existing_code():
             content = old_file.read_text()
 
             # Update imports
-            content = content.replace("from backend.", "from nix_for_humanity.")
-            content = content.replace("from ..", "from nix_for_humanity")
+            content = content.replace("from backend.", "from luminous_nix.")
+            content = content.replace("from ..", "from luminous_nix")
             content = content.replace(
-                "import nix_for_humanity.core as backend.", "import nix_for_humanity."
+                "import luminous_nix.core as backend.", "import luminous_nix."
             )
 
             # Write to new location

@@ -1,6 +1,6 @@
 # 🔧 Voice Interface Troubleshooting
 
-*Common issues and solutions for the Nix for Humanity voice interface*
+*Common issues and solutions for the Luminous Nix voice interface*
 
 ## Quick Diagnostics
 

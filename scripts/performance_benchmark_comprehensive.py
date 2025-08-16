@@ -27,8 +27,8 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 try:
-    from src.nix_for_humanity.adapters.cli_adapter import CLIAdapter
-    from src.nix_for_humanity.core.engine import NIXForHumanityEngine
+    from src.luminous_nix.adapters.cli_adapter import CLIAdapter
+    from src.luminous_nix.core.engine import NIXForHumanityEngine
 
     ENGINE_AVAILABLE = True
 except ImportError:
@@ -202,7 +202,7 @@ class PerformanceBenchmark:
                 capture_output=True,
                 text=True,
                 timeout=scenario["timeout"],
-                env={**os.environ, "NIX_HUMANITY_PYTHON_BACKEND": "true"},
+                env={**os.environ, "LUMINOUS_NIX_PYTHON_BACKEND": "true"},
             )
 
             end_time = time.perf_counter()

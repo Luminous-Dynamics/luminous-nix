@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-11T21:19:06.787760",
+  "sprawl_score": 12,
+  "violation_count": 0,
+  "duplicate_categories": 2,
+  "details": {
+    "violations": [],
+    "duplicates": {
+      "backends": 3,
+      "voice_interfaces": 1
+    }
+  }
+}

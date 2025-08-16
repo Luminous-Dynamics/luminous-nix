@@ -81,7 +81,7 @@ We've clarified that **Tauri is our PRIMARY implementation**, not a "wrapper" fo
 ## File Structure
 
 ```
-nix-for-humanity/
+luminous-nix/
 ├── src-tauri/              # Rust backend
 │   ├── src/
 │   │   ├── main.rs         # App entry & IPC handlers

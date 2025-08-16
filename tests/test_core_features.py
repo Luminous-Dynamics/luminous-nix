@@ -18,8 +18,7 @@ sys.path.insert(0, os.path.join(nix_humanity_dir, "scripts", "backend"))
 os.chdir(nix_humanity_dir)
 
 # Import modules directly
-from nix_for_humanity.core import IntentType, NixForHumanityBackend
-
+from luminous_nix.core import IntentType, NixForHumanityBackend
 
 def test_configuration_generation():
     """Test configuration generation feature"""
@@ -51,7 +50,6 @@ def test_configuration_generation():
             print("✅ Configuration generation working!")
         else:
             print(f"❌ Error: {response.text[:100]}...")
-
 
 def test_flake_management():
     """Test flake management feature"""
@@ -87,7 +85,6 @@ def test_flake_management():
                     print("✅ Flake created successfully!")
                 else:
                     print("❌ Flake file not found")
-
 
 def test_all_features():
     """Test all implemented core features"""
@@ -159,7 +156,6 @@ def test_all_features():
         print("\n⚠️  Most features working, some need attention")
     else:
         print("\n❌ Significant issues with core features")
-
 
 if __name__ == "__main__":
     # Run individual tests

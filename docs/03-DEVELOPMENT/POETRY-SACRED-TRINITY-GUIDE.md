@@ -23,7 +23,7 @@ Poetry is now installed system-wide via NixOS configuration:
 
 ```bash
 # Start your sacred development session
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 poetry install              # Ensure dependencies are current
 
 # Run the application
@@ -87,7 +87,7 @@ modern-installation = true     # Use new installer
 ### pyproject.toml (Package configuration)
 ```toml
 [tool.poetry]
-name = "nix-for-humanity"
+name = "luminous-nix"
 version = "1.0.0"
 
 [tool.poetry.scripts]

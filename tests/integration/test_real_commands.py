@@ -14,12 +14,11 @@ import pytest
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from nix_for_humanity.api.schema import Request
-from nix_for_humanity.core.engine import NixForHumanityBackend
-from nix_for_humanity.core import SafeExecutor
-from nix_for_humanity.core import IntentRecognizer, IntentType
-from nix_for_humanity.core.knowledge import KnowledgeBase
-
+from luminous_nix.api.schema import Request
+from luminous_nix.core.engine import NixForHumanityBackend
+from luminous_nix.core import SafeExecutor
+from luminous_nix.core import IntentRecognizer, IntentType
+from luminous_nix.core.knowledge import KnowledgeBase
 
 class TestRealIntegration:
     """Real integration tests without mocks"""
@@ -280,7 +279,7 @@ class TestRealIntegration:
 
     def test_backend_enhanced_responses(self, backend):
         """Test that enhanced response system works when enabled"""
-        os.environ["NIX_HUMANITY_ENHANCED_RESPONSES"] = "true"
+        os.environ["LUMINOUS_NIX_ENHANCED_RESPONSES"] = "true"
 
         request = Request(
             query="install docker",
@@ -295,7 +294,6 @@ class TestRealIntegration:
             assert len(paths) >= 2  # Should have multiple solution paths
             assert any("imperative" in str(path).lower() for path in paths)
             assert any("declarative" in str(path).lower() for path in paths)
-
 
 if __name__ == "__main__":
     # Run tests with pytest

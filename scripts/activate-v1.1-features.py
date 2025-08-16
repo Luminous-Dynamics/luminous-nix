@@ -51,8 +51,6 @@ def create_v1_1_tests():
 """v1.1 Feature Integration Tests"""
 
 import pytest
-import sys
-from pathlib import Path
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
@@ -60,9 +58,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 def test_tui_imports():
     """Test that TUI components can be imported"""
     try:
-        from nix_for_humanity.ui.main_app import NixForHumanityTUI
-        from nix_for_humanity.ui.consciousness_orb import ConsciousnessOrb
-        from nix_for_humanity.interfaces.tui import main
+        from luminous_nix.ui.main_app import NixForHumanityTUI
+        from luminous_nix.ui.consciousness_orb import ConsciousnessOrb
+        from luminous_nix.interfaces.tui import main
         assert True
     except ImportError as e:
         pytest.skip(f"TUI dependencies not installed: {e}")
@@ -70,8 +68,8 @@ def test_tui_imports():
 def test_tui_backend_connection():
     """Test TUI can connect to backend"""
     try:
-        from nix_for_humanity.ui.main_app import NixForHumanityTUI
-        from nix_for_humanity.core.backend import NixForHumanityBackend
+        from luminous_nix.ui.main_app import NixForHumanityTUI
+        from luminous_nix.core.backend import NixForHumanityBackend
 
         # Backend should be accessible
         backend = NixForHumanityBackend()
@@ -93,7 +91,7 @@ def test_voice_components_exist():
 
 def test_cli_still_works():
     """Ensure CLI functionality is not broken"""
-    from nix_for_humanity.core.backend import NixForHumanityBackend
+    from luminous_nix.core.backend import NixForHumanityBackend
 
     backend = NixForHumanityBackend()
     result = backend.execute_command("help", dry_run=True)

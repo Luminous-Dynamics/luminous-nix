@@ -1,10 +1,10 @@
-# 🎉 Nix for Humanity v1.3.0: Code Intelligence & Discovery Revolution
+# 🎉 Luminous Nix v1.3.0: Code Intelligence & Discovery Revolution
 
 > *"Technology that understands your code as deeply as you do"*
 
 ## 🌟 Overview
 
-We're thrilled to announce **Nix for Humanity v1.3.0**, bringing revolutionary code intelligence and intelligent package discovery to make NixOS even more accessible and intuitive.
+We're thrilled to announce **Luminous Nix v1.3.0**, bringing revolutionary code intelligence and intelligent package discovery to make NixOS even more accessible and intuitive.
 
 This release represents another major leap forward in our Sacred Trinity development model - proving that $200/month can deliver enterprise-quality software through human-AI collaboration.
 
@@ -85,8 +85,8 @@ nix-channel --update
 ### New installation:
 ```bash
 # Clone the repository
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 
 # Enter development environment
 nix develop
@@ -151,7 +151,7 @@ This release was developed in just **one day** using our revolutionary Sacred Tr
 
 We welcome contributions! Our Sacred Trinity model shows that human-AI collaboration can achieve remarkable results with minimal resources.
 
-- **GitHub**: https://github.com/Luminous-Dynamics/nix-for-humanity
+- **GitHub**: https://github.com/Luminous-Dynamics/luminous-nix
 - **Issues**: Report bugs or request features
 - **Discussions**: Join the community conversation
 
@@ -185,8 +185,8 @@ v1.3.0 represents another milestone in making NixOS accessible to everyone throu
 
 ```bash
 # Get started in 30 seconds
-git clone https://github.com/Luminous-Dynamics/nix-for-humanity
-cd nix-for-humanity
+git clone https://github.com/Luminous-Dynamics/luminous-nix
+cd luminous-nix
 nix develop
 poetry install
 ./bin/ask-nix "help"

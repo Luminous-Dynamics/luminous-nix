@@ -27,7 +27,6 @@ sys.modules["flask_socketio"] = MagicMock()
 from api import nix_api_server
 from api.nix_api_server import APIError, cleanup_old_sessions
 
-
 class TestAPIError(unittest.TestCase):
     """Test the APIError class."""
 
@@ -43,7 +42,6 @@ class TestAPIError(unittest.TestCase):
         error = APIError("Bad request")
         self.assertEqual(error.message, "Bad request")
         self.assertEqual(error.status_code, 400)
-
 
 class TestAPIUtilities(unittest.TestCase):
     """Test utility functions and session management."""
@@ -131,7 +129,6 @@ class TestAPIUtilities(unittest.TestCase):
             # All should be preserved (all less than 24 hours old)
             self.assertEqual(len(nix_api_server.sessions), initial_count)
 
-
 class TestAPIConfiguration(unittest.TestCase):
     """Test API configuration and constants."""
 
@@ -151,7 +148,6 @@ class TestAPIConfiguration(unittest.TestCase):
     def test_sessions_dict_exists(self):
         """Test sessions dictionary exists."""
         self.assertIsInstance(nix_api_server.sessions, dict)
-
 
 class TestEndpointLogic(unittest.TestCase):
     """Test endpoint logic without Flask context."""
@@ -205,7 +201,6 @@ class TestEndpointLogic(unittest.TestCase):
             self.assertEqual(
                 nix_api_server.sessions[session_id]["last_interaction"], test_time
             )
-
 
 if __name__ == "__main__":
     unittest.main()

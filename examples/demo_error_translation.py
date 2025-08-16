@@ -8,7 +8,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from nix_for_humanity.core.error_translator import ErrorTranslator
+from luminous_nix.core.error_translator import ErrorTranslator
 
 
 def demo_error_translation():

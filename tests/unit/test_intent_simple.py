@@ -18,8 +18,7 @@ backend_path = os.path.join(project_root, "nix_humanity")
 sys.path.insert(0, backend_path)
 
 # Import the module we're testing
-from nix_for_humanity.core.intents import Intent, IntentRecognizer, IntentType
-
+from luminous_nix.core.intents import Intent, IntentRecognizer, IntentType
 
 class TestIntentTypeEnum(unittest.TestCase):
     """Test the IntentType enum."""
@@ -47,7 +46,6 @@ class TestIntentTypeEnum(unittest.TestCase):
         self.assertEqual(IntentType.UPDATE_SYSTEM.value, "update_system")
         self.assertEqual(IntentType.UNKNOWN.value, "unknown")
 
-
 class TestIntent(unittest.TestCase):
     """Test the Intent dataclass."""
 
@@ -64,7 +62,6 @@ class TestIntent(unittest.TestCase):
         self.assertEqual(intent.entities, {"package": "firefox"})
         self.assertEqual(intent.confidence, 0.9)
         self.assertEqual(intent.raw_text, "install firefox")
-
 
 class TestIntentRecognizer(unittest.TestCase):
     """Test the IntentRecognizer class."""
@@ -245,7 +242,6 @@ class TestIntentRecognizer(unittest.TestCase):
         self.assertEqual(
             entities.get("query"), "for text editors"
         )  # Implementation includes "for"
-
 
 if __name__ == "__main__":
     unittest.main()

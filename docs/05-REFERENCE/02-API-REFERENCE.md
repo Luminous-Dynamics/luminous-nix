@@ -1,10 +1,10 @@
-# 🌐 Nix for Humanity REST API Reference
+# 🌐 Luminous Nix REST API Reference
 
-*Complete API documentation for the Nix for Humanity headless core*
+*Complete API documentation for the Luminous Nix headless core*
 
 ---
 
-💡 **Quick Context**: REST API for integrating Nix for Humanity into web, mobile, and third-party applications
+💡 **Quick Context**: REST API for integrating Luminous Nix into web, mobile, and third-party applications
 📍 **You are here**: Reference → API Reference
 🔗 **Related**: [Backend Architecture](../02-ARCHITECTURE/02-BACKEND-ARCHITECTURE.md) | [CLI Commands](./01-CLI-COMMANDS.md) | [Configuration](./CONFIGURATION.md)
 ⏱️ **Read time**: 15 minutes
@@ -38,7 +38,7 @@
 
 ## Overview
 
-The Nix for Humanity REST API provides programmatic access to natural language NixOS operations. It's designed for:
+The Luminous Nix REST API provides programmatic access to natural language NixOS operations. It's designed for:
 
 - **Web Applications**: Build custom frontends for NixOS management
 - **Mobile Apps**: Create native mobile interfaces
@@ -58,7 +58,7 @@ The Nix for Humanity REST API provides programmatic access to natural language N
 
 ### 1. Start the API Server
 ```bash
-cd /srv/luminous-dynamics/11-meta-consciousness/nix-for-humanity
+cd /srv/luminous-dynamics/11-meta-consciousness/luminous-nix
 python scripts/api/nix_api_server.py
 ```
 
@@ -420,7 +420,7 @@ For real-time interaction, WebSocket support is available (requires `flask-socke
 const socket = io('http://localhost:5000');
 
 socket.on('connect', () => {
-  console.log('Connected to Nix for Humanity');
+  console.log('Connected to Luminous Nix');
 });
 
 socket.on('connected', (data) => {
@@ -587,7 +587,7 @@ gunicorn -w 4 -b 0.0.0.0:5000 scripts.api.nix_api_server:app
 
 # Or with systemd service
 [Unit]
-Description=Nix for Humanity API
+Description=Luminous Nix API
 After=network.target
 
 [Service]
@@ -616,7 +616,7 @@ export NIX_API_CORS_ORIGINS=https://yourdomain.com
 
 ---
 
-*Sacred Humility Context: This API documentation represents our current implementation of REST endpoints for Nix for Humanity. While the API design follows REST best practices and provides comprehensive functionality, the actual implementation may vary based on backend evolution and real-world usage patterns. Rate limits, response formats, and available features may need adjustment based on production requirements and user feedback.*
+*Sacred Humility Context: This API documentation represents our current implementation of REST endpoints for Luminous Nix. While the API design follows REST best practices and provides comprehensive functionality, the actual implementation may vary based on backend evolution and real-world usage patterns. Rate limits, response formats, and available features may need adjustment based on production requirements and user feedback.*
 
 **Last Updated**: 2024-01-15
 **API Version**: 0.8.0
