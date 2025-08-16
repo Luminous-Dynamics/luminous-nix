@@ -19,8 +19,7 @@ from pathlib import Path
 backend_path = Path(__file__).parent / "backend"
 sys.path.insert(0, str(backend_path))
 
-from api.schema import Request
-
+from luminous_nix.api.schema import Request
 from luminous_nix.core.engine import create_backend
 
 def progress_callback(message: str, progress: float):

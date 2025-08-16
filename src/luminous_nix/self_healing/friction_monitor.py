@@ -12,7 +12,7 @@ Simple and elegant - just 150 lines instead of complex analytics.
 import time
 from collections import deque
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from datetime import datetime, timedelta
 
 

@@ -17,10 +17,10 @@ import os
 import sys
 import unittest
 
-# Add backend to Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../backend"))
+# Add src to Python path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../src"))
 
-from security.input_validator import InputValidator, SecurityContext
+from luminous_nix.security.input_validator import InputValidator, SecurityContext
 
 class TestInputValidator(unittest.TestCase):
     """Test the InputValidator class."""

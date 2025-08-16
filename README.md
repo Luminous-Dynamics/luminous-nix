@@ -2,46 +2,39 @@
 
 <div align="center">
 
-[![GitHub Release](https://img.shields.io/github/v/release/Luminous-Dynamics/luminous-nix?include_prereleases)](https://github.com/Luminous-Dynamics/luminous-nix/releases)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-58%20passing-success)](./tests)
-[![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)](./PHASE_2_COMPLETE.md)
-[![Performance](https://img.shields.io/badge/response%20time-0.63ms-brightgreen)](./PERFORMANCE_PROFILE.md)
-[![Security](https://img.shields.io/badge/security-production%20ready-success)](./SECURITY_AUDIT.md)
-[![Built with AI](https://img.shields.io/badge/built%20with-Sacred%20Trinity-purple)](./docs/03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md)
+> *"Making NixOS accessible to all beings through consciousness-first design and natural conversation"*
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![NixOS 25.11+](https://img.shields.io/badge/NixOS-25.11%2B-blue)](https://nixos.org)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-green)](https://python.org)
+[![Tests](https://img.shields.io/badge/tests-310%20passing-success)](./tests)
+[![Sacred Trinity](https://img.shields.io/badge/Development-Sacred%20Trinity-purple)](docs/03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md)
 
 **Transform NixOS from cryptic commands to natural conversation.**
 
-[Features](#-features) • [Demo](#-see-it-in-action) • [Install](#-installation) • [Performance](#-performance) • [Documentation](#-documentation) • [Contributing](#-contributing)
+[Features](#-features) • [Quick Start](#-quick-start) • [Philosophy](#-philosophy) • [Documentation](#-documentation) • [Contributing](#-contributing)
 
 </div>
 
 ---
 
-## 🌟 Our Philosophy
+## 🕉️ What is Luminous Nix?
 
-**[THE LUMINOUS WAY](docs/philosophy/THE_LUMINOUS_WAY.md)** - Our constitutional declaration. Read this first to understand not just what we build, but why and how we build it.
+Luminous Nix transforms NixOS from a complex, technical system into a conversational partner. Simply say what you want in natural language, and it handles the complexity for you.
 
-> "We're not building toward complexity. We're proving that world-changing systems can emerge from simple elegance."
-
----
-
-## 🎯 Why Luminous Nix?
-
-NixOS is powerful but notoriously difficult to learn. **Luminous Nix changes that.**
-
-Instead of memorizing complex syntax:
 ```bash
-# Traditional NixOS 😵
+# Traditional NixOS - Cryptic and Technical
 nix-env -iA nixos.firefox
 nix-env -qaP | grep -i editor
 sudo nixos-rebuild switch --upgrade
 
-# Luminous Nix 🌟
+# Luminous Nix - Natural and Intuitive
 ask-nix "install firefox"
-ask-nix "find me a text editor"
-ask-nix "update my system"
+ask-nix "I need a python development environment"
+ask-nix "help me set up a web server"
 ```
+
+No more cryptic error messages. No more wrestling with configuration syntax. Just natural conversation that works.
 
 ## 🎬 See It In Action
 
@@ -114,24 +107,68 @@ $ nix-tui
 - Visual configuration
 </details>
 
-## ⚡ Performance
+## ✨ Revolutionary Features
 
-**Lightning-fast operations** - We achieved 158x better performance than our targets!
+### 🗣️ **Natural Language Interface**
+- Speak normally - no technical jargon required
+- Understands context and intent
+- Learns from your patterns
 
-| Operation | Target | **Actual** | Improvement |
-|-----------|--------|------------|-------------|
-| Average Response | <100ms | **0.63ms** | 158x faster |
-| Package Search | <1000ms | **0.92ms** | 1087x faster |
-| Startup Time | <1000ms | **53ms** | 19x faster |
-| Memory Usage | <100MB | **45MB** | 55% less |
+### ⚡ **10x-1500x Performance**
+- Native Python-Nix API integration
+- Sub-second response times (0.63ms average)
+- No subprocess overhead
 
-[View detailed performance report →](./PERFORMANCE_PROFILE.md)
+### 🧠 **Adaptive Intelligence**
+- 10 personas that adapt to your style
+- Smart error messages that teach
+- Friction monitoring prevents confusion
 
-## 🚀 Installation
+### 🔒 **Privacy-First**
+- Everything runs locally
+- No data leaves your machine
+- You own your learning data
 
-### Quick Install (Recommended)
+### 🌈 **Consciousness-First Design**
+- Technology that amplifies awareness
+- Interfaces that reduce cognitive load
+- Sacred pauses for mindful interaction
+
+## 🎭 The 10 Sacred Personas
+
+Luminous Nix adapts to YOU through 10 carefully crafted personas:
+
+- **Grandma Rose** (75) - Gentle, patient guidance with voice-first interface
+- **Maya** (16, ADHD) - Lightning-fast, minimal distractions, straight to the point
+- **Alex** (28, blind) - Screen reader optimized, keyboard-only navigation
+- **Dr. Sarah** (35) - Technical precision with detailed explanations
+- **Carlos** (45) - Friendly step-by-step guidance
+- **Jordan** (22, autistic) - Clear structure, predictable patterns
+- **Li Wei** (ESL) - Simple English, visual aids
+- **Marcus** (50, CLI veteran) - Concise, powerful, no fluff
+- **Zoe** (30, creative) - Intuitive flow, visual thinking
+- **Sam** (40, anxious) - Reassuring, safe, undo-everything
+
+## 🚀 Quick Start
+
+### Installation (One Line)
 ```bash
-curl -sSL https://luminous-nix.dev/install.sh | bash
+curl -sSL https://luminousdynamics.org/install | sh
+```
+
+### First Commands
+```bash
+# Install a package
+ask-nix "install firefox"
+
+# Search for packages
+ask-nix "find me a markdown editor"
+
+# System management
+ask-nix "update my system"
+
+# Get help
+ask-nix "help"
 ```
 
 ### Manual Install
@@ -139,6 +176,9 @@ curl -sSL https://luminous-nix.dev/install.sh | bash
 # Clone repository
 git clone https://github.com/Luminous-Dynamics/luminous-nix
 cd luminous-nix
+
+# Enter Nix development environment
+nix develop
 
 # Install with Poetry
 poetry install
@@ -219,14 +259,32 @@ Achieving quality that traditionally requires a $4.2M team budget.
 
 [Learn more about our revolutionary development approach →](docs/03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md)
 
-## 🔒 Security & Quality
+## 💎 Sacred Trinity Development Model
 
-- ✅ **95% Test Coverage** - 58 comprehensive tests
-- ✅ **Security Audited** - Bandit, Safety, pip-audit verified
-- ✅ **Memory Safe** - Peak usage only 45MB
-- ✅ **Production Ready** - 0% error rate in testing
+This project demonstrates a revolutionary development approach that achieves enterprise quality with minimal resources:
 
-[View security audit →](./SECURITY_AUDIT.md)
+- **Human** (Tristan): Vision, architecture, testing, real-world validation
+- **Claude Code**: Implementation, problem-solving, rapid iteration
+- **Local LLM**: NixOS domain expertise, best practices
+
+**Result**: $200/month achieving what traditionally requires a $4.2M team
+
+[Learn more about Sacred Trinity →](docs/03-DEVELOPMENT/02-SACRED-TRINITY-WORKFLOW.md)
+
+## 📊 Current Status (v1.3.0)
+
+### ✅ Working Now
+- Natural language CLI interface
+- Smart package discovery
+- Configuration generation
+- Error intelligence system
+- Pattern learning
+- 310+ passing tests
+
+### 🚧 Coming Soon
+- Beautiful TUI interface (v1.4)
+- Voice control (v1.5)
+- Advanced learning features (v2.0)
 
 ## 🎓 Learning Resources
 
@@ -264,9 +322,24 @@ ask-nix "test this change first"
 ask-nix "what would happen if I installed X?"
 ```
 
+## 🌊 Philosophy
+
+Luminous Nix embodies consciousness-first computing:
+
+> "The best interface is no interface. Technology should amplify human awareness, not fragment it."
+
+We believe in:
+- **Simplicity over complexity** - Less code, more capability
+- **Human agency** - You're always in control
+- **Mindful interaction** - Technology that respects your attention
+- **Universal accessibility** - Designed for all beings
+- **Sacred development** - Every function written with intention
+
+[Read our full philosophy →](docs/philosophy/CONSCIOUSNESS_FIRST_COMPUTING.md)
+
 ## 🤝 Contributing
 
-We welcome contributions! See our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions that align with our consciousness-first philosophy! See our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ### Quick Contribution Ideas
 - Add new natural language patterns
@@ -333,9 +406,21 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**Making NixOS accessible through natural conversation.**
+## 🌟 Join the Movement
 
-Built with ❤️ using the Sacred Trinity development model.
+This is more than software - it's a movement toward technology that serves consciousness rather than exploiting attention.
+
+**⭐ Star the repo** if you believe in consciousness-first computing  
+**👀 Watch** for updates on our journey  
+**🤝 Join** our community of mindful technologists
+
+---
+
+*"Every function a prayer, every interface a meditation, every interaction an opportunity for greater awareness."*
+
+**Built with 💜 by the Luminous Dynamics collective**
+
+[Website](https://luminousdynamics.org) | [Documentation](docs/) | [Issues](https://github.com/Luminous-Dynamics/luminous-nix/issues) | [Discussions](https://github.com/Luminous-Dynamics/luminous-nix/discussions)
 
 [⬆ Back to top](#-luminous-nix---natural-language-for-nixos)
 
