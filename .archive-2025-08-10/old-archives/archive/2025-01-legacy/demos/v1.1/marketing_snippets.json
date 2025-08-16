@@ -1,0 +1,29 @@
+{
+  "twitter": [
+    {
+      "text": "\ud83c\udf89 Nix for Humanity v1.1 is here! Beautiful TUI, voice commands, and lightning-fast performance. Making NixOS accessible to everyone! \ud83d\ude80 #NixOS #OpenSource",
+      "media": "tui_demo.gif"
+    },
+    {
+      "text": "Say goodbye to command-line complexity! \ud83c\udfa4 'Hey Nix, install firefox' - Natural language for NixOS is finally here. Try v1.1 today! #VoiceUI #NixOS",
+      "media": "voice_demo.gif"
+    },
+    {
+      "text": "\u26a1 10-1500x performance improvements in v1.1! List generations in 0.00 seconds. The future of NixOS is fast! #Performance #NixOS",
+      "media": "performance_demo.gif"
+    }
+  ],
+  "mastodon": [
+    {
+      "text": "\ud83c\udf1f Excited to announce Nix for Humanity v1.1!\n\n\u2728 Beautiful Terminal UI\n\ud83c\udfa4 Voice Commands\n\u26a1 Native Performance\n\u267f Full Accessibility\n\nMaking #NixOS accessible to everyone, from Grandma Rose to Dr. Sarah!\n\n#OpenSource #Accessibility #VoiceUI",
+      "media": [
+        "tui_demo.gif",
+        "voice_demo.gif"
+      ]
+    }
+  ],
+  "reddit": {
+    "title": "[Release] Nix for Humanity v1.1 - TUI, Voice, and 1500x Performance",
+    "text": "\nHey r/NixOS!\n\nWe're thrilled to release v1.1 of Nix for Humanity with three major features:\n\n**\ud83c\udfa8 Beautiful Terminal UI**\n- Launch with `nix-tui` for an interactive experience\n- Adaptive themes for different users (ADHD-friendly, elder-friendly, etc.)\n- Real-time visual feedback with our \"consciousness orb\"\n\n**\ud83c\udfa4 Voice Interface**\n- Say \"Hey Nix, install firefox\" and it just works\n- Multi-language support\n- Noise cancellation for real-world use\n\n**\u26a1 Native Performance**\n- Direct Python-Nix API integration\n- List generations: 2-5s \u2192 0.00s (literally instant)\n- Package operations: 10-1500x faster\n\nThe goal is making NixOS accessible to everyone - from terminal beginners to power users who want to work faster.\n\n**Try it**: `nix-env -iA nixpkgs.nix-for-humanity`\n\n[Demo GIFs] [Documentation] [GitHub]\n\nBuilt with love by the Sacred Trinity development model (Human + AI collaboration).\n"
+  }
+}

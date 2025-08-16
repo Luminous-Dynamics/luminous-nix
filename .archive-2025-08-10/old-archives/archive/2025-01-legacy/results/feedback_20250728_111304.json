@@ -1,0 +1,12 @@
+{
+  "session_id": "20250728_111304",
+  "timestamp": "2025-07-28T11:13:04.785996",
+  "scenarios": {
+    "scenario_1": {
+      "title": "Installing Software",
+      "task": "I want to install a text editor",
+      "responses": {}
+    }
+  },
+  "final_feedback": {}
+}

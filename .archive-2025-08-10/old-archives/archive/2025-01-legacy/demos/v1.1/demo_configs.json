@@ -1,0 +1,206 @@
+{
+  "tui_basic": {
+    "title": "Basic TUI Usage",
+    "duration": 15,
+    "script": [
+      {
+        "action": "launch",
+        "command": "nix-tui"
+      },
+      {
+        "action": "wait",
+        "seconds": 2
+      },
+      {
+        "action": "type",
+        "text": "install firefox",
+        "speed": 0.1
+      },
+      {
+        "action": "wait",
+        "seconds": 1
+      },
+      {
+        "action": "key",
+        "key": "enter"
+      },
+      {
+        "action": "wait",
+        "seconds": 3
+      },
+      {
+        "action": "show_result",
+        "text": "\u2705 Firefox installed successfully"
+      },
+      {
+        "action": "wait",
+        "seconds": 2
+      },
+      {
+        "action": "type",
+        "text": "search markdown",
+        "speed": 0.1
+      },
+      {
+        "action": "key",
+        "key": "enter"
+      },
+      {
+        "action": "wait",
+        "seconds": 2
+      },
+      {
+        "action": "show_results",
+        "items": [
+          "obsidian",
+          "typora",
+          "marktext"
+        ]
+      }
+    ]
+  },
+  "tui_personas": {
+    "title": "Persona Switching",
+    "duration": 20,
+    "script": [
+      {
+        "action": "launch",
+        "command": "nix-tui"
+      },
+      {
+        "action": "wait",
+        "seconds": 1
+      },
+      {
+        "action": "key",
+        "key": "ctrl+s"
+      },
+      {
+        "action": "wait",
+        "seconds": 1
+      },
+      {
+        "action": "navigate",
+        "to": "Personas"
+      },
+      {
+        "action": "select",
+        "item": "Maya (ADHD)"
+      },
+      {
+        "action": "show_change",
+        "text": "Theme changed to high contrast"
+      },
+      {
+        "action": "wait",
+        "seconds": 2
+      },
+      {
+        "action": "select",
+        "item": "Grandma Rose"
+      },
+      {
+        "action": "show_change",
+        "text": "Theme changed to gentle mode"
+      },
+      {
+        "action": "wait",
+        "seconds": 2
+      }
+    ]
+  },
+  "voice_demo": {
+    "title": "Voice Interface",
+    "duration": 25,
+    "script": [
+      {
+        "action": "launch",
+        "command": "nix-voice"
+      },
+      {
+        "action": "wait",
+        "seconds": 2
+      },
+      {
+        "action": "show_waveform",
+        "active": true
+      },
+      {
+        "action": "speak",
+        "text": "Hey Nix"
+      },
+      {
+        "action": "show_detection",
+        "text": "Wake word detected!"
+      },
+      {
+        "action": "wait",
+        "seconds": 1
+      },
+      {
+        "action": "speak",
+        "text": "Install firefox please"
+      },
+      {
+        "action": "show_transcription",
+        "text": "install firefox please"
+      },
+      {
+        "action": "wait",
+        "seconds": 1
+      },
+      {
+        "action": "show_response",
+        "text": "Installing Firefox browser..."
+      },
+      {
+        "action": "play_tts",
+        "text": "I'm installing Firefox for you"
+      },
+      {
+        "action": "wait",
+        "seconds": 3
+      },
+      {
+        "action": "show_result",
+        "text": "\u2705 Firefox has been installed"
+      }
+    ]
+  },
+  "performance_demo": {
+    "title": "Lightning Fast Performance",
+    "duration": 10,
+    "script": [
+      {
+        "action": "split_screen",
+        "panels": [
+          "v1.0",
+          "v1.1"
+        ]
+      },
+      {
+        "action": "parallel_execute",
+        "commands": [
+          {
+            "panel": "v1.0",
+            "command": "nix-env -qa firefox",
+            "time": "2.3s"
+          },
+          {
+            "panel": "v1.1",
+            "command": "ask-nix search firefox",
+            "time": "0.1s"
+          }
+        ]
+      },
+      {
+        "action": "wait",
+        "seconds": 3
+      },
+      {
+        "action": "show_comparison",
+        "text": "23x faster!"
+      }
+    ]
+  }
+}

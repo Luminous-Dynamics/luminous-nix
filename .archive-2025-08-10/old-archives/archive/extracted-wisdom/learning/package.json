@@ -1,0 +1,16 @@
+{
+  "name": "@nix-humanity/learning",
+  "version": "0.1.0",
+  "description": "User preference learning system",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/**/*.test.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

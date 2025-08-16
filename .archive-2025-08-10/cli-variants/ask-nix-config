@@ -1,0 +1,281 @@
+#!/usr/bin/env python3
+"""
+Configuration management CLI for Nix for Humanity
+
+Manage preferences, aliases, and view statistics.
+"""
+
+import sys
+import os
+import argparse
+import json
+from pathlib import Path
+from datetime import datetime
+
+# Add the src directory to the Python path
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
+
+from nix_for_humanity.core.config_manager import get_config_manager, UserPreferences
+from nix_for_humanity.core.logging_config import setup_logging
+
+
+def show_preferences(config_manager):
+    """Show current preferences"""
+    prefs = config_manager.preferences
+    print("\n📋 Current Preferences")
+    print("=" * 50)
+    print(f"  Default dry-run: {prefs.default_dry_run}")
+    print(f"  Default log level: {prefs.default_log_level}")
+    print(f"  Progress indicators: {prefs.enable_progress}")
+    print(f"  Colors enabled: {prefs.enable_colors}")
+    print(f"  Learning enabled: {prefs.enable_learning}")
+    print(f"  Caching enabled: {prefs.enable_caching}")
+    print(f"  Max history: {prefs.max_history}")
+    print(f"  Preferred output: {prefs.preferred_output}")
+    print(f"  Theme: {prefs.theme}")
+
+
+def set_preference(config_manager, key, value):
+    """Set a preference value"""
+    prefs = config_manager.preferences
+    
+    # Convert string values to appropriate types
+    if key in ["default_dry_run", "enable_progress", "enable_colors", 
+               "enable_learning", "enable_caching"]:
+        value = value.lower() in ["true", "yes", "1", "on"]
+    elif key == "max_history":
+        value = int(value)
+    
+    if hasattr(prefs, key):
+        setattr(prefs, key, value)
+        config_manager.save_preferences()
+        print(f"✅ Set {key} = {value}")
+    else:
+        print(f"❌ Unknown preference: {key}")
+        print("Valid preferences:", ", ".join(UserPreferences.__annotations__.keys()))
+
+
+def show_aliases(config_manager):
+    """Show command aliases"""
+    aliases = config_manager.aliases
+    if not aliases:
+        print("\n📝 No aliases defined")
+        return
+    
+    print("\n🔤 Command Aliases")
+    print("=" * 50)
+    for name, alias in sorted(aliases.items()):
+        desc = f" - {alias.description}" if alias.description else ""
+        usage = f" (used {alias.usage_count} times)" if alias.usage_count > 0 else ""
+        print(f"  {name} → {alias.expansion}{desc}{usage}")
+
+
+def add_alias(config_manager, alias, expansion, description=None):
+    """Add a command alias"""
+    config_manager.add_alias(alias, expansion, description)
+    print(f"✅ Added alias: {alias} → {expansion}")
+
+
+def remove_alias(config_manager, alias):
+    """Remove a command alias"""
+    if config_manager.remove_alias(alias):
+        print(f"✅ Removed alias: {alias}")
+    else:
+        print(f"❌ Alias not found: {alias}")
+
+
+def show_stats(config_manager):
+    """Show usage statistics"""
+    stats = config_manager.stats
+    print("\n📊 Usage Statistics")
+    print("=" * 50)
+    print(f"  Total queries: {stats.get('total_queries', 0)}")
+    print(f"  Successful: {stats.get('successful_queries', 0)}")
+    print(f"  Failed: {stats.get('failed_queries', 0)}")
+    
+    success_rate = 0
+    if stats.get('total_queries', 0) > 0:
+        success_rate = stats.get('successful_queries', 0) / stats['total_queries'] * 100
+    print(f"  Success rate: {success_rate:.1f}%")
+    
+    print(f"  Cache hits: {stats.get('cache_hits', 0)}")
+    print(f"  Cache misses: {stats.get('cache_misses', 0)}")
+    
+    cache_rate = 0
+    total_cache = stats.get('cache_hits', 0) + stats.get('cache_misses', 0)
+    if total_cache > 0:
+        cache_rate = stats.get('cache_hits', 0) / total_cache * 100
+    print(f"  Cache hit rate: {cache_rate:.1f}%")
+    
+    avg_time = stats.get('average_response_time', 0)
+    print(f"  Avg response time: {avg_time:.3f}s")
+    
+    # Show session info
+    session = config_manager.session
+    print(f"\n  Current session: {session.session_id}")
+    print(f"  Started: {session.started.strftime('%Y-%m-%d %H:%M')}")
+    print(f"  Commands in session: {session.command_count}")
+    print(f"  Session success rate: {session.success_rate:.1%}")
+
+
+def show_history(config_manager, limit=10):
+    """Show command history"""
+    history = config_manager.get_recent_history(limit)
+    if not history:
+        print("\n📜 No command history")
+        return
+    
+    print(f"\n📜 Recent Command History (last {limit})")
+    print("=" * 50)
+    for entry in history:
+        timestamp = datetime.fromisoformat(entry['timestamp'])
+        success = "✅" if entry['success'] else "❌"
+        time_str = timestamp.strftime('%H:%M:%S')
+        exec_time = entry.get('execution_time', 0)
+        print(f"  {time_str} {success} {entry['query'][:50]} ({exec_time:.2f}s)")
+
+
+def show_patterns(config_manager):
+    """Show learned patterns"""
+    patterns = config_manager.patterns
+    
+    print("\n🧠 Learned Patterns")
+    print("=" * 50)
+    
+    # Frequent queries
+    frequent = patterns.get("frequent_queries", [])
+    if frequent:
+        from collections import Counter
+        query_counts = Counter(frequent)
+        print("\n  Most frequent queries:")
+        for query, count in query_counts.most_common(5):
+            print(f"    • {query} ({count} times)")
+    
+    # Time patterns
+    time_patterns = patterns.get("time_patterns", {})
+    if time_patterns:
+        print("\n  Usage by hour:")
+        for hour in sorted(time_patterns.keys(), key=int):
+            intents = time_patterns[hour]
+            if intents:
+                from collections import Counter
+                intent_counts = Counter(intents)
+                most_common = intent_counts.most_common(1)[0]
+                print(f"    {hour}:00 - Most common: {most_common[0]}")
+
+
+def cleanup_data(config_manager, days):
+    """Clean up old data"""
+    config_manager.cleanup_old_data(days)
+    print(f"✅ Cleaned up data older than {days} days")
+
+
+def export_config(config_manager, path):
+    """Export configuration"""
+    config_manager.export_config(Path(path))
+    print(f"✅ Exported configuration to {path}")
+
+
+def import_config(config_manager, path):
+    """Import configuration"""
+    config_manager.import_config(Path(path))
+    print(f"✅ Imported configuration from {path}")
+
+
+def main():
+    """Main entry point"""
+    parser = argparse.ArgumentParser(
+        description="Manage Nix for Humanity configuration"
+    )
+    
+    subparsers = parser.add_subparsers(dest='command', help='Commands')
+    
+    # Preferences command
+    pref_parser = subparsers.add_parser('preferences', help='Manage preferences')
+    pref_parser.add_argument('--show', action='store_true', help='Show preferences')
+    pref_parser.add_argument('--set', nargs=2, metavar=('KEY', 'VALUE'), help='Set preference')
+    
+    # Alias command
+    alias_parser = subparsers.add_parser('alias', help='Manage aliases')
+    alias_parser.add_argument('--show', action='store_true', help='Show aliases')
+    alias_parser.add_argument('--add', nargs=2, metavar=('ALIAS', 'EXPANSION'), help='Add alias')
+    alias_parser.add_argument('--description', help='Alias description')
+    alias_parser.add_argument('--remove', metavar='ALIAS', help='Remove alias')
+    
+    # Stats command
+    stats_parser = subparsers.add_parser('stats', help='Show statistics')
+    
+    # History command
+    history_parser = subparsers.add_parser('history', help='Show command history')
+    history_parser.add_argument('--limit', type=int, default=10, help='Number of entries')
+    
+    # Patterns command
+    patterns_parser = subparsers.add_parser('patterns', help='Show learned patterns')
+    
+    # Cleanup command
+    cleanup_parser = subparsers.add_parser('cleanup', help='Clean up old data')
+    cleanup_parser.add_argument('--days', type=int, default=30, help='Days to keep')
+    
+    # Export command
+    export_parser = subparsers.add_parser('export', help='Export configuration')
+    export_parser.add_argument('path', help='Export path')
+    
+    # Import command
+    import_parser = subparsers.add_parser('import', help='Import configuration')
+    import_parser.add_argument('path', help='Import path')
+    
+    args = parser.parse_args()
+    
+    # Setup logging
+    setup_logging(level="WARNING")
+    
+    # Get config manager
+    config_manager = get_config_manager()
+    
+    # Handle commands
+    if args.command == 'preferences':
+        if args.set:
+            set_preference(config_manager, args.set[0], args.set[1])
+        else:
+            show_preferences(config_manager)
+    
+    elif args.command == 'alias':
+        if args.add:
+            add_alias(config_manager, args.add[0], args.add[1], args.description)
+        elif args.remove:
+            remove_alias(config_manager, args.remove)
+        else:
+            show_aliases(config_manager)
+    
+    elif args.command == 'stats':
+        show_stats(config_manager)
+    
+    elif args.command == 'history':
+        show_history(config_manager, args.limit)
+    
+    elif args.command == 'patterns':
+        show_patterns(config_manager)
+    
+    elif args.command == 'cleanup':
+        cleanup_data(config_manager, args.days)
+    
+    elif args.command == 'export':
+        export_config(config_manager, args.path)
+    
+    elif args.command == 'import':
+        import_config(config_manager, args.path)
+    
+    else:
+        # Show summary if no command
+        print("\n🕉️ Nix for Humanity Configuration")
+        print("=" * 50)
+        show_preferences(config_manager)
+        show_aliases(config_manager)
+        show_stats(config_manager)
+        print("\nUse --help to see available commands")
+    
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

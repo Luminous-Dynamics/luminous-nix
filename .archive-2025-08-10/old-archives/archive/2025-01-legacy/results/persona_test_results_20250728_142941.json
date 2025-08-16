@@ -1,0 +1,486 @@
+{
+  "timestamp": "20250728_142941",
+  "summary": {
+    "total_tests": 30,
+    "passed": 25,
+    "failed": 5,
+    "personas_passed": [
+      "Maya",
+      "David",
+      "Dr. Sarah",
+      "Alex",
+      "Priya",
+      "Jamie",
+      "Viktor",
+      "Luna"
+    ],
+    "personas_failed": [
+      "Grandma Rose",
+      "Carlos"
+    ],
+    "common_issues": {
+      "Technical terms: nixpkgs, profile, sudo": 2,
+      "Too much text for voice reading": 3,
+      "Technical terms: sudo": 1,
+      "Emojis may confuse screen readers": 3,
+      "No example provided": 2,
+      "Too long to read quickly": 2,
+      "No privacy information": 2,
+      "Complex English: imperative": 1
+    },
+    "common_strengths": {
+      "Clear about dry-run mode": 1,
+      "Includes examples": 1,
+      "Numbered list (predictable)": 2
+    }
+  },
+  "detailed_results": {
+    "Grandma Rose": [
+      {
+        "scenario": "Install a web browser",
+        "command": "install firefox",
+        "success": true,
+        "elapsed_time": 0.23555231094360352,
+        "evaluation": {
+          "passed": false,
+          "issues": [
+            "Technical terms: nixpkgs, profile, sudo",
+            "Too much text for voice reading"
+          ],
+          "strengths": [],
+          "summary": "Failed - Technical terms: nixpkgs, profile, sudo, Too much text for voice reading"
+        },
+        "output_snippet": "Hi there! I'll help you install firefox! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = ..."
+      },
+      {
+        "scenario": "Check for updates",
+        "command": "update my computer",
+        "success": true,
+        "elapsed_time": 0.23274588584899902,
+        "evaluation": {
+          "passed": false,
+          "issues": [
+            "Technical terms: sudo",
+            "Too much text for voice reading"
+          ],
+          "strengths": [],
+          "summary": "Failed - Technical terms: sudo, Too much text for voice reading"
+        },
+        "output_snippet": "Hi there! Update full system configuration\n\n\u26a0\ufe0f This operation requires sudo privileges.\n\nExample:\n```\nsudo nixos-rebuild switch\n```\n\n\ud83d\udca1 Only needed for system-wide changes\n\nLet me know if you need any ..."
+      },
+      {
+        "scenario": "Remove a program",
+        "command": "uninstall zoom",
+        "success": true,
+        "elapsed_time": 0.24379777908325195,
+        "evaluation": {
+          "passed": false,
+          "issues": [
+            "Technical terms: nixpkgs, profile, sudo",
+            "Too much text for voice reading"
+          ],
+          "strengths": [],
+          "summary": "Failed - Technical terms: nixpkgs, profile, sudo, Too much text for voice reading"
+        },
+        "output_snippet": "Hi there! I'll help you install uninstall! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages ..."
+      }
+    ],
+    "Maya": [
+      {
+        "scenario": "Quick install",
+        "command": "install discord",
+        "success": true,
+        "elapsed_time": 0.2330949306488037,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install discord! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = ..."
+      },
+      {
+        "scenario": "Fast search",
+        "command": "find games",
+        "success": false,
+        "elapsed_time": 0.23796796798706055,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! Search using nix search or online\n\nExample:\n```\nnix search nixpkgs firefox\n```\n\n\ud83d\udca1 Use search.nixos.org for web interface\n\nLet me know if you need any clarification! \ud83d\ude0a\n\n\n\ud83d\udd0d Searching for 'game..."
+      },
+      {
+        "scenario": "Instant action",
+        "command": "install spotify now",
+        "success": true,
+        "elapsed_time": 0.2333219051361084,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install spotify! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = ..."
+      }
+    ],
+    "David": [
+      {
+        "scenario": "Install kids software",
+        "command": "install minecraft",
+        "success": true,
+        "elapsed_time": 0.23421335220336914,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install minecraft! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages ..."
+      },
+      {
+        "scenario": "Fix broken package",
+        "command": "firefox not working",
+        "success": true,
+        "elapsed_time": 0.23364043235778809,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      },
+      {
+        "scenario": "Safe system update",
+        "command": "update everything safely",
+        "success": true,
+        "elapsed_time": 0.23523521423339844,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! Update full system configuration\n\n\u26a0\ufe0f This operation requires sudo privileges.\n\nExample:\n```\nsudo nixos-rebuild switch\n```\n\n\ud83d\udca1 Only needed for system-wide changes\n\nLet me know if you need any ..."
+      }
+    ],
+    "Dr. Sarah": [
+      {
+        "scenario": "Install research tools",
+        "command": "install jupyter",
+        "success": true,
+        "elapsed_time": 0.23484325408935547,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [
+            "Clear about dry-run mode"
+          ],
+          "summary": "Passed - Clear about dry-run mode"
+        },
+        "output_snippet": "Hi there! I'll help you install jupyter! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = ..."
+      },
+      {
+        "scenario": "Batch operations",
+        "command": "install python pandas numpy matplotlib",
+        "success": true,
+        "elapsed_time": 0.23448801040649414,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install python3! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = ..."
+      },
+      {
+        "scenario": "System optimization",
+        "command": "optimize nix store",
+        "success": true,
+        "elapsed_time": 0.23268938064575195,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      }
+    ],
+    "Alex": [
+      {
+        "scenario": "Install dev tools",
+        "command": "install neovim",
+        "success": true,
+        "elapsed_time": 0.23335909843444824,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "Emojis may confuse screen readers"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install vim! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = with..."
+      },
+      {
+        "scenario": "List installed",
+        "command": "what do I have installed",
+        "success": true,
+        "elapsed_time": 0.3374454975128174,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "Emojis may confuse screen readers"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! List installed packages in profile\n\nExample:\n```\nnix profile list\n```\n\n\ud83d\udca1 Shows all packages installed in current profile\n\nLet me know if you need any clarification! \ud83d\ude0a\n\n\ud83d\udce6 Listing installed pa..."
+      },
+      {
+        "scenario": "Navigate options",
+        "command": "install git with options",
+        "success": true,
+        "elapsed_time": 0.2317054271697998,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "Emojis may confuse screen readers"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install git! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = with..."
+      }
+    ],
+    "Carlos": [
+      {
+        "scenario": "Learn basics",
+        "command": "what is nix",
+        "success": true,
+        "elapsed_time": 0.14908504486083984,
+        "evaluation": {
+          "passed": false,
+          "issues": [
+            "No example provided"
+          ],
+          "strengths": [],
+          "summary": "Failed - No example provided"
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      },
+      {
+        "scenario": "First install",
+        "command": "how do I install vscode",
+        "success": true,
+        "elapsed_time": 0.23074030876159668,
+        "evaluation": {
+          "passed": false,
+          "issues": [
+            "No example provided"
+          ],
+          "strengths": [],
+          "summary": "Failed - No example provided"
+        },
+        "output_snippet": "Hi there! I'll help you install vscode! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = w..."
+      },
+      {
+        "scenario": "Understand errors",
+        "command": "what does collision mean",
+        "success": true,
+        "elapsed_time": 0.24405241012573242,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [
+            "Includes examples"
+          ],
+          "summary": "Passed - Includes examples"
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      }
+    ],
+    "Priya": [
+      {
+        "scenario": "Quick software install",
+        "command": "install zoom",
+        "success": true,
+        "elapsed_time": 0.24077224731445312,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "Too long to read quickly"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install zoom! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = wit..."
+      },
+      {
+        "scenario": "Resume task",
+        "command": "continue update",
+        "success": true,
+        "elapsed_time": 0.23194670677185059,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! Update full system configuration\n\n\u26a0\ufe0f This operation requires sudo privileges.\n\nExample:\n```\nsudo nixos-rebuild switch\n```\n\n\ud83d\udca1 Only needed for system-wide changes\n\nLet me know if you need any ..."
+      },
+      {
+        "scenario": "Quick check",
+        "command": "is firefox installed",
+        "success": true,
+        "elapsed_time": 0.2336256504058838,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "Too long to read quickly"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install firefox! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = ..."
+      }
+    ],
+    "Jamie": [
+      {
+        "scenario": "Privacy-focused browser",
+        "command": "install tor browser",
+        "success": true,
+        "elapsed_time": 0.23163461685180664,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "No privacy information"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install tor! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = with..."
+      },
+      {
+        "scenario": "Check data collection",
+        "command": "what data do you collect",
+        "success": true,
+        "elapsed_time": 0.23384833335876465,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "No privacy information"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      },
+      {
+        "scenario": "Secure communication",
+        "command": "install signal",
+        "success": true,
+        "elapsed_time": 0.23535680770874023,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install signal! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = w..."
+      }
+    ],
+    "Viktor": [
+      {
+        "scenario": "Install browser",
+        "command": "I want internet",
+        "success": true,
+        "elapsed_time": 0.24074959754943848,
+        "evaluation": {
+          "passed": true,
+          "issues": [
+            "Complex English: imperative"
+          ],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I'll help you install internet! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages =..."
+      },
+      {
+        "scenario": "Update computer",
+        "command": "make computer new",
+        "success": true,
+        "elapsed_time": 0.23344111442565918,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      },
+      {
+        "scenario": "Find program",
+        "command": "where is firefox",
+        "success": true,
+        "elapsed_time": 0.23418092727661133,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      }
+    ],
+    "Luna": [
+      {
+        "scenario": "Consistent install",
+        "command": "install steam",
+        "success": true,
+        "elapsed_time": 0.2400364875793457,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [
+            "Numbered list (predictable)"
+          ],
+          "summary": "Passed - Numbered list (predictable)"
+        },
+        "output_snippet": "Hi there! I'll help you install steam! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = wi..."
+      },
+      {
+        "scenario": "Same command again",
+        "command": "install steam",
+        "success": true,
+        "elapsed_time": 0.2347276210784912,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [
+            "Numbered list (predictable)"
+          ],
+          "summary": "Passed - Numbered list (predictable)"
+        },
+        "output_snippet": "Hi there! I'll help you install steam! Here are your options:\n\n1. **Home Manager (User-level, No Sudo)** (no sudo needed)\n   User-specific installation without root access\n   ```\n   home.packages = wi..."
+      },
+      {
+        "scenario": "Predictable list",
+        "command": "list all browsers",
+        "success": true,
+        "elapsed_time": 0.23643946647644043,
+        "evaluation": {
+          "passed": true,
+          "issues": [],
+          "strengths": [],
+          "summary": "Passed - "
+        },
+        "output_snippet": "Hi there! I don't understand that yet. Try asking about installing packages, updating the system, or fixing WiFi.\n\nLet me know if you need any clarification! \ud83d\ude0a\n"
+      }
+    ]
+  }
+}
