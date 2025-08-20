@@ -12,7 +12,7 @@ print("🔍 Analyzing XAI Implementation...")
 print("=" * 50)
 
 # Check what files exist
-xai_path = backend_path / "nix_humanity" / "xai"
+xai_path = backend_path / "luminous_nix" / "xai"
 if xai_path.exists():
     print(f"✅ XAI module found at: {xai_path}")
     xai_files = list(xai_path.glob("*.py"))
